@@ -1,0 +1,166 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_list">{$lang.index_zijinliebiao}</a></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=user_money_add">{$lang.index_zengjiayonghuzijin}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_wei_shenhe">充值未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_yi_shenhe">充值已审核</a></li>-->
+		<li><span>用户资金流水</span></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=duihuan_wei_shenhe">兑换积分未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_yi_shenhe">兑换积分已审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_wei_shenhe">兑换现金未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_yi_shenhe">兑换现金已审核</a></li>-->
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       <form method="get">
+            <div class="left">
+              <input name="module" type="hidden" id="module" value="my_money" />
+              <input name="act" type="hidden" id="act" value="user_moneylog" />
+              用户名:
+              <input name="soname" type="text" id="soname" value="<?php echo $_GET["soname"];?>" />
+			  添加时间:
+              <input name="sotime" type="text" id="sotime" value="<?php echo $_GET["sotime"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="endtime" type="text" id="endtime" value="<?php echo $_GET["endtime"];?>" size="10" maxlength="10" />
+			 {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+             <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+                <input type="submit" class="formbtn" value="{$lang.so_soso}" />
+            </div>
+		 <!--{if $soname or $sotime or $endtime or $suoshuzhan}-->
+      <a class="left formbtn1" href="index.php?module=my_money&act=user_moneylog">{$lang.cancel_query}</a>
+      <!--{/if}-->	
+			
+      </form>
+    </div>
+    <div class="fontr">
+{include file=page.top.html}
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+           
+			<td align="left">对象会员</td>
+            <td>金额</td>
+			<td>积分</td>
+			<td>冻结金额</td>
+			<td>冻结积分</td>
+			
+			<td>类型</td>
+			
+			<td>当前金额</td>
+			<td>当前冻结金额</td>
+			<td>当前积分</td>
+			<td>当前冻结积分</td>
+			<td>操作日期</td>
+			<td>所属站</td>
+			<td><font color="#CC0033">操作日志</font></td>
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$key}" />
+            </td>
+		
+            <td align="left"><b>&nbsp;{$val.user_name}({$val.user_id})</b></td>
+           
+            <td><font color="#FF0000">&nbsp;{$val.money}</font></td>
+			<td><font color="#FF0000">&nbsp;{$val.jifen}</font></td>
+			<td><font color="#FF0000">&nbsp;{$val.money_dj}</font></td>
+			<td><font color="#FF0000">&nbsp;{$val.jifen_dj}</font></td>
+			
+	         <td>&nbsp;
+			 <!--{if $val.type==1}-->{$lang.tp1}<!--{/if}-->
+			 <!--{if $val.type==2}-->{$lang.tp2}<!--{/if}-->
+			 <!--{if $val.type==3}-->{$lang.tp3}<!--{/if}-->
+			 <!--{if $val.type==4}-->{$lang.tp4}<!--{/if}-->
+			 <!--{if $val.type==5}-->{$lang.tp5}<!--{/if}-->
+			 <!--{if $val.type==6}-->{$lang.tp6}<!--{/if}-->
+			 <!--{if $val.type==7}-->{$lang.tp7}<!--{/if}-->
+			 <!--{if $val.type==8}-->{$lang.tp8}<!--{/if}-->
+			 <!--{if $val.type==9}-->{$lang.tp9}<!--{/if}-->
+			 <!--{if $val.type==10}-->{$lang.tp10}<!--{/if}-->
+			 <!--{if $val.type==11}-->{$lang.tp11}<!--{/if}-->
+		     <!--{if $val.type==12}-->{$lang.tp12}<!--{/if}-->
+			 <!--{if $val.type==13}-->{$lang.tp13}<!--{/if}-->
+			 <!--{if $val.type==14}-->{$lang.tp14}<!--{/if}-->
+			 <!--{if $val.type==15}-->{$lang.tp15}<!--{/if}-->
+			 <!--{if $val.type==16}-->{$lang.tp16}<!--{/if}-->
+			 <!--{if $val.type==17}-->{$lang.tp17}<!--{/if}-->
+			 <!--{if $val.type==18}-->{$lang.tp18}<!--{/if}-->
+		     <!--{if $val.type==19}-->{$lang.tp19}<!--{/if}-->
+			 <!--{if $val.type==20}-->{$lang.tp20}<!--{/if}-->
+             <!--{if $val.type==41}-->{$lang.tp41}<!--{/if}-->
+             <!--{if $val.type==22}-->{$lang.tp22}<!--{/if}-->
+             <!--{if $val.type==23}-->{$lang.tp23}<!--{/if}-->
+			 <!--{if $val.type==24}-->{$lang.tp24}<!--{/if}-->
+             <!--{if $val.type==42}-->{$lang.tp42}<!--{/if}-->
+			 <!--{if $val.type==29}-->{$lang.tp29}<!--{/if}-->
+			 <!--{if $val.type==31}-->{$lang.tp31}<!--{/if}-->
+			 <!--{if $val.type==32}-->{$lang.tp32}<!--{/if}-->
+             <!--{if $val.type==33}-->{$lang.tp33}<!--{/if}-->
+             <!--{if $val.type==35}-->{$lang.tp35}<!--{/if}-->
+			 <!--{if $val.type==36}-->{$lang.tp36}<!--{/if}-->
+			 <!--{if $val.type==37}-->{$lang.tp37}<!--{/if}-->
+             <!--{if $val.type==38}-->{$lang.tp38}<!--{/if}-->
+             <!--{if $val.type==39}-->{$lang.tp39}<!--{/if}-->
+             <!--{if $val.type==40}-->{$lang.tp40}<!--{/if}-->
+             <!--{if $val.type==43}-->{$lang.tp43}<!--{/if}-->
+             <!--{if $val.type==44}-->{$lang.tp44}<!--{/if}-->
+             <!--{if $val.type==100}-->{$lang.tp100}<!--{/if}-->
+             <!--{if $val.type==110}-->{$lang.tp110}<!--{/if}-->
+             <!--{if $val.type==111}-->{$lang.tp111}<!--{/if}-->
+			 <!--{if $val.type==113}-->{$lang.tp113}<!--{/if}-->
+			 <!--{if $val.type==118}-->{$lang.tp118}<!--{/if}-->
+			 <!--{if $val.type==120}-->{$lang.tp120}<!--{/if}-->
+             <!--{if $val.type==127}-->{$lang.tp127}<!--{/if}-->
+			 <!--{if $val.type==131}-->{$lang.tp131}<!--{/if}-->
+			</td>
+			
+			<td>&nbsp;{$val.dq_money}</td>
+			<td>&nbsp;{$val.dq_money_dj}</td>
+			<td>&nbsp;{$val.dq_jifen}</td>
+			<td>&nbsp;{$val.dq_jifen_dj}</td>
+			<td>&nbsp;{$val.time}</td>
+			<td>&nbsp;
+			 {$val.city_name}
+			</td>
+			<td width="80">&nbsp;{$val.beizhu}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="#" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

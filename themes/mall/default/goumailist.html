@@ -1,0 +1,106 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<div class="content">
+    
+    <div class="left">
+
+        <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                     <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="#" ><img src="{$val.image}" alt="{$val.content|escape}" width="65" height="100" /></a></div>
+                           
+                        </li>
+                        <!-- {/foreach} -->  
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近出售的优惠券</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$_last_goumai_youhui item=val} -->
+                        <li>
+                            <div class="pic"><img src="{$val.youhui_image|escape}"  width="45" height="40"/></div> 
+                            <dl>
+                               <dd>{$val.youhui_name|escape}</dd>
+                           <dd class="distance"><span title="{$group.price|price}">{$val.youhui_jine|price}</span></dd>
+                                <dd class="time">{$val.riqi|date:Y-m-d H:i}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} -->  
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                                     
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="group_shop">
+		
+		<form name="goumai" action="index.php?app=my_coupon&amp;act=goumaiyouhuiquan" method="post">
+			<div class="zfbox">
+				<div class="yhinfo">优惠券信息</div>
+				<h3>优惠券名称：{$you_hui.youhui_name}</h3>
+				<div class="yhinfo">
+				<div style="float:left">应支付金额：</div><span>{$you_hui.goumai}</span>
+				<input name="goumai" type="hidden" id="goumai" size="15" value="{$you_hui.goumai}"/>
+				<input name="goumai_jifen" type="hidden" id="goumai_jifen" size="15" value="{$you_hui.goumai_jifen}"/>
+				<input name="youhui_id" type="hidden" id="youhui_id" size="15" value="{$you_hui.youhui_id}"/>
+				<input name="youhui_name" type="hidden" id="youhui_name" size="15" value="{$you_hui.youhui_name}"/>
+				<input name="youhui_jine" type="hidden" id="youhui_jine" size="15" value="{$you_hui.youhui_jine}"/>
+				<input name="youhui_jifen" type="hidden" id="youhui_jifen" size="15" value="{$you_hui.youhui_jifen}"/>
+				<input name="youhui_image" type="hidden" id="youhui_image" size="15" value="{$you_hui.youhui_image}"/>
+				</div>
+				
+				<div class="zffsbox">支付方式：&nbsp;&nbsp;<input style="line-height:20px;" type="radio" name="zhifufangshi" checked="checked" value="xianjinzhifu" id="zhifufangshi"/>&nbsp;现金支付
+				
+				</div>
+				<div class="zffsbox"><div style="float:left; height:25px; line-height:25px">支付密码：</div>
+				<input name="password" type="password"  size="15" class="zffstext" /></div>
+				<div style="width:700px; margin-top:20px; margin-left:10px; display:inline; float:left">
+				<input type="submit" class="zfbtn" value="确认支付" /></div>
+				</div>
+			</form>
+		
+
+		
+		
+		
+		
+		
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+
+</div>
+{include file=footer.html}

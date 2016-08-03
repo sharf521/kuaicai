@@ -1,0 +1,92 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<div class="content">
+    
+    <div class="left">
+ <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <ul class="fellowship">
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="65" height="100" /></a></div>
+                           
+                        </li>
+                        <!-- {/foreach} -->  
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近采购的货物</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$last_caigou item=caigou key=key} -->
+                        <li>
+                           <div class="pic"><img src="{$caigou.chanpin}" width="50" height="50"/></div>
+                            <dl>
+                                <dd>{$caigou.goods_name|escape}</dd>
+                                <dd class="distance">{$caigou.goods_brand}</dd>
+                                <dd class="time">{$caigou.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="right">
+
+       
+
+        <div class="group_shop">
+		<center>
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+	<tr><th><h5><font color="#990000">商家信息</font></h5></th></tr>
+            <tr>
+            <table>
+            <tr><td width="100" height="50">联系人:</td><td colspan="3">{$xinxi.name}</td></tr>
+            <tr><td width="100" height="50">厂家名称:</td><td>{$xinxi.gongsi_name|escape}</td><td>厂家地址:</td><td>{$xinxi.address|escape}</td></tr>
+            <tr><td width="100" height="50">商品名称:</td><td colspan="3">{$gonghuo.goods_name|escape}</td></tr>
+            <tr><td width="100" height="50">品牌:</td><td>{$gonghuo.goods_brand|escape}</td><td>零售价:</td><td>{$gonghuo.lingshou_price|escape}</td></tr>
+            <tr><td width="100" height="50">产品图:</td><td colspan="3">{if $gonghuo.chanpin}
+                <img src="{$gonghuo.chanpin}" width="100"  />
+             {else}
+               没有上传
+            {/if}</td></tr>
+             
+            </table>
+                
+            </tr>
+            <tr><th><h5><font color="#990000">商品详细信息</font></h5></th></tr>
+			<tr>
+                <td class="paddingT15 wordSpacing5">
+			
+              {$gonghuo.beizhu}
+		
+				  
+                </td>
+            </tr>
+        
+        </table>
+    </form>
+</center>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+
+</div>
+{include file=footer.html}

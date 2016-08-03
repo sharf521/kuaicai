@@ -1,0 +1,169 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#article_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            title : {
+                required : true
+            },
+            cate_id :{
+                required : true
+            },
+            link    :{
+                url     : true
+            },
+            sort_order:{
+               number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            cate_id : {
+                required : '{$lang.cate_empty}'
+            },
+            link    : {
+                url     : '{$lang.link_limit}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+
+function add_uploadedfile(file_data)
+{
+    var newImg = '<tr id="' + file_data.file_id + '" class="tatr2"><input type="hidden" name="file_id[]" value="' + file_data.file_id + '" /><td><img width="40px" height="40px" src="' + SITE_URL + '/' + file_data.file_path + '" /></td><td>' + file_data.file_name + '</td><td><a href="javascript:insert_editor(\'' + file_data.file_name + '\', \'' + file_data.file_path + '\');">{$lang.insert_editor}</a> | <a href="javascript:drop_uploadedfile(' + file_data.file_id + ');">{$lang.drop}</a></td></tr>';
+    $('#thumbnails').prepend(newImg);
+}
+function insert_editor(file_name, file_path){
+    tinyMCE.execCommand('mceInsertContent', false, '<img src="'+ SITE_URL +'/' + file_path + '" alt="'+ file_name + '">');
+}
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm(lang.uploadedfile_drop_confirm)){
+        return;
+    }
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            $('#' + file_id).remove();
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+</script>
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>
+{$build_editor}
+{$build_upload}
+<div id="rightTop">
+    <p></p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=article_sto">店铺文章管理</a></li>
+       <!-- {if $article.article_id}
+        <li><a class="btn1" href="index.php?app=article&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}-->
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$article.title|escape}" />
+                </td>
+            </tr>
+           
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">分类:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="type" name="type">
+			<option value="">请选择</option>
+			<option value="1" {if $article.type==1} selected="selected"{/if}>店铺介绍</option>
+			<!--<option value="2" {if $article.type==2} selected="selected"{/if}>产品介绍</option>
+			<option value="3" {if $article.type==3} selected="selected"{/if}>本店服务</option>-->
+			</select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="article">内容:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                   
+					
+					 <script type="text/plain" id="myEditor" name="content">
+        							<p>{$article.content}</p>
+    								</script>
+									<script type="text/javascript">
+										UE.getEditor('myEditor',{
+											imageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									imagePath:"",
+											
+											imageManagerUrl:UEDITOR_HOME_URL + "php/imageManager.php?type=1",
+        									imageManagerPath:UEDITOR_HOME_URL + "php/",
+											
+											scrawlUrl:UEDITOR_HOME_URL + "php/scrawlUp.php?type=1",
+        									scrawlPath:"",
+											
+											catcherUrl:UEDITOR_HOME_URL + "php/getRemoteImage.php?type=1",
+        									catcherPath:UEDITOR_HOME_URL + "php/",
+											
+											snapscreenServerUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									snapscreenPath:UEDITOR_HOME_URL + "php/",
+											
+											wordImageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									wordImagePath:UEDITOR_HOME_URL + "php/",
+											
+											initialFrameHeight:420,  //初始化编辑器高度,
+											autoHeightEnabled:false, //是否自动长高,默认true
+											scaleEnabled:false, //是否可以拉伸长高,默认true
+											minFrameHeight:420, //编辑器拖动时最小高度
+											autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+											toolbarTopOffset:400, //编辑器底部距离工具栏高度
+											initialFrameWidth:800
+										})
+									</script> 
+                </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td height="100" valign="top">
+           
+            </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td>                
+            <div class="tdare">
+   
+</div>
+            </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

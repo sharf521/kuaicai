@@ -1,0 +1,73 @@
+{include file=member.header.html}
+<script language=javascript src="js/wpCalendar.js"></script>
+<script language = "JavaScript">
+function chongzhi()
+{
+if (document.chongzhi_form.xiaobao_pay.value=="")
+  {
+    alert("{$lang.xiaobaobunengwei}");
+	document.chongzhi_form.xiaobao_pay.focus();
+	return false;
+  }
+  if (document.chongzhi_form.xiaobao_pay.value<100)
+  {
+    alert("{$lang.xiaobaobunengxiaoyu}");
+	document.chongzhi_form.xiaobao_pay.focus();
+	return false;
+  }
+	document.getElementById("cz").setAttribute('disabled','ture');
+  return true;  
+}
+
+</script>
+
+
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.xiaobao}</li>
+          </ul>
+          <br />
+
+<!--开始-->
+          <!-- <div class="wrap">-->
+            <div class="public table" id="zaixian" >
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+
+                  <div style="line-height:22px; padding-left:20px; margin-top:30px;">
+<div style="padding-left:20px;width:720px; height:800px; overflow-x:hidden; overflow-y:scroll ">
+{$str}
+</div>
+                  </div>
+             </div>
+			</div>
+          <!-- </div>	-->	
+		  <!--结束-->	
+          <br />
+          <div style="padding-left:40px">
+<form name="chongzhi_form" onSubmit="return chongzhi();" action="index.php?app=my_store&act=xiaobao" method="post">
+               消保金额：
+                  <input name="xiaobao_pay" type="text" value="" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/>&nbsp;{$lang.yuan}
+                  <font color="#FF0000">（* {$lang.xiaobaojine}）</font>
+                   <input type="hidden" name="user_id" value="{$visitor.user_id}" />
+                   <br /><br />
+                   <input type="checkbox" name="notice" value="1" checked="checked"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <label for="warning"><font color="#FF0000">{$lang.xiaofeizhefuwu}</font></label><br /><br />
+                  <input type="submit" class="money_btn" value="{$lang.tijiao}" id="cz"/>
+                  </form>
+                  </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

@@ -1,0 +1,246 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_list">{$lang.index_zijinliebiao}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_add">{$lang.index_zengjiayonghuzijin}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_wei_shenhe">充值未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_yi_shenhe">充值已审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_log">资金流水</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	   <!--{foreach from=$index item=val key=key}-->
+            <tr>
+                <th class="paddingT15">{$lang.money_edit_yonghuming}</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="user_name" type="hidden" value="{$val.user_name}" size="20">{$val.user_name}
+				</td>
+            </tr>
+       
+	    <tr>
+                <th class="paddingT15">{$lang.dingdanhao}</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="order_sn" type="text" value="{$val.order_sn}" size="12">
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.seller}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="seller_name" type="text" id="seller_name" value="{$val.seller_name}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.buysell}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="buyer_name" type="text" id="buyer_name" value="{$val.buyer_name}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.couponsn}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="coupon_sn" type="text" id="coupon_sn" value="{$val.coupon_sn}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.couponamount}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="coupon_amount" type="text" id="coupon_amount" value="{$val.coupon_amount}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.tx_bankname}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="tx_bankname " type="text" id="tx_bankname " value="{$val.tx_bankname }" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.tx_banksn}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="tx_banksn" type="text" id="tx_banksn" value="{$val.tx_banksn}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.money_zs}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="money" type="text" id="money" value="{$val.money}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dongjie}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="money_dj" type="text" id="money_dj" value="{$val.money_dj}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.bankname}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="bank_name" type="text" id="bank_name" value="{$val.bank_name}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.danhao}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="danhao" type="text" id="danhao" value="{$val.danhao}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.bankusername}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="bank_username" type="text" id="bank_username" value="{$val.bank_username}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.jifen}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="duihuanjifen" type="text" id="duihuanjifen" value="{$val.duihuanjifen}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dongjiejifen}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="dongjiejifen" type="text" id="dongjiejifen" value="{$val.dongjiejifen}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.type}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="type" type="text" id="type" value="{$val.type}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.beizhu}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="log_text" type="text" id="log_text" value="{$val.log_text}" size="30">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.zhifufangshi}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="zhifufangshi" type="text" id="zhifufangshi" value="{$val.zhifufangshi}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.fufeiyouhuiquan}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="youhui_name" type="text" id="youhui_name" value="{$val.youhui_name}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.youhuijine}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="youhui_jine" type="text" id="youhui_jine" value="{$val.youhui_jine}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.moneyfeiyong}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="money_feiyong" type="text" id="money_feiyong" value="{$val.money_feiyong}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.jifenfeiyong}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="jifen_feiyong" type="text" id="jifen_feiyong" value="{$val.jifen_feiyong}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dangqianjine}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="dq_money" type="text" id="dq_money" value="{$val.dq_money}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dangqiandongjie}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="dq_money_dj" type="text" id="dq_money_dj" value="{$val.dq_money_dj}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dangqianjifen}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="dq_jifen" type="text" id="dq_jifen" value="{$val.dq_jifen}" size="12">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.dangqiandongjiejifen}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="dq_jifen_dj" type="text" id="dq_jifen_dj" value="{$val.dq_jifen_dj}" size="12">
+				
+				</td>
+            </tr>
+             <!--{/foreach}-->
+            
+          
+
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

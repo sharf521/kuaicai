@@ -1,0 +1,110 @@
+                <script type="text/javascript">
+                $(function(){
+                   $('#check_youhui').click(function(){
+                       var bianhao = $('#bianhao').val();
+					   
+                       if(bianhao == '')
+                       {
+                           return;
+                       }
+                       $.getJSON("index.php?app=order&act=check_youhuiquan", {bianhao: bianhao, user_name: '{$visitor.user_name}'}, function(data){
+					 
+                           if(data['retval'])
+                           {
+                               $('.unusable1').hide();
+                               var msg = '{$lang.usable}';
+							  {if $goods.daishou!=2}
+                               var str = price_format(data['retval']['price']);
+							   $('.usable1').show().html(msg + str ).css("display","block");
+							  {else}
+							   var str = data['retval']['jifen_price'];
+							   var st1='{$lang.jifen}';
+							   $('.usable1').show().html(msg + str + st1).css("display","block");
+							   {/if}
+                               
+                           }
+                           else
+                           {
+                               $('.usable1').hide();
+                               $('.unusable1').show().css("display","block");
+                               $('#bianhao').val('');
+                           }
+                       });
+                   });
+               });
+                </script>
+		<script type="text/javascript">
+                    $(function(){
+                   $('#check_coupon').click(function(){
+                       var coupon_sn = $('#coupon_sn').val();
+
+                       if(coupon_sn == '')
+                       {
+                           return;
+                       }
+                       $.getJSON("index.php?app=order&act=check_coupon", {coupon_sn: coupon_sn, store_id: '{$smarty.get.store_id}'}, function(data){
+                           if(data['retval'])
+                           {
+                               $('.unusable').hide();
+                               var msg = '{$lang.usable}';
+							   {if $goods.daishou!=2}
+                               var str = price_format(data['retval']['price']);
+							    $('.usable').show().html(msg + str).css("display","block");
+							   {else}
+							    var str =data['retval']['jifen_price'];
+								var st1= '{$lang.jifen}';
+								$('.usable').show().html(msg + str + st1).css("display","block");
+								{/if}
+                              
+                           }
+                           else
+                           {
+                               $('.usable').hide();
+                               $('.unusable').show().css("display","block");
+                               $('#coupon_sn').val('');
+                           }
+                       });
+                   });
+               });
+                </script>
+	
+                <div class="make_sure">
+                    <p>
+                  {if $goods_info.daishou==2}
+                    {$lang.order_jifen}:&nbsp;<strong class="fontsize3" id="zong_order"></strong>
+                  {else}
+                    &nbsp;&nbsp;{$lang.order_amount}:&nbsp;<strong class="fontsize3" id="zong_order"></strong> {/if}<!--{if $goods_info.otype!="groupbuy"}--><!--{/if}-->
+					<br /><br />
+                    {if $goods_info.daishou!=1}
+					<!--付费优惠券开始-->
+					{if $goods_info.allow_coupon}&nbsp;&nbsp;<input type="button" class="btn11" onclick="$('#p_ttt1').toggle();$('#p_ttt2').hide();$('#p_ttt3').hide();$('#p_ttt4').hide();$('#bianhao').val('');$('#coupon').val('');" />{/if}</p>
+                    {if $goods_info.allow_coupon}
+					
+					<p style="display:none;" id="p_ttt1">{$lang.coupon_sn}:&nbsp;
+                    <input type="text" name="bianhao" id="bianhao" class="text" />  
+                    <input type="button" value="{$lang.check}" class="check" id="check_youhui" />
+					</p>
+					<p>
+                    <span class="usable1" style="display:none;" id="p_ttt5">{$lang.usable}</span> <span class="unusable1" style="display:none;" id="p_ttt6">{$lang.unusable}</span>
+                    </p>
+					<!--付费优惠券结束-->
+					<!--优惠券开始-->
+				<p>{if $goods_info.allow_coupon}&nbsp;&nbsp;<input type="button" class="btn1" onclick="$('#p_ttt2').toggle();$('#p_ttt1').hide();$('#p_ttt5').hide();$('#p_ttt6').hide();$('#coupon_sn').val('');$('#bianhao').val('');" />{/if}</p>
+                    {if $goods_info.allow_coupon}
+					
+					<p style="display:none;" id="p_ttt2">{$lang.coupon_sn}:&nbsp;
+                    <input type="text" name="coupon_sn" id="coupon_sn" class="text" />  
+                    <input type="button" value="{$lang.check}" class="check" id="check_coupon" />	
+					</p>
+					<p>
+                    <span class="usable" style="display:none;" id="p_ttt3">{$lang.usable}</span> <span class="unusable" style="display:none;" id="p_ttt4">{$lang.unusable}</span>
+                    </p>
+                    {/if}
+					{/if}
+					<!--优惠券结束-->
+				{/if}
+                    <p>
+                        <a href="javascript:void($('#order_form').submit());" class="btn">{$lang.shopping_step_three}</a>
+                        <a href="{url app=cart&store_id=$goods_info.store_id}" class="back">{$lang.backto_cart}</a>
+                    </p>
+                </div>

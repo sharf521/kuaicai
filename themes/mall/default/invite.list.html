@@ -1,0 +1,61 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+               <li class="normal"><a href="?app=friend&act=invite">{$lang.yaoqinglianjie}</a></li>
+		  <li class="active">{$lang.yaoqing_list}</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+              
+                </div>		
+			
+                <table>
+				 <!--{if $mem}-->
+				 <tr>
+				 <td align="right">用户名</td>
+				 <td align="center">电子邮箱</td>
+				 <td align="left" valign="middle">推荐人</td>
+				</tr>
+				<!--{/if}-->
+				<tr>
+			   	<!--{foreach from=$mem item=val}--> 
+				<td align="right">&nbsp;{$val.user_name}</td>
+				<td align="center">&nbsp;{$val.email}</td>
+	             <td>{$val.yaoqing_id}</td>
+				</tr>
+				  <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10" align="center">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+				
+                    <tr>
+                       
+                        <td colspan="5" class="page word_spacing5">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

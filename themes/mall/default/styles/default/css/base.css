@@ -1,0 +1,231 @@
+/*头部广告*/
+.topbox{ width:100%; height:249px;}
+.topbanner{ width:100%; background:#4CA12C;}
+.toppic{ width:1000px; height:70px; margin:0 auto}
+.toppic img{ height:70px;}
+
+/*头部背景*/
+.topbg{background:url(../img/topbg.jpg); border:1px solid #ccc; border-top:none; height:32px; line-height:32px;}
+.alltopbox{ width:998px; margin:0 auto;}
+.alltopbox a{ color:#666}
+
+/*手机客户端*/
+.pbox,.bbox,.hbox,.kbox,.ssbox{ font-size:12px;  float:left; padding-left:10px; color:#666;}
+.pbox  a{ float: left; color:#666;  margin-right:5px; display:inline;  text-decoration:none; background:url(../img/phone.jpg) no-repeat left; padding-left:20px;}
+.bbox a{ float:left; color:#666; margin-right:5px; display:inline; text-decoration:none; background:url(../img/sian.jpg) no-repeat left; padding-left:20px;}
+.hbox a{float:left; color:#666; margin-right:5px; display:inline; text-decoration:none; background:url(../img/help.jpg) no-repeat left; padding-left:20px;}
+.kbox a{float:left; margin-right:5px; display:inline; text-decoration:none; background:url(../img/er.jpg) no-repeat left; padding-left:20px;}
+.ssbox a{float:left; margin-right:5px; display:inline; text-decoration:none; background:url(../img/shi.jpg) no-repeat left; padding-left:20px;}
+.ressbox{font-size:12px;  float:left; padding-left:10px; color:#666;}
+
+/*分隔线*/
+.xianbox{ width:2px; height:15px; float:left; background:url(../img/xian.jpg); margin-top:8px; margin-left:8px; display:inline}
+.mt{ margin-top:4px; float:left}
+.mt a{ margin-top:4px; float:left}
+.topbg p{ font-size:12px; float:left; color:#cf1715; font-family:"宋体";  margin-left:30px; display:inline}
+/*右边*/
+
+.rightbox{ float:right; padding-right:10px;font-size:12px;  }
+
+.loginbox{ float:left; padding-left:23px;}
+.loginbox a{background:url(../img/xia.jpg) no-repeat right; width:40px; float:left}
+
+
+/*下拉登录*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {
+	margin:0;
+	padding:0;
+}
+body,button,input,select,textarea {
+	font:12px/1.5 tahoma,arial,\5b8b\4f53;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+}
+ul,ol {
+	list-style:none;
+}
+
+
+html {
+	zoom:expression(function(ele) {
+	ele.style.zoom = "1";
+	document.execCommand("BackgroundImageCache",false,true);
+}
+(this));}#site-nav,#site-nav .quick-menu li,#site-nav .search .menu-hd s,#site-nav .quick-menu .cart s,#site-nav .search .menu-bd button {
+}
+#site-nav { float:left; padding-left:70px;}
+#site-nav-bd {
+	position: relative;
+	padding:7px 0;
+	z-index:10000;
+	color:#000;
+}
+#site-nav a {
+	color:#666;
+	padding-top:5px;
+	text-decoration:none
+}
+#site-nav a:hover {
+	color:#f50;
+}
+
+
+#site-nav .quick-menu {
+	position:absolute;
+	right:0;
+	top:1px;
+	*top:2px;
+}
+#site-nav .quick-menu li {
+	float:left;
+	margin-left:-1px;
+	padding:1px 10px 0 10px;
+	background-position:right 6px;
+}
+#site-nav .quick-menu li.last {
+	background:none;
+}
+#site-nav .quick-menu li.menu-item {
+	position:relative;
+	padding:1px 0 0;
+}
+
+#site-nav .quick-menu .hover #mc-menu-hd s,#site-nav .quick-menu .cart #mc-menu-hd:hover s {
+	background-position:0 -20px;
+}
+#site-nav .quick-menu .cart #mc-menu-hd:hover b {
+	border-color:#666 white white white;
+}
+#site-nav .menu-hd {
+	display:block;
+	position:relative;
+	height:23px;
+	line-height:23px;
+	margin:3px 1px 0;
+	padding:0 22px 0 10px;
+	cursor:pointer;
+	z-index:10002;
+}
+
+#site-nav .menu-hd b {
+	position:absolute;
+	right:10px;
+	top:10px;
+	width:0;
+	height:0;
+	border-width:4px 4px;
+	border-style:solid;
+	border-color:#666 #f5f5f5 #f5f5f5;
+	font-size:0;
+	line-height:0;
+	-webkit-transition:-webkit-transform .2s ease-in;
+	-webkit-backface-visibility:hidden;
+	-moz-transition:-moz-transform .2s ease-in;
+	-o-transition:-o-transform .2s ease-in;
+	transition:transform .2s ease-in;
+}
+
+
+#site-nav .menu-bd {
+	display:none;
+	position:absolute;
+	right:0;
+	top:20px;
+	margin-top:7px;
+	background:#fff;
+	border:1px solid #bfbfbf;
+	z-index:10001;
+}
+
+#site-nav .menu {
+	position:relative;
+}
+#site-nav .hover .menu-hd {
+	margin:2px 0 0;
+	padding-bottom:3px;
+	border:1px solid #BFBFBF;
+	border-bottom:none;
+	background:white;
+}
+#site-nav .hover .menu-bd {
+	display:block;
+}
+#site-nav .hover .menu-hd b {
+	border-color:#666 #fff #fff #fff;
+	-moz-transform:rotate(180deg);
+	-moz-transform-origin:50% 30%;
+	-webkit-transform:rotate(180deg);
+	-webkit-transform-origin:50% 30%;
+	-o-transform:rotate(180deg);
+	-o-transform-origin:50% 30%;
+	transform:rotate(180deg);
+	transform-origin:50% 30%;
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	top:9px;
+}
+
+
+/*---logo大层---*/
+.tbox{ width:1000px; height:90px; margin: 0 auto}
+.logopic{   float:left ; margin-top:28px;}
+.logopic img{ width: 246px; height:70px;}
+/*搜索大层*/
+.sbox{ float:left; width:640px; margin-top:20px;}
+/*分类*/
+.typebox{ width:360px; float:left;  margin-left:28px; display:inline}
+.libox{ width:340px; float:left; font-size:12px; color:#333;}
+.libox li{ width:40px; height:20px; line-height:20px; text-align:center; display:block; float:left}
+.libox .hot{ width:40px; height:20px; background:#a94b13; color:#fff; font-weight:bold}
+.libox .hot a{ color:#fff}
+.libox li a{ color:#333}
+
+/*搜索条*/
+.sbg{ width:365px; height:40px; float:left; margin-top:-1px; position: relative}
+
+.stext{ width:270px; height:32px;  float:left; }
+.textcss{border:2px solid #a94b13; height:30px; line-height:30px; color:#999; font-size:12px; width:267px; background: url(../img/fd.jpg) no-repeat  left; padding-left:25px}
+.sbtnbox{ width:69px; height:34px; float:right; }
+.btncss{ width:69px; height:34px; background:#a94b13; border:0px; font-size:14px; line-height:34px; font-weight:bold; color:#fff}
+
+/*明星店铺*/
+.starbox{ width:200px; float: right; margin-right:10px; display:inline ; margin-top:10px;}
+.starpic{ width:101px; height:30px; float:right; background:url(../img/star.jpg); margin-top:5px;}
+/*购物车*/
+.gwbox{ width:200px; float:left; margin-top:7px; margin-left:10px; display:inline; height:20px; overflow:hidden}
+.gwbox a{ color:#666; text-decoration:none; float:left; font-size:12px; text-align:center; margin-left:8px; display:inline}
+.gwbox img{ padding-right:5px;}
+
+/*关键词*/
+.gjcbox{ width:360px; font-size:12px; float:left; }
+.gjcbox li{ float:left; padding-right:13px;}
+.gjcbox .hot{ color:#990000; float:left}
+.gjcbox a{ color:#666}
+
+/*二维码*/
+.erpic{ width:95px; height:96px; float:right; margin-top:8px; margin-right:2px;}
+
+
+
+/*-------------菜单---------------*/
+.menubox{ width:100%; height:36px; background:url(../img/menubg.jpg); margin-top:20px;}
+/*菜单列表*/
+.menulist{ width:1005px; margin:0 auto; height:36px; line-height:36px; font-size:14px;}
+.menulist a{ text-decoration:none; color:#fff; width:83px; height:36px; float:left; display:block; text-align: center}
+.menulist  .hot{ width:85px; height:36px; background:url(../img/hot.jpg); color:#000;  float:left}
+.menulist a span{ text-decoration:none; color:#fff}
+
+
+
+
+/*底部链接*/
+.footbox{ width:100%; height:89px; background:#f1f1f1; border-top:2px solid #cd1212; margin-top:50px;}
+.flink{ width:1000px; margin:0 auto}
+.flinkbox{ width:1000px; font-size:12px; float:left; clear:both; color:#666; text-align:center; margin-top:10px; line-height:20px;}
+.flinkbox a{ text-decoration:none; color:#666; }
+.flinkbox span{ color:#999; text-align:center;width:1000px; float:left }
+
+
+
+
+/*菜单*/

@@ -1,0 +1,66 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p></p>
+  <ul class="subnav">
+
+	<li><span>分站管理</span></li>
+	<li><a class="btn1" href="index.php?app=fenzhan&amp;act=add">增加分站</a></li>
+    </ul>
+</div>
+ <div class="fontr">{include file=page.top.html}</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+            <td align="left">{$lang.city_id}</td>
+            <td width="120">{$lang.city_name}</td>
+			<td width="200" >{$lang.city_yuming}</td>
+        
+			<td width="120">{$lang.city_logo}</td>
+			<td width="80">{$lang.city_lianxiren}</td>
+			<td width="80">{$lang.city_guanliyuan}</td>
+			<td width="80">{$lang.city_status}</td>
+			<td width="80">{$lang.icp_num}</td>
+			<td width="80">是否允许其他站会员登录本站</td>
+			<td width="80" style="display:none">商品垮站显示</td>
+			<td width="80" style="display:none">垮站转积分</td>
+            <td class="handler">{$lang.city_caozuo}</td>
+        </tr>
+
+        <!--{foreach from=$city_row item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkitem" value="{$key}" /></td>
+            <td width="50"><b>&nbsp;{$val.city_id}</b></td>
+            <td width="100">&nbsp;{$val.city_name}</td>
+		    <td width="300"><div style="width:200px; overflow:hidden">{$val.city_yuming}</div></td>
+        
+            <td>&nbsp;<!--{if $val.city_logo}--><img src="{$site.url}/{$val.city_logo}" height="30"/><!--{/if}--></td>
+		    <td>&nbsp;{$val.lianxiren}</td>
+		    <td>&nbsp;{$val.guanliyuan}</td>
+			<td>&nbsp;{$val.status}</td>
+			<td>&nbsp;{$val.icp_num}</td>
+			<td>&nbsp;{$val.huiyuan}</td>
+			<td style="display:none">&nbsp;{$val.splb}</td>
+			<td style="display:none">&nbsp;{$val.zjf}</td>
+			
+			<td>&nbsp; <a href="index.php?app=fenzhan&amp;act=edit&amp;city_id={$val.city_id}&city_name={$val.city_name}&page={$page_info.curr_page}">编辑</a>|<a href="index.php?app=fenzhan&amp;act=status_edit&amp;city_id={$val.city_id}">关闭</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $city_row}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=fenzhan&amp;act=drop&amp;id={$val.city_id}" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

@@ -1,0 +1,59 @@
+<link href="{$widget_root}/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(function(){
+    $('.package_ul > li').hover(function(){
+        $(this).children('div.float_div').show();
+        $(this).removeClass('normal').addClass('active');
+        var obj = $(this).offset();
+        var child_obj = $(this).children('div.float_div');
+        //child_obj.css({top:obj.top-215});
+    },function(){
+        $(this).removeClass('active').addClass('normal');
+        $(this).children('div.float_div').hide();
+    });
+    $('.float_content li').hover(function(){
+        $(this).addClass('activechild');
+    },function(){
+        $(this).removeClass('activechild');
+    });
+});
+</script>
+<div id="package">
+<div class="module_common">
+    <h2><b class="category" title=""></b></h2>
+    <div class="wrap">
+        <div class="wrap_child">
+            <ul class="package_ul" style="height:530px; overflow:hidden">
+                <!--{foreach from=$widget_data item=category}-->
+                <li class="normal"><a href="index.php?app=search&cate_id={$category.cate_id}" style="overflow: hidden; height:25px; display:block;">{$category.cate_name}</a>
+                    <!--{if $category.children}-->
+                    <div class="float_div">
+                        <div class="float_content">
+                            <ul>
+                                <!--{foreach from=$category.children item=second_children}-->
+                                <li>
+                                    <h3><a href="index.php?app=search&cate_id={$second_children.cate_id}" style="overflow: hidden; height:25px; width:70px; display:block;">{$second_children.cate_name}</a></h3>
+                                    <!--{if $second_children.children}-->
+                                    <p>
+                                        <!--{foreach from=$second_children.children item=third_children}-->
+                                        <a href="index.php?app=search&cate_id={$third_children.cate_id}">{$third_children.cate_name}</a> | 
+                                        <!--{/foreach}--> 
+                                    </p>
+                                    <!--{/if}-->
+                                </li>
+                               <!--{/foreach}-->   
+                            </ul>
+                        </div>
+                        <div class="float_bg"></div>
+                        <div class="float_ico"></div>
+                    </div>
+                    <!--{/if}-->
+                </li>
+                <!--{/foreach}--> 
+                      
+            </ul>
+			<div style="float:right; line-height:19px;"><a href="index.php?app=category" style="text-decoration:none">¸ü¶à>></a>¡¡</div>
+        </div>
+    </div>
+</div>
+</div>

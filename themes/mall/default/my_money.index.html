@@ -1,0 +1,60 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+                <li class="active">{$lang.wodezhanghu}</li>
+				<li class="normal"><a href="index.php?app=my_money&act=buyer">{$lang.mairuchaxun}</a></li>
+				<li class="normal"><a href="index.php?app=my_money&act=seller">{$lang.maichuchaxun}</a></li>
+				<li class="normal"><a href="index.php?app=my_money&act=intolog">{$lang.zhuanruchaxun}</a></li>
+				<li class="normal"><a href="index.php?app=my_money&act=outlog">{$lang.zhuanchuchaxun}</a></li>
+          </ul>
+	  
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}£¡{$visitor.user_name}£¬{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                        <table class="width6">
+                          <tr>
+                            <td><span style="font-size:14px">
+                              <!--{foreach from=$my_money item=val key=key}-->
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$val.jifen}</span></span>
+                              <!--{/foreach}--></td>
+                          </tr>
+                          <tr>
+                            <td height="25"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$val.dongjiejifen}</span>&nbsp;{$lang.jifen}</span></td>
+                          </tr>
+                          <tr>
+                            <td>{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>                  </div>
+                </div>			
+            </div>
+        </div>
+		
+        <div class="wrap">
+          <div class="public table">
+      
+          </div>
+         </div>
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+
+<div class="clear"></div>
+{include file=footer.html}

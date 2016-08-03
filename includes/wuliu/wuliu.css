@@ -1,0 +1,80 @@
+/*表格*/
+*{font-size:12px; }
+ul{ list-style:none; margin:0; padding:0}
+.clear{ clear:both}
+li{ list-style-type:none}
+img{ border:0}
+.tablebox{ border:1px solid #B2D1FF; margin:5px 0 0 20px; padding:5px; width:720px; font-size:12px; color:#333}
+.entity{ float:left; width:720px;}
+.default{ background:#F3FEED; line-height:32px; margin-top:5px; padding-left:10px; float:left; height:32px; width:710px;}
+.inputtext,.textcss{ width:80px; text-align:left; height:15px; border: 1px solid #7F9DB9; line-height:15px; margin-right:4px; display:inline}
+.textcss{ width:60px; text-align:right}
+.yfbox{ width:720px; float:left; padding-top:15px;}
+.yfbox table{ text-align:center; border:1px solid #bbb; border-left:none; border-bottom:none;border-spacing:0}
+.yfbox table td{ border-color:#ccc;  border-style:solid; line-height:30px; border-width:0 0px 1px 1px; text-align:center; }
+.yfbox table b{ font-weight:normal; float:left; padding-left:3px;}
+
+.yfbox table  a{color:#3366CC; float:right;text-decoration:none; padding-right:5px;}
+
+.wuliucss{ width:150px; height:18px; border:1px solid #ccc}
+
+.yfbox table td p{ float:left; width:240px; text-align:left; line-height:20px; margin-left:5px; display:inline}
+
+.chbox{ float:left; margin-top:8px;}
+
+.pxcss{ padding-left:20px; color:#333}
+.pxcss input{ vertical-align:middle}
+
+.bbtncss{ width:720px; text-align:center; padding-top:20px;}
+
+/*全选*/
+.allbox{ float:left; margin-left:5px; display:inline; width:100%; margin-top:8px; line-height:30px;}
+.allbox a{ margin-right:10px; display:inline; text-decoration:none; color:#3366cc}
+/*指定*/
+.zdbox{ margin-top:10px; line-height:32px; margin-left:5px; width:100%; display:inline}
+.zdbox a{ margin-right:10px; display:inline; color:#3366CC; text-decoration:none}
+
+/*---------------------------选择区域------------------*/
+
+.aqbox{ border:1px solid #C4D5DF; position:absolute; display:none; width:700px; background:#fff;z-index:2000; font-size:12px;}
+
+.topdq{ height:28px; margin-top:1px; background:#ECF4FF; line-height:28px; float:left; width:700px; font-size:12px;}
+.title{ float:left; margin-left:10px; display:inline; line-height:28px; color:#666666; font-weight:bold}
+.topdq a{ text-decoration:none; line-height:28px; font-size:16px; color:#3366cc; float:right; margin-right:10px; display:inline}
+
+.plabox{ width:700px; float:left; border-bottom:1px solid #ECF4FF;}
+.choosbox{ width:690px; overflow:visible;  padding:5px 0px 0px 10px;}
+
+/*地区范围*/
+.fwbox,.ffbox{ float:left; position:relative;  height:30px; margin:0px 10px; display:inline; line-height:30px; }
+.elsbox{ width:600px; display:inline-block }
+
+
+.fwbox span{ color:#ff6600}
+.fwbox img{cursor:pointer}
+
+.licss{ background:#C4D5DF; float:left}
+
+.elsbox a{ margin-left:3px; display:inline}
+.aqbox input{ vertical-align:middle}
+.bgcss{ background:#ECF4FF}
+
+.greas{ height:25px; padding-right:4px; float:left; _width:140px;  border-bottom:none; position:relative;  display:inline-block}
+
+
+/*弹出城市*/
+
+.showbox{ z-index:55556;  }
+.showbox .greas{background:#FFFEC6; border-width:1px 1px medium; border-color:#F7E4A5; border-style:solid solid none; border-bottom:none; z-index:56000;_width:140px;}
+.showbox citys{ display:block;z-index:80000;}
+/*城市大层*/
+.citys{ border:1px solid #f7e4a5;_margin-left:-146px; background:#fffec6;   width:220px; top:25px;  float:right; position:absolute; z-index:55900;  display:none}
+
+.citys input{ vertical-align:middle}
+.citys label{  display:inline-block; margin-right:3px; margin-top:5px; margin-bottom:5px; }
+
+/*关闭*/
+.closebox{ float:left; text-align:right; width:100%; z-index:57000; position:absolute}
+
+.aqalbox p{ text-align:right; margin-bottom:15px; margin-top:15px; float:right;; margin-right:10px; font-size:12px;}
+.aqalbox p input{ cursor:pointer}

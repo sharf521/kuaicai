@@ -1,0 +1,77 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>企业管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=site_system">广告类型</a></li>
+        <li><a class="btn1" href="index.php?app=site_system&amp;act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_skin">模版列表</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=skin_add">增加模版</a></li>
+		<li><span>站点管理</span></li>
+		
+		
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $site_sys}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>用户id</td>
+      <td>企业名称</td>
+	  <td>企业域名</td>
+	  <td>企业地址</td>
+	  <td>企业电话</td>
+	  <td>企业传真</td>
+	  <td>icp</td>
+	  <td>模版</td>
+	  <td>状态</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$site_sys item=val}-->
+    <tr class="tatr2">
+      <td class="firstCell"></td>
+      <td>&nbsp;{$val.user_id}</td>
+      <td>&nbsp;{$val.name}</td>
+	  <td>&nbsp;{$val.yuming}</td>
+	  <td>&nbsp;{$val.address}</td>
+      <td>&nbsp;{$val.tel}</td>
+	  <td>&nbsp;{$val.fax}</td>
+	  <td>&nbsp;{$val.icp}</td>
+	  <td>&nbsp;{$val.code}</td>
+	  <td>&nbsp;{if $val.status==0}等待审核{/if}
+	  {if $val.status==1}审核通过{/if}
+	  {if $val.status==2}审核不通过{/if}
+	  </td>
+      <td class="handler">
+      <span style="width: 100px">
+	  <center>
+      <a href="index.php?app=site_system&amp;act=sys_edit&amp;id={$val.user_id}">{$lang.edit}</a>
+      </center>  
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+{include file="footer.html"}

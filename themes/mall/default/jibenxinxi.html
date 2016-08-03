@@ -1,0 +1,87 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+              <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+              <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+	          <li class="active"><span>供货信息</span></li>
+			  <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+			 
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                 
+                </div>		
+			  <!-- {if $jiben}-->
+                <table class="table_head_line">
+                 
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="9">
+                      
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                      
+                        <th>商品名称</th>
+                        <th>品牌</th>
+                       <!-- <th>目前销售渠道</th>-->
+                        <th>零售价格</th>
+                        <th>库存</th>
+                        <th>产品图片</th>
+						<th>状态</th>
+						<th>操作</th>
+                    </tr>
+               <!--{/if}-->
+                 <!--{foreach from=$jiben item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        
+						<td align="center" width="120">{$val.goods_name}</td>
+                        <td align="center">{$val.goods_brand}</td>
+						<td align="center">{$val.lingshou_price}{$lang.yuan}</td>
+						<td align="center">{$val.zong_kucun}</td>
+						<td align="center"><img src="{$val.chanpin}" width="30" height="30" /></td>
+                        <td align="center">
+                        {if $val.status==3}{$lang.daishenhe}{/if}
+                        {if $val.status==1}{$lang.shenhetongguo}{/if}
+                        {if $val.status==2}{$lang.shenhebutongguo}{/if}
+                        </td>
+					  
+                        <td>
+						<!--{if $val.status!=1}-->
+						 <a href="index.php?app=my_theme&act=gh_edit&gh_id={$val.gh_id}">编辑</a>
+                       <a href="javascript:drop_confirm('{$lang.shanchu}', 'index.php?app=my_theme&act=gonghuo_delete&gh_id={$val.gh_id}');">{$lang.drop}</a>
+					   <!--{/if}-->
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.meiyougonghuo}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                <tr><td colspan="7" align="right">{include file=page.bottom.html}</td></tr>
+                </table>
+            </div>
+            <div class="wrap_bottom">
+          
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"> </div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

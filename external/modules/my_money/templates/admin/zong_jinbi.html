@@ -1,0 +1,65 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>费率管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tixianfeilv_xiugai">提现费率</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=chongzhifeilv_xiugai">充值费率</a></li>
+		<li><span>商城币库</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+            <tr>
+       
+				<th class="paddingT15">总币库</th>
+				<th class="paddingT15">剩余币库</th>
+				<th class="paddingT15">操作</th>
+				</tr>
+				<tr>
+				<!--{foreach from=$log item=val key=key}-->
+                
+				<td class="paddingT15">{$val.zong_jinbi}</td>
+				<td class="paddingT15">{$val.yu_jinbi}</td>
+				<td class="paddingT15"><a href="index.php?module=my_money&act=zengjia">增加库币</a></td>
+				</tr>
+				<!--{/foreach}-->
+				
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

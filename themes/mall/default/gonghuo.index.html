@@ -1,0 +1,180 @@
+{include file=member.header.html}
+<script type="text/javascript">
+
+function gong()
+{
+
+if (document.gh.goods_name.value =="")
+  {
+    alert("商品名称不能为空!");
+	document.gh.goods_name.focus();
+	return false;
+	}
+if (document.gh.lingshou_price.value =="")
+  {
+    alert("商品价格不能为空!");
+	document.gh.lingshou_price.focus();
+	return false;
+	}
+if (document.gh.zong_kucun.value =="")
+  {
+    alert("商品库存不能为空!");
+	document.gh.zong_kucun.focus();
+	return false;
+	}
+if (document.gh.chanpin.value =="")
+   {
+		alert("请上传产品图!");
+		document.gh.chanpin.focus();
+		return false;
+	}
+	
+	var con=FCKeditorAPI.GetInstance("beizhu").GetXHTML(false);
+	if(con=="")
+	{
+		alert("商品描述不能为空");
+		return false;
+	}
+document.getElementById("FormSubmit").setAttribute('disabled','ture');
+	
+}
+
+function fuzhi(jiage)
+{
+	jifen=jiage*{$canshu.jifenxianjin}*(1+{$canshu.lv21})*10000/10000;
+	document.getElementById('jifen_price').value=jifen;
+}
+
+
+
+</script>
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>	
+
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab"><!--{$build_editor}-->
+				<li class="active">我要供货</li>
+                <li class="normal"><a href="index.php?app=my_goods&act=add&gh=2">快速供货</a></li>
+                <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+				<li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+				<li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+                
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+   
+          
+ <form action="index.php?app=my_theme&act=gonghuo" method="post" onSubmit="return gong();" name="gh" enctype="multipart/form-data">
+ <table width="425"><a>新添加商品信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.php?app=my_goods">从商品列表里选择</a>
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td width="116"><h5><font color="#0033FF">商品信息</font></h5></td></tr>
+ 
+ <tr>
+ <td>商品名称：</td>
+ <td width="663"><input name="goods_name" id="goods_name" value="{$good.goods_name}" /><font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>品牌：</td>
+ <td><input name="goods_brand" id="goods_brand" value="{$good.brand}" />
+ <input name="goodsid" id="goodsid" value="{$good.goods_id}" type="hidden"/>
+ <input name="status" id="stauts" value="3" type="hidden"/>
+ </td>
+ </tr>
+ <tr>
+ <td>目前销售渠道：</td>
+ <td><input name="tujing" id="tujing" value="" /></td>
+ </tr>
+ <!--<tr>
+ <td>参考价格：</td>
+ <td><input name="cankao_price" id="cankao_price" value="" />元</td>
+ </tr>-->
+ <tr>
+ <td>统一零售价格：</td>
+ <td><input name="lingshou_price" id="lingshou_price" value="{$good.price}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value"  onblur="fuzhi(this.value)"/>元<font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>积分价：</td>
+ <td><input name="jifen_price" id="jifen_price" value="{$good.jifen_price}"/>积分<font color="#990000"> *</font></td>
+ </tr>
+<!--<tr>
+ <td>批发价格：</td>
+ <td> <input name="pifa_price" id="pifa_price" value="" />元</td>
+ </tr>-->	
+ <tr>
+ <td>库存：</td>
+ <td>  <input name="zong_kucun" id="zong_kucun" value="{$good.stock}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/><font color="#990000"> *</font></td>
+ </tr>	
+  <tr>
+ <td>商品信息来源：</td>
+ <td><input name="source" id="source" value="" /></td>
+ </tr>	
+  <tr>
+ <td>图片资料：</td>
+ <td><input name="ziliao" id="ziliao" value=""  type="file"/></td>
+ </tr>
+   <tr>
+ <td>产品图：</td>
+ <td><input name="chanpin" id="chanpin" value=""  type="file"/><font color="#990000"> *</font>
+ </td></tr>
+ <tr>
+ <td></td>
+ <td>
+ {if $good}
+  <img src="{$good.default_image}" class="makesmall" width="300"/>
+ {/if}
+ </td>
+ </tr>
+ <tr>
+ <td>商品描述：</td>
+ <td> <script type="text/plain" id="myEditor" name="content1">
+ <p>{$goods.beizhu}</p>
+ </script>
+ <script type="text/javascript">
+ UE.getEditor('myEditor',{
+ initialFrameHeight:400,  //初始化编辑器高度,
+ autoHeightEnabled:false, //是否自动长高,默认true
+ scaleEnabled:false, //是否可以拉伸长高,默认true
+ minFrameHeight:40, //编辑器拖动时最小高度
+ autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+ toolbarTopOffset:400, //编辑器底部距离工具栏高度
+ initialFrameWidth:700
+ })
+ </script></td>
+ </tr>
+
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+		
+ 
+ <tr>
+ <td></td>
+ <td><center><input type="submit" value="提交" id="FormSubmit"/>&nbsp;&nbsp;<input type="reset" value="重置" /></center></td>
+	
+</table>
+			  </form>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

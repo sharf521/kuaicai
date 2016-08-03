@@ -1,0 +1,178 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="rightTop">
+    <p>广告管理</p>
+    <ul class="subnav">
+         <li><a class="btn1" href="index.php?app=adv">{$lang.manage}</a></li>
+        <li><a class="btn1" href="index.php?app=adv&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		
+            <tr>
+                <th class="paddingT15">
+                    广告名称:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="title" type="text" name="title" value="{$adv.title|escape}" />
+					<input class="infoTableInput2" id="adv_id" type="hidden" name="adv_id" value="{$adv.adv_id}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    广告类型:</th> 
+                <td class="paddingT15 wordSpacing5">
+				<select name="type" id="type">
+				{foreach from=$adv_row item=val}
+				{if $val.id==$adv.type}<option id="type" value="{$val.id}" selected="selected">{$val.type}&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{if $val.danjia}{$val.danjia}元{else}0元{/if}</font></option>
+				{else}
+				<option id="type" value="{$val.id}">{$val.type}&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{if $val.danjia}{$val.danjia}元{else}0元{/if}</font></option>
+				{/if}
+        		 {/foreach}
+				 </select>   
+                </td>
+            </tr>
+			<tr>
+				<th></th><td>&nbsp;</td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+                    {$lang.image}1:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="image" type="file" name="image" value="" />
+                     <br /><br />
+                    <input name="ima" value="{$adv.image}" size="40"/><font color="#990000">(若选择上面的上传方式，请将此处清空)</font>
+                </td>
+            </tr>
+			{if $adv.image}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="/{$adv.image}" class="makesmall" max_width="120" max_height="90" />
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                    {$lang.lianjie}1:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="lianjie" type="text" name="lianjie" value="{$adv.lianjie|escape}" /><font color="#999999">(格式如：http://www.imm0371.com)</font>
+                </td>
+            </tr>
+			<tr>
+				<th></th><td>&nbsp;</td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+                    {$lang.image}2:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="image_1" type="file" name="image_1" value="" />
+                     <br /><br />
+                    <input name="ima_1" value="{$adv.image_1}" size="40"/><font color="#990000">(若选择上面的上传方式，请将此处清空)</font>
+                </td>
+            </tr>
+			{if $adv.image_1}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="/{$adv.image_1}" class="makesmall" max_width="120" max_height="90" />
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                    {$lang.lianjie}2:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="lianjie_1" type="text" name="lianjie_1" value="{$adv.lianjie_1|escape}" /><font color="#999999">(格式如：http://www.imm0371.com)</font>
+                </td>
+            </tr>
+            <tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+                  购买人:</th>
+                <td class="paddingT15 wordSpacing5">
+                    {if $adv.username_g}{$adv.username_g}
+					{else}
+					无
+					{/if}
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  介绍人:</th>
+                <td class="paddingT15 wordSpacing5">
+                   {if $adv.username_tj} {$adv.username_tj}
+				   {else}
+				   无
+				   {/if}
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  实际支付:</th>
+                <td class="paddingT15 wordSpacing5">
+				{$adv.real_zf}
+                </td>
+            </tr>
+			<tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+			 <tr>
+                <th class="paddingT15">
+                    开始时间:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="start_time" type="text" name="start_time" value="{$adv.start_time}" />   
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    结束时间:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="end_time" type="text" name="end_time" value="{$adv.end_time}" />   
+                </td>
+            </tr>
+			 
+			 <tr>
+                <th class="paddingT15">
+                    所属站:</th>
+                <td class="paddingT15 wordSpacing5">
+				<select id="adv_city" name="adv_city">
+				<!--{foreach from=$city_row item=val key=key}-->
+				<!--{if $advter.adv_city==$val.city_id}--><option id="adv_city" value="{$val.city_id}" selected="selected">{$val.city_name} </option>
+				<!--{else}-->
+				<option id="adv_city" value="{$val.city_id}">{$val.city_name} </option>
+				<!--{/if}-->
+				<!--{/foreach}-->
+                  </select>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    备注:</th>
+                <td class="paddingT15 wordSpacing5">
+				<textarea cols="6" rows="5" name="content">{$adv.content}</textarea>
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

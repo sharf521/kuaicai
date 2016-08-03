@@ -1,0 +1,20 @@
+#package { width: 208px; position: relative; z-index:998; }
+.package_ul { padding: 0 10px 10px; }
+.package_ul .normal { height: 25px; line-height: 25px; border-bottom: 1px solid #ddd; background: url(package_pic.gif) no-repeat 5px center;  color: #666; padding-left: 15px; cursor: pointer; width:150px;}
+.package_ul .active { height: 25px; line-height: 25px; border-bottom: 1px solid #ddd; background: url(package_pic.gif) no-repeat 5px center;  color: #414141; font-weight: bold; padding-left: 15px; cursor: pointer; width:150px; }
+.package_ul .active a { text-decoration: none; color: #656565; }
+.package_ul .normal a { text-decoration: none; color: #656565; }
+.package_ul .normal a:hover { font-weight: bold; }
+
+.float_div { width: 453px; padding-bottom: 3px; position: absolute; left: 170px; z-index: 999; display:none; margin-top:-25px;}
+.float_content {  width: 430px; padding: 8px; background: #fff; border: 2px solid #bcbcbc; position: relative; z-index: 10; }
+.float_bg {  width: 450px; background: #000; position: absolute; bottom: 0; right: 0; z-index: 1; -moz-opacity: 0.1; opacity: .1; filter: alpha(opacity=10); }
+.float_ico { width: 9px; height: 14px; background: url(float_ico.gif) no-repeat; position: absolute; top: 10px; left: -7px; z-index: 11; }
+
+.float_content li { width: 100%; overflow: hidden; line-height: 25px; border-bottom: 1px dotted #ddd; }
+.float_content li h3 { float: left; font-weight: normal; font-size: 12px; background: url(float_content_h3.gif) no-repeat 5px center; padding-left: 15px; color: #404040; }
+
+.float_content li p { float: right; width: 78%; word-spacing: 8px; font-weight: normal; }
+.float_content li a { color: #656565; text-decoration: none; }
+.float_content li a:hover { text-decoration: underline; }
+.float_content .activechild { background: #f3f3f3; }

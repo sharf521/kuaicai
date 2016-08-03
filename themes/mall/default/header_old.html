@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<html xmlns:wb="http://open.weibo.com/wb">
+
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<title>{$thiscity.city_title|escape}</title>
+<meta name="description" content="{$thiscity.city_desc|escape}" />
+<meta name="keywords" content="{$thiscity.city_keywords|escape}" />
+
+<meta property="wb:webmaster" content="6e054d87791b3ddc" />
+<meta property="qc:admins" content="337472035766515164116375" />
+
+
+
+<link href="{res file=css/ecmall.css}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/nav.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/select.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var PRICE_FORMAT = '{$price_format}';
+
+$(function(){
+    var select_list = document.getElementById("select_list");
+    var float_list = document.getElementById("float_list");
+    select_list.onmouseover = function () {
+        float_list.style.display = "block";
+    };
+    select_list.onmouseout = function () {
+        float_list.style.display = "none";
+    };
+});
+//]]>
+function correctPNG() 
+{
+for(var i=0; i<document.images.length; i++)
+{
+var img = document.images[i]
+
+var imgName = img.src.toUpperCase()
+
+if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
+
+{
+
+var imgID = (img.id) ? "id='" + img.id + "' " : ""
+
+var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+
+var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+
+var imgStyle = "display:inline-block;" + img.style.cssText 
+
+if (img.align == "left") imgStyle = "float:left;" + imgStyle
+
+if (img.align == "right") imgStyle = "float:right;" + imgStyle
+
+if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle 
+
+var strNewHTML = "<span " + imgID + imgClass + imgTitle
+
++ " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+
++ "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+
++ "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" 
+
+img.outerHTML = strNewHTML
+
+i = i-1
+
+}
+
+}
+
+}
+window.attachEvent("onload", correctPNG);
+</script>
+
+<style>
+#popupcontent{ visibility: hidden;   overflow: hidden;    background-color:#F9F9F9;   border:1px solid #333; z-index:200; background-image:url(../../../images/033.jpg); position:absolute; left:30%; top:20%; }
+#statusbar{ text-align:right}
+.clo{ bottom:0px;background:#990033; text-align:right; cursor:pointer}
+</style>
+<script>
+var baseText = null; 
+function showPopup(w,h){   
+    var popUp = document.getElementById("popupcontent");   
+  
+    popUp.style.width = w + "px";   
+    popUp.style.height = h + "px";    
+    if (baseText == null) baseText = popUp.innerHTML;  
+    popUp.innerHTML = baseText + "<div id=\"statusbar\"><img  src=\"../../../images/closebtn.png\" onClick=\"hidePopup();\" class=\"clo\"></div>";   
+    var sbar = document.getElementById("statusbar");   
+   <!-- sbar.style.marginTop = (parseInt(h)-297) + "px";-->   
+    popUp.style.visibility = "visible";
+}
+function hidePopup(){   
+    var popUp = document.getElementById("popupcontent");   
+    popUp.style.visibility = "hidden";
+}
+</script>
+<META content="MSHTML 6.00.2900.2838" name=GENERATOR>
+
+{$_head_tags}
+<!--<editmode></editmode>-->
+
+
+</head>
+
+<body onload="showPopup(550,300);">
+
+	<center>
+		<div id="popupcontent"></div>
+	</center>
+
+<!--{if $isdefault==1}
+<script type="text/javascript" language="javascript" src="ad.js"></script>
+
+    <div id="ads" style="margin:auto; display:none; width:996px; top:0px; height:0px; border:solid 1px #FFFFFF; background-color:#FFFFFF; overflow:hidden; text-align:center;" align="center">
+
+		<a href="{$adv_list12.lianjie}" target="_blank">
+			{if $adv_list12.image}
+            	<img id="adimg" src="{$adv_list12.image}" width="996" height="456" border="0" >
+				<img id="adimg2" src="{$adv_list13.image}" width="996" border="0" height="62"   style="display:none">
+            {else}
+				<img id="adimg" src="/images/1.jpg" width="996" height="456" border="0" >
+				<img id="adimg2" src="/images/2.jpg" width="996" border="0" height="62"   style="display:none">
+			{/if}
+		</a>
+		
+
+    </div>
+
+{/if}
+-->
+<div id="head">
+   <!-- <h1 title="{$site_title}"><a href="index.php"></a></h1>-->
+    <h1 title="{$thiscity.city_title}"><a href="index.php"><img alt="{$thiscity.city_title}" src="{$thiscity.city_logo}" height="70" class="png"/></a></h1>
+    <div class="menu">
+        <p class="link1" style="line-height:20px">
+            {$lang.hello},{$visitor.user_name|escape}
+            <!--{if !$visitor.user_id}-->
+            [<a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a>]
+            [<a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>]<br />
+			<a href="http://www.imm0371.com/index.php?app=qqq&host={$ur}"><img src="/images/qqlogin.png" height="17px"/></a>
+			<a href="http://www.vcivc.cn/index.php?app=sina&host={$ur}"><img src="/images/sina.png" height="17px"/></a>
+            
+            <!--{else}-->
+            [<a href="{url app=member&act=logout}">{$lang.logout}</a>]
+            <!--{/if}-->
+        </p>
+        <ul class="subnav">
+            <li id="select_list">
+                <a class="z_index" href="{url app=member}">{$lang.member_center}</a>
+				
+                <ul id="float_list">
+                    <div class="adorn1"></div>
+                    <div class="adorn2"></div>
+                    <li><a href="{url app=buyer_order}">{$lang.my_order}</a></li>
+                    <li><a href="{url app=buyer_groupbuy}">{$lang.my_groupbuy}</a></li>
+                    <li><a href="{url app=my_question}">{$lang.my_question}</a></li>
+                </ul>
+            </li>
+			<li class="line"><a href="index.php?app=article&cate_id=23">视频</a></li>
+			<li class="line"><a href="index.php?app=article&cate_id=24">手机客户端下载</a></li>
+            <li class="line"><a href="{url app=message&act=newpm}">{$lang.pm}<!--{if $new_message}-->({$new_message})<!--{/if}--></a></li>
+            <li class="line"><a href="{url app=article&code=$acc_help}">{$lang.help_center}</a></li>
+			{if $thiscity.city_account}<li class="line"><a href="index.php?app=article&cate_id=30">微信公众账号：{$thiscity.city_account}</a></li>{/if}
+            <!--{foreach from=$navs.header item=nav}-->
+            <li class="line"><a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}>{$nav.title|escape}</a></li>
+            <!--{/foreach}-->
+        </ul>
+		{if $qrcode}
+		<img src="{$qrcode}" width="84"/>
+		{/if}
+		<div style="clear:both"></div>
+    </div>
+	<div style="position:absolute; width:103px; height:30px; right:300px; top:50px; cursor:pointer; z-index:100"><a href="index.php?app=article&act=mxstore" title="明星店铺"><img border="0" src="/images/starstore.jpg" height="30"/></a></div>
+	<div style="clear:both"></div>
+</div>
+
+<ul id="nav">
+    <div class="nav1"></div>
+    <div class="nav2"></div>
+    <li><a class="{if $index}link{else}hover{/if}" href="index.php"><span>{$lang.index}</span></a></li>
+    <!--{foreach from=$navs.middle item=nav}-->
+    <li><a class="{if !$index and $nav.link eq $current_url}link{else}hover{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a></li>
+    <!--{/foreach}-->
+	  {if $thiscity.mall_url!=''}<li><a href="http://{$thiscity.mall_url}"  class="hover"><span style="cursor:pointer">{$lang.jifenshangcheng}</span></a></li>{else}<li class="hover"><span style="cursor:pointer">{$lang.jifenshangcheng}</span></li>{/if}
+	 {if $thiscity.p2p_url!=''}<li><a href="http://{$thiscity.p2p_url}" class="hover"><span style="width:83px; cursor:pointer">{$lang.p2p}</span></a></li>{else}<li class="hover"><span style="width:83px; cursor:pointer">{$lang.p2p}</span></li>{/if}
+	 
+</ul>
+
+<div class="search">
+    <div class="search1"></div>
+    <div class="search2"></div>
+    <div class="wrap">
+        <form method="GET" action="{url app=search}">
+            <div class="border">
+                <div class="select_js">
+                    <p>{$lang.search_goods}</p>
+                    <div class="ico"></div>
+                    <ul>
+                        <li ectype="index">{$lang.search_goods}</li>
+                        <li ectype="store">{$lang.search_store}</li>
+                        <li ectype="groupbuy">{$lang.search_groupbuy}</li>
+                    </ul>
+                    <input type="hidden" name="act" value="index" />
+                </div>
+                <input type="text" name="keyword" class="text2" />
+            </div>
+            <input type="hidden" name="app" value="search" />
+            <input type="submit" name="Submit" value="{$lang.search}" class="btn" />
+        </form>
+        <p><a href="{url app=category}">{$lang.gcategory}</a><br /><a href="{url app=category&act=store}">{$lang.scategory}</a></p>
+    </div>
+    <div class="nav">
+        <div class="nav1"></div>
+        <div class="nav2"></div>
+        <a href="{url app=cart}" class="buy">{$lang.shopping_cart} <strong id="cart_goods_kinds">{$cart_goods_kinds}</strong> {$lang.kind_of_goods}</a>
+        <a href="{url app=my_favorite}" class="buyline">{$lang.favorite}</a>
+        <a href="{url app=buyer_order}" class="buyline">{$lang.my_order}</a>
+    </div>
+</div>

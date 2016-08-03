@@ -1,0 +1,250 @@
+{include file="header.html"}
+{include file="curlocal.html"}
+<style media="screen" type="text/css">
+/*下面字体大小记得要删掉*/
+.divs{margin:0;text-align:center;over-flow:hidden;height:100%;width:820px;}
+UL{list-style-type:none; margin:0px;}
+/* 标准盒模型 */
+.ttl{height:18px;}
+.ctt{height:auto;padding:6px;clear:both;border:1px solid #ff6d00;border-top:0;text-align:left;}
+.w936{margin:2px 0;clear:both;width:820px;/*这里调整整个滑动门的宽度*/}
+/* TAB 切换效果 */
+.tb_{background-image: url('{$site_url}/themes/mall/default/styles/default/images_sft/cashier.payment_1.gif'); background-repeat: repeat-x;background-color: #ffffff;}/*按钮底色   图片：上行一横*/
+.tb_ ul{height:24px;}
+.tb_ li{float:left;height: 24px;line-height:1.9;width: 94px;cursor:pointer;}
+/* 用于控制显示与隐藏的css类 */
+.normaltab   { background-image:url('{$site_url}/themes/mall/default/styles/default/images_sft/cashier.payment_2.gif'); background-repeat: no-repeat; color:#f5f5f5 ;}/*无选时字体颜色 图片：无选时图片*/
+.hovertab    { background-image: url('{$site_url}/themes/mall/default/styles/default/images_sft/cashier.payment_3.gif'); background-repeat: no-repeat; color:#ff6600; font-weight:bold }/*已选时字体颜色*/
+.dis{display:block;}
+.undis{display:none;}
+
+
+.defrays { width: 800px; margin-bottom: 20px; }
+/* 灰色线下支付 css类 */
+.defrays dt { height: 28px; line-height: 28px; background: #f5f5f5; padding-left: 20px; font-weight: bold; color: #333; }
+.defrays dd { width: 682px; overflow: hidden; padding-top: 10px; }
+.defrays dd .radio { float: left; width: 40px; text-align: center; padding-top: 14px; }
+.defrays dd .logo { float: left; width: 140px; }
+.defrays dd .explain { float: left; width: 477px; line-height: 20px; color: #787878; }
+.defrays dd .dongtai { float: left; width: 677px; line-height: 40px; }
+
+</style>
+<script type="text/javascript" language="javascript">
+function g(o){return document.getElementById(o);}
+function HoverLi(n){
+//如果有N个标签,就将i<=N;
+//本功能非常OK,兼容IE7,FF,IE6
+for(var i=1;i<=3;i++){g('tb_'+i).className='normaltab';g('tbc_0'+i).className='undis';}g('tbc_0'+n).className='dis';g('tb_'+n).className='hovertab';
+}
+//如果要做成点击后再转到请将<li>中的onmouseover 改成 onclick;
+
+function qiehuan(flg){
+var $xianjin = $('#xianjin');
+var $jifen = $('#jifen');
+
+
+  switch(flg){
+    case 1:
+       
+			$jifen.show();
+			$xianjin.hide();
+			
+        break;
+	
+    case 2:
+       $xianjin.show();
+	   $jifen.hide();
+	   
+        break;
+	
+  }
+}
+
+
+</script>
+
+
+<div class="flow_chart">
+    <div class="pos_x1 bg_a2" title="{$lang.shopping_step_one}"></div>
+    <div class="pos_x2 bg_b2" title="{$lang.shopping_step_two}"></div>
+    <div class="pos_x3 bg_c1" title="{$lang.shopping_step_three}"></div>
+</div>
+
+<div class="content">
+
+    <div class="module_common">
+        <div class="step_main">
+    <form action="index.php?app=my_money&act=payment&order_id={$order.order_id}" method="POST" id="zft_pay">
+            <div class="clue_on"><h4>{$lang.order_created}</h4><p>{$lang.order_created_desc}</p></div>
+            <div class="order_information">
+                <h3>
+                    <b>{$lang.order_sn}&nbsp;:&nbsp;<span>{$order.order_sn}</span></b>
+                    <b>{$lang.order_amount}&nbsp;:&nbsp;<span>{$order.order_amount|price}</span></b>
+				  <input name="post_money" type="hidden" value="{$order.order_amount}" />
+                </h3>
+                <p><a href="{url app=buyer_order}" target="_blank">{$lang.member_view_order}</a></p>
+        </div>
+
+            <div class="buy">
+                <h3><b class="ico">{$lang.select_payment}</b></h3>
+            </div>
+			
+
+
+<div align="center"><!--居中-->
+
+<div class="divs">
+ <div id="tb_" class="tb_">
+   <ul>
+    <li id="tb_1" class="hovertab" onclick="a:HoverLi(1);">{$lang.payment_shangfutong}</li>
+	<li id="tb_2" class="normaltab" onclick="b:HoverLi(2);">{$lang.online_payment}</li>
+    <li id="tb_3" class="normaltab" onclick="c:HoverLi(3);">{$lang.offline_payment}</li>
+   </ul>
+ </div>
+ <div class="ctt">
+
+  <div class="dis" id="tbc_01"><!--滑门 开始-->
+<!--支付方式 开始-->
+<!--{foreach from=$sft item=val key=key}-->
+<?php
+$shuzi1 = round(rand(1,8));
+$shuzi2 = round(rand(1,8));
+$shuzi3 = round(rand(1,8));
+
+$quzimu1= round(rand(65,72));
+$quzimu2= round(rand(65,72));
+$quzimu3= round(rand(65,72));
+
+$zimu1 = chr($quzimu1);
+$zimu2 = chr($quzimu2);
+$zimu3 = chr($quzimu3);
+
+$user_zimuz1 = $zimu1.$shuzi1;
+$user_zimuz2 = $zimu2.$shuzi2;
+$user_zimuz3 = $zimu3.$shuzi3;
+?>
+                    <!--{foreach from=$money item=val key=key}--><dl class="defrays">
+                    <dt>
+					{$lang.payment_shangfutong}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">{$lang.payment_jifen}
+
+{$val.duihuanjifen}
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">{$lang.payment_money}
+
+{$val.money}
+</font></dt>
+                    <dd>
+					
+		  <!--{foreach from=$kaiguan item=val key=key}-->
+				  <!--{if $val.xjzf=='yes'&&$val.jfzf=='yes'}-->			
+					<span><h1>支付方式:</h1></span><br /><input type="radio" value="jifenzhifu" checked="checked" name="zhifufangshi"/><label for="payment_sft"><img src="{$site_url}/themes/mall/default/styles/default/images_sft/logo.jpg" alt="{$lang.shangfutongzhifu}" title="{$lang.payment_shangfutong}" width="125" height="47" /></label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" value="xianjinzhifu" name="zhifufangshi" /><label for="payment_sft"><img src="{$site_url}/themes/mall/default/styles/default/images_sft/logo1.jpg" alt="{$lang.shangfutongzhifu}" title="{$lang.payment_shangfutong}" width="125" height="47" /></label>
+                   <!--{else}-->
+				    <!--{if $val.xjzf=='yes'&&$val.jfzf=='no'}-->	
+					<input type="radio" value="xianjinzhifu" name="zhifufangshi" checked="checked"/><label for="payment_sft"><img src="{$site_url}/themes/mall/default/styles/default/images_sft/logo1.jpg" alt="{$lang.shangfutongzhifu}" title="{$lang.payment_shangfutong}" width="125" height="47" /></label>
+					<!--{else}-->
+					
+					<input type="radio" value="jifenzhifu" checked="checked" name="zhifufangshi"/><label for="payment_sft"><img src="{$site_url}/themes/mall/default/styles/default/images_sft/logo.jpg" alt="{$lang.shangfutongzhifu}" title="{$lang.payment_shangfutong}" width="125" height="47" /></label>
+					<!--{/if}-->
+					<!--{/if}-->
+					  <!--{/foreach}-->
+
+<br /><br />
+<!--检测动态密码-->
+<!--{if $val.mibao_id eq 0}-->
+{$lang.payment_zhifu}<input name="zf_pass" type="password" id="zf_pass">
+<a href="index.php?app=find_password" target="_blank"><font color="#FF3300">{$lang.payment_zhaohuizhifumima}</font></a>
+<BR><font color="#999999"><a href="index.php?app=my_money&act=password" style="text-decoration:none">{$lang.payment_zhifu_desc}</a></font>
+<!--{else}-->
+{$lang.payment_dongtai}
+<font color="#FF3300"><B>
+<?php echo $shuzi1.$zimu1;?>&nbsp;<input type="text" id="user_shuzi1" name="user_shuzi1"  size="3" maxlength="3"/>    
+<?php echo $shuzi2.$zimu2;?>&nbsp;<input type="text" id="user_shuzi2" name="user_shuzi2"  size="3" maxlength="3"/>    
+<?php echo $shuzi3.$zimu3;?>&nbsp;<input type="text" id="user_shuzi3" name="user_shuzi3"  size="3" maxlength="3"/>
+</B></font>
+<BR><font color="#999999">{$lang.payment_dongtai_desc}</font>
+<input name="user_zimuz1" id="user_zimuz1" type="hidden" value="<?php echo $user_zimuz1;?>" />
+<input name="user_zimuz2" id="user_zimuz2" type="hidden" value="<?php echo $user_zimuz2;?>" />
+<input name="user_zimuz3" id="user_zimuz3" type="hidden" value="<?php echo $user_zimuz3;?>" />
+<!--{/if}-->
+</dd></dl><!--{/foreach}-->
+
+            <div class="make_sure">
+                <p>
+                    <a href="javascript:$('#zft_pay').submit();" class="btn">{$lang.confirm_pay}</a>
+                </p>
+            </div>
+   
+
+<!-- {foreachelse} -->
+  <div class="dis" id="tbc_01">
+                    <dl class="defrays">
+                    <dt>{$lang.payment_code_zft_no}</dt>
+  </div>
+<!--{/foreach}-->
+<!--支付方式 结束-->
+</div><!--滑门 结束-->
+  </form> 
+  <form action="index.php?app=cashier&act=goto_pay&order_id={$order.order_id}" method="POST" id="goto_pay">
+  <div class="undis" id="tbc_02"><!--开始-->
+  
+                <dl class="defrays">
+                    <dt>{$lang.online_payment}</dt>
+                    <!--{foreach from=$payments.online item=payment}-->
+                    <dd>
+                        <p class="radio"><input id="payment_{$payment.payment_code}" type="radio" name="payment_id" value="{$payment.payment_id}" /></p>
+                        <p class="logo"><label for="payment_{$payment.payment_code}"><img src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" alt="{$payment.payment_name}-{$payment.payment_desc}" title="{$payment.payment_name}-{$payment.payment_desc}" width="125" height="47" /></label></p>
+                        <p class="explain">{$payment.payment_desc}</p>
+                    </dd>
+                    <!--{/foreach}-->
+                </dl>
+            <div class="make_sure">
+                <p>
+                    <a href="javascript:$('#goto_pay').submit();" class="btn">{$lang.confirm_pay}</a>
+                </p>
+            </div>  
+  </div><!--结束-->
+  
+  <div class="undis" id="tbc_03"><!--开始-->
+  
+                  <dl class="defrays">
+                    <dt>{$lang.offline_payment}</dt>
+                    <!--{foreach from=$payments.offline item=payment}-->
+					<!--{if $payment.payment_code != "sft"}-->
+                    <dd>
+                        <p class="radio"><input type="radio" id="payment_{$payment.payment_code}" name="payment_id" value="{$payment.payment_id}" /></p>
+                        <p class="logo"><label for="payment_{$payment.payment_code}">
+						<img alt="{$payment.payment_name}-{$payment.payment_desc}" title="{$payment.payment_name}-{$payment.payment_desc}" src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" width="125" height="47" /></label></p>
+                        <p class="explain">{$payment.payment_desc}</p>
+                    </dd>
+					<!--{/if}-->
+                    <!--{/foreach}-->
+                </dl>
+            <div class="make_sure">
+                <p>
+                    <a href="javascript:$('#goto_pay').submit();" class="btn">{$lang.confirm_pay}</a>
+                </p>
+            </div>				
+  </div><!--结束-->
+
+
+
+   </form>
+ </div>
+
+</div><!--居中-->
+
+
+</div>
+
+
+
+
+ 
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+{include file="footer.html"}
+

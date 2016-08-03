@@ -1,0 +1,74 @@
+{include file="header.html"}
+<div id="rightTop">
+
+  <ul class="subnav">
+    <li><span>商家优惠券管理</span></li>
+    <!--{if $priv_row.privs=='all'}-->
+	 <li><a class="btn1" href="index.php?app=coupon&amp;act=fufei">付费管理</a></li>
+    <li><a class="btn1" href="index.php?app=coupon&amp;act=add">付费增加</a></li>
+    <!--{/if}-->
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $users}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>优惠券名称</td>
+      <td>优惠金额</td>
+      <td>使用次数</td>
+	  <td>所属店铺</td>
+	  <td>所属站</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$users item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.user_id}" /></td>
+      <td>{$user.coupon_name|escape}</td>
+      <td>{$user.coupon_value|escape}</td>
+      <td>{$user.use_times}</td>
+      <td>{$user.store_name}</td>
+	  <td>
+	  {$user.city_name}
+	  </td>
+      <td class="handler">
+      <span style="width: 100px">
+	  <center>
+      <a href="index.php?app=coupon&amp;act=youhui_edit&amp;id={$user.coupon_id}">{$lang.edit}</a>||
+	  <a href="index.php?app=coupon&amp;act=youhui_drop&amp;id={$user.coupon_id}" onclick="confirm('{$lang.drop_confirm}')">
+	  {$lang.drop}
+	 </a>
+      </center>  
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+ 
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+    <!--<input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" uri="index.php?app=coupon&amp;act=youhui_drop&amp;id={$user.coupon_id}" presubmit="confirm('{$lang.drop_confirm}');" />-->
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+{include file="footer.html"}

@@ -1,0 +1,206 @@
+{include file="header.html"}
+<script src="{lib file=mlselection.js}" charset="utf-8"></script>
+<script type="text/javascript">
+
+$(function(){
+    regionInit("region");
+});
+</script>
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="rightTop">
+  <p>{$lang.store}</p>
+  <ul class="subnav">
+    <!--{if $smarty.get.wait_verify}-->
+    <li><a class="btn1" href="index.php?app=store">{$lang.manage}</a></li>
+    <!--{else}-->
+    <li><span>{$lang.manage}</span></li>
+    <!--{/if}-->
+   {if $priv_row.privs=="all"} <li><a class="btn1" href="index.php?app=store&amp;act=test">{$lang.add}</a></li>{/if}
+    <!--{if $smarty.get.wait_verify}-->
+    <li><span>{$lang.wait_verify}</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=store&amp;wait_verify=1">{$lang.wait_verify}</a></li>
+    <!--{/if}-->
+  </ul>
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">
+   <form method="get">
+          <input type="hidden" name="app" value="store" />
+          <input type="hidden" name="act" value="index" />
+          <input type="hidden" name="wait_verify" value="{$smarty.get.wait_verify}" />
+          {$lang.owner_name}:
+          <input class="queryInput" type="text" name="owner_name" value="{$smarty.get.owner_name|escape}" />
+          {$lang.store_name}:
+          <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+          <!--开店时间：
+          <input name="sotime" type="text" id="sotime" value="<?php echo $_GET["sotime"];?>" size="10" maxlength="10" />-->
+          {$lang.sgrade}:
+          <select class="querySelect" name="sgrade">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$sgrades selected=$smarty.get.sgrade}
+          </select>
+           {$lang.suoshufenlei}:
+          <select class="querySelect" name="fenlei">
+            <option value="">{$lang.select_pls}</option>
+          {html_options options=$scategories}
+          </select>
+          {$lang.state}:
+          <select class="querySelect" name="store_state">
+          <option value="">{$lang.select_pls}</option>
+          <option value="1">开启</option>
+          <option value="2">关闭</option>
+          </select>
+          <br />
+      <span style="position: relative; top: 5px;">
+      <div class="left">
+          {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+          <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+           {$lang.end_time}:
+              <input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>" size="10" maxlength="10" />
+           {$lang.tuijian}:
+           <select class="querySelect" name="tuijian">
+           <option value="">{$lang.select_pls}</option> 
+           <option value="0">{$lang.fou}</option>
+           <option value="1">{$lang.shi}</option>
+           </select>
+           <span id="region">
+           <input type="hidden" name="region_name" value="" class="mls_names" />
+           {$lang.region}:
+          <select class="querySelect" name="region">
+          <option value="">{$lang.select_pls}</option>
+          {html_options options=$regions}
+          </select>
+          </span>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+    
+      </div>
+     <!--{if $filtered || $scategory || $suoshuzhan}-->
+      <a class="left formbtn1" href="index.php?app=store<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+      </span>
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $stores}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.owner_user_name} | {$lang.owner_real_name}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.store_name}</span></td>
+      <td><span ectype="order_by" fieldname="region_id">{$lang.region}</span></td>
+      <td><span ectype="order_by" fieldname="sgrade">{$lang.sgrade}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">开店时间</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">{$lang.end_time}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="state">{$lang.state}</span></td>
+      <!--{if !$smarty.get.wait_verify}-->
+      <td class="table-center"><span ectype="order_by" fieldname="sort_order">{$lang.sort_order}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="recommended">{$lang.recommend}</span></td>
+      <!--{/if}-->
+	 <!-- <td class="handler">{$lang.shifouxianshi}</td>-->
+	  <td class="handler">{$lang.shifoufufei}</td>
+      <td class="handler">{$lang.zongxiaobao}</td>
+      <td class="handler">{$lang.yuxiaobao}</td>
+	  <td class="handler">所属站</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$stores item=store}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$store.store_id}" /></td>
+      <td>{$store.user_name|escape} | {$store.owner_name|escape}</td>
+      <td>{$store.store_name|escape}</td>
+      <td>{$store.region_name|escape}</td>
+      <td>{$store.sgrade}</td>
+      <td class="table-center">{$store.add_time|date}</td>
+      <td class="table-center">{$store.end_time|date}</td>
+      <td class="table-center">{$store.state}</td>
+      <!--{if !$smarty.get.wait_verify}-->
+      <td class="table-center"><span ectype="inline_edit" fieldname="sort_order" fieldid="{$store.store_id}" datatype="pint" title="{$lang.editable}" class="editable">{$store.sort_order}</span></td>
+      <td class="table-center"><!--{if $store.recommended}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="recommended" fieldid="{$store.store_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="recommended" fieldid="{$store.store_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+      <!--{/if}-->
+	  <!--<td class="table-center">{if $store.erweima==0}否{/if}
+	  {if $store.erweima==1}是{/if}
+	  </td>-->
+	   <td class="table-center">{$store.level}
+	  </td>
+       <td class="table-center">{$store.xiaobao_pay}
+	  </td> 
+      <td class="table-center">{$store.xiaobao}
+	  </td>
+	  <td width="70px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   {$store.city_name}
+	  </td>
+      <td class="handler">
+        <!--{if !$smarty.get.wait_verify}-->
+       {if $priv_row.privs=="all"}
+        <a href="index.php?app=store&amp;act=edit&amp;id={$store.store_id}&dj={$store.sgrade}&page={$page_info.curr_page}">{$lang.edit}</a> 
+		| <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=store&amp;act=drop&amp;id={$store.store_id}');">{$lang.drop}</a>
+        | <a href="index.php?app=store&amp;act=xiaobao_jian&amp;id={$store.store_id}&username={$store.user_name}">{$lang.kouchuxiaobao}</a>
+        {/if}
+		{if $priv_row.privs=="all" or $kaiguan.mxstore=="yes"}
+		{if $store.dengji==0} | <a href="javascript:drop_confirm('{$lang.queding_confirm}','index.php?app=store&act=mxstore&amp;id={$store.store_id}');">明星店铺</a>{/if}
+		 {if $store.dengji==1} | <a href="javascript:drop_confirm('{$lang.quxiao_confirm}','index.php?app=store&act=qxmxstore&amp;id={$store.store_id}');">取消</a>
+		 | <a href="index.php?app=article_sto&act=add&amp;id={$store.store_id}&cityid={$store.cityid}">添加资料</a>{/if}
+		 {/if}
+		 | <a target="_blank" href="{$site_url}/index.php?app=store&amp;id={$store.store_id}">{$lang.store_index}</a>
+        <!--{else}-->
+		{if $priv_row.privs=="all" or $store.sgrade==$lang.fuchiban}
+        <a href="index.php?app=store&amp;act=view&amp;id={$store.store_id}">{$lang.view}</a>
+		{/if}
+        <!--{/if}--></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+	
+	
+	
+	
+  </table>
+  <!--{if $stores}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   {if $priv_row.privs=="all"}
+    <div id="batchAction" class="left paddingT15">{if !$smarty.get.wait_verify}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.edit}" name="id" uri="index.php?app=store&act=batch_edit" />
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=store&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+      <!--&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.update_order}" name="id" presubmit="updateOrder(this);" />-->
+      {else}
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=store&act=drop" presubmit="confirm('{$lang.reject_confirm}');" />
+      <!--{/if}-->
+    </div>
+	{/if}
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+</div>
+{include file="footer.html"} 

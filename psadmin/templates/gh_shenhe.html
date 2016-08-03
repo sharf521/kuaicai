@@ -1,0 +1,436 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#share_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true,
+                maxlength: 100
+            },
+            link  : {
+                required : true
+            },
+            logo  : {
+                accept : 'png|jpe?g|gif'
+            },
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_required}',
+                maxlength: '{$lang.title_maxlength_error}'
+            },
+            link  : {
+                required : '{$lang.link_required}'
+            },
+            logo  : {
+                accept   : '{$lang.logo_accept_error}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>
+<div id="rightTop">
+    <p>供货管理</p>{$build_editor}
+    <ul class="subnav">
+        <li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+        {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        {/if}
+	  <!--  <li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		 <tr><td width="116"><h5><font color="#0033FF">商家信息</font></h5></td></tr>
+            <tr>
+                <th class="paddingT15">
+                    联系人:</th>  
+                <td class="paddingT15 wordSpacing5">{$xinxi.name}
+                   <!-- <input class="infoTableInput2" id="name" type="text" name="name" value="" readonly="true"/>-->
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    性别:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.sex}
+				<!-- <input class="infoTableInput2" id="sex" type="text" name="sex" value="" readonly="true"/>-->
+                  
+                </td>
+            </tr> 
+            <tr>
+                <th class="paddingT15">
+                   年龄:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.age}
+                  <!-- <input class="infoTableInput2" id="age" type="text" name="age" value=""  readonly="true"/> -->  
+                </td>
+            </tr>
+			 <tr>
+                <th class="paddingT15">
+                  联系方式:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.lxfs}
+                  <!-- <input class="infoTableInput2" id="lxfs" type="text" name="lxfs" value="" readonly="true"/>  --> 
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  网店ID:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.wangdian}
+       <!--<input class="infoTableInput2" id="wangdian" type="text" name="wangdian" value="" readonly="true"/>  --> 
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+             厂家（公司）名称:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.gongsi_name}
+         <!-- <input class="infoTableInput2" id="gongsi_name" type="text" name="gongsi_name" value="" readonly="true"/>-->   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+             地址:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.address}
+                  <!-- <input class="infoTableInput2" id="address" type="text" name="address" value="" readonly="true"/>-->   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+             厂家联系人:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.lianxiren}
+            <!-- <input class="infoTableInput2" id="lianxiren" type="text" name="lianxiren" value=""  readonly="true"/> -->  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+             联系方式:</th> 
+                <td class="paddingT15 wordSpacing5">{$xinxi.method}
+               <!-- <input class="infoTableInput2" id="method" type="text" name="method" value="" readonly="true"/>   -->
+                </td>
+            </tr>
+            		<tr>
+                <th class="paddingT15">
+                    厂家图:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   
+                </td>
+            </tr> 
+			
+            {if $xinxi.changjia}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$xinxi.changjia}" target="_blank"><img src="/{$xinxi.changjia}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                    营业执照:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   
+                </td>
+            </tr> 
+			
+            {if $xinxi.zhizhao}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+           <a href="/{$xinxi.zhizhao}" target="_blank"><img src="/{$xinxi.zhizhao}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+<tr>
+                <th class="paddingT15">
+                    组织机构代码证:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    
+                </td>
+            </tr> 
+			
+            {if $xinxi.jigou}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$xinxi.jigou}" target="_blank"><img src="/{$xinxi.jigou}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+<tr>
+                <th class="paddingT15">
+                    税务登记证:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    
+                </td>
+            </tr> 
+			
+            {if $xinxi.shuiwu}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$xinxi.shuiwu}" target="_blank"><img src="/{$xinxi.shuiwu}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                    其他:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   
+                </td>
+            </tr> 
+			
+            {if $xinxi.qita_1}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$xinxi.qita_1}" target="_blank"><img src="/{$xinxi.qita_1}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                   </th> 
+                <td class="paddingT15 wordSpacing5">
+                    
+                </td>
+            </tr> 
+			
+            {if $xinxi.qita_2}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+          <a href="/{$xinxi.qita_2}" target="_blank"><img src="/{$xinxi.qita_2}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+			<tr>
+                <th class="paddingT15">
+                   </th> 
+                <td class="paddingT15 wordSpacing5">
+                  
+                </td>
+            </tr> 
+			
+            {if $xinxi.qita_3}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+           <a href="/{$xinxi.qita_3}" target="_blank"><img src="/{$xinxi.qita_3}" width="100px"/></a>
+                </td>
+            </tr>
+            {/if}
+            <tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td width="116"><h5><font color="#0033FF">商品信息</font></h5></td></tr>
+			<tr>
+                <th class="paddingT15">
+                  商品名称:</th> 
+                <td class="paddingT15 wordSpacing5">{$gonghuo.goods_name}
+           <!--<input class="infoTableInput2" id="goods_name" type="text" name="goods_name" value="" readonly="true"/>-->   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品品牌:</th> 
+                <td class="paddingT15 wordSpacing5">{$gonghuo.goods_brand}
+         <!--<input class="infoTableInput2" id="goods_brand" type="text" name="goods_brand" value="" readonly="true"/>-->   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  目前销售渠道:</th> 
+                <td class="paddingT15 wordSpacing5">{$gonghuo.tujing}
+                  <!-- <input class="infoTableInput2" id="tujing" type="text" name="tujing" value="" readonly="true"/> -->  
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+                零售价格:</th> 
+                <td class="paddingT15 wordSpacing5">{$gonghuo.lingshou_price}
+           <!--<input class="infoTableInput2" id="lingshou_price" type="text" name="lingshou_price" value="" readonly="true"/>-->   
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+            商品信息来源:</th> 
+                <td class="paddingT15 wordSpacing5">{$gonghuo.source}
+                  <!-- <input class="infoTableInput2" id="source" type="text" name="source" value="" readonly="true"/>  --> 
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片资料:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="ziliao" type="file" name="ziliao" value="" readonly="true"/>
+                </td>
+            </tr> 
+			
+            {if $gonghuo.ziliao}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$gonghuo.ziliao}" target="_blank"><img src="/{$gonghuo.ziliao}"  width="200px"/></a>
+                </td>
+            </tr>
+            {/if}
+
+			<tr>
+                <th class="paddingT15">
+                    产品图:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="chanpin" type="file" name="chanpin" value="" readonly="true"/>
+                </td>
+            </tr> 
+			
+            {if $gonghuo.chanpin}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$gonghuo.chanpin}" target="_blank"><img src="/{$gonghuo.chanpin}" width="200px" /></a>
+                </td>
+            </tr>
+            {/if}
+
+			  <tr>
+                <th class="paddingT15">
+                   商品描述:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  <script type="text/plain" id="myEditor" name="beizhu">
+        							<p>{$gonghuo.beizhu}</p>
+    								</script>
+									<script type="text/javascript">
+										UE.getEditor('myEditor',{
+											imageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									imagePath:"",
+											
+											imageManagerUrl:UEDITOR_HOME_URL + "php/imageManager.php?type=1",
+        									imageManagerPath:UEDITOR_HOME_URL + "php/",
+											
+											scrawlUrl:UEDITOR_HOME_URL + "php/scrawlUp.php?type=1",
+        									scrawlPath:"",
+											
+											catcherUrl:UEDITOR_HOME_URL + "php/getRemoteImage.php?type=1",
+        									catcherPath:UEDITOR_HOME_URL + "php/",
+											
+											snapscreenServerUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									snapscreenPath:UEDITOR_HOME_URL + "php/",
+											
+											wordImageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									wordImagePath:UEDITOR_HOME_URL + "php/",
+											
+											initialFrameHeight:420,  //初始化编辑器高度,
+											autoHeightEnabled:false, //是否自动长高,默认true
+											scaleEnabled:false, //是否可以拉伸长高,默认true
+											minFrameHeight:420, //编辑器拖动时最小高度
+											autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+											toolbarTopOffset:400, //编辑器底部距离工具栏高度
+											initialFrameWidth:800
+										})
+									</script> 
+</td> 
+                </td>
+            </tr>
+			{if $priv_row.privs=="all"}
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">初审状态:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input id="status" type="radio" name="status" value="2" {if $gonghuo.chushen_status==2} checked="checked"{/if}/><font color="#990000">审核不通过</font> 
+				   <input id="status" type="radio" name="status" value="1" {if $gonghuo.chushen_status==1} checked="checked"{/if}/><font color="#990000">审核通过 </font>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">初审意见:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+                  <textarea name="chushen_beizhu">{$gonghuo.chushen_status}</textarea>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">所属仓库:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.store_name}
+                </td>
+            </tr>
+			 <tr>
+                <th class="paddingT15">
+                   <font color="#990000">状态:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input id="status" type="radio" name="status" value="2"/><font color="#990000">审核不通过</font> 
+				   <input id="status" type="radio" name="status" value="1" checked="checked"/><font color="#990000">审核通过 </font>
+                </td>
+            </tr>
+			
+			{else}
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">所属仓库:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+				<select name="cangkuid">
+				{foreach from=$cangku item=var}
+				<option value="{$var.store_id}">{$var.store_name}</option>
+				{/foreach}
+				</select>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">状态:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input id="chushen_status" type="radio" name="chushen_status" value="2"/><font color="#990000">审核不通过</font> 
+				   <input id="chushen_status" type="radio" name="chushen_status" value="1" checked="checked"/><font color="#990000">审核通过 </font>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                   <font color="#990000">意见:</font></th> 
+                <td class="paddingT15 wordSpacing5">
+				<textarea name="chushen_beizhu" cols="10" rows="25"></textarea>
+                </td>
+            </tr>
+			<input name="chushen" value="1" type="hidden" />
+
+			{/if}
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

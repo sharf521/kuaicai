@@ -1,0 +1,113 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+
+<script type="text/javascript">
+$(function(){
+    $('#addtime').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+             <ul class="tab">
+              <li class="normal"><a href="index.php?app=company&act=adv">广告管理</a></li>
+          </ul>
+            <div class="wrap">
+			<div class="eject_btn_two eject_pos1" ><b class="ico4"><a href="index.php?app=company&act=add_adv">添加广告</a></b></div>
+			
+                <div class="public">
+                <form method="post" enctype="multipart/form-data" id="profile_form">
+                    <div class="information">
+                       
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">广告名称: </th>
+                                    <td><input name="title" value="{$row.title}" type="text" size="40"/>
+									<input name="id" value="{$row.id}" type="hidden" />
+									</td>
+                                </tr>
+								<tr>
+                                    <th class="width4">广告图片: </th>
+                                    <td><input name="image" value="{$row.image}" type="file" size="40"/></td>
+                                </tr>
+								<tr>
+								<th></th>
+								<td><img src="{$row.image}" width="100"/></td>
+								</tr>
+                                <tr>
+                                    <th>广告链接:</th>
+                                    <td><input name="link" value="{$row.link}" type="text" size="40"/></td>
+                                </tr>
+                                <tr>
+                                    <th>开始时间:</th>
+                                    <td>
+                                   <input name="addtime" value="{$row.addtime}" type="text" size="40" id="addtime"/>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <th>结束时间:</th>
+                                    <td>
+                                    <input name="endtime" value="{$row.endtime}" type="text" size="40" id="endtime"/>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th>广告类型:</th>
+                                    <td>
+                                    <select name="typeid">
+									<option value="">请选择。。。</option>
+									{foreach from=$res item=var}
+									<option value="{$var.id}" {if $row.typeid==$var.id} selected="selected"{/if}>{$var.type}</option>
+									{/foreach}
+									</select>
+									
+                                    </td>
+                                </tr>
+								<!--<tr>
+                                    <th>所属模版:</th>
+                                    <td>
+                                    <select name="code">
+									<option value="{$one.code}" >{$one.code}</option>
+									</select>
+                                    </td>
+                                </tr>-->
+                                <tr>
+                                    <th>备注: </th>
+                                    <td class="label">
+                                      <textarea name="beizhu" rows="6" cols="45">
+									  {$row.beizhu}
+									  </textarea>
+                                    </td>
+                                </tr>
+                                
+                               <tr>
+							   <td>&nbsp;</td>
+							   </tr>
+
+                                <tr>
+                                    <th></th>
+                                    <td>
+									<input type="submit" class="btn" value="提交" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="adorn_right1"></div>
+            <div class="adorn_right2"></div>
+            <div class="adorn_right3"></div>
+            <div class="adorn_right4"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=footer.html}

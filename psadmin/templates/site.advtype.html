@@ -1,0 +1,64 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>企业管理</p>
+    <ul class="subnav">
+        <li><span>广告类型</span></li>
+        <li><a class="btn1" href="index.php?app=site_system&amp;act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_skin">模版列表</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=skin_add">增加模版</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_sys">站点管理</a></li>
+		
+		
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $site_type}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>广告类型编号</td>
+      <td>广告类型</td>
+	  <td>广告单价</td>
+	  <td>所属模版</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$site_type item=val}-->
+    <tr class="tatr2">
+      <td class="firstCell"></td>
+      <td>&nbsp;{$val.id|escape}</td>
+      <td>&nbsp;{$val.type}</td>
+	  <td>&nbsp;{$val.danjia}</td>
+	  <td>&nbsp;{$val.code}</td>
+      <td class="handler">
+      <span style="width: 100px">
+	  <center>
+      <a href="index.php?app=site_system&amp;act=type_edit&amp;id={$val.id}">{$lang.edit}</a>
+      </center>  
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+{include file="footer.html"}

@@ -1,0 +1,115 @@
+{include file="header.html"}
+
+
+<div id="rightTop">
+    <p>企业管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=site_system">广告类型</a></li>
+        <li><a class="btn1" href="index.php?app=site_system&amp;act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_skin">模版列表</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=skin_add">增加模版</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_sys">站点管理</a></li>
+      
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form" name="form1">
+        <table class="infoTable">
+            
+			<tr>
+                <th class="paddingT15">
+                   用户id:</th>
+					 <td class="paddingT15 wordSpacing5">
+					{$row.user_id}
+                    
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    企业名称:</th>
+					 <td class="paddingT15 wordSpacing5">
+					 <input id="id" type="hidden" name="id" value="{$row.user_id}"/>
+                    <input id="name" type="text" name="name" value="{$row.name}"/>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    企业logo:</th>
+					 <td class="paddingT15 wordSpacing5">
+                  {if $row.logo}<img src="{$site_url}/{$row.logo}" width="80" />{/if}
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+                    企业地址:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="address" type="text" name="address" value="{$row.address}"/>
+                </td>
+            </tr><tr>
+                <th class="paddingT15">
+                    企业电话:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="tel" type="text" name="tel" value="{$row.tel}"/>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    企业传真:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="fax" type="text" name="fax" value="{$row.fax}"/>
+                </td>
+            </tr><tr>
+                <th class="paddingT15">
+                    icp:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="icp" type="text" name="icp" value="{$row.icp}"/>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    企业域名:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="yuming" type="text" name="yuming" value="{$row.yuming}"/>
+                </td>
+            </tr><tr>
+                <th class="paddingT15">
+                    版权:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="banquan" type="text" name="banquan" value="{$row.banquan}"/>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    客服电话:</th>
+					 <td class="paddingT15 wordSpacing5">
+                    <input id="rexian" type="text" name="rexian" value="{$row.rexian}"/>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    模版:</th>
+					 <td class="paddingT15 wordSpacing5">
+                   {$row.code}
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    是否审核:</th>
+					 <td class="paddingT15 wordSpacing5">
+                   <input name="status" type="radio" value="1" {if $row.status==1} checked="checked"{/if}/>审核通过&nbsp;
+				   <input name="status" type="radio" value="2" {if $row.status==2}checked="checked"{/if}/>审核不通过
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

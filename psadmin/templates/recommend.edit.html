@@ -1,0 +1,134 @@
+{include file="header.html"}
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#recom_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false ,
+        rules : {
+            recom_name : {
+                required : true ,
+                remote   : {
+                url :'index.php?app=recommend&act=check_recom' ,
+                type:'get',
+                data:{
+                    recom_name : function(){
+                        return $('#recom_name').val();
+                        },
+                    id : '{$recommend.recom_id}'
+                    }
+                }
+            }
+        },
+        messages : {
+            recom_name : {
+                required : '{$lang.recom_empty}',
+                remote   : '{$lang.name_exist}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+
+<script language="javascript">
+function tixian(flg){
+var $fenzhan = $('#fenzhan');
+var $benzhan = $('#benzhan');
+
+
+  switch(flg){
+    case 1:
+       
+			$benzhan.show();
+			$fenzhan.hide();
+			
+        break;
+	
+    case 2:
+       $fenzhan.show();
+	   $benzhan.hide();
+	   
+        break;
+
+  }
+}
+
+</script>
+
+
+
+
+<div id="rightTop">
+  <p>{$lang.recommend}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=recommend">{$lang.manage}</a></li>
+    {if $recommend.recom_id}
+    <li><a class="btn1" href="index.php?app=recommend&amp;act=add">{$lang.add}</a></li>
+    {else}
+    <li><span>{$lang.add}</span></li>
+    {/if}
+  </ul>
+</div>
+<div class="info">
+ <!-- <form method="post" enctype="multipart/form-data" id="recom_form">-->
+    <table class="infoTable">
+  <!--    <tr>
+        <th class="paddingT15"> 推荐类型:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="recom_id" type="text" id="recom_id" value="" />
+           </td>
+      </tr>
+	  <tr>
+        <th class="paddingT15"> 商品编号:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="goods_id" type="text" id="goods_id" value="" />
+         </td>
+      </tr>-->
+	  <tr>
+        <th class="paddingT15"></th>
+        <td class="paddingT15 wordSpacing5">
+		<!--<input class="infoTableInput2" name="recity" type="text" id="recity" value="" />-->
+		 <input type="radio" value="推荐到本站" checked="checked" name="a" onclick="tixian(1)"/> <font style="font-size:14px;"> 推荐到本站</font>&nbsp;&nbsp;&nbsp;
+		   <!--{foreach from=$priv item=index}-->
+		<!-- {if $index.tjfz==yes}-->
+		 
+		 <input type="radio" value="推荐到分站" name="a" onclick="tixian(2)"/><font style="font-size:14px;">推荐到分站</font>
+		 <!--{/if}-->
+		 <!--{/foreach}-->
+		 <br /><br /><br/>
+		 <div id="benzhan" >
+		  <form method="post" enctype="multipart/form-data" id="recom_form">
+<!--<form name="card_form1" action="index.php?app=my_money&act=duihuan_jifen" method="post" target="_blank">-->
+				  推荐到本站 :&nbsp;&nbsp;&nbsp;&nbsp;<input name="recity" type="text" id="recity" size="15" /> 			  <br>
+				  
+				 
+      <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        
+    
+				  </form>
+				  </div>
+				  <div id="fenzhan" style= "display:   none ">
+				   <form method="post" enctype="multipart/form-data" id="recom_form">
+<!--<form name="card_form" action="index.php?app=my_money&act=duihuan_xianjin" method="post" target="_blank">-->
+  推荐到分站 :&nbsp;&nbsp;&nbsp;&nbsp;<input name="recity" type="text" id="recity" size="15" /> 			  <br>
+   <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />   
+				  </form>
+				  </div>
+       </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><!--<input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />  -->      </td>
+      </tr>
+    </table>
+  <!--</form>-->
+</div>
+{include file="footer.html"}

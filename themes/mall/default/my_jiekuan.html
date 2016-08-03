@@ -1,0 +1,316 @@
+{include file=member.header.html}
+<script type="text/javascript">
+
+function jiekuan()
+{
+	
+if (document.gh.name.value =="")
+  {
+    alert("真实姓名不能为空，请先到个人资料里进行完善");
+	document.gh.name.focus();
+	return false;
+	}
+if (document.gh.address.value =="")
+  {
+    alert("家庭住址不能为空!");
+	document.gh.address.focus();
+	return false;
+	}
+if (document.gh.danwei.value =="")
+  {
+    alert("工作单位不能为空!");
+	document.gh.danwei.focus();
+	return false;
+	}
+if (document.gh.lxfs1.value =="")
+  {
+    alert("个人的联系方式不能为空!");
+	document.gh.lxfs1.focus();
+	return false;
+	}
+if (document.gh.lxfs2.value =="")
+  {
+    alert("亲朋的联系方式不能为空!");
+	document.gh.lxfs2.focus();
+	return false;
+	}
+if (document.gh.money_j.value =="")
+  {
+    alert("借款金额不能为空!");
+	document.gh.money_j.focus();
+	return false;
+	}
+if (document.gh.rate.value =="")
+  {
+    alert("月利率不能为空!");
+	document.gh.rate.focus();
+	return false;
+	}
+if (document.gh.rate.value < 2)
+  {
+    alert("月利率不能小于2%!");
+	document.gh.rate.focus();
+	return false;
+	}
+if (document.gh.time.value =="")
+  {
+    alert("借款期限不能为空!");
+	document.gh.time.focus();
+	return false;
+	}
+if (document.gh.beizhu.value =="")
+  {
+    alert("借款用途不能为空!");
+	document.gh.beizhu.focus();
+	return false;
+	}
+
+
+}
+
+
+</script>
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="active">我要借款</li>
+                <li class="normal"><a href="index.php?app=member&act=jiekuanjilu">借款记录</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+      
+  {if $jie.status1==1 || $jie.status==1} 
+  <table class="table_head_line">
+                    <!--{if $jie}-->
+                    <tr class="line_bold">
+                        
+                        <th class="align1" colspan="10">  
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                     
+                        <th class="align1">借款人</th>
+                        <th>借款金额</th>
+                        <th>冻结保证金</th>
+                        <th>申请时间</th>
+						<th>借款期限</th>
+                        <th align="center">借款利息</th>
+                        <th align="center">借款状态</th>
+                        <th class="width4">操作</th>
+                    </tr>
+                    <!--{/if}-->
+                 
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        
+                        <td class="link1">{$jie.user_name}</td>
+						<td align="center">{$jie.money_j}{$lang.yuan}</td>
+                        <td align="center">{$jie.baozheng}{$lang.yuan}</td>
+						<td align="center">{$jie.createdate}</td>
+						<td align="center">
+                        {if $jie.isday==0}
+                        {$jie.time}{$lang.yue}
+                        {else}
+                        {$jie.time}{$lang.tian}
+                        {/if}
+                        {if $jie.start_time}即 {$jie.start_time1}至{$jie.daoqi_time}{/if}
+                        </td>
+						<td align="center">{$jie.lixi}{$lang.yuan}</td>
+						<td align="center">
+                    
+                        {if $jie.status==1}{$lang.dengdaishenhe}{/if}
+                          {if $jie.status==2}
+                          {if $jie.status1==1}
+                          待还款
+                          {/if}
+                          {if $jie.status1==2}
+                          已还款
+                          {/if}
+                          {/if}
+                          {if $jie.status==3}{$lang.shenhebutongguo}{/if}
+                        </td>
+                        <td>    <nobr>
+                     <a href="index.php?app=member&act=jk_xiangqing&id={$jie.id}">查看</a>
+                     {if $jie.status==1}
+                     ||
+                     <a href="index.php?app=member&act=jk_drop&id={$jie.id}&userid={$jie.user_id}" onclick="{if(confirm('{$lang.drop_confirm}？')){return true;}return false;}">删除</a>
+                     {/if}
+    {if $jie.status==2 && $jie.status1==1}||<a href="index.php?app=member&act=huankuan&id={$jie.id}">还款</a>		    {/if}</nobr>
+                        </td>
+                    </tr>
+                </table>
+  
+  {else}
+ <form action="index.php?app=member&act=my_jiekuan" method="post" onSubmit="return jiekuan();" name="gh" enctype="multipart/form-data">
+ <table width="425">
+ <tr>
+ <td>借款人：</td>
+ <td width="663">{$user_name}
+ <input name="user_name" id="user_name" value="{$user_name}" readonly="readonly" type="hidden"/></td>
+ </tr>
+  <tr>
+ <td>真实姓名：</td>
+ <td><input name="name" id="name" value="{$mem.real_name}" readonly="readonly"/><font color="#990000"> * <a href="index.php?app=member&act=profile" style="text-decoration:none">&nbsp;{$lang.wanshan}</a></font></td>
+ </tr>
+  <tr>
+ <td>家庭住址：</td>
+ <td><input name="address" id="address" value="{$jiekuan.address}" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>工作单位：</td>
+ <td><input name="danwei" id="danwei" value="{$jiekuan.danwei}" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>联系方式(个人)：</td>
+ <td><input name="lxfs1" id="lxfs1" value="{$jiekuan.lxfs1}" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>联系方式(亲朋)：</td>
+ <td><input name="lxfs2" id="lxfs2" value="{$jiekuan.lxfs2}" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>身份证：</td>
+ <td>
+ {if $jiekuan.image_1}
+ <img src="/{$jiekuan.image_1}" width="120px"/>
+ <input name="image_1" id="image_1" value="{$jiekuan.image_1}" type="hidden"/>
+ {else}
+ <input name="image_1" id="image_1"  type="file"/> <font color="#990000"> *</font>
+ {/if}
+</td>
+ </tr>
+ <tr>
+ <td></td>
+ <td>
+ {if $jiekuan.image_2}
+  <img src="/{$jiekuan.image_2}" width="120px"/>
+  <input name="image_2" id="image_2" value="{$jiekuan.image_2}" type="hidden"/>
+  {else}
+  <input name="image_2" id="image_2" type="file"/><font color="#990000"> * 图片格式为'gif&nbsp;|&nbsp;jpg&nbsp;|&nbsp;jpeg&nbsp;|&nbsp;png'</font>
+  {/if}
+ </td>
+ </tr>
+  <tr style="display:none">
+ <td>开户银行：</td>
+ <td><input name="bank" id="bank" value="" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr style="display:none">
+ <td>银行账号：</td>
+ <td><input name="bank_hao" id="bank_hao" value="" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+ 
+ 
+ 
+ <tr>
+ <td>借款金额：</td>
+ <td><input name="money_j" id="money_j" size="4" value="" onkeyup="value=value.replace(/[^0-9.]/g,'');"/>元<font color="#990000">（您的借款金额不能大于{$jk}元，最多保留小数后两位）</font></td>
+ </tr>
+ 
+ <tr>
+ <td>月利率：</td>
+ <td><input name="rate" id="rate" size="4"  value="1" onkeyup="value=value.replace(/[^0-9.]/g,'');"/> %<font color="#990000"> * {$lang.bunengxiaoyu}</font></td>
+ </tr>
+ <tr>
+ <td>借款期限：</td>
+ <td>
+ <select name="time" id="time"><option value="1">1个月</option><option value="2">2个月</option><option value="3">3个月</option><option value="4">4个月</option><option value="5">5个月</option><option value="6">6个月</option></select>&nbsp;
+ 
+ 按天<input type="checkbox" value="1" id="isday" name="isday"/>
+ <span id="div_daytext">&nbsp;&nbsp;系统将按照每月30天来计算利息</span>
+ <br /><br />
+ <input type="button" onclick="rate111()" value="试算利息"/><span id='div_rate'></span>
+ <script language="javascript">
+ 
+$(document).ready(function(){
+	$('#div_daytext').hide();
+	$("#isday").click(function(){
+		$("#time").empty();
+		if ($("#isday").attr("checked")) 
+		{
+			for(i=1;i<31;i++)
+			{
+				$("#time").append("<option value='"+i+"'>"+i+"天</option>");				
+			}
+			$('#div_daytext').show();	
+		}
+		else
+		{
+			for(i=1;i<7;i++)
+			{
+				$("#time").append("<option value='"+i+"'>"+i+"个月</option>");				
+			}
+			$('#div_daytext').hide();
+		}
+	});	
+});
+
+function rate111()
+{
+	rate=$('#rate').val();
+	if(rate!='' && $('#money_j').val()!='' && $("#time").val()!='')
+	{
+		if ($("#isday").attr("checked")) 
+		{
+			rate=rate/30;
+		}
+		t=Math.ceil($('#money_j').val()*$("#time").val()*rate/100*100)/100;
+		$('#div_rate').html("应还利息："+t+"元，仅供参考，以实际为准。");
+	}
+	else
+	{
+		alert('请先将借款数据补充完整！');	
+	}
+}
+ </script>
+ </td>
+ </tr>
+  <tr>
+ <td>借款用途：</td>
+ <td>
+ <textarea cols="40" rows="5" name="beizhu"></textarea>
+ </td>
+ </tr>
+<tr>
+ <td colspan="2"><p class="padding4"><input type="checkbox" name="notice" value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <label for="warning">{$notice}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="/data/jiekuanhetong/hetong{$cityrow.city_id}.zip" style="color:#00F" target="_blank">合同下载</a></p></td>
+ <td></td>
+ </tr>
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+		
+ 
+ <tr>
+ <td></td>
+ <td><center><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></center></td>
+	
+</table>
+			  </form>
+  
+  
+  
+  {/if}            
+ 
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

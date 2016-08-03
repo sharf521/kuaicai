@@ -1,0 +1,25 @@
+
+
+.float_layer { width: 300px; overflow:hidden; border: 1px solid #aaaaaa; display:none; background: #fff; position: relative; z-index:1000 }
+.float_layer h2 { height: 25px; line-height: 25px; padding-left: 10px; font-size: 14px; color: #333; background: url(images/title_bg.gif) repeat-x; border-bottom: 1px solid #aaaaaa; position: relative;}
+
+.float_layer .min { width: 21px; height: 20px; background: url(images/min.gif) no-repeat 0 bottom; position: absolute; top: 2px; right: 25px; display:none }
+.float_layer .min:hover { background: url(images/min.gif) no-repeat 0 0; }
+
+.float_layer .max { width: 21px; height: 20px; background: url(images/max.gif) no-repeat 0 bottom; position: absolute; top: 2px; right: 25px; }
+.float_layer .max:hover { background: url(images/max.gif) no-repeat 0 0; }
+
+.float_layer .close { width: 21px; height: 20px; background: url(images/close.gif) no-repeat 0 bottom; position: absolute; top: 2px; right: 3px; }
+.float_layer .close:hover { background: url(images/close.gif) no-repeat 0 0; }
+
+.float_layer .content { height: 120px; overflow: hidden; font-size: 14px; line-height: 18px; color: #666; }
+.float_layer .content1 { height: 120px;overflow: hidden; font-size: 14px; line-height: 18px; color: #666; }
+.float_layer .wrap { padding: 10px; width:280px; font-size:12px; line-height:20px; }
+
+
+#win_pop{ display:none; width: 280px; z-index:999; float:left; left:5px; bottom:0px; overflow:hidden; border: 1px solid #aaaaaa; background: #fff; position:fixed}
+#win_pop h2{ height: 25px; line-height: 25px; padding-left: 10px; font-size: 14px; color: #333; background: url(images/title_bg.gif) repeat-x; border-bottom: 1px solid #aaaaaa;}
+#win_pop .close { width: 21px; height: 20px; background: url(images/close.gif) no-repeat 0 bottom; position: absolute; top: 2px; right: 3px; }
+#win_pop .close:hover { background: url(images/close.gif) no-repeat 0 0; }
+#win_pop dd{ padding:5px;overflow: hidden; font-size: 12px; line-height: 18px; color: #666;}
+

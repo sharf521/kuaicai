@@ -1,0 +1,91 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+              <li class="normal" style="display:none"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+              <li class="normal"><a href="index.php?app=my_goods&act=add&gh=2">快速供货</a></li>
+              <li class="active">商家信息</li>
+			  <li class="normal"><a href="index.php?app=my_goods&gh=2">供货列表</a></li>
+             <!-- <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			  <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>-->
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+                <div class="user_search">
+                </div>		
+			  <!-- {if $jiben}-->
+                <table class="table_head_line">
+                 
+                    <tr class="line_bold">
+                        <th class="width1" style="border:0"></th>
+                        <th class="align1" colspan="9" style="border:0">
+                          
+                          
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th>用户名</th>
+                        <th>姓名</th>
+                        <th>联系方式</th>
+                        <th>厂家名称</th>
+						<th>状态</th>
+						<th>操作</th>
+                    </tr>
+               <!--{/if}-->
+                 <!--{foreach from=$jiben item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        <td class="link1">{$val.user_name}</td>
+						<td align="center">{$val.name}</td>
+                        <td align="center">{$val.lxfs}</td>
+						<td align="center">{$val.gongsi_name}</td>
+                        <td align="center">
+                        {if $val.status==1}{$lang.daishenhe}{/if}
+                        {if $val.status==2}{$lang.shenhetongguo}{/if}
+                        {if $val.status==3}{$lang.shenhebutongguo}{/if}
+                        </td>
+					  
+                        <td align="center">
+						<!--{if $val.status!="2"}-->
+						 <a href="index.php?app=my_theme&act=ghxx_edit&gh_id={$val.gh_id}">编辑</a>
+                       <a href="javascript:drop_confirm('{$lang.shanchu}', 'index.php?app=my_theme&act=ghxx_delete&gh_id={$val.gh_id}');">{$lang.drop}</a>
+					   <!--{/if}-->
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6"><a href="index.php?app=my_theme&act=gonghuo">{$lang.meiyoushenqing}<font color="#990000">（点此链接进入申请）</font></a></td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $my_money}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"><label for="all2"><span class="all">{$lang.checkall}</span></label><a href="#" class="delete" uri="index.php?app=my_money&act=user_log_del" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a></th>
+                        <td colspan="5" class="page word_spacing5">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

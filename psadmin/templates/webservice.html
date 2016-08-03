@@ -1,0 +1,65 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>webservice管理</p>
+    <ul class="subnav">
+		
+	
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+            <tr>
+                <th>webservice现在的状态：</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="webservice" readonly="true" type="text" value="<!--{foreach from=$log item=val}-->{$val.webservice}<!--{/foreach}-->" size="20">
+				</td>
+            </tr>
+           <tr>
+                <th>webservice是否开启：</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="webservice" type="radio" value="yes" />开启
+				<input name="webservice" type="radio" value="no" checked="checked"/>关闭
+				</td>
+            </tr>
+           
+            
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

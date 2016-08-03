@@ -1,0 +1,129 @@
+{include file=member.header.html}
+  <script language="javascript">
+          function selrad(o)
+		  {
+			  if(o.value==7)
+			  {
+				  document.getElementById('tr_7').style.display='none';
+			  }
+			  else
+			  {
+				  document.getElementById('tr_7').style.display='';
+			  }
+		  }
+          
+          </script>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">购买套餐</li>
+          </ul>
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglu}</span>
+                        </h3>
+                        <table class="width6" style="text-align: left">
+                          <tr>
+                            <td style="border:0"><span style="font-size:14px">
+                           
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$userrow.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$userrow.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$userrow.jifen}</span></span>
+                              </td>
+                          </tr>
+                          <tr>
+                            <td height="25" style="border:0"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$userrow.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$userrow.dongjiejifen}</span>&nbsp;{$lang.jifen}</span></td>
+                          </tr>
+                          <tr>
+                            <td style="border:0">{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>
+                  </div>
+                </div>			
+            </div>
+        </div>
+			  
+
+
+         <div class="wrap">
+            <div class="public table">
+				 
+				
+				  
+				  
+				  
+				  <div id="jifenduihuan" >
+                  <style type="text/css">
+	.table table {
+border-collapse:inherit;
+}
+				  .table td {
+padding-top: 0px;
+padding-bottom: 0px;
+}
+				  
+				  </style>
+ <form method="post">   
+    	<table  cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">   
+        <tr>
+           <td width="59" height="20" align="center" bgcolor="#FFFFFF" ><strong>选择</strong></td>
+          <td width="167" height="61" align="center" bgcolor="#FFFFFF"><strong>套餐名称</strong></td>
+          <td width="129" align="center" bgcolor="#FFFFFF"><strong>价格</strong></td>
+          <td width="121" align="center" bgcolor="#FFFFFF"><strong>需缴纳订金</strong></td>
+          <td width="127" align="center" bgcolor="#FFFFFF"><strong>是否现在缴纳</strong></td>
+        </tr>
+            {foreach from=$taocan_name item=val}
+			<tr>            
+		 <td height="20" align="center" bgcolor="#FFFFFF" ><div align="center"><input type="radio" name="buytype" value="{$val.buytype}" onclick="selrad(this)" {if $val.buytype==0} checked="checked"{/if}/></div></td>
+            <td align="center" bgcolor="#FFFFFF"><table style="width:167px;"  border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
+            <tr>
+            <td width="167" height="40" bgcolor="#FFFFFF" background="/images/menu_bg.jpg"><div align="center"><strong>{$val.name}</strong></div></td>
+            </tr>
+            </table></td>
+            <td align="center" bgcolor="#FFFFFF">{$val.price}万元</td>   
+            <td align="center" bgcolor="#FFFFFF"><p>2万元</p></td>
+            <td align="center" bgcolor="#FFFFFF"><input type="checkbox" value="1" name="ispay"/></td>
+            </tr>	
+			 {/foreach}
+			 <tr><td align="center" bgcolor="#ffffff" height="30">推荐人：</td><td style="text-align:left" bgcolor="#ffffff" colspan="4">&nbsp;　&nbsp;<input type="text" name="tuijianren" style="border:1px solid #666; height:20px; padding-left:3px;" /></td></tr>
+        <tr id="tr_7"><td align="center" bgcolor="#ffffff" height="30">隶属人：</td><td style="text-align:left" bgcolor="#ffffff" colspan="4">&nbsp;　&nbsp;<input type="text" name="lishuren" style="border:1px solid #666; height:20px; padding-left:3px" /></td></tr>
+          <td height="40" colspan="6" align="center" bgcolor="#FFFFFF">
+          {if $row}
+          <input type="submit" value="  购 买 " disabled="disabled"/>请不要重复提交！
+          {else}
+          <input type="submit"  value=" 购 买 " />  
+          {/if}
+          </td>
+          </tr>
+             </table>
+             </form>   
+             </div>
+			</div>
+			
+			
+			
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

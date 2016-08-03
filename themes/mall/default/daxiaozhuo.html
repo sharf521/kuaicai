@@ -1,0 +1,99 @@
+{include file=member.header.html}
+<script language="javascript">
+function tixian(flg){
+var $jifenduihuan = $('#jifenduihuan');
+var $xianjinduihuan = $('#xianjinduihuan');
+
+
+  switch(flg){
+    case 1:
+       
+			$jifenduihuan.show();
+			$xianjinduihuan.hide();
+			
+        break;
+	
+    case 2:
+       $xianjinduihuan.show();
+	   $jifenduihuan.hide();
+	   
+        break;
+
+  }
+}
+
+</script>
+
+<?php
+$shuzi1 = round(rand(1,8));
+$shuzi2 = round(rand(1,8));
+$shuzi3 = round(rand(1,8));
+
+$quzimu1= round(rand(65,72));
+$quzimu2= round(rand(65,72));
+$quzimu3= round(rand(65,72));
+
+$zimu1 = chr($quzimu1);
+$zimu2 = chr($quzimu2);
+$zimu3 = chr($quzimu3);
+
+?>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">购买fbb</li>
+				
+          </ul>
+
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                      
+                  </div>
+                </div>			
+            </div>
+        </div>
+			  
+
+
+         <div class="wrap">
+            <div class="public table">
+				 
+				
+				您的大小卓静态收益是：  
+				  {$web_jingtai}
+				  
+				您的大小卓动态收益是：    {$web_dongtai}
+				  
+				  <div id="jifenduihuan" >
+                  
+				 <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+
+             </div>
+			</div>
+			
+			
+			
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

@@ -1,0 +1,97 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>荣誉积分</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?app=invite&act=rongyu">{$lang.manage}</a></li>
+   <li><span>{$lang.jifenliushui}</span></li>
+  
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="invite" />
+          <input type="hidden" name="act" value="rongyu" />
+          {$lang.yonghuming}:
+          <input type="type" name="username" value="<?php echo $_GET["username"];?>" />
+          {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+          <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+           {$lang.paixu}:
+          <select class="querySelect" name="paixu">
+            <option value="">{$lang.select_pls}</option>
+            <option value="times desc">{$lang.times}</option>
+            <option value="riqi desc">{$lang.riqi}</option>
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $username || $suoshuzhan || $paixu}-->
+      <a class="left formbtn1" href="index.php?app=invite&act=rongyu">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+   
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+  
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><!--<input type="checkbox" class="checkall" />--></td>
+      <td>{$lang.yonghuming}</td>
+      <td><span ectype="order_by" fieldname="email">荣誉积分</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">签到时间</span></td>
+	  <td><span ectype="order_by" fieldname="reg_time">所属站</span></td>
+      <td class="handler">备注</td>
+    </tr>
+
+	
+    <!--{foreach from=$index item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"></td>
+      <td>&nbsp;{$user.user_name|escape}</td>
+      <td>&nbsp;{$user.jifen}</td>
+      <td>&nbsp;{$user.riqi}</td>
+	  <td>&nbsp;
+	  {$user.city_name}
+	  </td>
+      <td>&nbsp;{$user.beizhu}</td>
+	  
+     
+      <!--<td class="handler">
+      <span style="width: 100px">
+      <a href="index.php?app=user&amp;act=edit&amp;id={$user.user_id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=user&amp;act=drop&amp;id={$user.user_id}');">{$lang.drop}</a>
+        <!-- {if $user.store_id} -->
+       <!-- | <a href="index.php?app=store&amp;act=edit&amp;id={$user.store_id}" onclick="parent.openItem('store_manage', 'store');">{$lang.store}</a>-->
+        <!-- {/if} -->
+    <!--  </span>
+      </td>-->
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+ 
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+       <!--{if $users}--><input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=user&act=drop" presubmit="confirm('{$lang.drop_confirm}');" /> <!--{/if}-->
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+ 
+</div>
+{include file="footer.html"}

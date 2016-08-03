@@ -1,0 +1,61 @@
+{include file=header.html}
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    {$lang.curlocal}:
+    <a href="/index.php">首页</a> &gt;
+    <a href="/index.php?app=article&act=mxstore">明星店铺</a>&gt;
+	{if $type==1}店铺介绍{/if}
+	{if $type==2}产品介绍{/if}
+	{if $type==3}本店服务{/if}
+</div>
+
+<div class="content">
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>明星店铺</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="classify_list">
+                        <ul>
+                            
+                            <li><a href="index.php?app=article&act=store_arc&id={$store_id}&type=1">店铺介绍</a></li>
+							<li><a href="index.php?app=store&act=cnjl&id={$store_id}">奖励承诺</a></li>
+							<!--<li><a href="index.php?app=article&act=store_arc&id={$store_id}&type=2">产品介绍</a></li>
+							<li><a href="index.php?app=article&act=store_arc&id={$store_id}&type=3">本店服务</a></li>-->
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2><b><a style="text-decoration:none" href="index.php?app=store&id={$store_id}">进入店铺</a></b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="article_wrap">
+		
+            <div class="article_con">
+			{if $artic}
+                <h1>{$artic.title}</h1>
+                <h2>&nbsp;</h2>
+                <div class="default">
+                    {$artic.content}
+                </div>
+				{else}
+			商家还没有上传
+			{/if}
+            </div>
+			
+        </div>
+    </div>
+</div>
+{include file=footer.html}

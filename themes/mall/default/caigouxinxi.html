@@ -1,0 +1,96 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+             <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+             <li class="normal"><a href="index.php?app=my_goods&gh=2">供货列表</a></li>
+             <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+			 <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			 <li class="active"><span>采购信息</span></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+			<!--{if $xinxi}-->
+                <table class="table_head_line">
+                 
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="9">
+                           
+                          
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th>采购人</th>
+						<th>供货人</th>
+                        <th>商品名称</th>
+                        <th>零售价</th>
+						<th>零售积分价</th>
+                        <th>采购数量</th>
+						<th>状态</th>
+						<th>操作</th>
+                    </tr>
+					  <!--{/if}-->
+              <tr>
+                    <!--{foreach from=$xinxi item=val name=v}-->
+                
+                        <td class="center">&nbsp;</td>
+                        <td align="center">&nbsp;{$val.cai_name}</td>
+						<td align="center">&nbsp;{$val.gong_name}</td>
+						<td align="center">&nbsp;{$val.goods_name}</td>
+                        <td align="center">&nbsp;{$val.lingshou_price}</td>
+						<td align="center">&nbsp;{$val.jifen_price}</td>
+						<td align="center">&nbsp;{$val.num}</td>
+						<td align="center">&nbsp;
+						<!--{if $val.status==0}-->等待审核<!--{/if}-->
+						<!--{if $val.status==1}-->审核通过<!--{/if}-->
+						<!--{if $val.status==2}-->审核不通过<!--{/if}-->
+						</td>
+						<!--{if $val.status=="1" || $val.status=="2"}-->
+						<td align="center">已审核</td>
+						<!--{else}-->
+                        <td align="center"><a href="index.php?app=my_theme&act=ghshenhe&id={$val.id}&num={$val.num}" style="color:#00F">审核</a></td>
+					  <!--{/if}-->
+                      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.meicaigou}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $xinxi}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"><label for="all2"><span class="all"></span></label><!--<a href="#" class="delete" uri="index.php?app=my_money&act=user_log_del" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>--></th>
+                        <td colspan="5" class="page word_spacing5">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

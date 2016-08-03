@@ -1,0 +1,96 @@
+{include file=member.header.html}
+
+<link rel="stylesheet" type="text/css" href="/includes/artDialog5.0/skins/default.css" />
+<script type="text/javascript" src="/includes/artDialog5.0/artDialog.min.js"></script><script type="text/javascript" src="/includes/artDialog5.0/artDialog.plugins.min.js"></script>	
+<script language="javascript">
+var dia;
+function shipping(id)
+{
+	dia=art.dialog({
+		id:'d_cu',
+		title:'{$lang.add_shipping}',
+		content:'<iframe src="/includes/wuliu/wuliu.php?shipping_id='+id+'" width="800" height="1000"  frameborder="0" marginheight="0" marginwidth="0"></iframe>',
+		lock:true
+	});
+}
+function c_close()
+{
+	dia.close();	
+}
+function paper()
+{
+	dia=art.dialog({ 
+		id:'login',
+		title:'',
+		content:$('#paper_dialog').html(),
+		lock:true
+	});
+}
+function selpaper(v)
+{
+	$('#ptype').val(v);	
+	c_close();
+}
+</script>
+
+
+
+
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="{$charset}"></script>
+        <div class="wrap">
+            <div class="eject_btn"><b class="ico5" onclick="shipping();">{$lang.add_shipping}</b></div>
+            <div class="public table">
+            {if $shippings}
+            <table class="tableline">
+               {foreach from=$shippings item=shipping}
+               
+               <tr class="trcss">
+			   	<td colspan="6"><h3>最后编辑时间：{$shipping.riqi}  <a href="javascript:shipping({$shipping.shipping_id});">修改</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_shipping&amp;act=drop&shipping_id={$shipping.shipping_id}');">删除</a></h3><span>
+                	{$shipping.shipping_name}({if $shipping.typeid==1}按件计算{/if}
+                    {if $shipping.typeid==2}按重量计算{/if}
+                    {if $shipping.typeid==3}按体积计算{/if})</span></td>
+			   </tr>
+                <tr class="gray">
+                   
+                    <th class="athline width13">运送到</th>
+                    <th class="athline widthwuliu">
+                    {if $shipping.typeid==1}首件(件){/if}
+                    {if $shipping.typeid==2}首重(kg){/if}
+                    {if $shipping.typeid==3}首体积(m3){/if}</th>
+                    <th class="athline widthwuliu">运费(元)</th>
+					<th class="athline widthwuliu">
+                    {if $shipping.typeid==1}续件(件){/if}
+                    {if $shipping.typeid==2}续重(kg){/if}
+                    {if $shipping.typeid==3}续体积(m3){/if}</th>
+					<th class="athline widthwuliu">运费(元)</th>
+                </tr>
+                
+                <!-- {foreach from=$shipping.region item=var} -->
+                <tr <!--{if $smarty.foreach.v.last}-->class="borderline"<!--{else}-->class="line"<!--{/if}-->>
+                   
+                    <td class="align2" style="border-right:1px solid #ccc">{$var.areaname} </td>
+                    <td class="align1" style="border-right:1px solid #ccc">{$var.one}</td>
+                    <td class="align1" style="border-right:1px solid #ccc">{$var.price}</td>
+					<td class="align1" style="border-right:1px solid #ccc">{$var.next}</td>
+					<td class="align1" style="border-right:1px solid #ccc">{$var.nprice}</td>
+                </tr>
+                <!--{/foreach}-->
+                
+                <!--{/foreach}-->
+                
+            </table>
+            {else}
+            {$lang.no_records}
+            {/if}
+        </div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

@@ -1,0 +1,136 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<div class="content">
+    <!--{if $youhui}-->
+    <div class="left">
+
+        <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+
+                    <ul class="fellowship">
+					{if $guanggaowei}
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="145" height="110" /></a></div>
+                           
+                        </li>
+                        <!-- {/foreach} -->  
+						{else}
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65" /></a></div>
+                           
+                        </li>
+						 <li>
+                          
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65" /></a></div>
+                           
+                        </li>
+						 <li>
+                        
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65" /></a></div>
+                           
+                        </li>
+						{/if}
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近出售的优惠券</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$_last_goumai_youhui item=val key=key} -->
+                        <li>
+                            <div class="pic"><img src="{$val.youhui_image|escape}"  width="45" height="40"/></div> 
+                            <dl>
+                               <dd>{$val.youhui_name|escape}</dd>
+                          <!-- <dd class="distance"><span title="{$group.price|price}">{$val.youhui_jine}</span></dd>--> <dd class="distance"><span title="{$group.price|price}">{$val.youhui_jine}{$lang.yuan}</span></dd>
+                                <dd class="time">{$val.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                                     
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}<!--进行翻页-->
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="group_shop">
+            <table>
+             
+                <tr>
+                    <th  colspan="2">优惠券名称</th>
+					{if $kaiguan.xjzf=="yes"}
+                    <th>优惠金额</th>
+					{/if}
+                    <th>优惠积分</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+					 <th>售价</th>
+					<th>说明</th>
+					<th>操作</th>
+                    
+                </tr>
+            
+                <!-- {foreach from=$youhui item=val} -->
+                <tr>
+                    <td align="center" width="70" height="70"><!--{if $val.youhui_image}--><img src="{$val.youhui_image}" width="70" height="70" /><!--{/if}--></td>
+                    <td align="center">{$val.youhui_name}</td>
+               {if $kaiguan.xjzf=="yes"}<td class="price">{$val.youhui_jine}</td>{/if}
+                    <td class="price">{$val.youhui_jifen}</td>
+                    <td class="member">{$val.start_time}</td>
+                    <td class="usershop">{$val.end_time}</td>
+					<td class="usershop">
+					{if $kaiguan.xjzf=="yes"}
+					{$val.goumai}{$lang.yuan}
+					{else}
+					{$val.goumai_jifen}{$lang.jifen}
+					{/if}
+					</td>
+					 <td class="usershop">{$val.beizhu}</td>
+					 <td class="usershop"><a href="{$site_url}/index.php?app=my_coupon&amp;act=goumaiyouhuiquan&amp;id={$val.youhui_id}&goumai={$val.goumai}&youhui_jine={$val.youhui_jine}&youhui_name={$val.youhui_name}"><font color="#990033">购买</font></a></td>
+                </tr>
+         <tr></tr>
+                <!-- {/foreach} -->
+				 <tr></tr>
+				 	 <tr></tr>
+					 	 <tr></tr>
+            </table>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_youhui}</p>
+    </div>
+    <!--{/if}-->
+</div>
+{include file=footer.html}

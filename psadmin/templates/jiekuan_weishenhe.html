@@ -1,0 +1,72 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>借款管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=invite&act=jiekuan">管理</a></li>
+        <li>待审核</li>
+		
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       
+    </div>
+    <div class="fontr">
+
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+<!--{if $index}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"></td>
+			<td>用户名</td>
+            <td>借款金额</td>
+            <td>借款利息</td>
+            <td>借款状态</td>
+			<td>所属站</td>
+            <td class="handler">操作</td>
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+           
+            </td>
+          	<td>&nbsp;{$val.user_name}({$val.user_id})</td>
+		  	<td>&nbsp;{$val.money_j}
+            </td>
+            <td>&nbsp;{$val.lixi}
+            </td>
+            <td>&nbsp;{if $val.status==1}等待审核{/if}
+            </td>
+			<td>&nbsp;{$val.city_name}
+			</td>
+            <td class="handler">
+            <a href="index.php?app=invite&act=jk_shenhe&id={$val.id}">审核</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.nodata}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+     
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

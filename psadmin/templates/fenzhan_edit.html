@@ -1,0 +1,229 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p></p>
+  <ul class="subnav">
+	<li><a class="btn1" href="index.php?app=fenzhan">分站管理</a></li>
+	<li><a class="btn1" href="index.php?app=fenzhan&amp;act=add">增加分站</a></li>
+    </ul>
+</div>
+
+<div class="info">
+<form method="post" enctype="multipart/form-data">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15">{$lang.city_id}:</th>
+        <td class="paddingT15 wordSpacing5">
+		{$city.city_id}
+          <input  id="city_id" type="hidden" name="city_id" value="{$city.city_id}" readonly="readonly"/>
+         
+       </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.city_name}:</th>
+        <td class="paddingT15 wordSpacing5" width="100"><input name="city_name" size="50"  type="text" id="city_name" value="{$city.city_name}" />
+             </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.city_yuming}:</th>
+        <td class="paddingT15 wordSpacing5" ><input  size="50" name="city_yuming"  type="text" id="city_yuming" value="{$city.city_yuming}" />
+             </td>
+      </tr>
+	    <tr>
+        <th class="paddingT15">借贷平台域名:</th>
+        <td class="paddingT15 wordSpacing5" >
+		<input  size="50" name="p2p_url"  type="text" id="p2p_url" value="{$city.p2p_url}" />
+             </td>
+      </tr>
+	    <tr>
+        <th class="paddingT15">积分商城域名:</th>
+        <td class="paddingT15 wordSpacing5" ><input  size="50" name="mall_url"  type="text" id="mall_url" value="{$city.mall_url}" />
+             </td>
+      </tr>
+	   <tr>
+        <th class="paddingT15">易货商城域名:</th>
+        <td class="paddingT15 wordSpacing5" ><input  size="50" name="mall2_url"  type="text" id="mall2_url" value="{$city.mall2_url}" />
+             </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.city_title}</th>
+        <td class="paddingT15 wordSpacing5"><input  name="city_title"  type="text" id="city_title" value="{$city.city_title}" size="50"/>        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.city_desc}:</th>
+       <td class="paddingT15 wordSpacing5">
+	  <textarea name="city_desc" id="city_desc">{$city.city_desc}</textarea>
+	     </td>
+      </tr>
+	  <tr>
+        <th class="paddingT15"> {$lang.city_keywords}</th>
+        <td class="paddingT15 wordSpacing5"><input  name="city_keywords"  type="text" id="city_keywords" value="{$city.city_keywords}" size="50"/>        </td>
+      </tr>
+	  <tr>
+        <th class="paddingT15"> {$lang.icp_num}</th>
+        <td class="paddingT15 wordSpacing5"><input  name="icp_num"  type="text" id="icp_num" value="{$city.icp_num}" size="50"/>        </td>
+      </tr>
+	   <tr>
+        <th class="paddingT15">{$lang.city_logo}:</th>
+        <td class="paddingT15 wordSpacing5"><input name="city_logo"  type="file" id="city_logo" size="17" value=""/>
+             </td>
+      </tr>
+	  
+	   {if $city.city_logo}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$city.city_logo}" class="makesmall" max_width="120" max_height="90" />
+                </td>
+            </tr>
+            {/if}
+	   <tr>
+        <th class="paddingT15"> {$lang.city_lianxiren}:</th>
+       <td class="paddingT15 wordSpacing5"><input  name="lianxiren"  type="text" id="lianxiren" value="{$city.lianxiren}" size="50"/>    </td>
+      </tr>
+	
+ <tr style="display:none">
+        <th class="paddingT15"> 其他站的商品是否在本站显示:</th> 
+       <td class="paddingT15 wordSpacing5"><input type="radio" name="splb" value="yes" />是&nbsp;&nbsp;
+		<input type="radio" name="splb" value="no" checked="checked"/>否<br /><font color="#990000">现在的状态是：{$city.splb}</font>     </td>    
+      </tr>
+      <tr style="display:none">
+        <th class="paddingT15">本站会员给其他站会员转积分是否开启:</th>
+        <td class="paddingT15 wordSpacing5"><input type="radio" name="zjf" value="yes" />是&nbsp;&nbsp;
+		<input type="radio" name="zjf" value="no" checked="checked"/>否<br /><font color="#990000">现在的状态是：{$city.zjf}</font>     </td>
+      </tr>
+	  <tr>
+        <th class="paddingT15">是否允许其他站会员登录本站:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="huiyuan" value="yes" />是&nbsp;&nbsp;
+		<input type="radio" name="huiyuan" value="no" checked="checked"/>否<br /><font color="#990000">现在的状态是：{$city.huiyuan} </font>    </td>
+		<!--{foreach from=$row_city item=val}
+		<input type="checkbox" name="fu[]" value="{$val.city_id}" />{$val.city_name}
+		{/foreach}-->
+	    </td>
+      </tr>
+           <tr>
+                <th class="paddingT15">{$lang.liuliang}</th>
+                <td class="paddingT15 wordSpacing5">
+				 <textarea cols="6" rows="6" name="lltj" id="lltj">{$city.lltj}</textarea>
+				</td>
+            </tr>
+			 <tr>
+                <th class="paddingT15">{$lang.qq1}</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="qq1"  type="text" id="qq1" value="{$city.qq1}" size="50"/> 
+				</td>
+            </tr>
+          
+		   <tr>
+                <th class="paddingT15">{$lang.qq2}</th>
+                <td class="paddingT15 wordSpacing5">
+				  <input  name="qq2"  type="text" id="qq2" value="{$city.qq2}" size="50"/> 
+				</td>
+            </tr>
+          
+		   <tr>
+                <th class="paddingT15">{$lang.qq3}</th>
+                <td class="paddingT15 wordSpacing5">
+		<input  name="qq3"  type="text" id="qq3" value="{$city.qq3}" size="50"/> 
+				</td>
+            </tr>
+          
+		   <tr>
+                <th class="paddingT15">{$lang.qq4}</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="qq4"  type="text" id="qq4" value="{$city.qq4}" size="50"/> 
+				</td>
+            </tr>
+             <tr>
+                <th class="paddingT15">{$lang.guanliyuan}</th>
+                <td class="paddingT15 wordSpacing5">
+           
+                 <input  name="user_id"  type="text" id="user_id" value="{$city.user_id}" size="50"/>
+ 
+                <!-- <a href="javascript:op()">签约</a>
+                 <script language="javascript">
+				 function op()
+				 {
+					window.open('/chinapnr/sign.php?id='+document.getElementById('chinapnr').value);	 
+				 }
+				 </script>-->
+				</td>
+            </tr>
+         <!-- <tr>
+                <th class="paddingT15">{$lang.zhifu}</th>
+                <td class="paddingT15 wordSpacing5">
+                 <textarea cols="6" rows="6" name="zhifufangshi" id="zhifufangshi">{$city.zhifufangshi}</textarea>
+				</td>
+            </tr>-->
+          <tr>
+                <th class="paddingT15">推荐人</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="tuijianren_id"  type="text" id="tuijianren_id" value="{$city.tuijianren_id}" size="50"/><font color="#999999">({$lang.tuijianrenid})</font>
+				</td>
+            </tr>
+			
+			 <tr>
+                <th class="paddingT15">版权</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="banquan"  type="text" id="banquan" value="{$city.banquan}" size="50"/>
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">微信公众账号</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="city_account"  type="text" id="city_account" value="{$city.city_account}" size="50"/>
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">在线充值推荐奖励</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="recharge" value="{$city.recharge}" type="text" size="50"/>
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">联系电话</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input name="phone" value="{$city.phone}" type="text" size="50"/>
+				</td>
+            </tr>
+			  <!--<tr>
+                <th class="paddingT15">是否显示二维码</th>
+                <td class="paddingT15 wordSpacing5">
+				 <input  name="erweima"  type="radio" id="erweima" value="0" /> 否
+				 <input  name="erweima"  type="radio" id="erweima" value="1" /> 是
+				</td>
+            </tr>-->
+			<tr>
+                <th class="paddingT15">qq群一键加入</th>
+                <td class="paddingT15 wordSpacing5">
+				 <textarea cols="6" rows="6" name="qq_login" id="qq_login">{$city.qq_login}</textarea>
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

@@ -1,0 +1,68 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+             <ul class="tab">
+              <li class="normal"><a href="index.php?app=company&act=part">友情链接</a></li>
+          </ul>
+            <div class="wrap">
+			<div class="eject_btn_two eject_pos1" ><b class="ico4"><a href="index.php?app=company&act=add_link">添加友情链接</a></b></div>
+			
+                <div class="public">
+                <form method="post" enctype="multipart/form-data" id="profile_form">
+                    <div class="information">
+                       
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">标题: </th>
+                                    <td><input name="title" value="{$row.title}" type="text" size="40"/>
+									<input name="id" value="{$row.id}" type="hidden" />
+									</td>
+                               </tr>
+								<tr>
+                                    <th class="width4">图片: </th>
+                                    <td><input name="logo" value="{$row.logo}" type="file" size="40"/></td>
+                                </tr>
+								<tr>
+								<th></th>
+								<td><img src="{$row.logo}" width="100"/></td>
+								</tr>
+                                <tr>
+                                    <th>链接:</th>
+                                    <td><input name="link" value="{$row.link}" type="text" size="40"/></td>
+                                </tr>
+                               
+                                
+                               <tr>
+							   <td>&nbsp;</td>
+							   </tr>
+
+                                <tr>
+                                    <th></th>
+                                    <td>
+									<input type="submit" class="btn" value="提交" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="adorn_right1"></div>
+            <div class="adorn_right2"></div>
+            <div class="adorn_right3"></div>
+            <div class="adorn_right4"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,228 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>供货管理</p>{$build_editor}
+    <ul class="subnav">
+       <li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+	   <li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+       <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+       <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+	  <!--  <li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		 <tr><td width="116"><h5><font color="#0033FF">商家信息</font></h5></td></tr>
+            <tr>
+                <th class="paddingT15">
+                    用户名:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="user_name" type="text" name="user_name" value="{$memb.user_name}"/>
+                    <input class="infoTableInput2" type="hidden" name="gh_id" value="{$memb.gh_id}"/>
+                    <input class="infoTableInput2" type="hidden" name="user_id" value="{$memb.user_id}"/>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    联系人:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$memb.name}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    性别:</th>  
+                <td class="paddingT15 wordSpacing5">
+                  <select name="sex">
+				  <option value="男" {if $memb.sex=='男'} selected="selected"{/if}>男
+				  <option value="女" {if $memb.sex=='女'} selected="selected"{/if}>女
+				  </select>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    联系方式:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="lxfs" type="text" name="lxfs" value="{$memb.lxfs}"/>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    网店ID:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="wangdian" type="text" name="wangdian" value="{$memb.wangdian}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    分销中心:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="fenxiao" type="text" name="fenxiao" value="{$memb.fenxiao}" />
+                </td>
+            </tr>
+			<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td width="116"><h5><font color="#0033FF">厂家信息</font></h5></td></tr>
+            <tr>
+                <th class="paddingT15">
+                    厂家名称:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="gongsi_name" type="text" name="gongsi_name" value="{$memb.gongsi_name}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    厂家地址:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="address" type="text" name="address" value="{$memb.address}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    厂家联系人:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="lianxiren" type="text" name="lianxiren" value="{$memb.lianxiren}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    厂家联系方式:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="method" type="text" name="method" value="{$memb.method}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    厂家图:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="changjia" type="file" name="changjia" value="" />
+                </td>
+            </tr> 
+			
+            {if $memb.changjia}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                 <a href="/{$memb.changjia}" target="_blank"><img src="/{$memb.changjia}"  width="300"/></a>
+                </td>
+            </tr>
+            {/if}
+              <tr>
+                <th class="paddingT15">
+                    营业执照:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="zhizhao" type="file" name="zhizhao" value="" />
+                </td>
+            </tr> 
+			
+            {if $memb.zhizhao}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+               <a href="/{$memb.zhizhao}" target="_blank"> <img src="/{$memb.zhizhao}" width="300"/></a>
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">
+                    组织机构代码证:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="jigou" type="file" name="jigou" value=""/>
+                </td>
+            </tr> 
+			
+            {if $memb.jigou}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$memb.jigou}" target="_blank"><img src="/{$memb.jigou}" width="300"/></a>
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">
+                    税务登记证:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="shuiwu" type="file" name="shuiwu" value="" />
+                </td>
+            </tr> 
+			
+            {if $memb.shuiwu}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$memb.shuiwu}" target="_blank"><img src="/{$memb.shuiwu}"  width="300"/></a>
+                </td>
+            </tr>
+            {/if}
+			
+			<tr>
+ <th class="paddingT15">其他：</th>
+ <td class="paddingT15 wordSpacing5"><input name="qita_1" id="qita_1" value=""  type="file" class="infoTableFile"/></td>
+ </tr>
+ {if $memb.qita_1}
+            <tr>
+               <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+				 <a href="/{$memb.qita_1}" target="_blank"><img src="/{$memb.qita_1}" width="300"/></a>
+                </td>
+            </tr>
+            {/if}	
+			<tr>
+ <td></td>
+ <td><input name="qita_2" id="qita_2" value=""  type="file" class="infoTableFile"/></td>
+ </tr>
+ {if $memb.qita_2}
+            <tr>
+               <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+               <a href="/{$memb.qita_2}" target="_blank"><img src="/{$memb.qita_2}"  width="300"/></a>
+                </td>
+            </tr>
+            {/if}	
+			<tr>
+ <td></td>
+ <td><input name="qita_3" id="qita_3" value=""  type="file" class="infoTableFile"/></td>
+ </tr>
+ {if $memb.qita_3}
+            <tr>
+               <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$memb.qita_3}" target="_blank"><img src="/{$memb.qita_3}"  width="300"/></a>
+                </td>
+            </tr>
+            {/if}	
+            
+		 <tr>
+                <th class="paddingT15">
+                    <font color="#990000">是否审核:</font></th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input id="status" type="radio"name="status" value="2" checked="checked"/><font color="#990000">审核通过</font>
+                    <input id="status" type="radio"name="status" value="3"/><font color="#990000">审核不通过</font>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    备注:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="beizhu" name="beizhu">{$memb.beizhu}</textarea>
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

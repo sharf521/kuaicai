@@ -1,0 +1,99 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+			 
+			 <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+             <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+			 <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			 <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		
+		<tr>
+                <th class="paddingT15">
+                  采购人:</th> 
+                <td class="paddingT15 wordSpacing5">{$caigou.cai_name}
+                   <input class="infoTableInput2" id="cai_name" type="hidden" name="cai_name" value="{$caigou.cai_name}" readonly="true"/>  <input id="cai_id" type="hidden" value="{$caigou.cai_id}"  name="cai_id"/>
+                </td>
+            </tr>
+		
+            <tr>
+                <th class="paddingT15">
+                    商品名称:</th>  
+                <td class="paddingT15 wordSpacing5">{$caigou.goods_name}
+                    <input class="infoTableInput2" id="goods_name" type="hidden" name="goods_name" value="{$caigou.goods_name}" readonly="true"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    商品数量:</th> 
+                <td class="paddingT15 wordSpacing5">{$caigou.num}
+				 <input class="infoTableInput2" id="num" type="hidden" name="num" value="{$caigou.num}" readonly="true"/>
+                  
+                </td>
+            </tr> 
+           
+			 <tr>
+                <th class="paddingT15">
+                  零售价:</th> 
+                <td class="paddingT15 wordSpacing5">{$caigou.lingshou_price}{$lang.yuan}
+                   <input class="infoTableInput2" id="lingshou_price" type="hidden" name="lingshou_price" value="{$caigou.lingshou_price}" readonly="true"/>   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  零售积分价:</th> 
+                <td class="paddingT15 wordSpacing5">{$caigou.jifen_price}{$lang.jifen}
+                   <input class="infoTableInput2" id="jifen_price" type="hidden" name="jifen_price" value="{$caigou.jifen_price}" readonly="true"/>   
+                </td>
+            </tr>
+			
+			 <tr>
+                <th class="paddingT15">
+                  状态:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="status" type="radio" name="status" value="2" checked="checked"/>审核不通过  
+				   <input class="infoTableInput2" id="status" type="radio" name="status" value="1" /> 审核通过  
+                </td>
+            </tr>
+			<tr>
+			<th>备注:</th>
+			<td><textarea name="beizhu" id="beizhu" rows="10" cols="30">
+			</textarea></td>
+			</tr>
+
+	<tr>
+	<th></th>
+	<td><input type="submit" value="提交" onclick="this.disabled=true;this.form.submit()"/>&nbsp;&nbsp;&nbsp;<input type="reset" value="重置" /></td>
+	</tr>
+           
+			
+       </table>
+      </form>  
+ 
+  </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}
+

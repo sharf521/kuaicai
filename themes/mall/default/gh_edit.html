@@ -1,0 +1,150 @@
+{include file=member.header.html}
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>	
+
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+              <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+              <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+	          <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			  <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+			  
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+
+            <tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td width="116"><h5><font color="#0033FF">商品信息</font></h5></td></tr>
+			<tr>
+                <th class="paddingT15">
+                  商品名称</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="goods_name" type="text" name="goods_name" value="{$gonghuo.goods_name|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品品牌</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="goods_brand" type="text" name="goods_brand" value="{$gonghuo.goods_brand|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  目前销售渠道</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="tujing" type="text" name="tujing" value="{$gonghuo.tujing|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                零售价格</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="lingshou_price" type="text" name="lingshou_price" value="{$gonghuo.lingshou_price|escape}" readonly="true" />   
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                库存</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="zong_kucun" type="text" name="zong_kucun" value="{$gonghuo.zong_kucun|escape}" readonly="true" />   
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+            商品信息来源</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="source" type="text" name="source" value="{$gonghuo.source|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片资料:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="ziliao" type="file" name="ziliao" value="" />
+                </td>
+            </tr> 
+			
+            {if $gonghuo.ziliao}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$gonghuo.ziliao}"  width="400"/>
+                </td>
+            </tr>
+            {/if}
+
+			<tr>
+                <th class="paddingT15">
+                    产品图:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="chanpin" type="file" name="chanpin" value="" />
+                </td>
+            </tr> 
+			
+            {if $gonghuo.chanpin}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$gonghuo.chanpin}"  width="400"/>
+                </td>
+            </tr>
+            {/if}
+			
+			  <tr>
+ <td>商品描述：</td>
+ <td>
+<script type="text/plain" id="myEditor" name="content1">
+ <p>{$gonghuo.beizhu}</p>
+ </script>
+ <script type="text/javascript">
+ UE.getEditor('myEditor',{
+ initialFrameHeight:400,  //初始化编辑器高度,
+ autoHeightEnabled:false, //是否自动长高,默认true
+ scaleEnabled:false, //是否可以拉伸长高,默认true
+ minFrameHeight:40, //编辑器拖动时最小高度
+ autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+ toolbarTopOffset:400, //编辑器底部距离工具栏高度
+ initialFrameWidth:680
+ })
+ </script></td>
+ </tr>
+ <tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+        <tr>
+            <th></th>
+            <td class="ptb20"><center>
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()"/>
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" /></center>
+            </td>
+        </tr>
+        </table>
+    </form>
+
+ </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

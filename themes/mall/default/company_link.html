@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+         <ul class="tab">
+              <li class="active">友情链接</li>
+              
+			  
+          </ul>
+        <div class="wrap">
+            <div class="eject_btn_two eject_pos1" ><b class="ico4"><a href="index.php?app=company&act=add_link">添加友情链接</a></b></div>
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $link}-->
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="8">
+                            <span class="all"><label for="all"></label></span>
+                            
+                        </th>
+                    </tr>
+                    <tr class="gray">
+                        <th></th>
+                        <th>标题</th>
+                        <th>链接</th>
+                        <th>图片</th>
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- {foreach from=$link item=var name=v} -->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        <td>{$var.title}</td>
+                        <td class="color1">{$var.link}</td>
+                        <td class="align2" style="text-align:center">
+                        <!--{if $var.logo}-->
+                        <img src="{$var.logo}" height="30"/>
+                        <!--{/if}-->
+                        </td>
+                        <td >
+                        <div class="">
+                            <a href="index.php?app=company&act=link_edit&id={$var.id}">{$lang.edit}</a>|<a href="index.php?app=company&act=link_drop&id={$var.id}" onclick="return confirm('您确定要删除吗？');">{$lang.drop}</a>
+                        </div>
+                        </td>
+                    </tr>
+                    <!-- {foreachelse} -->
+                    <tr>
+                        <td colspan="8" class="member_no_records padding6">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $advt}-->
+                    <tr>
+                        <th></th>
+                        <th colspan="8">
+                        <p class="position1">
+                            <span class="all"><label for="all2"></label></span>
+                          <!--  <a href="#" class="delete" uri="index.php?app=my_partner&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>-->
+
+                        </p>
+                        <p class="position2">
+                            {include file=member.page.bottom.html}
+                        </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <iframe name="my_partner" style="display:none"></iframe>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,141 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    var t = new EditableTable($('#my_goods'));
+});
+function gong()
+{
+if (document.gh.name.value =="")
+  {
+    alert("姓名不能为空!");
+	document.gh.name.focus();
+	return false;
+	}
+if (document.gh.lxfs.value =="")
+  {
+    alert("联系方式不能为空!");
+	document.gh.lxfs.focus();
+	return false;
+	}
+if (document.gh.goods_name.value =="")
+  {
+    alert("商品名称不能为空!");
+	document.gh.goods_name.focus();
+	return false;
+	}
+if (document.gh.lingshou_price.value =="")
+  {
+    alert("商品价格不能为空!");
+	document.gh.lingshou_price.focus();
+	return false;
+	}
+if (document.gh.zong_kucun.value =="")
+  {
+    alert("商品库存不能为空!");
+	document.gh.zong_kucun.focus();
+	return false;
+	}
+if (document.gh.chanpin.value =="")
+   {
+		alert("请上传产品图!");
+		document.gh.chanpin.focus();
+		return false;
+	}
+if (document.gh.beizhu.value =="")
+   {
+		alert("商品描述不能为空!");
+		document.gh.beizhu.focus();
+		return false;
+	}
+	
+}
+</script>
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=buyer_order&act=my_tousu">我的投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=bei_tousu">被投诉</a></li>
+				<li class="active"><a href="index.php?app=buyer_order&act=my_shensu">我的申诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=beishensu">被申诉</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+                
+ <form action="index.php?app=buyer_order&act=shensu" method="post" enctype="multipart/form-data">
+ <table>
+  
+  <tr>
+ <td>申诉人：</td>
+ <td><input name="complainant" id="complainant" value="{$ts.respondent}" type="hidden"/>{$ts.respondent}
+ <input name="status1" id="status1" value="0" type="hidden"/>
+ <input name="complainant_id" id="complainant_id" value="{$ts.respondent_id}" type="hidden"/>
+ <input name="respondent_id" id="respondent_id" value="{$ts.complainant_id}" type="hidden"/>
+
+ <input name="city" id="city" value="{$ts.city}" type="hidden"/>
+ <input name="ts_id" id="ts_id" value="{$ts.id}" type="hidden"/>
+ <input name="id" id="id" value="{$shs.id}" type="hidden"/>
+ </td>
+ </tr>
+ <tr>
+ <td>被申诉人：</td>
+ <td><input name="respondent" id="respondent" value="{$ts.complainant}" type="hidden"/>{$ts.complainant}
+ </td>
+ </tr>
+  <tr>
+ <td>申诉内容：</td>
+ <td><textarea id="content" name="content" cols="30" rows="8">{$shs.content}</textarea></td>
+ </tr>
+  <tr>
+ <td>上传申诉证据：</td>
+ <td><input name="imag_1" id="imag_1" value=""  type="file"/><br />
+ {if $shs.imag_1}
+<a href="/{$shs.imag_1}" target="_blank"><img src="{$shs.imag_1}" class="makesmall" width="120px" height="90px" /></a>
+ {/if}
+ <br /> <br />
+ <input name="imag_2" id="imag_2" value=""  type="file"/><br />
+ {if $shs.imag_2}
+<a href="/{$shs.imag_2}" target="_blank"><img src="{$shs.imag_2}" class="makesmall" width="120px" height="90px" /></a>
+ {/if}
+ <br /> <br />
+ <input name="imag_3" id="imag_3" value=""  type="file"/><br />
+ {if $shs.imag_3}
+ <a href="/{$shs.imag_3}" target="_blank"><img src="{$shs.imag_3}" class="makesmall" width="120px" height="90px" /></a>
+ {/if}
+ </td>
+ </tr>
+
+<tr>
+ <td>卖家备注：</td>
+ <td><textarea name="beizhu" id="beizhu" cols="25" rows="5">{$shs.beizhu}
+			  </textarea></td>
+ </tr>	
+ <tr>
+ <td></td>
+ <td><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></td>
+	
+			</table>
+			  </form>
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

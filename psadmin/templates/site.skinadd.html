@@ -1,0 +1,58 @@
+{include file="header.html"}
+
+
+<div id="rightTop">
+    <p>企业管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=site_system">广告类型</a></li>
+        <li><a class="btn1" href="index.php?app=site_system&act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_skin">模版列表</a></li>
+		<li><span>增加模版</span></li>
+      	<li><a class="btn1" href="index.php?app=site_system&amp;act=site_sys">站点管理</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form" name="form1">
+        <table class="infoTable">
+            
+			<tr>
+                <th class="paddingT15">
+                   模版名称:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="code" type="text" name="code" value="{$row.code|escape}" />
+					
+					<input id="id" type="hidden" name="id" value="{$row.id}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="image" type="file" name="image" />
+                </td>
+            </tr>
+			{if $row.image}
+			
+			<tr>
+                <th class="paddingT15">
+                   </th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                   <a href="{$site_url}/{$row.image}" target="_blank"><img src="{$site_url}/{$row.image}" width="150" /></a>
+                </td>
+            </tr>
+			{/if}
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

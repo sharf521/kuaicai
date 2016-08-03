@@ -1,0 +1,85 @@
+{include file=header.html}
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    {$lang.curlocal}:
+    <a href="/index.php">首页</a> &gt;
+    明星店铺
+</div>
+{if $store_list}
+<div class="content">
+    <div class="commodity_assort">
+        <div class="module_sidebar">
+            <div class="wrap">
+                <div class="wrap_child">
+				
+                    <div class="recommend">
+					<div style="background-color:#FF9933; " align="center">
+					<form id="search" method="GET" action="index.php" style="text-align:center">
+                    <input type="hidden" name="app" value="article"/>
+                    <input type="hidden" name="act" value="mxstore"/>
+                    <span class="display_span">{$lang.store_name}</span><input class="table_text" type="text" name="keyword" value="{$query.keyword|escape}" />
+                    <!--<span class="display_span">{$lang.user_name}</span><input class="table_text" type="text" name="user_name" value="{$query.user_name|escape}" />-->
+                   <span class="display_span">所在地区</span>
+                    <select id="region_id" name="region_id" class="display_select">
+                        <option value="">请选择</option>
+                        {html_options options=$regions selected=$query.region_id}
+                    </select>
+                    <input class="table_btn" type="submit" name="Submit" value="{$lang.search}" />
+                </form>
+					</div>
+					<div style="clear:both"></div>
+					
+					<br />
+					<style type="text/css">
+					.storelist li{ float:left; width:180px; text-align:center; line-height:20px; height:280px; overflow:hidden}
+					.storelist li h4 a{color:#0000FF; font-size:14px; line-height:28px}
+					.storel li { margin:5px 0px 10px 0px; text-align:center; line-height:20px}
+					.storel li p{ font-size:12px}
+					.storelist li .nnn { height:160px; overflow:hidden; display:block;}
+					</style>
+                        <ul class="storelist">
+                            <!--{foreach from=$store_list item=var}-->
+                            <li>
+			<a href="index.php?app=article&act=store_arc&id={$var.store_id}&type=1" target="_blank" class="nnn">{if $var.store_logo}<img src="{$var.store_logo}" width="160"/>            
+		    {else}
+			<img src="/data/system/default_store_logo.gif" width="160" />
+			{/if}</a>               
+					<h4><a href="index.php?app=article&act=store_arc&id={$var.store_id}&type=1">{$var.store_name}</a></h4> 
+							<p>类别:{$var.cate_name}</p>
+                            <p>地址:{$var.region_name|escape}</p>
+                        
+					</li>
+                            <!--{/foreach}-->
+							<div style="clear:both"></div>
+                        </ul>
+						<div style="clear:both"></div>
+                    </div>
+                </div>
+				<div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+            </div>
+        </div>
+		
+    </div>
+
+    <div class="ad_sidebar_list" area="right" widget_type="area" style="border:1px solid #CCC; ">
+      
+	   <ul class="storel">
+	   {foreach from=$sto item=var}
+	   <li ><a href="index.php?app=article&act=store_arc&id={$var.store_id}&type=1" target="_blank">
+	   {if $var.store_logo}<img src="{$var.store_logo}" width="130"/>{else}<img src="/data/system/default_store_logo.gif" width="130" />{/if}</a>                           
+	    <br /><a href="index.php?app=article&act=store_arc&id={$var.store_id}&type=1">{$var.store_name}</a>
+							<p>类别:{$var.cate_name}</p>
+       </li>
+	   {/foreach}
+	   </ul>
+	   
+    </div>
+	
+</div>
+{else}
+<div align="center" style="height:200px"><h3 style="line-height:100px">明星店铺信息更新中...</h3></div>
+{/if}
+{include file=footer.html}

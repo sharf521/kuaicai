@@ -1,0 +1,70 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>开关管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanjifen_kaiguan">兑换积分开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=chongzhi_kaiguan">充值开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=jifenzhifu_kaiguan">积分支付开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=xianjinzhifu_kaiguan">现金支付开关</a></li>
+		<li><span>积分转账开关</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	 <tr>
+			 <th class="paddingT15">积分转账状态</th>
+			 <!--{foreach from=$log item=val key=key}-->
+                <td class="paddingT15 wordSpacing5">{$val.jifen_zhuan}</td>
+		<!--{/foreach}-->
+		</tr>
+            <tr>
+                <th class="paddingT15">是否允许用户积分转账</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="jifen_zhuan" type="radio" value="yes" size="20">开启&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input name="jifen_zhuan" type="radio" value="no" size="20" checked="checked">关闭
+				</td>
+            </tr>
+           
+            
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

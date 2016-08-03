@@ -1,0 +1,56 @@
+{include file="header.html"}
+
+
+<div id="rightTop">
+    <p>广告管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=site_system">广告类型</a></li>
+        <li><span>增加类型</span></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_skin">模版列表</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=skin_add">增加模版</a></li>
+      	<li><a class="btn1" href="index.php?app=site_system&amp;act=site_sys">站点管理</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form" name="form1">
+        <table class="infoTable">
+            
+			<tr>
+                <th class="paddingT15">
+                    {$lang.type}:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="type" type="text" name="type" value="{$adv.type|escape}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    单价:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="danjia" type="text" name="danjia" value="{$adv.danjia|escape}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    所属模版:</th>
+					 <td class="paddingT15 wordSpacing5">
+					<select name="code">
+					{foreach from=$res item=var}
+                    <option value="{$var.code}" {if $adv.code==$var.code} selected="selected"{/if}>{$var.code}</option>
+					{/foreach}
+					</select>
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

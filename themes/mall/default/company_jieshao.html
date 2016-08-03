@@ -1,0 +1,140 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+             <ul class="tab">
+              <li class="active">站点设置</li>
+              
+			  
+          </ul>
+            <div class="wrap">
+                <div class="public">
+                <form method="post" enctype="multipart/form-data" id="profile_form">
+                    <div class="information">
+                       
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">企业名称: </th>
+                                    <td><input name="name" value="{$row.name}" type="text" size="40"/></td>
+                                </tr>
+								 <tr>
+                                    <th class="width4">企业域名: </th>
+                                    <td><input name="yuming" value="{$row.yuming}" type="text" size="40"/><font color="#999999">(形如：www.fuyuandai.com)</font>
+									
+									</td>
+                                </tr>
+								<tr>
+                                    <th class="width4">企业LOGO: </th>
+                                    <td><input name="logo" value="{$row.logo}" type="file" size="40"/></td>
+                                </tr>
+								<tr>
+								<th></th>
+								<td><img src="{$row.logo}" width="100"/></td>
+								</tr>
+                                <tr>
+                                    <th>企业地址:</th>
+                                    <td><input name="address" value="{$row.address}" type="text" size="40"/></td>
+                                </tr>
+                                <tr>
+                                    <th>电话:</th>
+                                    <td>
+                                   <input name="tel" value="{$row.tel}" type="text" size="40"/>
+                                    </td>
+                                </tr>
+								
+                                 <tr>
+                                    <th>传真:</th>
+                                    <td>
+                                    <input name="fax" value="{$row.fax}" type="text" size="40"/>
+                                    </td>
+                                </tr>
+								 <tr>
+                                    <th>QQ: </th>
+                                    <td class="label">
+                                       <input name="qq" value="{$row.qq}" type="text" size="40"/><font color="#999999">(多个qq以竖线'|'隔开，如123456|456789)</font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>icp备案号: </th>
+                                    <td class="label">
+                                      
+									   <input name="icp" value="{$row.icp}" type="text" size="40"/>
+									   
+                                    </td>
+                                </tr>
+								 <tr>
+                                    <th>版权: </th>
+                                    <td class="label">
+                                       <input name="banquan" value="{$row.banquan}" type="text" size="40"/>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th>客服电话:</th>
+                                    <td>
+                                   <input name="rexian" value="{$row.rexian}" type="text" size="40"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>统计代码: </th>
+                                    <td>
+                                       <textarea name="tongji" cols="45" rows="10">
+									   {$row.tongji}
+									   </textarea>
+                                    </td>
+                                </tr>
+								{if $row}
+								<tr>
+									<th>状态:</th>
+									<td><b><font color="#990000">{if $row.status==0}等待审核{/if}
+									{if $row.status==1}审核通过{/if}
+									{if $row.status==2}审核不通过{/if}</font></b>
+									</td>
+								</tr>
+								{/if}
+								<tr>
+								<th>模版：</th>
+								<td>
+								<ul style="margin-top:10px; float:left">
+								{foreach from=$resl item=var}
+								
+								<li style="width:230px; float:left; margin-bottom:10px;">
+								<input style="margin-right:10px; display:inline" name="code" type="radio" value="{$var.code}" {if $row.code}{if $row.code==$var.code} checked="checked"{/if}{elseif $var.id==1} checked="checked"{/if}/><a href="{$var.image}" target="_blank"><img  src="{$var.image}" width="200" height="132"/></a><br />
+								<center>{$var.code}</center>
+								</li>
+								
+								{/foreach}
+								</ul>
+								</td>
+								</tr>
+                               <tr>
+							   <td>&nbsp;</td>
+							   </tr>
+
+                                <tr>
+                                    <th></th>
+                                    <td>
+									<input type="submit" class="btn" value="提交" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="adorn_right1"></div>
+            <div class="adorn_right2"></div>
+            <div class="adorn_right3"></div>
+            <div class="adorn_right4"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=footer.html}

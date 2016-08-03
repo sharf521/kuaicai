@@ -1,0 +1,99 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=coupon">{$lang.manage}</a></li>
+	 <li><span>付费管理</span></li>
+    <li><a class="btn1" href="index.php?app=coupon&amp;act=add">付费增加</a></li>	
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+     <form method="get">
+      <div class="left">
+          <input type="hidden" name="app" value="coupon" />
+          <input type="hidden" name="act" value="fufei" />
+          {$lang.youhuiquan_name}:
+          <input type="type" name="yh_name" value="" />
+          {$lang.fabushijian}:
+          <input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>" size="10" maxlength="10" />
+          {if $priv_row.privs=="all"}
+          		{$lang.zhan}:
+          		<select class="querySelect" name="suoshuzhan">
+            	<option value="">{$lang.select_pls}</option>
+            	{foreach from=$result item=val}
+            	<option value="{$val.city_id}">{$val.city_name}</option>
+            	{/foreach}
+          		</select>
+          {/if}
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=coupon&act=fufei">{$lang.cancel_query}</a>
+     <!--{/if}-->
+    </form> 
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $users}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>优惠券名称</td>
+	  <td>优惠券图片</td>
+      <td>优惠金额</td>
+	  <td>购买金额</td>
+      <td>开始时间</td>
+	  <td>结束时间</td>
+	  <td>所属站</td>
+	  <td>备注</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$users item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.user_id}" /></td>
+      <td>{$user.youhui_name|escape}</td>
+      <td>{if $user.youhui_image}<img src="{$site_url}/{$user.youhui_image}" height="30"/>{/if}</td>
+      <td>{$user.youhui_jine}</td>
+	  <td>{$user.goumai}</td>
+      <td>{$user.start_time}</td>
+	  <td>{$user.end_time}</td>
+	  <td>{$user.yhcity}</td>
+	  <td>{$user.beizhu}</td>
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="index.php?app=coupon&amp;act=edit&amp;id={$user.youhui_id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=coupon&amp;act=drop&amp;id={$user.youhui_id}');">{$lang.drop}</a>
+       
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+  <!--{if $users}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+     
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

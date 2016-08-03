@@ -1,0 +1,86 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">转账流水</li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+               
+                </div>		
+			
+                <table class="table_head_line">
+                    <!--{if $index}-->
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="7">
+                            <label for="all"><span class="all"></span></label>
+                       
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th class="align1">用户名</th>
+                        <th>转账金额</th>
+						<th>转账类型</th>
+                        <th>转账状态</th>
+                        <th>日期</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$index item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        <td class="link1">{$val.user_name}</td>
+						<td align="center">{$val.money}</td>
+                        <td align="center">{if $val.leixing==1}向借贷平台转账{/if}
+			{if $val.leixing==3}向积分商城转账{/if}
+			{if $val.leixing==4}向易货商城转账{/if}
+			</td>
+						<td align="center">{if $val.status==1}等待审核{/if}
+			{if $val.status==2}审核通过{if $val.status1==1}(转账成功){/if}{if $val.status1==2}(转账失败){/if}{/if}
+			{if $val.status==3}审核不通过{/if}</td>
+                        <td align="center">{$val.riqi}</td>
+                     <td align="center">
+					 </td>
+                        <td>
+                     
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $index}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"><label for="all2"><span class="all"></span></label></th>
+                        <td colspan="7">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

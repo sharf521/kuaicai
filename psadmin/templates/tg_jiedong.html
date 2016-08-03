@@ -1,0 +1,87 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>团购管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=groupbuy">管理</a></li>
+		<li><a class="btn3" href="index.php?app=groupbuy&act=wei_shenhe">团购未审核</a></li>
+	    <li><span>团购已完成</span></li>
+		
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	<!--{foreach from=$log item=val key=key}--> 
+            <tr>
+                <th class="paddingT15">团购名称:</th>
+                <td class="paddingT15 wordSpacing5">{$val.group_name}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">店铺名称:</th>
+              <td class="paddingT15 wordSpacing5"><!--{foreach from=$store item=val key=key}--> 
+				{$val.store_name}
+				  <!--{/foreach}-->
+				</td>
+            </tr>
+ <tr>
+                <th class="paddingT15">保证金</th>
+              <td class="paddingT15 wordSpacing5"><!--{foreach from=$canshu item=val key=key}--> 
+				<input name="baozhengjin" type="text" value="{$val.tg_baozhengjin}" readonly="true"/>
+				 <!--{/foreach}-->
+				</td>
+            </tr>
+          <tr>
+                
+                <th class="paddingT15">是否解冻保证金</th>
+              <td class="paddingT15 wordSpacing5"><input name="jiedong" type="radio" value="yes" />是
+			  <input type="radio" name="jiedong" value="no" checked="CHECKED"/>否
+		
+			  </td>
+            </tr>  
+	
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	   <!--{/foreach}-->
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

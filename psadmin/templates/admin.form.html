@@ -1,0 +1,150 @@
+{include file="header.html"}
+<script type="text/javascript">
+function selectAll(param)
+{
+    
+    var obj = document.getElementById(param).getElementsByTagName('input');
+    var obj1 = document.getElementById('h'+param);
+    for (i = 0; i < obj.length; i++ )
+    {
+      obj[i].checked = obj1.checked;
+    }
+}
+$(function(){
+    $('#article_relate').click(function(){
+        $('.relate').attr('checked', $(this).attr('checked'));
+    });
+});
+</script>
+<div id="rightTop">
+  <p>{$lang.admin}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=admin">{$lang.manage}</a></li>
+    <!--{if $act eq edit}-->
+    <li><a class="btn1" href="index.php?app=admin&amp;act=add">{$lang.add}</a></li>
+    <!-- {else} -->
+    <li><span>{$lang.add}</span></li>
+    <!--{/if}-->
+
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="admin_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> {$lang.user_name}:</th><input type="hidden" name="priv" value="priv">
+        <td class="paddingT15 wordSpacing5">{$admin.user_name|escape}</td>
+      </tr>
+	     <tr>
+        <th class="paddingT15"> {$lang.city}:</th>
+        <td class="paddingT15 wordSpacing5">{$admin.city}
+		<input value="{$admin.city}" name="city" readonly="true" type="hidden"/></td>
+      </tr>
+	  
+	  <tr>
+	 <th class="paddingT15"> {$lang.chongzhishenhe}:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="czsh" value="yes" <!--{foreach from=$row item=user}-->{if $user.czsh=="yes"}checked{/if} <!--{/foreach}-->/>是&nbsp;&nbsp;
+		<input type="radio" name="czsh" value="no" <!--{foreach from=$row item=user}-->{if $user.czsh=="no"}checked{/if} <!--{/foreach}-->/>否<br />现在的状态是：<!--{foreach from=$row item=user}-->{$user.czsh}<!--{/foreach}-->  
+		</td>
+      </tr>
+	  <tr>
+	  <th class="paddingT15"> {$lang.duihuanjifenshenhe}:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="dhjfsh" value="yes" <!--{foreach from=$row item=user}-->{if $user.dhjfsh=="yes"}checked{/if} <!--{/foreach}-->/>是&nbsp;&nbsp;
+		<input type="radio" name="dhjfsh" value="no"  <!--{foreach from=$row item=user}-->{if $user.dhjfsh=="no"}checked{/if} <!--{/foreach}-->/>否<br />现在的状态是：<!--{foreach from=$row item=user}-->{$user.dhjfsh}    <!--{/foreach}-->  
+		</td>
+      </tr>
+	  <tr>
+	  <th class="paddingT15"> {$lang.duihuanxianjinshenhe}:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="dhxjsh" value="yes" <!--{foreach from=$row item=user}-->{if $user.dhxjsh=="yes"}checked{/if} <!--{/foreach}-->/>是&nbsp;&nbsp;
+		<input type="radio" name="dhxjsh" value="no" <!--{foreach from=$row item=user}-->{if $user.dhxjsh=="no"}checked{/if} <!--{/foreach}-->/>否<br />现在的状态是：<!--{foreach from=$row item=user}-->{$user.dhxjsh}    <!--{/foreach}-->  
+		</td>
+      </tr>
+	  <tr>
+	  <th class="paddingT15"> {$lang.tixianshenhe}:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="txsh" value="yes" <!--{foreach from=$row item=user}-->{if $user.txsh=="yes"}checked{/if} <!--{/foreach}-->/>是&nbsp;&nbsp;
+		<input type="radio" name="txsh" value="no" <!--{foreach from=$row item=user}-->{if $user.txsh=="no"}checked{/if} <!--{/foreach}-->/>否<br />现在的状态是：<!--{foreach from=$row item=user}-->{$user.txsh}    <!--{/foreach}-->  
+		</td>
+      </tr>
+	   <tr>
+	  <th class="paddingT15">推荐商品到其他站是否开启:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="tjfz" value="yes" <!--{foreach from=$row item=user}-->{if $user.tjfz=="yes"}checked{/if} <!--{/foreach}-->/>是&nbsp;&nbsp;
+		<input type="radio" name="tjfz" value="no" <!--{foreach from=$row item=user}-->{if $user.tjfz=="no"}checked{/if} <!--{/foreach}-->/>否<br />现在的状态是：<!--{foreach from=$row item=user}-->{$user.tjfz}   <!--{/foreach}-->  
+		</td>
+      </tr>
+	<!--    <tr>
+	  <th class="paddingT15">转积分到其他站会员是否开启:</th>
+        <td class="paddingT15 wordSpacing5">
+		<input type="radio" name="zjf" value="yes" />是&nbsp;&nbsp;
+		<input type="radio" name="zjf" value="no" checked="checked"/>否<br />
+		</td>
+      </tr>-->
+	  
+       <!--{foreach from=$priv item=priv1 key=key name=privs1}-->	
+           <tr id="{$key}">
+           <!--{if $smarty.foreach.privs1.index eq 0}-->
+           <th class="paddingT15">{$lang.priv}</th>
+           <!--{else}-->
+           <th></th>
+           <!--{/if}-->
+           <td class="paddingT15 floatleft wordSpacing5" >
+           <input type="checkbox" onclick="selectAll('{$key}')" id="h{$key}"><b>{$lang.$key}</b></td>
+           <!--{foreach from=$priv1 item=priv11 key=key1}-->
+            <td class="paddingT15 floatleft">
+            <!--{ if $key1 eq 'article'}-->
+            <label><input type="checkbox" value="{$priv11.article}" id="article_relate" name="priv[{$key1}]"
+            <!--{foreach from=$checked_priv item=check_priv }-->
+                <!-- {if $check_priv == $priv11.article} -->
+                checked
+                <!-- {/if} --> 
+             <!--{/foreach}-->
+            {$lang.$key1}
+            </label>
+            <div style="display:none;">
+            <!--{foreach from=$priv11.upload item=priv111 key=key11}-->
+            <label><input type="checkbox" value="{$priv111}" class="relate" name="priv[{$key11}]"
+            <!--{foreach from=$checked_priv item=check_priv }-->
+                <!-- {if $check_priv == $priv11.article} -->
+                checked
+                <!-- {/if} --> 
+             <!--{/foreach}-->
+            >
+            </label>
+            <!--{/foreach}-->
+            </div>
+            <!--{else}-->
+            <label><input type="checkbox" value="{$priv11}" name="priv[{$key1}]"
+            <!--{foreach from=$checked_priv item=check_priv }-->
+                <!-- {if $check_priv == $priv11} -->
+                checked
+                <!-- {/if} --> 
+             <!--{/foreach}-->
+            >{$lang.$key1}
+            </label>
+            <!--{/if}-->    
+            </td>
+        <!--{/foreach}-->
+           </tr>
+		   <tr>
+        <!--{foreachelse}-->
+            <tr class="no_data">
+            <td colspan="10">{$lang.no_data}</td>
+            </tr>
+        <!--{/foreach}-->
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"} 

@@ -1,0 +1,77 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>费率管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tixianfeilv_xiugai">提现费率</a></li>
+		<li><span>上下限参数</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanjifenfeilv_xiugai">兑换积分费率</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjinfeilv_xiugai">兑换现金费率</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+            <tr>
+                <th class="paddingT15">允许提现的最小金额</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="tx_min" type="text" value="<!--{foreach from=$log item=val}-->{$val.tx_min}<!--{/foreach}-->" size="20" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}">（比如：50）
+				</td>
+            </tr>
+             <tr>
+                <th class="paddingT15">允许提现的最大金额</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="tx_max" type="text" value="<!--{foreach from=$log item=val}-->{$val.tx_max}<!--{/foreach}-->" size="20" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}">（比如：50）
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">允许充值的最小金额</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="cz_min" type="text" value="<!--{foreach from=$log item=val}-->{$val.cz_min}<!--{/foreach}-->" size="20" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}">（比如：50）
+				</td>
+            </tr>
+<tr>
+                <th class="paddingT15">允许充值的最大金额</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="cz_max" type="text" value="<!--{foreach from=$log item=val}-->{$val.cz_max}<!--{/foreach}-->" size="20" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}">（比如：50）
+				</td>
+            </tr>
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

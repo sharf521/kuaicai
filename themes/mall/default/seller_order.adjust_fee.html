@@ -1,0 +1,144 @@
+<script type="text/javascript">
+var _orig_goods_amount = {$order.goods_amount},
+    _orig_shipping_fee = {$shipping.shipping_fee},
+    _orig_order_amount = {$order.order_amount};
+
+var daishou={$order.daishou};
+$(function(){
+    $('#goods_amount_input').keyup(function(){
+        recount_order_amount();
+    });
+    $('#shipping_fee_input').keyup(function(){
+        recount_order_amount();
+    });
+    $('#cancel_button').click(function(){
+        DialogManager.close('seller_order_adjust_fee');
+    });
+	
+	
+	$('#order_amount_input').keyup(function(){
+        var v = 0;
+		v = Number($('#order_amount_input').val());
+		$('#order_amount').html(price_format(v));	
+		
+		v=v*252/100;
+		$('#order_jifen').html(v);
+		
+		$('#order_jifen_input').val(v);
+    });
+	
+	$('#order_jifen_input').keyup(function(){
+        var v = 0;
+		v = Number($('#order_jifen_input').val());
+		
+		$('#order_jifen').html(v);
+		
+		v=v/252*100;
+		$('#order_amount').html(price_format(v));	
+		$('#order_amount_input').val(v);
+    });
+});
+
+
+
+
+function recount_order_amount(){
+    var order_amount = 0;
+	var orderamount = 0;
+	var order_jifen = 0;
+	var order_jifen_input = 0;
+	var	vip = {$member_row.vip};
+	var	lv21 = {$canshu.lv21};
+	var	lv31 = {$canshu.lv31};
+	var	bili = {$canshu.jifenxianjin};
+	{if $coupon}
+	var	coupon = {$coupon.coupon_jifen};
+	var	coupon_jine = {$coupon.coupon_value};
+	{else}
+	var	coupon = 0;
+	var	coupon_jine = 0;
+	{/if}
+	{if $youhui}
+	var	youhui = {$youhui.youhui_jifen};
+	var	youhui_jine = {$youhui.youhui_jine};
+	{else}
+	var	youhui = 0;
+	var	youhui_jine = 0;
+	{/if}
+
+	input_amount=Number($('#goods_amount_input').val());
+	input_fee	=Number($('#shipping_fee_input').val());
+	
+	if(daishou==3)
+	{
+	orderamount = input_amount +input_fee -coupon_jine-youhui_jine;
+	order_jifen=input_amount*(bili*100)/100+input_fee*(bili*10000)/10000-youhui-coupon;
+	}
+	else
+	{
+    orderamount = input_amount*((1+lv21)*100)/100 +input_fee -coupon_jine-youhui_jine;
+	order_jifen=input_amount*(bili*100)*((1+lv21)*100)/10000+input_fee*(bili*10000)/10000-youhui-coupon;
+	}
+	
+    $('#order_amount').html(price_format(orderamount));
+	$('#order_jifen').html(order_jifen);
+}
+
+</script>
+<style type="text/css">
+.ajax_form_block { border-bottom:#dadada 1px dotted; padding-bottom:15px; padding-top:15px; }
+</style>
+<ul class="tab">
+    <li class="active">{$lang.adjust_fee}</li>
+</ul>
+<div class="eject_con">
+    <form  method="post" target="seller_order" action="index.php?app=seller_order&act=adjust_fee&order_id={$order.order_id}&ajax">
+    <div class="content_line">{$lang.buyer_name}:&nbsp;&nbsp;{$order.buyer_name|escape}<br />{$lang.order_sn}&nbsp;&nbsp;:<strong class="color8">{$order.order_sn}</strong></div>
+    <div class="content_line">
+        <ul class="foll_in">
+         <li style="display:none">
+                <h3>{$lang.ordermoney}:<strong class="color8"></strong></h3>
+                <p><input type="text" id="order_amount_input" class="text" style="width:120px" name="order_amount" value="{$order.order_amount}"/></p>
+            </li>
+            <li>
+                <h3>{$lang.goods_amount}:<strong class="color8">{$order.goods_amount|price}</strong></h3>
+                <p><input type="text" id="goods_amount_input" class="text"  style="width:120px" name="goods_amount" value="{$order.goods_amount}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/></p>
+            </li>
+            <li>
+                <h3>{$lang.shipping_fee}:<strong class="color8">{$shipping.shipping_fee|price}</strong></h3>
+                <p><input type="text" id="shipping_fee_input" class="text"  style="width:120px" name="shipping_fee" value="{$shipping.shipping_fee}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/></p>
+            </li>
+			{if $youhui}
+            <li>
+                <h3>{$lang.youhuijine}:</h3>
+               <p>
+                <strong class="color8">{$youhui.youhui_jine|price}</strong>
+               </p>
+            </li>
+            {/if}
+            {if $coupon}
+            <li>
+                <h3>{$lang.youhuijine}:</h3>
+               <p>
+                <strong class="color8">{$coupon.coupon_value|price}</strong>
+               </p>
+            </li>
+            {/if}
+			
+             <li style="display:none">
+                <h3>{$lang.orderjifen}:<strong class="color8"></strong></h3>
+                <p><input type="text" id="order_jifen_input" class="text"  style="width:120px" name="order_jifen" value="{$order.order_jifen}" /></p>
+            </li>
+        </ul>
+        <p class="explain">{$lang.adjust_fee_notice}</p>
+    </div>
+    <div class="total_value"><h3>{$lang.order_amount}:<strong class="color8" id="order_amount">{$order.order_amount_m|price}</strong></h3></div>
+    {if $kaiguan.jfzf=="yes"}
+     <div class="total_value"><h3>{$lang.orderjifen}:<strong class="color8" id="order_jifen">{$order.order_jifen}{$lang.jifen}</strong></h3></div>
+     {/if}
+    <div class="wrap_btn">
+        <input type="submit" id="confirm_button" class="btn1" value="{$lang.confirm}" />
+        <input type="button" id="cancel_button" class="btn2" value="{$lang.cancel}" />
+    </div>
+    </form>
+</div>

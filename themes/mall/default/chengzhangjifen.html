@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.chengzhang}</li>
+				<li class="normal"><a href="index.php?app=member&act=tjjl">{$lang.tuijianjiangli}</a></li>
+				<li class="normal"><a href="index.php?app=my_money&act=shouru">{$lang.czjiangli}</a></li>
+                <li class="normal"><a href="index.php?app=member&act=jiaoyi_log">{$lang.jiaoyi}</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+              
+                </div>		
+			
+                <table class="table_head_line">
+                    <!--{if $userrow}-->
+                    <tr class="line_bold">
+                        <th class="width1"><input type="checkbox" id="all" class="checkall"/></th>
+                        <th class="align1" colspan="7">
+                            <label for="all"><span class="all">{$lang.checkall}</span></label>
+                         
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th class="align1">用户名</th>
+                        <th>收入</th>
+                        <th>日期</th>
+                        <th>备注</th>
+						
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$userrow item=val }-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"><input type="checkbox" class="checkitem" value="{$val.id}"/></td>
+                        <td class="link1">{$val.user_name}</td>
+						<td align="center">{$val.jifen}{$lang.jifen}</td>
+                        <td align="center">{$val.time}</td>
+						<td align="center">{$val.beizhu}</td>
+                      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.wu_jifen}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                 
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"></th>
+                        <td colspan="7">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

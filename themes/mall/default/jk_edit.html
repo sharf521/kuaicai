@@ -1,0 +1,243 @@
+{include file=member.header.html}
+<script type="text/javascript">
+
+function jiekuan()
+{
+if (document.gh.name.value =="")
+  {
+    alert("真实姓名不能为空，请先到个人资料里进行完善");
+	document.gh.name.focus();
+	return false;
+	}
+if (document.gh.address.value =="")
+  {
+    alert("家庭住址不能为空!");
+	document.gh.address.focus();
+	return false;
+	}
+if (document.gh.danwei.value =="")
+  {
+    alert("工作单位不能为空!");
+	document.gh.danwei.focus();
+	return false;
+	}
+if (document.gh.lxfs1.value =="")
+  {
+    alert("个人的联系方式不能为空!");
+	document.gh.lxfs1.focus();
+	return false;
+	}
+if (document.gh.lxfs2.value =="")
+  {
+    alert("亲朋的联系方式不能为空!");
+	document.gh.lxfs2.focus();
+	return false;
+	}
+if (document.gh.money_j.value =="")
+  {
+    alert("借款金额不能为空!");
+	document.gh.money_j.focus();
+	return false;
+	}
+if (document.gh.time.value =="")
+  {
+    alert("借款期限不能为空!");
+	document.gh.time.focus();
+	return false;
+	}	
+}
+
+
+</script>
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=member&act=my_jiekuan">我要借款</a></li>
+                <li class="normal"><a href="index.php?app=member&act=jiekuanjilu">借款记录</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+ 
+ <form action="index.php?app=member&act=jk_edit" method="post" onSubmit="return jiekuan();" name="gh" enctype="multipart/form-data">
+ <table width="425">
+ <tr>
+ <td>借款人：</td>
+ <td width="663"><input name="user_name" id="user_name" value="{$jiekuan.user_name}" readonly="readonly"/>
+ <input name="city" id="city" value="{$jiekuan.city}" type="hidden"/>
+  <input name="id" id="id" value="{$jiekuan.id}" type="hidden"/>
+ </td>
+ </tr>
+  <tr>
+ <td>真实姓名：</td>
+ <td><input name="name" id="name" value="{$jiekuan.name}" readonly="readonly"/><font color="#990000"> * <a href="index.php?app=member&act=profile" style="text-decoration:none">&nbsp;{$lang.wanshan}</a></font></td>
+ </tr>
+  <tr>
+ <td>家庭住址：</td>
+ <td><input name="address" id="address" value="{$jiekuan.address}" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>工作单位：</td>
+ <td><input name="danwei" id="danwei" value="{$jiekuan.danwei}" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>联系方式(个人)：</td>
+ <td><input name="lxfs1" id="lxfs1" value="{$jiekuan.lxfs1}" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+  <tr>
+ <td>联系方式(亲朋)：</td>
+ <td><input name="lxfs2" id="lxfs2" value="{$jiekuan.lxfs2}" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>身份证：</td>
+ <td><input name="image_1" id="image_1" value=""  type="file"/></td>
+ </tr>
+  {if $jiekuan.image_1}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="/{$jiekuan.image_1}"  width="150" />
+                </td>
+            </tr>
+            {/if}
+ <tr>
+ <td></td>
+ <td>
+ <input name="image_2" id="image_2" value=""  type="file"/><font color="#990000"> * 图片格式为'gif&nbsp;|&nbsp;jpg&nbsp;|&nbsp;jpeg&nbsp;|&nbsp;png'</font></td>
+ </tr>
+ {if $jiekuan.image_2}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="/{$jiekuan.image_2}" width="150" />
+                </td>
+            </tr>
+            {/if}
+    <tr style="display:none">
+ <td>开户银行：</td>
+ <td><input name="bank" id="bank" value="" /><font color="#990000"> *</font></td>
+ </tr>
+  <tr style="display:none">
+ <td>银行账号：</td>
+ <td><input name="bank_hao" id="bank_hao" value="" onkeyup="value=value.replace(/[^0-9.]/g,'')"/><font color="#990000"> *</font></td>
+ </tr>
+ 
+ 
+ 
+ <tr>
+ <td>借款金额：</td>
+ <td><input name="money_j" id="money_j" size="4" value="{$jiekuan.money_j}" onkeyup="value=value.replace(/[^0-9.]/g,'');"/>元<font color="#990000">（您的借款金额不能大于{$jk}元）</font></td>
+ </tr>
+ 
+ <tr>
+ <td>月利率：</td>
+ <td><input name="rate" id="rate" size="4"  value="{$jiekuan.rate}" onkeyup="value=value.replace(/[^0-9.]/g,'');"/> %<font color="#990000"> * {$lang.bunengxiaoyu}</font></td>
+ </tr>
+ <tr>
+ <td>借款期限：</td>
+ <td>
+ <select name="time" id="time"><option value="1">1个月</option><option value="2">2个月</option><option value="3">3个月</option><option value="4">4个月</option><option value="5">5个月</option><option value="6">6个月</option></select>&nbsp;
+ 
+ 按天<input type="checkbox" value="1" id="isday" name="isday" onclick="isday_do()"/>
+ <span id="div_daytext">&nbsp;&nbsp;系统将按照每月30天来计算利息</span>
+ <br /><br />
+ <input type="button" onclick="rate111()" value="试算利息"/><span id='div_rate'></span>
+ <script language="javascript">
+ 
+$(document).ready(function(){
+	$('#div_daytext').hide();
+	//$("#isday").click();	
+	if('{$jiekuan.isday}'=='1')
+	{
+		$("#isday").click();
+	}
+	$("#time").val('{$jiekuan.time}');
+});
+
+function  isday_do(){
+		$("#time").empty();
+		if ($("#isday").attr("checked")) 
+		{
+			for(i=1;i<31;i++)
+			{
+				$("#time").append("<option value='"+i+"'>"+i+"天</option>");				
+			}
+			$('#div_daytext').show();	
+		}
+		else
+		{
+			for(i=1;i<7;i++)
+			{
+				$("#time").append("<option value='"+i+"'>"+i+"个月</option>");				
+			}
+			$('#div_daytext').hide();
+		}
+	}
+
+function rate111()
+{
+	rate=$('#rate').val();
+	if(rate!='' && $('#money_j').val()!='' && $("#time").val()!='')
+	{
+		if ($("#isday").attr("checked")) 
+		{
+			rate=rate/30;
+		}
+		t=$('#money_j').val()*$("#time").val()*rate/100;
+		$('#div_rate').html(t);
+	}
+	else
+	{
+		alert('请先将借款数据补充完整！');	
+	}
+}
+
+ </script>
+ </td>
+ </tr>
+  <tr>
+ <td>借款用途：</td>
+ <td>
+ <textarea cols="40" rows="5" name="beizhu">
+ </textarea>
+ </td>
+ </tr>
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+		
+ 
+ <tr>
+ <td></td>
+ <td><center><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></center></td>
+	
+</table>
+			  </form>
+  
+  
+  
+         
+ 
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

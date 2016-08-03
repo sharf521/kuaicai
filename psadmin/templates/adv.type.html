@@ -1,0 +1,111 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#article_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            title : {
+                required : true
+            },
+            cate_id :{
+                required : true
+            },
+            link    :{
+                url     : true
+            },
+            sort_order:{
+               number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            cate_id : {
+                required : '{$lang.cate_empty}'
+            },
+            link    : {
+                url     : '{$lang.link_limit}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+
+function add_uploadedfile(file_data)
+{
+    var newImg = '<tr id="' + file_data.file_id + '" class="tatr2"><input type="hidden" name="file_id[]" value="' + file_data.file_id + '" /><td><img width="40px" height="40px" src="' + SITE_URL + '/' + file_data.file_path + '" /></td><td>' + file_data.file_name + '</td><td><a href="javascript:insert_editor(\'' + file_data.file_name + '\', \'' + file_data.file_path + '\');">{$lang.insert_editor}</a> | <a href="javascript:drop_uploadedfile(' + file_data.file_id + ');">{$lang.drop}</a></td></tr>';
+    $('#thumbnails').prepend(newImg);
+}
+function insert_editor(file_name, file_path){
+    tinyMCE.execCommand('mceInsertContent', false, '<img src="'+ SITE_URL +'/' + file_path + '" alt="'+ file_name + '">');
+}
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm(lang.uploadedfile_drop_confirm)){
+        return;
+    }
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            $('#' + file_id).remove();
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+</script>
+	
+				
+{$build_editor}
+{$build_upload}
+<div id="rightTop">
+    <p>广告管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=adv">{$lang.manage}</a></li>
+        <li><a class="btn1" href="index.php?app=adv&amp;act=add">{$lang.add}</a></li>
+		{if $priv_row.privs=="all"}
+		<li><span>增加类型</span></li>
+		<li><a class="btn1" href="index.php?app=adv&amp;act=adv_type">类型管理</a></li>
+       {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form" name="form1">
+        <table class="infoTable">
+            
+			<tr>
+                <th class="paddingT15">
+                    {$lang.type}:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="type" type="text" name="type" value="{$adv.type|escape}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    单价:</th>
+					 <td class="paddingT15 wordSpacing5">
+					
+                    <input id="danjia" type="text" name="danjia" value="{$adv.danjia|escape}" />
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

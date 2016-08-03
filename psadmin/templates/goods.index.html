@@ -1,0 +1,159 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    // multi-select mall_gcategory
+    $('#gcategory').length>0 && gcategoryInit("gcategory");
+});
+//]]>
+</script>
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+  <p>{$lang.goods}</p>
+  <ul class="subnav">
+    <li><!--{if $smarty.get.closed}--><a class="btn1" href="index.php?app=goods">{$lang.all_goods}</a><!--{else}--><span>{$lang.all_goods}</span><!--{/if}--></li>
+    <li><!--{if $smarty.get.closed}--><span>{$lang.closed}</span><!--{else}--><a class="btn1" href="index.php?app=goods&amp;closed=1">{$lang.closed}</a><!--{/if}--></li>
+  </ul>
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">
+    <form method="get">
+      <input type="hidden" name="app" value="goods" />
+      <!--{if $smarty.get.closed}-->
+      <input type="hidden" name="closed" value="1" />
+      <!--{/if}--> {$lang.goods_name}:
+      <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+      {$lang.store_name}:
+      <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+      {$lang.brand}:
+      <input class="queryInput" type="text" name="brand" value="{$smarty.get.brand|escape}" />
+       {$lang.tianjiashijian}:
+              <input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>"  class="pick_date" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>"  class="pick_date" size="10" maxlength="10" /><br />
+      <span style=" top: 5px; float:left">
+      <div class="left">
+          {$lang.gcategory}:
+          <div id="gcategory" style="display:inline;">
+            <input type="hidden" name="cate_id" value="0" class="mls_id" />
+            <select class="querySelect">
+              <option>{$lang.select_pls}</option>
+              {html_options options=$gcategories}
+            </select>
+          </div>
+		  {$lang.wuliu}：
+		  <select name="shipping_id">
+		  <option value="">请选择</option>
+		  <option value="2" {if $ship==2} selected="selected"{/if}>未填写</option>
+		  <option value="1" {if $ship==1} selected="selected"{/if}>已填写</option>
+		  </select>
+           {$lang.liulanshu}:
+              <input name="view_from" type="text" id="view_from" value="<?php echo $_GET["view_from"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="view_to" type="text" id="view_to" value="<?php echo $_GET["view_to"];?>" size="10" maxlength="10" />
+           {$lang.shangpinleixing}:
+             <select class="querySelect" name="leixing">
+            <option value="">{$lang.select_pls}</option>
+            <option value="0">{$lang.putongshangpin}</option>
+            <option value="1">{$lang.yibangonghuo}</option>
+            <option value="2">{$lang.kuaisugonghuo}</option>
+          </select>
+             
+          {if $priv_row.privs=="all"}
+          {$lang.suoshufenzhan}:
+             <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+         
+      </div>
+      <!--{if $smarty.get.cate_id or $query.goods_name or $query.store_name or $query.brand or $query.add_time_from or $query.add_time_to or $query.view_from or $query.view_to or $query.suoshuzhan or $query.leixing or $ship}-->
+      <a class="left formbtn1" href="index.php?app=goods<!--{if $query.closed}-->&amp;closed={$query.closed}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+      </span>
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $goods_list}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="30%"><span ectype="order_by" fieldname="goods_name">{$lang.goods_name}</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="store_name">{$lang.store_name}</span></td>
+      <td><span ectype="order_by" fieldname="brand">{$lang.brand}</span></td>
+      <td><span ectype="order_by" fieldname="cate_id">{$lang.gcategory}</span></td>
+      <td><span ectype="order_by" fieldname="cate_id">{$lang.tianjiashijian}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="if_show">{$lang.if_show}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="closed">{$lang.close}</span></td>
+      <td><span ectype="order_by" fieldname="views">{$lang.views}</span></td>
+	  <td class="table-center">{$lang.xianshierweima}</td>
+	  <td class="table-center">{$lang.morenyoufei}</td>
+      <td><span ectype="order_by" fieldname="cityhao">{$lang.suoshufenzhan}</span></td>
+	 
+      <td>{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+	
+    <!--{foreach from=$goods_list item=goods}-->
+
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+      <td><span ectype="inline_edit" fieldname="goods_name" fieldid="{$goods.goods_id}" required="1" class="editable" title="{$lang.editable}">{$goods.goods_name|escape}</span>{if $goods.daishou==0}<font color="#FF0000">[普通商品]</font>{/if}
+      {if $goods.daishou==1}<font color="#FF0000">[一般供货]</font>{/if}
+      {if $goods.daishou==2}<font color="#FF0000">[快速供货]</font>{/if}
+      {if $goods.daishou==3}<font color="#FF0000">[快采]</font>{/if}
+      </td>
+      <td>{$goods.store_name|escape}</td>
+      <td>{$goods.brand|escape}</td>
+	  
+      <td>{$goods.cate_name|nl2br}</td>
+       <td>{$goods.add_time|date}</td>
+      <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" ectype="inline_edit" fieldname="if_show" fieldid="{$goods.goods_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" ectype="inline_edit" fieldname="if_show" fieldid="{$goods.goods_id}" fieldvalue="0" title="{$lang.editable}"/><!-- {/if} --></td>
+     
+      <td class="table-center"><!-- {if $goods.closed} --><img src="{res file=style/images/negative_enabled.gif}" ectype="inline_edit" fieldname="closed" fieldid="{$goods.goods_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="{res file=style/images/negative_disabled.gif}" ectype="inline_edit" fieldname="closed" fieldid="{$goods.goods_id}" fieldvalue="0" title="{$lang.editable}"/><!-- {/if} --></td>
+      <td class="table-center">{$goods.views|default:0}</td>
+	  <td class="table-center">
+	  	{if $goods.erweima==0}否{/if}
+	  	{if $goods.erweima==1}是{/if}
+	  </td>
+	  <td class="table-center"><font color="#990000">{$goods.one_price}</font></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;
+	{$goods.city_name}
+	  </td>
+      <td><a target="_blank" href="{$site_url}/index.php?app=goods&amp;id={$goods.goods_id}">{$lang.view}</a></td>
+	  {if $priv_row.privs=="all"}
+	  <td><a href="index.php?app=goods&act=bianji&amp;id={$goods.goods_id}&page={$page_info.curr_page}">{$lang.bianji}</a></td>
+	  {/if}
+    </tr>
+	
+    <!--{foreachelse}-->
+    <tr class="no_data info">
+      <td colspan="8">{$lang.no_data}</td>
+    </tr>
+	
+	<!--{/foreach}-->
+  </table>
+  <!--{if $goods_list}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> <!--{if !$smarty.get.closed}-->
+      <input class="formbtn batchButton" type="button" value="{$lang.recommend}" name="id" uri="index.php?app=goods&act=recommend&city={$goods.cityhao}" />
+          &nbsp;&nbsp;<!--{/if}-->
+      <input class="formbtn batchButton" type="button" value="{$lang.edit}" name="id" uri="index.php?app=goods&act=edit&page={$page_info.curr_page}" />&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=goods&act=drop" presubmit="confirm('{$lang.drop_confirm}')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   <!--{/if}-->
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"} 

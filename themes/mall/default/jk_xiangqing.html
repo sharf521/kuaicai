@@ -1,0 +1,90 @@
+{include file=member.header.html}
+
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=member&act=my_jiekuan">我要借款</a></li>
+                <li class="normal"><a href="index.php?app=member&act=jiekuanjilu">借款记录</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+
+  <table>
+
+  <tr>
+  <td width="160">借款人：</td><td width="972">{$jie.user_name}</td></tr>
+  <tr>
+  <td >真实姓名：</td><td>{$jie.name}</td></tr>
+  <tr><td  >家庭住址：</td><td>{$jie.address}</td></tr>
+  <tr><td>工作单位：</td><td>{$jie.danwei}</td></tr>
+  <tr><td >联系方式(个人)：</td><td>{$jie.lxfs1}</td></tr>
+  <tr><td >联系方式(亲朋)：</td><td>{$jie.lxfs2}</td></tr>
+  <tr><td >身份证：</td>
+  <td><a href="/{$jie.image_1}" target="_blank"><img src="{$jie.image_1}" width="100"/></a></td></tr>
+  <tr><td ></td><td><a href="/{$jie.image_2}" target="_blank"><img src="{$jie.image_2}" width="100"/></a></td></tr>
+  <tr style="display:none">
+  <td>开户银行：</td><td>{$jie.bank}</td></tr>
+   <tr style="display:none">
+  <td >银行账号：</td><td>{$jie.bank_hao}</td></tr>
+  <tr>
+  <td  >借款金额：</td><td>{$jie.money_j}{$lang.yuan}</td></tr>
+  <tr>
+   <tr>
+  <td >月利率：</td><td>{$jie.rate}%</td></tr>
+  <tr>
+  <td >借款利息：</td><td>{$jie.lixi}{$lang.yuan}</td></tr>
+ 
+   <tr>
+  <th align="left">应还金额：</th><td>{$jie.z_money}{$lang.yuan}</td></tr>
+   {if $jie.faxi>0}
+  <tr>
+  <td >应还罚息：</td><td>{$jie.faxi}{$lang.yuan}</td></tr>
+  {/if}
+  <tr>
+  <td >已还金额：</td><td>{$jie.money_h|default:0.00}{$lang.yuan}</td></tr>
+  <tr>
+  <td >申请时间：</td><td>{$jie.createdate}</td></tr>
+  <tr>
+  <td>审核时间：</td><td>{$jie.start_time}</td></tr>
+  <tr>
+  <td >还款时间：</td><td>{$jie.end_time}</td></tr>
+  <tr>
+  <td >借款期限：</td><td>
+  {if $jie.isday==0}
+  {$jie.time}{$lang.yue}
+  {else}
+  {$jie.time}{$lang.tian}
+  {/if}
+  {if $jie.start_time}
+  即
+  {$jie.start_time1}至{$jie.daoqi_time}
+   {/if}
+  </td></tr>
+  <tr>
+  <td >借款状态：</td><td>{if $jie.status==1}{$lang.dengdaishenhe}{/if}
+  {if $jie.status==2}{$lang.shenhetongguo}{/if}
+  {if $jie.status==3}{$lang.shenhebutongguo}{/if}</td></tr>
+  <tr>
+  <td >借款用途：</td><td>{$jie.beizhu}</td></tr>
+
+
+ 
+  </table>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

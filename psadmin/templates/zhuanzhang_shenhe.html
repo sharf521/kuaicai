@@ -1,0 +1,62 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>转账管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=user&act=zhuanzhang">转账列表</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post">
+            <table class="infoTable">
+
+            <tr>        
+              <th class="paddingT15">用户名</th>
+              <td class="paddingT15 wordSpacing5">{$money_row.user_name}&nbsp;&nbsp;<a href="index.php?module=my_money&act=user_moneylog&soname={$money_row.user_name}">{$lang.chakan}{$money_row.user_name}{$lang.zuijinshouru}</a></td>
+            </tr>
+
+            <tr>
+              <th class="paddingT15">转账金额</th>
+              <td class="paddingT15 wordSpacing5"><font color="#FF0000">{$money_row.money}{$lang.yuan}</font>
+              <input name="money_djs" type="hidden" id="money_djs" value="{$money_row.money}" /></td>
+            </tr>
+			<tr>
+              <th class="paddingT15">转账类型</th>
+              <td class="paddingT15 wordSpacing5"><font color="#FF0000">
+			  {if $money_row.leixing==1}向借贷平台转账{/if}
+			  {if $money_row.leixing==3}向积分商城转账{/if}
+			  {if $money_row.leixing==4}向易货商城转账{/if}
+			  </font>
+              </td>
+            </tr>
+            <tr>
+              <th class="paddingT15">申请时间</th>
+              <td class="paddingT15 wordSpacing5">{$money_row.riqi}</td>
+            </tr>
+              <th class="paddingT15">&nbsp;</th>
+            </tr>
+
+			<tr>
+                <th class="paddingT15">审核操作</th>
+                <td class="paddingT15 wordSpacing5">
+           <input name="status" type="radio" value="3"/>
+		   审核不通过<input type="radio" name="status" value="2" checked="checked"/>审核通过
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">备注</th>
+                <td class="paddingT15 wordSpacing5">
+          <textarea cols="6" rows="4" name="beizhu"></textarea>
+                </td>
+            </tr>							
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="提交" onclick="this.disabled=true;this.form.submit()" />
+            </td>
+        </tr>
+
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

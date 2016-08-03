@@ -1,0 +1,128 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tx_index_shenhe">{$lang.index_chakanquanbu}</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=tx_wei_shenhe">{$lang.index_weishenhe}</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=tx_yi_shenhe">{$lang.index_yishenhe}</a></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=dakuan_wei_shenhe">{$lang.dakuanwei}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=dakuan_yi_shenhe">{$lang.dakuanyishenhe}</a></li>-->
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	
+            <tr>
+                <th class="paddingT15">{$lang.money_edit_yonghuming}</th>
+                <td class="paddingT15 wordSpacing5">{$log.user_name}
+				<input name="user_name"  value="{$log.user_name}" size="20" type="hidden">
+           
+				</td>
+            </tr>
+             <tr>
+                <th class="paddingT15">真实姓名</th>
+              <td class="paddingT15 wordSpacing5">
+				{$mem.real_name}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">提现金额</th>
+              <td class="paddingT15 wordSpacing5">
+				{$log.money_dj}{$lang.yuan}
+				<input name="money_dj"  value="{$log.money_dj}" size="20" type="hidden">
+				</td>
+            </tr>
+              <tr>
+                <th class="paddingT15">到账金额</th>
+              <td class="paddingT15 wordSpacing5">
+				{$log.money}{$lang.yuan}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">提现费用</th>
+              <td class="paddingT15 wordSpacing5">
+				{$log.money_feiyong}{$lang.yuan}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">开户银行</th>
+              <td class="paddingT15 wordSpacing5">
+				{$mon.bank_name}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">开户行名称</th>
+              <td class="paddingT15 wordSpacing5">
+				{$mon.bank_add}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">提现账号</th>
+              <td class="paddingT15 wordSpacing5">
+				{$mon.bank_sn}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">提现户名</th>
+              <td class="paddingT15 wordSpacing5">
+				{$mon.bank_username}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.shifoudakuan}</th>
+           <td class="paddingT15 wordSpacing5"><input name="status" type="radio" value="1" checked="checked"/>是
+                <input name="status" type="radio" value="2" />否
+			  </td>
+            </tr>
+	 <tr>
+                <th class="paddingT15">操作日志：</th>
+              <td class="paddingT15 wordSpacing5"><input name="log_text" type="text" value="{$log.log_text}"  />
+			  </td>
+            </tr>  
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

@@ -1,0 +1,167 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $.getJSON('{$spt}&jsoncallback=?',function(){});
+    $.getJSON('http://ecmall.shopex.cn/system/notice2.php?charset={$cur_lang}&jsoncallback=?',function(data){
+        var message='';
+        $.each(data,function(i){
+            message += '<li>' + data[i] + '</li>';
+        });
+        $('#notice').html(message);
+    }
+);
+});
+<!--{if $dangerous_apps}-->
+var dangerous_apps = '';
+<!--{foreach from=$dangerous_apps item=da}-->
+dangerous_apps += "{$da}\r\n";
+<!--{/foreach}-->
+alert(dangerous_apps);
+<!--{/if}-->
+
+function chaxun(flg)
+{
+var ri = $('#ri');
+var month = $('#month');
+var year= $('#year');
+
+  switch(flg){
+	case '1':
+	
+       ri.hide();
+	   month.hide();
+	   year.show();
+       break;
+	case '2':
+       ri.hide();
+	   month.show();
+	   year.hide();
+       break;
+		
+	case '3':
+       ri.show();
+	   month.hide();
+	   year.hide();
+       break;
+  }
+
+}
+
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+
+</script>
+<style>
+table tr td{ text-align:center; }
+</style>
+<div id="rightTop">
+<p>
+    {$lang.hello}<b>{$admin.user_name}</b>{$lang.welcome_to_ecmall}
+    <!--[ <a target="_blank" href="{$site_url}/index.php?app=message&amp;act=inbox" class="tidings">{$lang.new_pm}</a>: {$new.total} ]
+-->    {$lang.last_login} {$admin.last_login|date:complete} {$lang.last_ip} {$admin.last_ip}
+</p>
+</div>
+<dl id="rightCon">
+
+<dt></dt>
+<dd>
+    <ul style="color:red; font-weight:bold;">
+        
+        <li></li>
+       
+    </ul>
+</dd>
+
+<dt></dt>
+<dd>
+<b>搜索条件：</b>
+<form method="get" >
+<input type="hidden" name="app" value="default" />
+<input type="hidden" name="act" value="caiwubaobiao" />
+类型：<select name="leixing">
+ {html_options options=$arr_type}
+</select>&nbsp;&nbsp;&nbsp;
+时间：<select name="time" onchange="chaxun(this.value);">
+<option value="">请选择</option>
+<option value="1">年</option>
+<option value="2">月</option>
+<option value="3">日</option>
+</select>
+
+<div id="ri" style="display:none">
+添加时间:
+<input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>"  class="pick_date" size="10" maxlength="10" />
+ &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>"  class="pick_date" size="10" maxlength="10" />
+</div>
+<div id="month" style="display:none">
+添加时间:
+<select name="ym_from">
+<option value="">年</option>
+{html_options options=$arr_year}
+</select>
+<select name="month_from">
+<option value="">月</option>
+{html_options options=$arr_month}
+</select>
+至
+<select name="ym_to">
+<option value="">年</option>
+{html_options options=$arr_year}
+</select>
+<select name="month_to">
+<option value="">月</option>
+{html_options options=$arr_month}
+</select>
+</div>
+<div id="year" style="display:none">
+添加时间:
+<select name="year_from">
+<option value="">年</option>
+{html_options options=$arr_year}
+</select>
+至
+<select name="year_to">
+<option value="">年</option>
+{html_options options=$arr_year}
+</select>
+</div>
+ <input type="submit" class="formbtn" value="提交" />
+</form>
+   
+</dd>
+<div>
+{if $row}
+<dt>日志:&nbsp;&nbsp;{$arr_type[$type]}</dt> 
+<dd>
+<table  border="0" cellspacing="1" bgcolor="#000000" width = "80%">
+<tr bgcolor="#FFFFFF">
+<td>日期</td><td >数量(笔)</td><td>金额(元)</td><td>冻结金额(元)</td><td>积分(积分)</td><td>冻结积分(积分)</td>
+</tr>
+{foreach from=$row item=var}
+<tr bgcolor="#FFFFFF">
+<td><b>{$var.riqi}</b></td>
+<td><font color="#990033">{$var.cou}</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$var.z_money}</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$var.z_moneydj}</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$var.z_jifen}</font></td>
+<td><font color="#990033">{$var.z_jifendj}</font>&nbsp;&nbsp;</td>
+</tr>
+{/foreach}
+<tr bgcolor="#FFFFFF">
+<td><b>小计</b></td>
+<td><font color="#990033">{$aa}&nbsp;</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$bb}&nbsp;</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$dd}&nbsp;</font>&nbsp;&nbsp;</td>
+<td><font color="#990033">{$cc}&nbsp;</font></td>
+<td><font color="#990033">{$ee}&nbsp;</font>&nbsp;&nbsp;</td>
+</tr>
+</table>
+</dd>
+{/if}
+
+</div>
+</dl>
+{include file="footer.html"}

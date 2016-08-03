@@ -1,0 +1,63 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>企业管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=site_system">广告类型</a></li>
+        <li><a class="btn1" href="index.php?app=site_system&amp;act=type_add">增加类型</a></li>
+		<li><span>模版列表</span></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=skin_add">增加模版</a></li>
+		<li><a class="btn1" href="index.php?app=site_system&amp;act=site_sys">站点管理</a></li>
+		
+		
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $site_skin}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>编号</td>
+      <td>模版名称</td>
+	  <td>图片</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$site_skin item=val}-->
+    <tr class="tatr2">
+      <td class="firstCell"></td>
+      <td>&nbsp;{$val.id}</td>
+      <td>&nbsp;{$val.code}</td>
+	  <td>&nbsp;{if $val.image}<a href="{$site_url}/{$val.image}" target="_blank"><img src="{$site_url}/{$val.image}" width="100" /></a>{/if}</td>
+      <td class="handler">
+      <span style="width: 100px">
+	  <center>
+      <a href="index.php?app=site_system&amp;act=skin_edit&amp;id={$val.id}">{$lang.edit}</a>
+	   | <a href="index.php?app=site_system&amp;act=skin_drop&amp;id={$val.id}" onclick="confirm('{$lang.drop_confirm}')">删除</a>
+      </center>  
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+{include file="footer.html"}

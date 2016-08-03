@@ -1,0 +1,137 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<div class="content">
+    <!--{if $gonghuo}-->
+    <div class="left">
+
+        <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+
+                    <ul class="fellowship">
+					{if $guanggaowei}
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="65" height="100" /></a></div>  
+                        </li>
+                        <!-- {/foreach} -->  
+						{else}
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/data/files/mall/template/xiaotu_yh.gif" width="190" height="58" /></a></div> 
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/data/files/mall/template/xiaotu_yh.gif" width="190" height="58" /></a></div>  
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/data/files/mall/template/xiaotu_yh.gif" width="190" height="58" /></a></div>   
+                        </li>
+						{/if}
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近采购的货物</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$last_caigou item=caigou key=key} -->
+                        <li>
+                           <div class="pic"><img src="{$caigou.chanpin}" width="50" height="50"/></div>
+                            <dl>
+                                <dd>{$caigou.goods_name}</dd>
+                                <dd class="distance">{$caigou.goods_brand}</dd>
+                                <dd class="time">{$caigou.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                        <div class="select_div">
+                            <form method="get">
+                            <!--{if $filtered}-->
+                            <a class="detlink" style="float:right" href="{url app=my_goods}">{$lang.cancel_query}</a>
+                            <!--{/if}-->
+                            <input type="hidden" name="app" value="search">
+							<input type="hidden" name="act" value="gonghuo">
+                       
+                            商品名称:<input type="text" class="text_normal" name="goodsname" value="{$smarty.get.goodsname|escape}"/>
+                            品牌:<input type="text" class="text_normal" name="brand" value="{$smarty.get.brand|escape}"/>
+                            <input type="submit" class="btn" value="{$lang.soso}" />
+							 <!--{if $goodsname || $brand}-->
+   <a href="index.php?app=search&act=gonghuo"><input class="btn" value="{$lang.cancel_query}" type="text" readonly="true"/></a>
+      <!--{/if}-->
+                            </form>
+                            </div>
+					   
+					                 
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}<!--进行翻页-->
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="group_shop">
+            <table>
+             
+                <tr>
+                    <th>商品名称</th>
+                    <th>产品图</th>
+					<th>品牌</th>
+                   {if $kaiguan=="yes"} <th>零售价</th>{/if}
+				   <th>零售积分</th>
+                    <th>库存</th>
+                    <th>操作</th>
+                    
+                </tr>
+            
+                <!-- {foreach from=$gonghuo item=val key=key} -->
+                <tr>
+                    
+                    <td align="left">&nbsp;<a href="index.php?app=my_store&amp;act=gh_xiangqing&amp;id={$val.gh_id}" style="text-decoration:none">{$val.goods_name}</a></td>
+					<td align="left" width="70" height="70">&nbsp;<a href="index.php?app=my_store&amp;act=gh_xiangqing&amp;id={$val.gh_id}" style="text-decoration:none"><!--{if $val.chanpin}--><img src="{$val.chanpin}" width="70" height="70" /><!--{/if}--></a></td>
+                    <td class="price">&nbsp;{$val.goods_brand}</td>
+                    {if $kaiguan=="yes"}<td class="member">&nbsp;{$val.lingshou_price}</td>{/if}
+					<td class="member">&nbsp;{$val.jifen_price}</td>
+                    <td class="usershop">&nbsp;{$val.yu_kucun}</td>
+				    <td class="usershop">&nbsp;<a href="index.php?app=my_store&amp;act=gh_xiangqing&amp;id={$val.gh_id}"><font color="#990000">查看详情</font></a>||<a href="index.php?app=my_store&amp;act=caigou&amp;id={$val.gh_id}"><font color="#990000">采购</font></a></td>
+                </tr>
+         <tr></tr>
+                <!-- {/foreach} -->
+				 <tr></tr>
+				 	 <tr></tr>
+					 	 <tr></tr>
+            </table>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_gonghuo}</p>
+    </div>
+    <!--{/if}-->
+</div>
+{include file=footer.html}

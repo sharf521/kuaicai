@@ -1,0 +1,350 @@
+{include file=member.header.html}
+<script language=javascript src="js/wpCalendar.js"></script>
+<script language = "JavaScript">
+function chongzhi()
+{
+  if (document.chongzhi_form.cz_money.value<10)
+  {
+    alert("{$lang.buxiaoyu}");
+	document.chongzhi_form.cz_money.focus();
+	return false;
+  }
+	//document.getElementById("btn_chongzhi").setAttribute('disabled','ture');
+  return true;  
+}
+
+
+
+function card()
+{
+  
+  if (document.card_form.card_sn.value =="")
+  {
+    alert("充值金额不能为空!");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+ 
+	if(document.card_form.card_sn.value < 1000)
+	{
+	alert("充值金额不能小于{$canshu.cz_min}元");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+	if(document.card_form.card_sn.value >1000000)
+	{
+	alert("充值金额不能大于{$canshu.cz_max}元");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+  if(document.card_form.beizhu.value=="")
+	{
+	alert('{$lang.czbeizhubuweikong}');
+	document.card_form.beizhu.focus();
+	return false;
+	}
+
+  /*if (document.card_form.bank_name.value =="")
+  {
+    alert("汇款银行不能为空!");
+	document.card_form.bank_name.focus();
+	return false;
+  }
+  if (document.card_form.bank_username.value =="")
+  {
+    alert("汇款人姓名不能为空!");
+	document.card_form.bank_username.focus();
+	return false;
+  }
+  if (document.card_form.danhao.value =="")
+  {
+    alert("流水单号不能为空!");
+	document.card_form.danhao.focus();
+	return false;
+  }
+  if (/[^\d]/.test(document.card_form.danhao.value)){
+	alert("您输入的单号不是数字");
+	document.card_form.danhao.focus();
+	return false;
+	}*/
+  
+/*  if (document.card_form.riqi.value =="")
+  {
+    alert("汇款日期不能为空!");
+	document.card_form.riqi.focus();
+	return false;
+  }*/
+  document.getElementById("FormSubmit").setAttribute('disabled','ture');
+  
+  return true;  
+}
+
+function qiehuan(flg){
+var $xianxia = $('#xianxia');
+var $zaixian = $('#zaixian');
+
+
+  switch(flg){
+    case 1:
+       
+			$xianxia.show();
+			$zaixian.hide();
+			
+        break;
+	
+    case 2:
+       $zaixian.show();
+	   $xianxia.hide();
+	
+        break;
+	
+  }
+}
+
+
+
+
+</script>
+
+
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.zaixianchongzhi}</li>
+				<li class="normal"><a href="index.php?app=my_money&act=paylog">{$lang.chongzhijilu}</a></li>
+				<!--<li class="normal"><a href="index.php?app=my_money&act=shouru">{$lang.shourujilu}</a></li>-->
+		
+          </ul>
+          
+        <div class="wrap margin1">
+            <div class="public ">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                        <table class="width6">
+                          <tr>
+                            <td><span style="font-size:14px">
+                            
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$my_money.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$my_money.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$my_money.jifen}</span></span>
+                             </td>
+                          </tr>
+                          <tr>
+                            <td height="25"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$my_money.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$my_money.dongjiejifen}</span>&nbsp;{$lang.jifen}</span></td>
+                          </tr>
+                          <tr>
+                            <td>{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>
+                  </div>
+				
+				
+                </div>
+             </div>
+        </div>
+
+<!--开始-->
+        
+		    <!--<div class="wrap margin1">
+            <div class="public table">-->
+		   <span><h1>充值方式:</h1></span><br />
+           
+           <input type="radio" checked="checked" value="在线充值" name="a" onclick="qiehuan(2)"/><font style="font-size:14px">在线充值</font>
+           &nbsp;&nbsp;
+           <input type="radio" value="线下充值"  name="a" onclick="qiehuan(1)"/><font style="font-size:14px">线下充值</font>
+            <div class="public table" id="xianxia" style= "display:   none ">
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="card_form" onSubmit="return card();" action="index.php?app=my_money&act=card_cz" method="post">
+				  充值帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" /><input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
+			  <br>
+				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8"/>&nbsp;<font  color="red">*</font>
+				  <div style="color:#F00; line-height:20px; padding:5px"> 
+                 线下充值如遇到问题，请立即与客服联系</br>
+                  (1)&nbsp;单笔线下充值金额不低于1000元；</br>
+                  (2)&nbsp;<font color="#0000FF">有效充值登记时间为:周一至周五的9:30到16:00</font>，充值成功请跟我们的客服联系。
+                  </div>
+                  <br>
+				 
+				 选择银行：&nbsp;&nbsp;&nbsp;&nbsp;
+                 <select id="bank_name" name="bank_name" onchange="selBank(this.value)">
+
+                 <option value="2">交通银行</option>
+                 <option value="3">浦发银行</option>
+                 </select><font  color="red">*</font>
+                
+                <div id="bank2" style="display:"><font style="padding-left:73px; color:#F00;">开户行:交通银行郑州建设路支行&nbsp;&nbsp; 姓名:胡君珂 &nbsp;&nbsp;账号:6222 6006 2001 6935 929</font></div>
+                <div id="bank3" style="display:none"><font style="padding-left:73px; color:#F00;">开户行:浦发银行郑州分行营业部&nbsp;&nbsp; 姓名:胡君珂 &nbsp;&nbsp;账号:9843 0114 0204 8663</font></div>
+                <script>
+                function selBank(v)
+				{
+					for(i=2;i<=4;i++)
+					{
+						if(v==i)
+						{
+							document.getElementById('bank'+i).style.display='';	
+						}
+						else
+						{
+							document.getElementById('bank'+i).style.display='none';
+							
+						}
+					}	
+				}
+                </script>
+				 <!-- 汇款人姓名：<input name="bank_username" type="text" id="bank_username" size="15" /><font  color="red">*</font>
+				  <br>
+				 流水单号：&nbsp;&nbsp;&nbsp;&nbsp;<input name="danhao" type="text" id="danhao" size="15" /><font  color="red">*</font> <font style="padding-left:10px; color:#F00;">(即您的汇款单号)</font>
+               <br>-->
+			  
+				 <!-- 汇款日期：&nbsp;&nbsp;&nbsp;&nbsp;<input name="riqi" type="text" id="riqi" size="15"> -->
+
+
+				  <input name="type" id="type" size="30" type="hidden" value="1"/>
+				    
+				  <!--{if $kaiguan.czkg=='no'}-->
+				  <input name="status" id="status" size="30" type="hidden" value="1"/>
+				<!--  {else}-->
+				<input name="status" id="status" size="30" type="hidden" value="0"/>
+				<!--{/if}-->
+				  <input name="czfeilv" id="czfeilv" size="30" type="hidden" value="{$canshu.chongzhifeilv}"/>
+				  <input name="czkg" id="czkg" size="30" type="hidden" value="{$kaiguan.czkg}"/>
+				
+				  <br>
+				 线下充值备注：<textarea cols="30" rows="6" name="beizhu" id="beizhu" ></textarea>
+                  <br />
+                  <font color="#FF0000">（请注明您的用户名，转账银行卡号和转账流水号，以及转账时间，谢谢配合）</font>
+				  <br /> <br />
+				 <!-- 编号：<input name="user_id" type="text" id="user_id" value="{$visitor.id}" size="15" />
+				  用户名：<input name="user_name" type="text" id="user_name" value="{$visitor.user_name}" size="15" />
+				  充值金额：<input name="money" type="text" id="money"  size="15" /><input name="method" type="text" id="method"  size="15"/>
+				  汇款人姓名：<input name="bank_username" type="text" id="bank_username"  size="15" />
+				  汇款银行：<input name="bank_name" type="text" id="bank_name"  size="15" />
+				  汇款日期：<input name="riqi" type="text" id="riqi"  size="15" />
+				  备注：<input name="beizhu" type="text" id="beizhu"  size="15" />-->
+                 <input type="submit" class="money_btn" value="{$lang.lijichongzhi}" id="FormSubmit"/>
+                  </form>	
+    
+			</div>
+			</div>
+			
+         
+<!--结束-->		
+<!--开始-->
+          <!-- <div class="wrap">-->
+            <div class="public table" id="zaixian" >
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="chongzhi_form" onSubmit="return chongzhi();" action="/payapi/RecvMerchant.php" method="post" target="_blank">
+<ul class='bank'>
+<li><input type="radio" name="GateId" value="25" checked="checked"/> <img align="absmiddle" src="/images/bank/25.png" /></li>
+<li><input type="radio" name="GateId" value="29"/> <img align="absmiddle" src="/images/bank/29.png" /></li>
+<li><input type="radio" name="GateId" value="27"/> <img align="absmiddle" src="/images/bank/27.png" /></li>
+<li><input type="radio" name="GateId" value="28"/> <img align="absmiddle" src="/images/bank/28.png" /></li>
+<li><input type="radio" name="GateId" value="12"/> <img align="absmiddle" src="/images/bank/12.png" /></li>
+<li><input type="radio" name="GateId" value="13"/> <img align="absmiddle" src="/images/bank/13.png" /></li>
+<li><input type="radio" name="GateId" value="33"/> <img align="absmiddle" src="/images/bank/33.png" /></li>
+
+
+
+
+
+<li><input type="radio" name="GateId" value="16"/> <img align="absmiddle" src="/images/bank/16.png" /></li>
+<li><input type="radio" name="GateId" value="GDB"/> <img align="absmiddle" src="/images/bank/gf.png" /></li>
+<li><input type="radio" name="GateId" value="21"/> <img align="absmiddle" src="/images/bank/21.png" /></li>
+<li><input type="radio" name="GateId" value="PSBC"/> <img align="absmiddle" src="/images/bank/yz.png" /></li>
+<li><input type="radio" name="GateId" value="36"/> <img align="absmiddle" src="/images/bank/36.png" /></li>
+<li><input type="radio" name="GateId" value="09"/> <img align="absmiddle" src="/images/bank/09.png" /></li>
+<li><input type="radio" name="GateId" value="45"/> <img align="absmiddle" src="/images/bank/45.png" /></li>
+
+
+
+
+
+<!--
+<li><input type="radio" name="GateId" value="14"/> <img align="absmiddle" src="/images/bank/14.png" /></li>
+<li><input type="radio" name="GateId" value="15"/> <img align="absmiddle" src="/images/bank/15.png" /></li>
+<li><input type="radio" name="GateId" value="40"/> <img align="absmiddle" src="/images/bank/40.png" /></li>
+<li><input type="radio" name="GateId" value="48"/> <img align="absmiddle" src="/images/bank/48.png" /></li>
+<li><input type="radio" name="GateId" value="49"/> <img align="absmiddle" src="/images/bank/49.png" /></li>
+<li><input type="radio" name="GateId" value="50"/> <img align="absmiddle" src="/images/bank/50.png" /></li>
+<li><input type="radio" name="GateId" value="51"/> <img align="absmiddle" src="/images/bank/51.png" /></li>
+<li><input type="radio" name="GateId" value="52"/> <img align="absmiddle" src="/images/bank/52.png" /></li>
+<li><input type="radio" name="GateId" value="53"/> <img align="absmiddle" src="/images/bank/53.png" /></li>
+<li><input type="radio" name="GateId" value="54"/> <img align="absmiddle" src="/images/bank/54.png" /></li>
+<li><input type="radio" name="GateId" value="55"/> <img align="absmiddle" src="/images/bank/55.png" /></li>-->
+  
+
+</ul>
+<style type="text/css">
+.clear{clear:both;}
+.bank li{float:left; padding:3px 3px 3px 10px; width:180px; margin:0px 10px 8px 10px;border:1px solid #ccc;}
+.bank li img{ height:30px;}
+</style>
+<div class="clear"></div>
+
+<div style="padding-left:10px; display:none">
+<input type="radio" name="GateId" value=""/>&nbsp;&nbsp;汇付天下 (个人网上银行支付) 
+</div>
+
+				{$lang.chongzhijine}
+                  <input name="cz_money" type="text" value="" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/>&nbsp;{$lang.yuan}
+                   <input type="hidden" name="user_id" value="{$visitor.user_id}" />
+                   <div style="color:#F00; line-height:20px; padding:5px">
+                  不要通过第三方渠道进入网银，这样可以有效避开钓鱼网站。<br />
+                   在需要付款时才插入U盾，操作完毕立即拔出，防范被木马程序远程控制U盾进行支付。<br />
+避免在公共场所(如网吧、机场等)使用网上银行，因为无法知道这些计算机上是否装有恶意程序进行监控。<br />
+非此网页进入的网上充值造成的一切损失和后果本站将不负任何法律责任。特此声明！
+                   
+                   </div>
+                   
+                  <input type="submit" id="btn_chongzhi" class="money_btn" value="{$lang.lijichongzhi}"  />
+                 
+                 
+                  </form>
+                  <div style="line-height:22px; padding-left:20px; margin-top:30px;">
+<h3>温馨提示：</h3>
+<div style="padding-left:20px">
+1.	单笔充值金额不能低于10元；<br />
+2.	单笔充值金额小于200元（不包含200元），按充值金额的1%作为手续费，单笔充值金额
+200元以上（包含200元），按充值金额的0.6%作为手续费，由第三方支付平台收取；<br />
+
+<!--3.	钱管家充值：单笔充值金额200元以上（包含200元），收取充值金额的0.9%作为手续费；<br />
+3.	个人网银充值：<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;(1)	使用（中国工商银行、中国农业银行、中国建设银行、招商银行、中国民生银行、华夏银行、中信银行）网银支付，单笔充值金额<br />
+&nbsp;&nbsp;&nbsp;&nbsp;200元以上（包含200元），收取充值金额的0.6%作为手续费；<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(2)使用（中国银行、交通银行、浦东发展银行、兴业银行、深圳发展银行、广发银行、邮储银行、上海农商行、北京银行、中国光大<br />&nbsp;&nbsp;&nbsp;&nbsp;银行、北京农村商业银行、南京银行、东亚银行、平安银行、杭州银行、宁波银行、浙商银行、上海银行、渤海银行）网银支付，单<br />&nbsp;&nbsp;&nbsp;&nbsp;笔充值金额200元以上（包含200元），收取充值金额的0.8%；<br />
+
+5.	企业网银充值：按单笔充值金额的0.8%收取手续费，最低6元；<br />-->
+{if $city_row.recharge>0}
+3.	单笔充值金额200元以上（包含200元），平台将以充值金额的{$city_row.recharge}%作为奖励。<br />
+{/if}
+</div>
+                  </div>
+             </div>
+			</div>
+          <!-- </div>	-->	
+		  <!--结束-->	
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

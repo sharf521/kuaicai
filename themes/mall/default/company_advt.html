@@ -1,0 +1,88 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+         <ul class="tab">
+              <li class="active">广告管理</li>
+              
+			  
+          </ul>
+        <div class="wrap">
+            <div class="eject_btn_two eject_pos1" ><b class="ico4"><a href="index.php?app=company&act=add_adv">添加广告</a></b></div>
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $advt}-->
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="8">
+                            <span class="all"><label for="all"></label></span>
+                            
+                        </th>
+                    </tr>
+                    <tr class="gray">
+                        <th></th>
+						
+                        <th>{$lang.title}</th>
+						<th>所属类型</th>
+                        <th>链接</th>
+                        <th>图片</th>
+                        <th>开始时间</th>
+						<th>结束时间</th>
+						<!--<th>所属模版</th>-->
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- {foreach from=$advt item=var name=v} -->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        <td style="width:150px;">{$var.title}</td>
+						<td>{$var.typename}</td>
+                        <td class="color1">{$var.link}</td>
+                        <td style="width:150px;text-align:center" class="align2" >
+                        <!--{if $var.image}-->
+                        <img src="{$var.image}" height="30"/>
+                        <!--{/if}-->
+                        </td>
+                        <td class="align2"><span>{$var.addtime}</span></td>
+						<td class="align2"><span>{$var.endtime}</span></td>
+						<!--<td>{$var.code}</td>-->
+                        <td >
+                        <div class="">
+                            <a href="index.php?app=company&act=advedit&id={$var.id}">{$lang.edit}</a>|<a href="index.php?app=company&act=adv_drop&id={$var.id}" onclick="return confirm('您确定要删除吗？');">{$lang.drop}</a>
+                        </div>
+                        </td>
+                    </tr>
+                    <!-- {foreachelse} -->
+                    <tr>
+                        <td colspan="8" class="member_no_records padding6">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $advt}-->
+                    <tr>
+                        <th></th>
+                        <th colspan="8">
+                        <p class="position1">
+                            <span class="all"><label for="all2"></label></span>
+                          <!--  <a href="#" class="delete" uri="index.php?app=my_partner&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>-->
+
+                        </p>
+                        <p class="position2">
+                            {include file=member.page.bottom.html}
+                        </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <iframe name="my_partner" style="display:none"></iframe>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,147 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		
+		<li><span>资金流水</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+      <form method="get">
+            <div class="left">
+              <input name="module" type="hidden" id="module" value="my_money" />
+              <input name="act" type="hidden" id="act" value="zijinliushui" />
+             <!-- 用户名:
+              <input name="soname" type="text" id="soname" value="<?php echo $_GET["soname"];?>" />-->
+			  添加时间:
+              <input name="sotime" type="text" id="sotime" value="<?php echo $_GET["sotime"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="endtime" type="text" id="endtime" value="<?php echo $_GET["endtime"];?>" size="10" maxlength="10" />
+			  类型：
+              <select name="s_and_z" id="s_and_z">
+              <option id="s_and_z" value="0">请选择 </option>
+              <option id="s_and_z" value="1">收入 </option>
+              <option id="s_and_z" value="2">支出 </option>
+             </select>
+		 {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+             <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+			 
+              <input type="submit" class="formbtn" value="{$lang.so_soso}" />
+            </div>
+	  <!--{if $s_and_z or $sotime or $endtime or $suoshuzhan}-->
+      <a class="left formbtn1" href="index.php?module=my_money&act=zijinliushui">{$lang.cancel_query}</a>
+      <!--{/if}-->	
+      </form>  
+    </div>
+    <div class="fontr">
+{include file=page.top.html}
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+          <!--  <td align="left">编号</td>-->
+			<td align="left">操作金额</td>
+			<td align="left">操作积分</td>
+            <td>来源账户</td>
+			<td>类型</td>
+			<td>当前金额</td>
+			<td>当前积分</td>
+			<td>收/支</td>
+            <td>买家</td>
+            <td>卖家</td>
+            <td>供货人</td>
+			<td>操作时间</td>
+			<td>所属站</td>
+			<td>备注</td>
+            <!--<td class="handler">{$lang.tx_guanlicaozuo}</td>-->
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$key}" />
+            </td>
+			<!--<td align="left"><b>&nbsp;{$val.account_id}</b></td>-->
+            <td align="left"><font color="#FF0000">&nbsp;{$val.money}</font></td>
+			<td align="left"><font color="#FF0000">&nbsp;{$val.jifen}</font></td>
+			<td align="left"><font color="#FF0000">&nbsp;{$val.user_name}</font></td>
+            
+			<td>&nbsp;
+			         <!--{if $val.type==2}-->{$lang.tp2}<!--{/if}-->
+                     <!--{if $val.type==3}-->{$lang.tp3}<!--{/if}-->
+					 <!--{if $val.type==4}-->{$lang.tp4}<!--{/if}-->
+					 <!--{if $val.type==7}-->{$lang.tp7}<!--{/if}-->
+					 <!--{if $val.type==8}-->{$lang.tp8}<!--{/if}-->
+					 <!--{if $val.type==10}-->{$lang.tp10}<!--{/if}-->
+					 <!--{if $val.type==13}-->{$lang.tp13}<!--{/if}-->
+					 <!--{if $val.type==15}-->{$lang.tp15}<!--{/if}-->
+					 <!--{if $val.type==16}-->{$lang.tp16}<!--{/if}-->
+					 <!--{if $val.type==17}-->{$lang.tp17}<!--{/if}-->
+					 <!--{if $val.type==18}-->{$lang.tp18}<!--{/if}--> 
+                     <!--{if $val.type==41}-->{$lang.tp41}<!--{/if}--> 
+                     <!--{if $val.type==42}-->{$lang.tp42}<!--{/if}--> 
+					 <!--{if $val.type==27}-->{$lang.type027}<!--{/if}-->
+					 <!--{if $val.type==28}-->{$lang.type028}<!--{/if}-->
+					 <!--{if $val.type==37}-->{$lang.type037}<!--{/if}-->
+					 <!--{if $val.type==36}-->{$lang.type036}<!--{/if}-->
+					 <!--{if $val.type==38}-->{$lang.type038}<!--{/if}-->
+                     <!--{if $val.type==44}-->{$lang.tp44}<!--{/if}--> 
+					
+ 
+					 </td>
+			</td>
+			
+			
+			<td>&nbsp;{$val.dq_money}</td>
+			<td>&nbsp;{$val.dq_jifen}</td>
+			<td>&nbsp; 
+			<!--{if $val.s_and_z==1}-->{$lang.type01}<!--{/if}-->
+			<!--{if $val.s_and_z==2}-->{$lang.type02}<!--{/if}-->
+			</td>
+            <td>&nbsp;{$val.xiaofei}</td>
+            <td>&nbsp;{$val.shangjia}</td>
+            <td>&nbsp;{$val.gonghuoshang}</td>
+			<td>&nbsp;{$val.time}</td>
+            <td>&nbsp;
+			 {$val.city_name}
+			</td>
+			<td>&nbsp;{$val.beizhu}</td>
+           <!-- <td class="handler">
+             <a href="index.php?module=my_money&act=zmoney_edit&user_id={$val.account_id}&user_name={$val.user_name}&id={$val.id}">编辑</a>&nbsp;
+			</td>-->
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="#" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

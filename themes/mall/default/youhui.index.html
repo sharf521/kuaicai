@@ -1,0 +1,94 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right"> 
+	<ul class="tab">
+				
+				<li class="normal"><a href="index.php?app=my_coupon">商家发行的优惠券列表</a></li>
+				<li class="active">购买的优惠券列表</li>
+		
+          </ul>
+        <div class="wrap">
+		
+            
+            <div class="public table">
+                <table>
+                    <!-- {if $youhui_list} -->
+                    <tr class="line_bold" >
+                        <th class="width1"><!--<input id="all" type="checkbox" class="checkall" />--></th>
+                         <th class="align1" colspan="10">
+                            <!--<label for="all"> <span class="all">{$lang.checkall}</span> </label>
+                          <a href="#" class="delete" ectype="batchbutton" uri="index.php?app=my_coupon&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a>-->
+                        </th>
+                    </tr>
+                    <tr class="gray">
+                        <th></th>
+						<th>用户名</th>
+                        <th>编号</th>
+                        <th>优惠券名字</th>
+                        <th>优惠金额</th>
+					   <th>优惠积分</th>
+					   <th>使用时间</th>
+						<th>状态</th>
+                        <th>备注</th>
+                   
+                    </tr>
+                     <!-- {/if} -->
+
+                  <!--{foreach from=$youhui_list item=val key=key}-->
+          <tr>
+		  
+		  <th></th>
+                        <th>{$val.user_name}</th>
+						<th>{$val.bianhao}</th>
+                        <th>{$val.youhui_name}</th>
+                       <th>{$val.youhui_jine}</th>
+						<th>{$val.youhui_jifen}</th>
+						<th>{$val.start_time}至{$val.end_time}</th>
+						<th>{if $val.status=="yes"}
+						未使用
+						{else}
+						已使用
+						{/if}</th>
+                        <th>{$val.beizhu}</th>
+		  
+		  
+		  
+		  
+		  </tr>
+                <!-- {foreachelse} -->
+                <tr>
+                    <td colspan="10" class="member_no_records padding6">{$lang.no_records}</td>
+                </tr>
+                <!--{/foreach}-->
+                <!-- {if $youhui_list} -->
+                </tbody>
+                <!-- {/if} -->
+                <!-- {if $youhui_list} -->
+                <tr class="line_bold line_bold_bottom">
+                    <td colspan="11">&nbsp;</td>
+                </tr>
+                <tr>
+                    <th><!--<input id="all2" type="checkbox" class="checkall" />--></th>
+                    <th colspan="10"><!--<p class="position1"><label for="all2"><span class="all">{$lang.checkall}</span></label>
+                     <a href="###" ectype="batchbutton" class="delete" uri="index.php?app=my_coupon&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a></p>-->
+                     <p class="position2">
+                       {include file=member.page.bottom.html}
+                     </p> 
+                     </th>
+                </tr>
+                <!-- {/if} -->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <iframe name="my_coupon" style="display:none"></iframe>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

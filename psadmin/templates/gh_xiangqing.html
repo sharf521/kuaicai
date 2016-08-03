@@ -1,0 +1,176 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#share_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true,
+                maxlength: 100
+            },
+            link  : {
+                required : true
+            },
+            logo  : {
+                accept : 'png|jpe?g|gif'
+            },
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_required}',
+                maxlength: '{$lang.title_maxlength_error}'
+            },
+            link  : {
+                required : '{$lang.link_required}'
+            },
+            logo  : {
+                accept   : '{$lang.logo_accept_error}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>
+<div id="rightTop">{$build_editor}
+     <p>供货管理</p>
+    <ul class="subnav">
+         <li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+         {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		
+ <tr><td width="116"><h5><font color="#0033FF">商品信息</font></h5></td></tr>
+ <tr>
+                <th class="paddingT15">
+                  供货人:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$xinxi.user_name}({$xinxi.user_id}) 
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品名称:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$gonghuo.goods_name|escape}  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品品牌:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.goods_brand|escape}
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  目前销售渠道:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.tujing|escape}   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                零售价格:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.lingshou_price|escape}  
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+            商品信息来源:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$gonghuo.source|escape}  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片资料:</th>    
+				<td class="paddingT15 wordSpacing5">
+               {if $gonghuo.ziliao}
+                <a href="/{$gonghuo.ziliao}" target="_blank"><img src="/{$gonghuo.ziliao}" class="makesmall" width="300"/></a>
+				{else}
+               没有上传
+                {/if}
+                </td>
+				</tr>
+			<tr>
+                <th class="paddingT15">
+                    产品图:</th> 
+              <td class="paddingT15 wordSpacing5">
+            {if $gonghuo.chanpin}
+               <a href="/{$gonghuo.chanpin}" target="_blank"><img src="/{$gonghuo.chanpin}" class="makesmall" width="300"/></a>
+             {else}
+               没有上传
+            {/if}
+			 </td></tr>
+			
+			<tr>
+                <th class="paddingT15">
+                   商品描述:</th> 
+                <td class="paddingT15 wordSpacing5">
+				
+              <script type="text/plain" id="myEditor" name="beizhu">
+        							<p>{$gonghuo.beizhu}</p>
+    								</script>
+									<script type="text/javascript">
+										UE.getEditor('myEditor',{
+											imageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									imagePath:"",
+											
+											imageManagerUrl:UEDITOR_HOME_URL + "php/imageManager.php?type=1",
+        									imageManagerPath:UEDITOR_HOME_URL + "php/",
+											
+											scrawlUrl:UEDITOR_HOME_URL + "php/scrawlUp.php?type=1",
+        									scrawlPath:"",
+											
+											catcherUrl:UEDITOR_HOME_URL + "php/getRemoteImage.php?type=1",
+        									catcherPath:UEDITOR_HOME_URL + "php/",
+											
+											snapscreenServerUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									snapscreenPath:UEDITOR_HOME_URL + "php/",
+											
+											wordImageUrl:UEDITOR_HOME_URL + "php/imageUp.php?type=1",
+        									wordImagePath:UEDITOR_HOME_URL + "php/",
+											
+											initialFrameHeight:420,  //初始化编辑器高度,
+											autoHeightEnabled:false, //是否自动长高,默认true
+											scaleEnabled:false, //是否可以拉伸长高,默认true
+											minFrameHeight:420, //编辑器拖动时最小高度
+											autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+											toolbarTopOffset:400, //编辑器底部距离工具栏高度
+											initialFrameWidth:800
+										})
+									</script>
+			  
+                </td>
+            </tr>
+        
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

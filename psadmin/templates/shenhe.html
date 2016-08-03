@@ -1,0 +1,93 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>团购管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=groupbuy">管理</a></li>
+		
+		<li><a class="btn3" href="index.php?app=groupbuy&act=wei_shenhe">团购未审核</a></li>
+		 <li><a class="btn3" href="index.php?app=groupbuy&act=wancheng">团购已完成</a></li>
+		
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	<!--{foreach from=$log item=var key=key}--> 
+            <tr>
+                <th class="paddingT15">团购名称:</th>
+                <td class="paddingT15 wordSpacing5">{$var.group_name}
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">店铺名称:</th>
+              <td class="paddingT15 wordSpacing5"><!--{foreach from=$store item=store1 key=key}--> 
+				{$store1.store_name}
+				  <!--{/foreach}-->
+				</td>
+            </tr>
+ <tr>
+                <th class="paddingT15">起止时间</th>
+              <td class="paddingT15 wordSpacing5">
+				{$var.start_time|date} {$lang.to} {$var.end_time|date}
+				
+				</td>
+            </tr>
+          <tr>
+                
+                <th class="paddingT15">是否审核</th>
+              <td class="paddingT15 wordSpacing5"><input name="status" type="radio" value="1" />审核通过
+			  <input type="radio" name="status" value="2" checked="CHECKED"/>审核不通过
+		
+			  </td>
+            </tr>  
+	 <tr>
+                
+                <th class="paddingT15">操作日志：</th>
+              <td class="paddingT15 wordSpacing5"><input name="log_text" type="text" value="{$var.log_text}"  />
+			  </td>
+            </tr>  
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	   <!--{/foreach}-->
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

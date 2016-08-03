@@ -1,0 +1,172 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<style type="text/css">
+#rightTop{height:80px}
+</style>
+<!--<div class="mrightTop">
+<div class="fontl">
+
+</div>
+</div>-->
+
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_list">{$lang.index_zijinliebiao}</a></li>
+		
+<!--{if $priv.privs=="all"}-->
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_add">{$lang.index_zengjiayonghuzijin}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=suoding">锁定用户资金</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=suoding_jifen">锁定用户积分</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_wei_shenhe">充值未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_yi_shenhe">充值已审核</a></li>
+        
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_wei_shenhe">兑换积分未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_yi_shenhe">兑换积分已审核</a></li>
+        
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_wei_shenhe">兑换现金未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_yi_shenhe">兑换现金已审核</a></li>
+		
+	<!--{/if}-->
+	
+	    <li><a class="btn3" href="index.php?module=my_money&act=user_money_log">资金流水</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=user_moneylog">用户资金流水</a></li>		
+		
+		<!--{if $priv.czsh=="yes"}-->
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_wei_shenhe">充值未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_yi_shenhe">充值已审核</a></li>
+		<!--{/if}-->
+		<!--{if $priv.dhjfsh=="yes"}-->
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_wei_shenhe">兑换积分未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_yi_shenhe">兑换积分已审核</a></li>
+		<!--{/if}-->
+		<!--{if $priv.dhxjsh=="yes"}-->
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_wei_shenhe">兑换现金未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_yi_shenhe">兑换现金已审核</a></li>
+		<!--{/if}-->
+    </ul>
+</div>
+<!--{if $priv.txsh=="yes"}-->
+<div id="rightTop">
+    <p>{$lang.index_tixianshenheguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tx_index_shenhe">{$lang.index_chakanquanbu}</a></li>
+        <!--<li><a class="btn3" href="index.php?module=my_money&act=dakuan_wei_shenhe">{$lang.dakuanwei}</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=dakuan_yi_shenhe">{$lang.dakuanyishenhe}</a></li>-->
+		<li><a class="btn3" href="index.php?module=my_money&act=tx_wei_shenhe">{$lang.index_weishenhe}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=tx_yi_shenhe">{$lang.index_yishenhe}</a></li>
+    </ul>
+</div>
+<!--{/if}-->
+
+<!--<div id="rightTop">
+    <p>{$lang.goumaitaocan}</p>
+    <ul class="subnav">
+	<li><a class="btn3" href="index.php?module=my_money&act=taocan_wei_shenhe">{$lang.taocan_weishenhe}</a></li>
+    <li><a class="btn3" href="index.php?module=my_money&act=taocan_yi_shenhe">{$lang.taocan_yishenhe}</a></li>
+        
+    </ul>
+</div>-->
+
+
+<!--{if $priv.privs=="all"}-->
+
+<div id="rightTop">
+    <p>{$lang.index_tixianshenheguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tx_index_shenhe">{$lang.index_chakanquanbu}</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=tx_wei_shenhe">{$lang.index_weishenhe}</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=tx_yi_shenhe">{$lang.index_yishenhe}</a></li>
+		<li><a class="btn3" href="index.php?app=user&act=zhuanzhang">转账</a></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=dakuan_wei_shenhe">{$lang.dakuanwei}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=dakuan_yi_shenhe">{$lang.dakuanyishenhe}</a></li>-->
+    </ul>
+</div>
+
+<!--{/if}-->
+<!--<div id="rightTop">
+    <p>{$lang.index_dongtaimibaoguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=mibao_zhengchang">{$lang.index_zhengchangshiyong}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=mibao_zanting">{$lang.index_yizanting}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=mibao_guoqi">{$lang.index_yiguoqi}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=mibao_xinka">{$lang.index_xinkaliebiao}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=mibao_sn_pi">{$lang.index_xinkashengcheng}</a></li>
+    </ul>
+</div>-->
+
+<!--<div id="rightTop">
+    <p>充值卡密管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=card_yichongzhi">已充值</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=card_guoqi">已过期</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=card_weichongzhi">未充值</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=card_add_pi">{$lang.index_xinkashengcheng}</a></li>
+    </ul>
+</div>-->
+
+<div id="rightTop">
+    <p>积分礼品兑换</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=jifen_chaxun">查询积分榜</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=jifen_shezhi">设置兑换礼品</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=jifen_yiduihuan">查询已兑换</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=setup">商付通设置</a></li>
+    </ul>
+</div>
+
+<!--{if $priv.privs=="all"}-->
+
+<div id="rightTop">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参数修改</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=tixianfeilv_xiugai">提现费率</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=chongzhifeilv_xiugai">充值费率</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanjifenfeilv_xiugai">兑换积分比例</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjinfeilv_xiugai">提现扣除比例</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=tuijianjiangli">推荐奖励荣誉积分</a></li>
+	<!--<li><a class="btn3" href="index.php?module=my_money&act=tuijianjianglishuishou">奖励现金税收</a></li>-->
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=tuijianjifen">推荐奖励积分</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=tuijianjifenshuishou">奖励积分税收</a></li>-->
+		<li><a class="btn3" href="index.php?app=groupbuy&act=tg_fei">团购费用</a></li>
+		<li><a class="btn3" href="index.php?app=groupbuy&act=tg_baozhengjin">团购保证金</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=biku">商城币库</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=jifenxianjinbili">积分现金转换比例</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=daishou">代售比例</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=shangxiaxian">上下限参数</a></li>
+		<li><a class="btn3" href="index.php?app=store&act=jifenbili">积分比例</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=reg_jifen">注册签到积分</a></li>
+    </ul>
+</div>
+<div id="rightTop">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开关设置</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanjifen_kaiguan">兑换积分开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=chongzhi_kaiguan">充值开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=jifenzhifu_kaiguan">积分支付开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=xianjinzhifu_kaiguan">现金支付开关</a></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=jifenjiangli_kaiguan">积分奖励开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=xianjinjiangli_kaiguan">现金奖励开关</a></li>-->
+		<li><a class="btn3" href="index.php?module=my_money&act=gonghuo_kaiguan">供货显示开关</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=gcategory_kaiguan">商品分类开关</a></li>
+        <li><a class="btn3" href="index.php?module=my_money&act=jifen_kaiguan">积分转账开关</a></li>
+    </ul>
+</div>
+<!--{/if}-->
+<div id="rightTop">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总账户</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=zijinliushui">资金流水</a></li>
+		
+<!--{if $priv.privs=="all"}-->
+		<li><a class="btn3" href="index.php?module=my_money&act=zhanghuzonge">账户总额</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=bikuliushui">币库流水</a></li>
+		<!--{/if}-->
+    </ul>
+</div>
+
+{include file="footer.html"}

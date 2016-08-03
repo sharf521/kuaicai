@@ -1,0 +1,92 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+			 
+			  <!--<li class="normal"><a href="index.php?app=my_theme&act=my_caigou">我的采购</a></li>-->
+              <li class="active"><span>我的采购</span></li>
+			
+             
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+			<!--{if $cai}-->
+                <table class="table_head_line">
+                 
+                    <tr class="line_bold">
+                        <th class="width1" style="border:0"></th>
+                        <th class="align1" colspan="9" style="border:0">
+                            <label for="all"><span class="all"></span></label>
+                          
+                        </th>
+                    </tr>
+	
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th>采购人</th>
+                        <th>商品名称</th>
+                       	<th>零售价</th>
+                        <th>采购数量</th>
+                        <th>时间</th>
+						<th>操作</th>
+                    </tr>
+              <tr>
+                  <!--{/if}-->    
+                <!--{foreach from=$cai item=val name=v}-->
+                        <td class="center">&nbsp;</td>
+                        <td align="center">&nbsp;{$val.cai_name}</td>
+						<td align="center">&nbsp;{$val.goods_name}</td>
+                        <td align="center">&nbsp;{$val.lingshou_price}</td>
+						<td align="center">&nbsp;{$val.num}</td>
+						<td align="center">&nbsp;{$val.riqi}</td>
+					
+						<!--{if $val.fabu!=1}-->
+						<td align="center"><a href="index.php?app=my_theme&act=fabu_k&fabuid={$val.id}" onclick="return confirm('确定发布吗？');"><font color="#990000">发布</font></a></td>
+						<!--{elseif $val.fabu==1}-->
+						<td align="center">已发布</td>
+						<!--{else}-->
+                       <!-- <td align="center"><a href="index.php?app=seller_groupbuy&act=quxiaocaigou&id={$val.id}" onclick="return confirm('确认删除')">删除</a></td>-->
+					  <!--{/if}-->
+					 
+                      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.meiyoucaigou}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+					
+                    <!--{if $cai}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"><label for="all2"><span class="all"></span></label></th>
+                        <td colspan="7">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

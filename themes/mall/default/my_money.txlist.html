@@ -1,0 +1,206 @@
+{include file=member.header.html}
+<script language="javascript">
+function tixian(flg){
+var $tixian = $('#tixian');
+var $xianjinduihuan = $('#xianjinduihuan');
+
+
+  switch(flg){
+    case 1:
+       
+			$tixian.show();
+			$xianjinduihuan.hide();
+        break;
+	
+    case 2:
+       $xianjinduihuan.show();
+	   $tixian.hide();
+        break;
+  }
+}
+function tousers()
+{
+if (document.to_users.tx_money.value =="")
+  {
+    alert("请您填写提现的金额!");
+	document.to_users.tx_money.focus();
+	return false;
+	}
+if (document.to_users.tx_money.value < 50)
+  {
+    alert("提现金额最低{$canshu.tx_min}元");
+	document.to_users.tx_money.focus();
+	return false;
+	}
+
+if (document.to_users.tx_money.value > 50000)
+  {
+    alert("提现金额最高{$canshu.tx_max}元");
+	document.to_users.tx_money.focus();
+	return false;
+	}
+  document.getElementById("FormSubmit").setAttribute('disabled','ture');
+
+}
+
+function tx(o){
+var $xianxia = $('#txian');
+	if(o.checked==true)
+	{	
+	alert('您已选择使用快速提现，需另外加收千分之三的提现手续费及{$canshu.ks_fei}元的加急费用，如您不需使用快速提现，请取消此处的选择。');
+		$xianxia.show();
+	}
+	else
+	{
+		$xianxia.hide();
+	}
+}
+</script>
+
+<?php
+$shuzi1 = round(rand(1,8));
+$shuzi2 = round(rand(1,8));
+$shuzi3 = round(rand(1,8));
+
+$quzimu1= round(rand(65,72));
+$quzimu2= round(rand(65,72));
+$quzimu3= round(rand(65,72));
+
+$zimu1 = chr($quzimu1);
+$zimu2 = chr($quzimu2);
+$zimu3 = chr($quzimu3);
+
+?>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.tixianshenqing}</li>
+				<li class="normal"><a href="?app=my_money&act=txlog">{$lang.tixianjilu}</a></li>
+				<li class="normal"><a href="?app=my_money&act=mylist">{$lang.shezhitixianzhanghao}</a></li>
+				<!--<li class="normal"><a href="?app=my_money&act=xianjinduihuan">{$lang.duihuanxianjin}</a></li>-->
+          </ul>
+
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                        <table class="width6" border="0" style="text-align:left">
+                          <tr>
+                            <td style="border:0"><span style="font-size:14px">
+                              <!--{foreach from=$my_money item=val key=key}-->
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$val.jifen}</span></span>
+                              </td>
+                          </tr>
+                          <tr>
+                            <td height="25" style="border:0"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$val.dongjiejifen}</span>&nbsp;{$lang.jifen}</span><!--{/foreach}--></td>
+                          </tr>
+                          <tr>
+                            <td style="border:0">{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>
+                  </div>
+                </div>			
+            </div>
+        </div>
+			  
+
+
+         <div class="wrap">
+            <div class="public table">
+				 <span><h1>提现申请</h1></span>
+				 <br />
+				  <!--<input type="radio" value="提现申请" checked="checked" name="a" onclick="tixian(1)"/> <font style="font-size:14px;"> {$lang.tixianshenqingd}</font>&nbsp;&nbsp;&nbsp;<input type="radio" value="兑换现金" name="a" onclick="tixian(2)"/><font style="font-size:14px;">兑换现金</font>-->
+				  <div id="tixian">
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+				 <form name="to_users" onSubmit="return tousers();" action="index.php?app=my_money&act=txsq" method="post">
+				  <span>{$lang.tixianzhanghu}：</span>
+				  <!--{if $val.bank_sn==""}-->
+				  <a href="?app=my_money&act=mylist" style="color:#00F">{$lang.qingxianshezhizhanghao}</a>
+				  <!--{else}-->
+				  <?php echo substr($this->_var['val']['bank_sn'],0,4);?><font color="#FF0000">****</font><?php echo substr($this->_var['val']['bank_sn'],-4);?>
+				  <span>&nbsp;&nbsp;&nbsp;&nbsp;{$lang.huming}：</span>
+				  <font color="#FF0000">*</font><?php echo substr($this->_var['val']['bank_username'],-2);?><?php echo substr($this->_var['val']['bank_uname'],-2);?>
+				  <!--{/if}-->
+				  <BR>
+                  
+                  <div style="color:#990000; line-height:20px; padding:5px"> 
+				  普通提现<br />
+					(1)	单笔提现金额最低{$canshu.tx_min}元，最高{$canshu.tx_max}元。<br />
+					(2) 单笔提现费率为千分之五，单笔提现手续费最低5元，最高50元。<br />
+					(3)每个工作日的下午5点之前提交的提现申请，T+1个工作日到账，每个工作日的下午5点之后提交的提现申请，T+2个工作日到账。
+                  </div><br>
+				   <input name="tx_edit" type="checkbox" id="tx_edit" value="1" onclick="tx(this);"/>&nbsp;&nbsp;<b><font color="#000000">快速提现</font></b>&nbsp;(如需使用快速提现，此处请打勾)<br />
+				   <div id="txian" style="display:none; color:#990000">
+				(1)	单笔提现金额最低{$canshu.tx_min}元，最高{$canshu.tx_max}元。<br />
+				(2)	提现费用：在普通提现的费用基础上，每笔另外加收千分之三的提现手续费及{$canshu.ks_fei}元的加急费用。<br />
+				(3)	每天11:00之前的提现申请，当日15:00开始处理；11:00到15:00之间的提现申请,17:00开始处理。<br /> 
+				(4)	每天15:00以后的提现申请，统一到第二日15:00开始处理。<br />
+				<table border="1" style="border-collapse:collapse; border:1px solid #000000; width:500px">
+				<tr><td align="center" style="border-collapse:collapse; border:1px solid #000000">申请时间</th><td align="center" style="border-collapse:collapse; border:1px solid #000000">开始处理时间</th></tr>
+				<tr><td align="center" style="border-collapse:collapse; border:1px solid #000000">11:00之前的提现</td><td align="center" style="border-collapse:collapse; border:1px solid #000000">15:00开始处理</td></tr>
+				<tr><td align="center" style="border-collapse:collapse; border:1px solid #000000">11:00——15:00之间的提现</td><td align="center" style="border-collapse:collapse; border:1px solid #000000">17:00开始处理</td></tr>
+				<tr><td align="center" style="border-collapse:collapse; border:1px solid #000000">15:00之后的提现</td><td align="center" style="border-collapse:collapse; border:1px solid #000000">第二日15:00开始处理</td></tr>
+				</table> 
+
+				   </div>
+				  <span>{$lang.tixianjine}：</span>
+                  <input name="tx_money" type="text" id="tx_money" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8">
+                  &nbsp;{$lang.yuan}&nbsp;<br />
+				  <!--{if $val.mibao_id==0}-->
+                  <span>{$lang.zhifumima}：</span>
+				  <input name="post_zf_pass" type="password" id="post_zf_pass" size="12">
+				  <!-- <input name="status1" id="status1" size="12" type="hidden" value="1">-->
+				   <input name="type" id="type" size="12" type="hidden" value="3">
+				  <!--{foreach from=$canshu item=val key=key}-->
+				  <input name="txfeilv" id="txfeilv" size="12" type="hidden" value="{$val.tixianfeilv}">
+				     <!--{/foreach}-->
+				  <!--{else}-->
+				  <span>{$lang.dongtaimima}：</span>
+<b>
+<font color="red">
+<?php echo $shuzi1.$zimu1;?><input type="text" id="user_shuzi1" name="user_shuzi1"  size="3" maxlength="3"/>    
+<?php echo $shuzi2.$zimu2;?><input type="text" id="user_shuzi2" name="user_shuzi2"  size="3" maxlength="3"/>    
+<?php echo $shuzi3.$zimu3;?><input type="text" id="user_shuzi3" name="user_shuzi3"  size="3" maxlength="3"/>
+</font>
+</b>
+<input name="user_zimuz1" id="user_zimuz1" type="hidden" value="<?php echo $zimu1.$shuzi1;?>" />
+<input name="user_zimuz2" id="user_zimuz2" type="hidden" value="<?php echo $zimu2.$shuzi2;?>" />
+<input name="user_zimuz3" id="user_zimuz3" type="hidden" value="<?php echo $zimu3.$shuzi3;?>" />
+				  <!--{/if}-->
+
+                  <BR><BR><span><input type="submit" class="money_btn" value="{$lang.tixianshenqing}" id="FormSubmit"/></span>
+                </form>	
+				
+			</div></div>
+			
+			
+			
+			
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

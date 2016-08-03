@@ -1,0 +1,409 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $.getJSON('{$spt}&jsoncallback=?',function(){});
+    $.getJSON('http://ecmall.shopex.cn/system/notice2.php?charset={$cur_lang}&jsoncallback=?',function(data){
+        var message='';
+        $.each(data,function(i){
+            message += '<li>' + data[i] + '</li>';
+        });
+        $('#notice').html(message);
+    }
+);
+});
+<!--{if $dangerous_apps}-->
+var dangerous_apps = '';
+<!--{foreach from=$dangerous_apps item=da}-->
+dangerous_apps += "{$da}\r\n";
+<!--{/foreach}-->
+alert(dangerous_apps);
+<!--{/if}-->
+
+function chaxun(flg){
+
+var huiyuan1 = $('#huiyuan');
+var goods1 = $('#goods');
+var stores1= $('#stores');
+var orders1= $('#orders');
+var chongzhi= $('#chongzhi');
+var tixian= $('#tixian');
+var chengnuo= $('#chengnuo');
+
+  switch(flg){
+	case '1':
+	
+       huiyuan1.show();
+	   goods1.hide();
+	   stores1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+	   chengnuo.hide();
+			
+        break;
+	
+    case '2':
+       goods1.show();
+	   huiyuan1.hide();
+	   stores1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+	   chengnuo.hide();
+        break;
+		
+	 case '3':
+       stores1.show();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+	   chengnuo.hide();
+        break;	
+		
+	  case '4':
+       orders1.show();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+	   chengnuo.hide();
+        break;	
+	 case '5':
+       orders1.hide();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.show();
+	   tixian.hide();
+	   chengnuo.hide();
+        break;	
+	 case '6':
+       orders1.hide();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.hide();
+	   tixian.show();
+	   chengnuo.hide();
+        break;	
+	  case '7':
+       orders1.hide();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+	   chengnuo.show();
+        break;	
+	
+  }
+}
+
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+
+</script>
+<div id="rightTop">
+<p>
+    {$lang.hello}<b>{$admin.user_name}</b>{$lang.welcome_to_ecmall}
+    <!--[ <a target="_blank" href="{$site_url}/index.php?app=message&amp;act=inbox" class="tidings">{$lang.new_pm}</a>: {$new.total} ]
+-->    {$lang.last_login} {$admin.last_login|date:complete} {$lang.last_ip} {$admin.last_ip}
+</p>
+</div>
+<dl id="rightCon">
+
+<dt></dt>
+<dd>
+    <ul style="color:red; font-weight:bold;">
+        
+        <li></li>
+       
+    </ul>
+</dd>
+
+<dt></dt>
+<dd>
+<b>搜索条件：</b>
+<form method="get" >
+<input type="hidden" name="app" value="default" />
+<input type="hidden" name="act" value="tongji" />
+类型：<select name="leixing" onchange="chaxun(this.value);">
+<option value="" >请选择</option>
+<option value="1" {if $leixing==1} selected="selected"{/if}>会员</option>
+<option value="2" {if $leixing==2} selected="selected"{/if}>商品</option>
+<option value="3" {if $leixing==3} selected="selected"{/if}>店铺</option>
+<option value="4" {if $leixing==4} selected="selected"{/if}>交易</option>
+<option value="5" {if $leixing==5} selected="selected"{/if}>充值</option>
+<option value="6" {if $leixing==6} selected="selected"{/if}>提现</option>
+<option value="7" {if $leixing==7} selected="selected"{/if}>承诺奖励</option>
+
+</select>&nbsp;&nbsp;&nbsp;
+添加时间:
+<input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>"  class="pick_date" size="10" maxlength="10" />
+ &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>"  class="pick_date" size="10" maxlength="10" />
+<div id="huiyuan" style="display:none">
+ 性别：<select name="sex">
+ <option value="">请选择</option>
+ <option value="0">保密</option>
+ <option value="1">男</option>
+ <option value="2">女</option>
+ </select>
+ 是否开店：<select name="kaidian">
+ <option value="">请选择</option>
+ <option value="1">是</option>
+ <option value="0">否</option>
+ </select>
+  </div>
+<div id="goods" style="display:none"> 
+品牌：<input name="brand" value="" type="text"/>
+分类名：
+<select class="querySelect" name="cate_id">
+              <option>请选择</option>
+              {html_options options=$gcategories}
+</select>
+二维码显示：<select name="erweima">
+<option value="">请选择</option>
+<option value="1">是</option>
+<option value="0">否</option>
+</select>
+是否上架：<select name="xianshi">
+<option value="">请选择</option>
+<option value="1">是</option>
+<option value="0">否</option>
+</select>
+</div> 
+<div id="stores" style="display:none">
+所属等级：<select name="sgrade">
+<option value="">请选择</option>
+<option value="1">扶持版</option>
+<option value="2">精英版</option>
+</select>
+状态：<select name="state">
+<option value="">请选择</option>
+<option value="1">开启</option>
+<option value="2">关闭</option>
+</select>
+明星店铺：<select name="dengji">
+<option value="">请选择</option>
+<option value="1">是</option>
+<option value="0">否</option>
+</select>
+二级域名：<select name="yuming">
+<option value="">请选择</option>
+<option value="1">开启</option>
+<option value="0">无</option>
+</select>
+是否付费：<select name="leve">
+<option value="">请选择</option>
+<option value="1">是</option>
+<option value="2">否</option>
+</select>
+奖励承诺：<select name="jlcn">
+<option value="">请选择</option>
+<option value="1">已添加</option>
+<option value="2">未添加</option>
+</select>
+</div>
+<div id="orders" style="display:none">
+订单状态：<select name="stat">
+<option value="">请选择</option>
+<option value="11">待付款</option>
+<option value="20">待发货</option>
+<option value="30">已发货</option>
+<option value="40">已完成</option>
+<option value="0">已取消</option>
+</select>
+</div>
+<div id="chongzhi" style="display:none">
+状态：<select name="status">
+<option value="">请选择</option>
+<option value="1">审核通过</option>
+<option value="0">等待审核</option>
+<option value="2">审核不通过</option>
+</select>
+</div>
+<div id="tixian" style="display:none">
+状态：<select name="status">
+<option value="">请选择</option>
+<option value="1">等待审核</option>
+<option value="2">等待打款</option>
+<option value="3">审核不通过</option>
+<option value="4">已打款</option>
+</select>
+</div>
+<div id="chengnuo" style="display:none">
+承诺奖励：<select name="cnjl">
+<option value="1">已添加</option>
+</select>
+</div>
+ <input type="submit" class="formbtn" value="提交" />
+</form>
+   
+</dd>
+<div>
+{if $userqty}
+<dt>会员:&nbsp;&nbsp;</dt>
+<dd>
+<table>
+{foreach from=$userqty item=var}
+{if $var.city_name!=''}
+<tr><td>
+<b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}</font></td></tr>
+{/if}
+{/foreach}
+<tr><td>
+<b>总计:</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$aa}</font></td></tr>
+</table>
+</dd>
+{/if}
+
+{if $goodsqty}
+<dt>商品:</dt>
+<dd>
+<table>
+{foreach from=$goodsqty item=var}
+{if $var.city_name!=''}
+<tr><td><b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}</font></td></tr>
+{/if}
+{/foreach}
+<tr><td>
+<b>总计:</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$aa}</font></td></tr>
+</table>
+</dd>
+{/if}
+
+
+{if $storeqty}
+<dt>店铺:</dt>
+<dd>
+<table>
+{foreach from=$storeqty item=var}
+{if $var.city_name!=''}
+<tr><td><b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}</font></td></tr>
+{/if}
+{/foreach}
+<tr><td>
+<b>总计:</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$aa}</font></td></tr></table>
+
+</dd>
+{/if}
+
+{if $orderqty}
+<dt>交易:</dt>
+<dd>
+<table>
+{foreach from=$orderqty item=var}
+<tr>
+<td>
+<b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}&nbsp;笔</font></td><td>&nbsp;&nbsp;&nbsp;<b>订单总金额：</b></td><td>&nbsp;&nbsp;<font color="#990033">{$var.am}&nbsp;元</font></td><td>&nbsp;&nbsp;&nbsp;<b>订单总积分：</b></td><td>&nbsp;&nbsp;<font color="#990033">{$var.jf}&nbsp;积分</font></td><td>&nbsp;&nbsp;<b>单笔最大金额:</b></td><td>&nbsp;&nbsp;<font color="#990033">{$var.maxam}&nbsp;元</font></td><td>&nbsp;&nbsp;<b>单笔最大积分:</b></td><td>&nbsp;&nbsp;<font color="#990033">{$var.maxjf}&nbsp;积分</font></td></tr>
+{/foreach}
+<tr>
+<td><b>总计:</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$aa}&nbsp;笔</font></td><td>&nbsp;&nbsp;<b>总金额:</b></td><td>&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$cc}元</font></td><td>&nbsp;&nbsp;<b>总积分:</b></td><td>&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$bb}积分</font></td></tr>
+</table>
+
+</dd>
+{/if}
+
+{if $chongzhiqty}
+<dt>充值:</dt>
+<dd>
+<table>
+{foreach from=$chongzhiqty item=var}
+<tr><td>
+<b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}&nbsp;笔</font></td><td><font color="#990033">&nbsp;&nbsp;&nbsp;&nbsp;{$var.z_money}&nbsp;元</font></td><td>&nbsp;&nbsp;&nbsp;<b>最大充值金额:</b>&nbsp;&nbsp;<font color="#990033">{$var.max}</font></td><td>&nbsp;&nbsp;&nbsp;<b>最小充值金额:</b>&nbsp;&nbsp;<font color="#990033">{$var.min}</font></td> </tr>
+{/foreach}
+<tr><td>
+<b>总计:</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font color="#990033" size="+1">{$aa}&nbsp;笔</font></td><td>&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$bb}&nbsp;元</font></td></tr>
+
+</table>
+
+</dd>
+{/if}
+
+{if $tixianqty}
+<dt>提现:</dt>
+<dd>
+<table>
+{foreach from=$tixianqty item=var}
+<tr><td><b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}&nbsp;笔</font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.z_money}&nbsp;元</font></td></tr>
+{/foreach}
+<tr><td>
+<b>总计:</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$aa}&nbsp;笔</font></td><td>&nbsp;&nbsp;&nbsp;<font color="#990033" size="+1">{$bb}&nbsp;元</font></td></tr></table>
+
+</dd>
+{/if}
+
+
+{if $artuser}
+<dt>承诺奖励:</dt>
+<dd>
+<table>
+{foreach from=$artuser item=var}
+{if $var.city_name!=''}
+<tr><td><b>{$var.city_name}：</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{$var.cou}</font></td></tr>
+{/if}
+{/foreach}
+<tr><td>
+</td></tr></table>
+
+</dd>
+{/if}
+
+
+
+
+
+<dt>{$lang.news_in_a_week}</dt>
+<dd>
+
+    <table>
+        <tr>
+            <th>{$lang.new_user_qty}:</th>
+            <td class="td">{$news_in_a_week.new_user_qty}</td>
+            <th>{$lang.new_store_qty}:</th>
+            <td class="td">{$news_in_a_week.new_store_qty}/{$news_in_a_week.new_apply_qty}</td>
+        </tr>
+        <tr>
+            <th>{$lang.new_goods_qty}:</th>
+            <td class="td">{$news_in_a_week.new_goods_qty}</td>
+            <th>{$lang.new_order_qty}:</th>
+            <td class="td">{$news_in_a_week.new_order_qty}</td>
+        </tr>
+    </table>
+</dd>
+<dt>{$lang.stats}</dt>
+<dd>
+    <table>
+        <tr>
+            <th>{$lang.user_qty}:</th>
+            <td class="td">{$stats.user_qty}</td>
+            <th>{$lang.store_qty}:</th>
+            <td class="td">{$stats.store_qty}</td>
+			<th>二级域名店铺:</th>
+            <td class="td">{$stats.store_yuming}</td>
+        </tr>
+        <tr>
+            <th>{$lang.goods_qty}:</th>
+            <td class="td">{$stats.goods_qty}</td>
+            <th>{$lang.order_qty}:</th>
+            <td class="td">{$stats.order_qty}</td>
+        </tr>
+        <tr>
+            <th>{$lang.order_amount}:</th>
+            <td class="td">{$stats.order_amount|price}</td>
+            <th></th>
+            <td class="td"></td>
+        </tr>
+    </table>
+</dd>
+
+
+</div>
+</dl>
+{include file="footer.html"}

@@ -1,0 +1,70 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>{$lang.store}</p>
+    <ul class="subnav">
+	<li><a class="btn1" href="index.php?app=store">{$lang.manage}</a></li>
+    <li><a class="btn1" href="index.php?app=store&amp;act=test">{$lang.add}</a></li>
+    <li><a class="btn1" href="index.php?app=store&amp;wait_verify=1">{$lang.wait_verify}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+            <tr>
+                <th class="paddingT15">{$lang.store_name}</th>
+                <td class="paddingT15 wordSpacing5">
+				<input name="user_name" type="text" value="{$index.store_name}" size="20">
+                <input name="store_id" type="hidden" value="{$index.store_id}">
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.caozuojine}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="post_money" type="text" id="post_money" value="" size="10">
+				{$lang.yuan}
+			  </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.zongxiaobao}</th>
+                <td class="paddingT15 wordSpacing5">
+				<font color="#FF0000">{$index.xiaobao_pay}{$lang.yuan}</font>
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.yuxiaobao}</th>
+                <td class="paddingT15 wordSpacing5">{$index.xiaobao}{$lang.yuan}
+				</td>
+            </tr>
+
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

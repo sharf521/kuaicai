@@ -1,0 +1,158 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p><b>{$lang.order_detail}</b></p>
+</div>
+<div class="info">
+    <div class="demand">
+    </div>
+    <div class="order_form">
+        <h1>{$lang.order_detail}</h1>
+        <ul>
+            <li><b>{$lang.order_sn}:</b>{$order.order_sn}{if $order.extension eq 'groupbuy'}[{$lang.groupbuy}]{/if}&nbsp;&nbsp;&nbsp;<!--{if $order.group_id}-->[<a href="{$site_url}/index.php?app=groupbuy&id={$order.group_id}" target="_blank">{$lang.groupbuy_detail}</a>]<!--{/if}--></li>
+            <li><b>{$lang.order_status}:</b> {$order.status|modifier:order_status}{if $order.status==0}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{$lang.quxiao}</b>{$or.remark}{/if}</li>
+             <!--{if $order.pay_message}-->
+            <li><b>{$lang.pay_message}:</b>{$order.pay_message|escape}</li>
+            <!--{/if}-->
+            <li><b>{$lang.add_time}:</b>{$order.add_time|date:complete}</li>
+            <!--{if $order.pay_time}-->
+            <li><b>{$lang.pay_time}:</b>{$order.pay_time}</li>
+            <!--{/if}-->
+            <!--{if $order.ship_time}-->
+            <li><b>{$lang.ship_time}:</b>{$order.ship_time|date:complete}</li>
+            <!--{/if}-->
+            <!--{if $order.finished_time}-->
+            <li><b>{$lang.finished_time}:</b>{$order.finished_time|date:complete}</li>
+            <!--{/if}-->
+            <!--{if $order.postscript}-->
+            <li><b>{$lang.postscript}:</b>{$order.postscript|escape}</li>
+            <!--{/if}-->
+           
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="order_form">
+        <h1>{$lang.maijiaxin}</h1>
+        <ul>
+           
+            <li><b>{$lang.seller_name} :</b> {$mem.user_name}&nbsp;({$mem.user_id})</li>
+           <li><b>{$lang.dianpudengji} :</b> 
+            {if $order.gh_id}
+            {if $bb.0==1}{$lang.fufei}{/if}
+            {if $bb.0==""}{$lang.mianfei}{/if}
+            {else}
+            {if $bb.0==1}{$lang.jingying}{/if}
+            {if $bb.0==""}{$lang.fuchi}{/if}
+            {/if}
+            </li>
+          <li><b>{$lang.dianpu}: </b>{$order.seller_name}
+            </li>
+            <li><b>{$lang.suozaidiqu} : {$stor.region_name}</b></li>
+            <li><b>{$lang.phone_mob} : {$stor.tel}</b></li>
+            {if $order.gh_id}
+            <li><b>{$lang.gonghuoshang} :</b> {$gong.user_name}&nbsp;({$gong.user_id})&nbsp;&nbsp;&nbsp;<b>{$lang.gonghuoshanghuuod} :</b> <span class="red_common">{$order.ghs}{$lang.jifen}</span></li>
+            {/if}
+           
+           
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    <div class="order_form">
+        <h1>{$lang.maijiaxinxi}</h1>
+        <ul>
+         <li><b>{$lang.buyer_name} :</b> {$order.buyer_name|escape}({$order.buyer_id})
+        <!-- &nbsp;&nbsp;&nbsp;{if $result.vip==1}<span class="red_common">{$lang.shi}</span>
+         {else}
+         <span class="red_common">{$lang.fei}</span>
+         {/if}-->
+         </li>
+            <li><b>{$lang.consignee}:</b> {$order_extm.consignee|escape}&nbsp;</li>
+            <li><b>{$lang.address}:</b> {$order_extm.region_name|escape}</li>
+            <li><b>{$lang.phone_mob}:</b> {$order_extm.phone_mob|escape}</li>
+            <li><b>{$lang.shipping_name}:</b> {$order_extm.shipping_name|escape}</li>
+            <!--{if $order.invoice_no}-->
+            <li><b>{$lang.invoice_no}:</b> {$order.invoice_no|escape}</li>
+            <!--{/if}-->
+             </ul>
+            <table><tr><th align="center"><b>{$lang.shangpin}</b></th>
+            <th align="center"><b>{$lang.xiushangpin}</b></th>
+            <th align="center"><b>{$lang.quanti} </b></th><th align="center"><b>{$lang.shipping_price}</b></th>
+           
+            <th align="center"><b>{$lang.youhuidazhe}</b></th><th align="center"><b>{$lang.order_amount} </b></th>
+			{if $order.dazhe}
+			<th align="center"><b>快速通道</b></th>
+			{/if}
+			
+			</tr>
+            <tr>
+            
+            <td align="center">
+            <table><!--{foreach from=$goods_list item=goods}--><tr><td>
+            <font color="#FF0000">
+            {if $order.daishou==2}
+            {$goods.jifen}{$lang.jifen}
+            {else}
+            {$goods.price_m|price}
+            {/if}
+            </font></td></tr><!--{/foreach}--></table>
+            </td>
+            <td align="center"><font color="#FF0000">
+            {if $order.daishou==2}
+            {$order.dan}{$lang.jifen}
+            {else}
+            {$order.danprice|price}
+            {/if}
+            </font></td>
+            <td align="center"> <table><!--{foreach from=$goods_list item=goods}--><tr><td><font color="#FF0000">{$goods.quantity}</font></td></tr><!--{/foreach}--></table> </td>
+            <td align="center"><font color="#FF0000">{if !$order.gh_id}
+            {if $order.daishou==2}
+            {$order.fee}{$lang.jifen}
+            {else}
+            {$order.shipping_fee|price}
+            {/if}
+            {else}
+            0.0
+            {/if}</font></td>
+            <td align="center"><font color="#FF0000">
+            {if $order.daishou==2}
+            {$order.jifen}{$lang.jifen}
+            {else}
+             {$order.pricemm|price}
+            {/if}
+            </font></td><td align="center"><font color="#FF0000">
+            {if $order.daishou==2}
+            {$order.order_jifen}{$lang.jifen}
+            {else}
+            {$order.order_amount_m|price}
+            {/if}
+            </font></td>
+			{if $order.dazhe}<td align="center"><font color="#FF0000">{$order.dazhe}{$lang.jifen}(优惠{$order.zhe_jifen}折)</font></td>{/if}
+			
+			</tr>
+            
+            </table>
+       
+        <div class="clear"></div>
+    </div>
+    <div class="order_form">
+        <h1>{$lang.goods_info}</h1>
+        <!--{foreach from=$goods_list item=goods}-->
+        <div class="order_info">
+            <a href="{$site_url}/index.php?app=goods&amp;id={$goods.goods_id}" target="_blank" class="order_info_pic"><img width="50" height="50" alt="{$lang.goods_pic}" src="{$goods.goods_image}" /></a>
+            <div class="order_info_text"><a href="{$site_url}/index.php?app=goods&amp;id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}({$goods.goods_id})</a><br />{$goods.specification|escape}</div>
+            <p><b>{$lang.price} :</b> <span class="red_common">
+            {if $order.daishou==2}
+            {$goods.jifen}{$lang.jifen}
+            {else}
+            {$goods.price_m|price}
+            {/if}
+            </span></p>
+            <p><b>{$lang.shang_price} :</b> <span class="red_common">{$goods.price|price}({$order.er}{$lang.jifen})</span></p>
+      <div style="clear:both"></div>
+        </div>
+        <!--{/foreach}-->
+        <div class="clear"></div>
+    </div>
+</div>
+
+{include file="footer.html"}

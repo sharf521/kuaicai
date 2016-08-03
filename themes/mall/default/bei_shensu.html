@@ -1,0 +1,93 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+                	<li class="normal"><a href="index.php?app=buyer_order&act=my_tousu">我的投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=bei_tousu">被投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=my_shensu">我的申诉</a></li>
+				<li class="active"><span>被申诉</span></li>
+				
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                
+                   
+                </div>		
+			
+                <table class="table_head_line">
+                    <!--{if $btou}-->
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="7">
+                           
+                         
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th class="align1">申诉人</th>
+                        <th>被申诉人</th>
+                      
+                        <th>申诉时间</th>
+                        <th>申诉状态</th>
+                        <th>操作</th>
+                  
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$btou item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"><input type="checkbox" class="checkitem" value="{$val.id}"/></td>
+                        <td class="link1">&nbsp;{$val.complainant}</td>
+						<td align="center">&nbsp;{$val.respondent}</td>
+                    
+						<td align="center">{$val.time}</td>
+						<td align="center">
+						<!--{if $val.status1==0}-->等待审核<!--{/if}-->
+						<!--{if $val.status1==1}-->已审核<!--{/if}-->
+						</td>
+                        
+                     <td align="center">
+					<a href="index.php?app=buyer_order&act=shensu_xiangqing&shensu_id={$val.id}">详情</a>
+					
+                        <td>
+                      <!-- <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_money&act=user_log_del&id={$val.id}');" class="delete">{$lang.drop}</a>-->
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.mei_beishensu}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $btou}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"></th>
+                        <td colspan="5" class="page word_spacing5">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

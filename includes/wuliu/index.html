@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="gbk" />
+		<title>运费模板</title>
+		<link rel="stylesheet" href="http://a.tbcdn.cn/apps/delivery/v1/base-pkg-min.css" type="text/css" />
+				<link rel="stylesheet" href="http://a.tbcdn.cn/apps/delivery/v1/mod/setting-min.css?t=20130327124500.css" type="text/css" />
+		<script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20130327124500.js"></script>
+	</head>
+<body>
+
+	<div id="page">
+	<div id="content">
+	<div id="postage-tpl">
+	<div class="setting">
+				<h2> 新增运费模板 </h2>
+			<form method="post" id="J_TPLForm">
+    		<input name='_tb_token_' type='hidden' value='f5ee9e3687ae7'>
+    		
+    		<input type="hidden" name="action" value="user/template_setting_action" />
+    		<input type="hidden" name="event_submit_do_create_template" value="1"/>
+    		<input type="hidden" name="isUpdate" value="" />
+			<input id="J_Cube" type="hidden" value="m&#179" />
+    		    		<input type="hidden" name="templateId" value="0" />
+    		<input type="hidden" name="templateName" value="" />
+    		<input type="hidden" name="auctionids" value="" />
+			<input type="hidden" name="forceSellerPay" value="false" />
+			<input type="hidden" name="unique" value="" />
+			<input type="hidden" name="type" value="" />
+    		<input type="hidden" name="fromType" value="" />
+    		<input type="hidden" name="selectedPostageid" value="" />
+    		<input type="hidden" name="postageid" value="" />
+    		<input type="hidden" name="auctionid" value="" />
+    		<input type="hidden" name="categoryid" value="" />
+			<input type="hidden" name="isSupportWandV" value="true" />
+    		<ul>
+			<!--  模板名称设置  -->
+			
+			<!--  卖家地址设置  -->
+			
+						<!--  是否包邮设置  -->
+			<li class="form-elem">
+				<span class="label-like">是否包邮：</span>
+				<span>
+					    					<input type="radio" name="bearFreight"  checked   value="0" id="J_buyerBearFre"/>
+    					<label for="J_buyerBearFre">买家承担运费</label>
+    					<input type="radio" name="bearFreight"  value="2" id="J_sellerBearFre"/>
+    					<label for="J_sellerBearFre">卖家承担运费</label>
+					    			</span>
+			</li>
+			<!--  记价方式设置  -->
+														<li class="form-elem calc-method">
+					<span class="label-like">计价方式：</span>
+					<span>
+						<input type="radio" name="valuation"  checked  value="0"  class="J_CalcRule" data-type="number" id="J_CalcRuleNumber" />
+						<label for="J_CalcRuleNumber">&nbsp;按件数</label>
+					</span>
+					    					<span>
+    						<input type="radio" name="valuation"  value="1" class="J_CalcRule" data-type="weight" id ="J_CalcRuleWeight"/>
+    						<label for="J_CalcRuleWeight">&nbsp;按重量</label>
+    					</span>
+    					<span>
+    						<input type="radio" name="valuation"  value="3"  class="J_CalcRule" data-type="volume" id="J_CalcRuleVolume" />
+    						<label for="J_CalcRuleVolume">&nbsp;按体积</label>
+    					</span>
+									</li>
+									<!--  区域限售  -->
+						
+			
+			<!-- 运费方式设置  -->
+			<li class="form-elem express">
+			<span class="label-like">运送方式：</span>
+			<p>
+				<span class="field-note">除指定地区外，其余地区的运费采用"默认运费"</span>
+			</p>
+																																										<div class="section J_Section">
+								<p>
+									<input type="checkbox" name="tplType"  value="-4"
+									id="J_DeliveryEXPRESS" class="J_Delivery"/>
+									<label for="J_DeliveryEXPRESS">快递</label>
+								</p>
+								<div class="postage-detail hidden J_PostageDetail" data-delivery="express"></div>
+							</div>
+																																																																																									<div class="section J_Section">
+								<p>
+									<input type="checkbox" name="tplType"  value="-7"
+									id="J_DeliveryEMS" class="J_Delivery"/>
+									<label for="J_DeliveryEMS">EMS</label>
+								</p>
+								<div class="postage-detail hidden J_PostageDetail" data-delivery="ems"></div>
+							</div>
+																							<div class="section J_Section">
+								<p>
+									<input type="checkbox" name="tplType"  value="-1"
+									id="J_DeliveryPOST" class="J_Delivery"/>
+									<label for="J_DeliveryPOST">平邮</label>
+								</p>
+								<div class="postage-detail hidden J_PostageDetail" data-delivery="post"></div>
+							</div>
+																											</li>
+			</ul>
+			<p class="btns">
+				<button type="submit">
+					保存并返回
+				</button>
+				<button type="button" onclick= "window.location='http://delivery.taobao.com/user/template_list.htm?fromType=&amp;auctionids=&amp;auctionid=&amp;selectedPostageid=&amp;postageid='">
+					取消
+				</button>
+			</p>
+			<input type="hidden" name="deliveryJson" id="J_TPLPostData" value=''/>
+			<input type="hidden" name="deliveryAddress" id="J_address" value=''/>
+			<input type="hidden" name="deliveryPrescription" id="J_deliveryPrescription" value=''/>
+			<input type="hidden" name="hasConsignDate" value='false'/>
+		</form>
+	</div>
+	</div>
+	</div>
+	</div>
+<script id="J_AreaTemplate" type="text/template">
+	<ul id="J_CityList">
+	{{#group}}
+	<li {{#even}}class="even"{{/even}}>
+	<div class=" dcity clearfix">
+
+	<div class="ecity gcity">
+		<span class="group-label"><input type="checkbox" value="{{codes}}" class="J_Group" id="J_Group_{{gid}}"/>
+			<label for="J_Group_{{gid}}">{{title}}</label></span>
+	</div>
+	<div class="province-list">
+	{{#areas}}
+	<div class="ecity">
+	<span class="gareas"><input type="checkbox" value="{{code}}" id="J_Province_{{code}}" class="J_Province"/>
+		<label for="J_Province_{{code}}">{{title}}</label><span class = "check_num"></span><img class="trigger" src="http://img01.taobaocdn.com/tps/i1/T1XZCWXd8iXXXXXXXX-8-8.gif" ></span>
+	<div class="citys">
+	{{#citys}}
+	<span class="areas"><input type="checkbox" value="{{code}}" id="J_City_{{code}}" class="J_City"/>
+		<label for="J_City_{{code}}">{{title}}</label></span>
+	{{/citys}}<p style="text-align:right;"><input type="button" value="关闭"  class="close_button"></p>
+	</div>
+	</div>
+	{{/areas}}
+	</div>
+	</div>
+	</li>
+	{{/group}}
+	</ul>
+</script>
+<script id="J_RuleTemplate" type="text/template">
+	<div class="entity">
+	<div class="default J_DefaultSet">
+	默认运费：<input type="text" name="{{delivery}}_start" value="{{start}}" data-field="start" class="input-text {{#starterror}}input-error {{/starterror}}" autocomplete="off" maxlength="6" aria-label="默认运费{{typeName}}数" /> {{typeName}}内，
+	<input type="text" class="j_sellerBearFrePrice" value="0.00" disabled="disabled"/><input type="text" data-field="postage" name="{{delivery}}_postage" value="{{postage}}" class="input-text {{#postageerror}}input-error {{/postageerror}}" autocomplete="off" maxlength="6" aria-label="默认运费价格" /> 元，
+	每增加 <input type="text" name="{{delivery}}_plus" data-field="plus" value="{{plus}}" class="input-text {{#pluserror}}input-error {{/pluserror}}" autocomplete="off" maxlength="6" aria-label="每加{{typeName}}" /> {{typeName}}，
+	增加运费 <input type="text" class="j_sellerBearFrePrice" value="0.00" disabled="disabled"/><input type="text" name="{{delivery}}_postageplus" data-field="postageplus" value="{{postageplus}}" class="input-text {{#postagepluserror}}input-error {{/postagepluserror}}" autocomplete="off" maxlength="6" aria-label="加{{typeName}}运费" />元
+	<div class="J_DefaultMessage">{{#message}}<span class="msg J_Message"><span class="error">{{.}}</span></span>{{/message}}</div>
+	</div>
+	{{#withSpecial}}
+	<div class="tbl-except">
+	<table border="0" cellpadding="0" cellspacing="0">
+	<colgroup>
+	<col class="col-area" />
+	<col class="col-start" />
+	<col class="col-postage" />
+	<col class="col-plus" />
+	<col class="col-postageplus" />
+	<col class="col-action" />
+	</colgroup>
+	<thead>
+	<tr>
+	<th>运送到</th>
+	<th>首{{typeNameExtra}}({{typeName}})</th>
+	<th>首费(元)</th>
+	<th>续{{typeNameExtra}}({{typeName}})</th>
+	<th>续费(元)</th>
+	<th>操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#special}}
+	<tr data-group="{{gid}}">
+	<td class="cell-area">
+	<a href="#" class="acc_popup edit J_EditArea" data-acc="event:enter" area-controls="J_DialogArea" area-haspopup="true" title="编辑运送区域">编辑</a>
+	<div class="area-group">
+	{{#isBatch}}<input type="checkbox" name="{{delivery}}_{{gid}}" value="" class="J_BatchField" {{#checked}}checked="checked"{{/checked}}/>{{/isBatch}}
+
+	{{#group}}
+	<p>{{str}}</p>
+	{{/group}}
+
+	</div>
+	<input type="hidden" name="{{delivery}}_areas_{{gid}}" value="{{areas}}">
+	</td>
+	<td><input type="text" name="{{delivery}}_start_{{gid}}" data-field="start" value="{{start}}" class="input-text {{#starterror}}input-error {{/starterror}}" autocomplete="off" maxlength="6" aria-label="首{{typeName}}" /></td>
+	<td><input type="text" class="j_sellerBearFrePrice" value="0.00" disabled="disabled"/><input type="text" name="{{delivery}}_postage_{{gid}}"  data-field="postage" value="{{postage}}" class="input-text {{#postageerror}}input-error {{/postageerror}}" autocomplete="off" maxlength="6" aria-label="首费" /></td>
+	<td><input type="text" name="{{delivery}}_plus_{{gid}}" data-field="plus" value="{{plus}}" class="input-text {{#pluserror}}input-error {{/pluserror}}" autocomplete="off" maxlength="6" aria-label="续{{typeName}}"/></td>
+	<td><input type="text" class="j_sellerBearFrePrice" value="0.00" disabled="disabled"/><input type="text" name="{{delivery}}_postageplus_{{gid}}" data-field="postageplus" value="{{postageplus}}" class="input-text {{#postagepluserror}}input-error {{/postagepluserror}}" autocomplete="off" maxlength="6" aria-label="续费" /></td>
+	<td><a href="#" class="J_DeleteRule">删除</a></td>
+	</tr>
+	{{/special}}
+	</tbody>
+	</table>
+	</div>
+	{{#isBatch}}
+	<div class="batch">
+	<input type="checkbox" name="" value="" class="J_BatchCheck" aria-label="全选" /> <label>全选</label>
+	<a href="#" class="J_BatchSet">批量设置</a>
+	<a href="#" class="J_BatchDel">批量删除</a>
+	</div>
+	{{/isBatch}}
+	{{/withSpecial}}
+	<div class="tbl-attach">
+	<div class="J_SpecialMessage">{{#specialmessage}}<span class="msg J_Message"><span class="error">{{.}}</span></span>{{/specialmessage}}</div>
+	<a href="#" class="J_AddRule">为指定地区城市设置运费</a>
+	{{#withSpecial}}
+	{{#isBatch}}
+	<a href="#" class="J_ToggleBatch">取消批量</a>
+	{{/isBatch}}
+	{{^isBatch}}
+	<a href="#" class="J_ToggleBatch">批量操作</a>
+	{{/isBatch}}
+	{{/withSpecial}}
+	</div>
+	</div>
+</script>
+<script>
+	var presetData = {"list":{},"type":"number"};
+	var areaGroup = {
+		"group" : [{
+			"title" : "华东",
+			"codes" : ["310000", "320000", "330000", "340000", "360000"]
+		}, {
+			"title" : "华北",
+			"codes" : ["110000", "120000", "140000", "370000", "130000", "150000"]
+		}, {
+			"title" : "华中",
+			"codes" : ["430000", "420000", "410000"]
+		}, {
+			"title" : "华南",
+			"codes" : ["440000", "450000", "350000", "460000"]
+		}, {
+			"title" : "东北",
+			"codes" : ["210000", "220000", "230000"]
+		}, {
+			"title" : "西北",
+			"codes" : ["610000", "650000", "620000", "640000", "630000"]
+		}, {
+			"title" : "西南",
+			"codes" : ["500000", "530000", "520000", "540000", "510000"]
+		}, {
+			"title" : "港澳台",
+			"codes" : ["810000", "820000", "710000"]
+		}, {
+			"title" : "海外",
+			"codes" : ["990000"]
+		}]
+	};
+
+</script>
+<script src="http://a.tbcdn.cn/apps/delivery/v1/lib-pkg-min.js"></script>
+<script src="http://a.tbcdn.cn/apps/delivery/areagrid/areagrid-min.js" id="J_AreaGrid" data-url="http://delivery.taobao.com/user/all_area_msg.do?callback=AreaGrid.load&version={version}"></script>
+<script src="http://a.tbcdn.cn/apps/delivery/v1/mod/setting-min.js?t=201212271202.js"></script>
+<script src="http://a.tbcdn.cn//apps/delivery/v1/mod/regionSelect.js"></script>
+
+<script>
+var S = KISSY,DOM = S.DOM,EV = S.Event;
+var address = DOM.get("#J_address"),
+addressValue = address.value;
+var prescription = DOM.get("#J_deliveryPrescription"),
+prescriptionValue = prescription.value;
+if(prescriptionValue){
+	S.each(DOM.query("#J_prescription option"),function(item){
+		item.selected = item.value === prescriptionValue;
+	});
+}
+if (addressValue) {
+	addValue = addressValue.split(",");
+    (new S.RegionSelect({container: "#J_AddressChoose"})).setAddress([addValue[0], addValue[1], addValue[2]]);
+ } else {
+    new S.RegionSelect({container: "#J_AddressChoose"});
+}
+	(function() {
+		var getRootDomain = function() {
+			var host = arguments[1] || location.hostname, da = host.split('.'), len = da.length, deep = arguments[0] || (len < 3 ? 0 : 1);
+			if(deep >= len || len - deep < 2) {
+				deep = len - 2;
+			}
+
+			return da.slice(deep).join('.');
+		};
+		document.domain = getRootDomain(2);
+	})();
+
+</script>
+</body>
+</html>

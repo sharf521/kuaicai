@@ -1,0 +1,130 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>广告管理</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=adv&amp;act=add">{$lang.add}</a></li>
+		{if $priv_row.privs=="all"}
+		<li><a class="btn1" href="index.php?app=adv&amp;act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=adv&amp;act=adv_type">类型管理</a></li>
+		{/if}
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+   <form method="get">
+      <div class="left">
+          <input type="hidden" name="app" value="adv" />
+          <input type="hidden" name="act" value="index" />
+          {$lang.type}:
+         <select class="querySelect" name="leixing">
+            	<option value="">{$lang.select_pls}</option>
+            	{foreach from=$adv_row item=val}
+            	<option value="{$val.id}">{$val.type}</option>
+            	{/foreach}
+          		</select>
+          {$lang.tianjia}:
+          <input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>" size="10" maxlength="10" />
+              &nbsp;{$lang.so_zhi}&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>" size="10" maxlength="10" />
+          {if $priv_row.privs=="all"}
+          		{$lang.zhan}:
+          		<select class="querySelect" name="suoshuzhan">
+            	<option value="">{$lang.select_pls}</option>
+            	{foreach from=$result item=val}
+            	<option value="{$val.city_id}">{$val.city_name}</option>
+            	{/foreach}
+          		</select>
+          {/if}
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=adv">{$lang.cancel_query}</a>
+     <!--{/if}-->
+    </form> 
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $adv}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>广告名称</td>
+      <td>广告类型</td>
+      <td>广告内容</td>
+	  <td>广告图片</td>
+	  <td>广告位单价</td>
+	  <td>开始时间</td>
+	  <td>结束时间</td>
+	  <td>所属站</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+	
+    <!--{foreach from=$adv item=val}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$val.adv_id}" /></td>
+      <td>&nbsp;{$val.title|escape}</td>
+      <td>&nbsp;
+	  <!--{if $val.type==1}-->{$lang.adv1}<!--{/if}-->
+	  <!--{if $val.type==2}-->{$lang.adv2}<!--{/if}-->
+	  <!--{if $val.type==3}-->{$lang.adv3}<!--{/if}-->
+	  <!--{if $val.type==4}-->{$lang.adv4}<!--{/if}-->
+	  <!--{if $val.type==5}-->{$lang.adv5}<!--{/if}-->
+	  <!--{if $val.type==6}-->{$lang.adv6}<!--{/if}-->
+	  <!--{if $val.type==7}-->{$lang.adv7}<!--{/if}-->
+	  <!--{if $val.type==8}-->{$lang.adv8}<!--{/if}-->
+	  <!--{if $val.type==9}-->{$lang.adv9}<!--{/if}-->
+	  <!--{if $val.type==10}-->{$lang.adv10}<!--{/if}-->
+	  <!--{if $val.type==11}-->{$lang.adv11}<!--{/if}-->
+	  <!--{if $val.type==12}-->{$lang.adv12}<!--{/if}-->
+	  <!--{if $val.type==13}-->{$lang.adv13}<!--{/if}-->
+	  </td>
+      <td>&nbsp;{$val.content}</td>
+      <td>&nbsp;{if $val.image}<img src="{$site_url}/{$val.image}" height="30"/>{/if}</td>
+	  <td>&nbsp;{$val.price}</td>
+	  <td>&nbsp;{$val.start_time}</td>
+	  <td>&nbsp;{$val.end_time}</td>
+	  <td>&nbsp;
+	 {$val.city_name}
+	 </td>
+      <td class="handler">
+      <span style="width: 100px">
+	  <center>
+      <a href="index.php?app=adv&amp;act=edit&amp;id={$val.adv_id}&page={$page_info.curr_page}">{$lang.edit}</a>||
+	    <a href="index.php?app=adv&amp;act=drop&amp;id={$val.adv_id}" onclick="confirm('{$lang.drop_confirm}')">
+	  {$lang.drop}
+	 </a>
+      </center>  
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+	
+	
+	
+  </table>
+  
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+	<!--{if $users}-->
+    <input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" uri="index.php?app=coupon&amp;act=youhui_drop&amp;id={$user.coupon_id}" presubmit="confirm('{$lang.drop_confirm}');" />
+	   <!--{/if}-->
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+ 
+</div>
+{include file="footer.html"}

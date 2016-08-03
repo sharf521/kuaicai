@@ -1,0 +1,160 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>借款管理</p>{$build_editor}
+    <ul class="subnav">
+       <li><a class="btn3" href="index.php?app=invite&act=jiekuan">管理</a></li>
+       <li><a a class="btn3" href="index.php?app=invite&act=jk_weishenhe">待审核</a></li>
+	  <!--  <li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+        <tr><th colspan="2"><font color="#990000">该用户为
+        {if $count==1}初次
+        {else}
+        {$count}次
+        {/if}
+        借款</font>
+       </th>
+        </tr>
+            <tr>
+                <th class="paddingT15">
+                    用户名:</th>  
+                <td class="paddingT15 wordSpacing5">
+                   {$jie.user_name}
+                    <input class="infoTableInput2" type="hidden" name="id" value="{$jie.id}"/>
+                    <input class="infoTableInput2" type="hidden" name="user_id" value="{$jie.user_id}"/>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    真实姓名:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    {$jie.name}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    家庭住址:</th>  
+                <td class="paddingT15 wordSpacing5">
+                 {$jie.address}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    工作单位:</th>  
+                <td class="paddingT15 wordSpacing5">
+                {$jie.danwei}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    联系方式（个人）:</th>  
+                <td class="paddingT15 wordSpacing5">
+                 {$jie.lxfs1}&nbsp;&nbsp;&nbsp;&nbsp; {$jie.lxfs2}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    身份证:</th>  
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$jie.image_1}" target="_blank"><img src="/{$jie.image_1}" width="200"/></a>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                </th>  
+                <td class="paddingT15 wordSpacing5">
+                <a href="/{$jie.image_2}" target="_blank"><img src="/{$jie.image_2}" width="200"/></a>
+                </td>
+            </tr>
+             <tr style="display:none">
+                <th class="paddingT15">
+                    开户银行:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="bank" type="text" name="bank" value="{$jie.bank}" />
+                </td>
+            </tr>
+             <tr style="display:none">
+                <th class="paddingT15">
+                    银行账号:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="bank_hao" type="text" name="bank_hao" value="{$jie.bank_hao}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    可借额度:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    0-{$jk}&nbsp;{$lang.yuan}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    借款金额:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    {$jie.money_j}&nbsp;{$lang.yuan}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    月利率:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    {$jie.rate}%&nbsp;
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    借款期限:</th>  
+                <td class="paddingT15 wordSpacing5">
+                {if $jie.isday==0}
+                {$jie.time}&nbsp;{$lang.yue}
+                {else}
+                {$jie.time}&nbsp;{$lang.tian}
+                {/if}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    利息:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    {$jie.lixi}&nbsp;{$lang.yuan}
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    申请时间:</th>  
+                <td class="paddingT15 wordSpacing5">
+                   {$jie.createdate}
+                </td>
+            </tr>
+             
+             <tr>
+                <th class="paddingT15">
+                    借款用途:</th>  
+                <td class="paddingT15 wordSpacing5">
+                    {$jie.beizhu}
+                                    </td>
+            </tr>  
+		 <tr>
+                <th class="paddingT15">
+                    <font color="#990000">是否审核:</font></th>  
+                <td class="paddingT15 wordSpacing5">
+                    <input id="status" type="radio"name="status" value="2" checked="checked"/><font color="#990000">审核通过</font>
+                    <input id="status" type="radio"name="status" value="3"/><font color="#990000">审核不通过</font>
+                </td>
+            </tr>
+           
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

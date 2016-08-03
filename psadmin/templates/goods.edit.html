@@ -1,0 +1,48 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p></p>
+  <ul class="subnav">
+  <li><a class="btn1" href="index.php?app=goods">{$lang.all_goods}</a></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post">
+    <table class="infoTable">
+   
+      <tr>
+        <th class="paddingT15">{$lang.goods_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$goods_list.goods_name}
+        </td>
+		</tr>
+		<tr>
+		  <th class="paddingT15">{$lang.store_name}:</th>
+		 <td class="paddingT15 wordSpacing5">
+		{$goods_list.store_name}
+		</td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">{$lang.xianshierweima}:</th>
+        <td class="paddingT15 wordSpacing5">
+		{if $goods_list.erweima==0}
+    <input name="erweima" type="radio" value="0" checked="checked"/>·ñ
+	<input name="erweima" type="radio" value="1" />ÊÇ
+	{else}
+	 <input name="erweima" type="radio" value="0"/>·ñ
+	<input name="erweima" type="radio" value="1" checked="checked"/>ÊÇ
+	{/if}
+          </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td class="ptb20">
+          <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"} 

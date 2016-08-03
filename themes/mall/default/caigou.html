@@ -1,0 +1,144 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<script language="javascript">
+function caigou()
+{
+   if (document.goumai.num.value =="")
+  {
+    alert("采购数量不能为空!");
+	document.goumai.num.focus();
+	return false;
+	}
+	 if (document.goumai.zhifufangshi.value =="")
+  {
+    alert("请选择支付方式");
+	document.goumai.zhifufangshi.focus();
+	return false;
+	}
+	
+	document.getElementById("FormSubmit").setAttribute('disabled','ture');
+
+	
+    return true;
+}
+
+</script>
+<div class="content">
+    
+    <div class="left">
+
+         <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="65" height="100" /></a></div>
+                           
+                        </li>
+                        <!-- {/foreach} -->  
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近采购的货物</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$last_caigou item=caigou key=key} -->
+                        <li>
+                           <div class="pic"><img src="{$caigou.chanpin}" width="50" height="50"/></div>
+                            <dl>
+                                <dd>{$caigou.goods_name|escape}</dd>
+                                <dd class="distance">{$caigou.goods_brand}</dd>
+                                <dd class="time">{$caigou.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                                     
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="group_shop">
+		
+		<br /><br />
+           <form name="goumai" action="index.php?app=my_store&amp;act=caigou" method="post" onSubmit="return caigou();" style="padding-left:100px">
+			
+			 <p>　商品名称：
+             {$huo.goods_name}
+			   <input name="goods_name" type="hidden" id="goods_name" size="15" value="{$huo.goods_name}" readonly="true"/>
+			   <input name="gh_id" type="hidden" id="gh_id" size="15" value="{$huo.gh_id}"/>
+			   <input name="gong_id" type="hidden" id="gong_id" size="15" value="{$huo.user_id}"/>
+			   <input name="gong_name" type="hidden" id="gong_name" size="15" value="{$huo.user_name}"/>
+			   <input name="chanpin" type="hidden" id="chanpin" size="15" value="{$huo.chanpin}"/>
+			   <br />
+			  <br />
+			</p>
+			 <p>
+			　　　库存：{$huo.yu_kucun}
+			  <input name="kucun" type="hidden" id="kucun" size="15" value="{$huo.yu_kucun}"/></p>
+			  <br />
+			{if $kaiguan=="yes"} <p> 零售价：&nbsp;&nbsp;
+			  <input name="lingshou_price" type="text" id="lingshou_price" size="15" value="{$huo.lingshou_price}" readonly="true"/>
+			  <br />
+			 </p> {/if}
+			<p>零售积分价：&nbsp;&nbsp;
+            {$huo.jifen_price}
+			<input name="jifen_price" type="hidden" id="jifen_price" size="15" value="{$huo.jifen_price}"/>
+			 <input name="lingshou_price" type="hidden" id="lingshou_price" size="15" value="{$huo.lingshou_price}"/>
+			<br />
+			<br /></p>
+           <p>　采购数量：
+            <input name="num" type="text" id="num" size="15" />
+            <br />
+            <br /></p>
+          <p>　支付方式：&nbsp;&nbsp;
+            <input name="zhifufangshi" type="radio" id="zhifufangshi" size="15" value="jifenzhifu" checked="checked"/>
+            积分支付&nbsp;&nbsp;
+			{if $kaiguan.xjzf=="yes"}
+            <input name="zhifufangshi" type="radio" id="zhifufangshi" size="15" value="xianjinzhifu"/>
+            现金支付
+			{/if}
+			<br />
+			<br />
+			</p>
+			 　　<input type="submit" class="money_btn" value="确认采购" id="FormSubmit" />
+		        </p>
+           </form>
+		 
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+
+</div>
+{include file=footer.html}

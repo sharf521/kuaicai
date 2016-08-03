@@ -1,0 +1,27 @@
+BODY {
+	COLOR: #5f5f5f; FONT-SIZE: 12px
+}
+A {
+	COLOR: #5f5f5f; FONT-SIZE: 12px
+}
+.ku {
+	BORDER-BOTTOM: #c3c3c3 1px solid; BORDER-LEFT: #c3c3c3 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BORDER-TOP: #c3c3c3 1px solid; BORDER-RIGHT: #c3c3c3 1px solid; PADDING-TOP: 3px
+}
+.kuq {
+	BORDER-BOTTOM: #cccaca 1px solid; BORDER-LEFT: #cccaca 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FONT-SIZE: 12px; BORDER-TOP: #cccaca 1px solid; BORDER-RIGHT: #cccaca 1px solid; PADDING-TOP: 3px
+}
+.kuqq {
+	BORDER-BOTTOM: #d3d0d0 1px solid; BORDER-LEFT: #d3d0d0 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FONT-SIZE: 12px; BORDER-TOP: #d3d0d0 1px solid; BORDER-RIGHT: #d3d0d0 1px solid; PADDING-TOP: 3px
+}
+.lanse {
+	COLOR: #0066cc; FONT-SIZE: 14px
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}

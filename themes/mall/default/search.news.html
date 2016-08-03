@@ -1,0 +1,240 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<div class="content">
+<style type="text/css">
+.ku {
+	BORDER-BOTTOM: #c3c3c3 1px solid; BORDER-LEFT: #c3c3c3 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BORDER-TOP: #c3c3c3 1px solid; BORDER-RIGHT: #c3c3c3 1px solid; PADDING-TOP: 3px
+}
+.kuq {
+	BORDER-BOTTOM: #cccaca 1px solid; BORDER-LEFT: #cccaca 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FONT-SIZE: 12px; BORDER-TOP: #cccaca 1px solid; BORDER-RIGHT: #cccaca 1px solid; PADDING-TOP: 3px
+}
+.kuqq {
+	BORDER-BOTTOM: #d3d0d0 1px solid; BORDER-LEFT: #d3d0d0 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FONT-SIZE: 12px; BORDER-TOP: #d3d0d0 1px solid; BORDER-RIGHT: #d3d0d0 1px solid; PADDING-TOP: 3px
+}
+.lanse {
+	COLOR: #0066cc; FONT-SIZE: 14px
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+</style>
+
+<TABLE border=0 cellSpacing=0 cellPadding=0 width=1000 align=center>
+  <TBODY>
+  <TR>
+    <TD width=316>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width=300>
+        <TBODY>
+        <TR>
+          <TD 
+          style="BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid" 
+          height=210 align=middle>
+            <SCRIPT language=Javascript> 
+			
+function borderit(which,color){
+//if IE 4+ or NS 6+
+if (document.all||document.getElementById){
+which.style.borderColor=color
+}
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+			
+ var bannerAD=new Array();   
+ var bannerADlink=new Array();   
+ var adNum=0;
+// bannerAD[0]="/images/001.jpg";   
+  {$bannerAD}
+  {$bannerADlink}
+ var preloadedimages=new Array();  
+ for (i=1;i<bannerAD.length;i++)
+ { preloadedimages[i]=new Image();  preloadedimages[i].src=bannerAD[i];}
+ function setTransition()
+ { if (document.all){bannerADrotator.filters.revealTrans.Transition=Math.floor(Math.random()*23);
+ bannerADrotator.filters.revealTrans.apply();}
+ }
+ function playTransition(){
+	 if (document.all) bannerADrotator.filters.revealTrans.play();}
+ function nextAd(){ if(adNum<bannerAD.length-1)adNum++ ; 
+ else adNum=0; setTransition();
+  document.images.bannerADrotator.src=bannerAD[adNum];
+   playTransition();
+   theTimer=setTimeout('nextAd()', 5000);}
+   function jump2url(){jumpUrl=bannerADlink[adNum];jumpTarget='_blank'; if (jumpUrl != ''){ if (jumpTarget != '')
+   window.open(jumpUrl,jumpTarget);  else location.href=jumpUrl; }}function displayStatusMsg(){ status=bannerADlink[adNum]; 
+   document.returnValue = true;}
+   
+   
+   </SCRIPT>
+            <IMG style="FILTER: revealTrans(duration=2,transition=20)" onclick="jump2url()" border=0 name=bannerADrotator align=center width=290 height=200>
+            <SCRIPT language=JavaScript>nextAd()</SCRIPT>
+             </TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top width=346>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width=330>
+        <TBODY>
+        <TR>
+          <TD style="PADDING-LEFT: 10px" height=30 
+          background=images/fd985.jpg>
+            <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%">
+              <TBODY>
+              <TR>
+                <TD vAlign=bottom>
+                  <TABLE border=0 cellSpacing=0 cellPadding=0 width=114 
+                  height=26>
+                    <TBODY>
+                    <TR>
+                      <TD background=images/fd2.gif  width=133>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN 
+                        style="FONT-SIZE: 13px; FONT-WEIGHT: bold">开店助手</SPAN></TD></TR></TBODY></TABLE></TD>
+                <TD align=right><A href="?app=article&cate_id=17"><IMG border=0  src="/images/btnDefault03.gif" width=37 height=13></A>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD 
+          style="BORDER-BOTTOM: #dcdddd 1px solid; BORDER-LEFT: #dcdddd 1px solid; BORDER-RIGHT: #dcdddd 1px solid;" 
+          class=be height=180>
+            <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%"  height=44><TBODY>
+              <!-- {foreach from=$news1 item=i} -->              
+              <TR>
+                <TD style="PADDING-LEFT: 8px" height=22 vAlign=center 
+                width="100%"><IMG src="/images/point.gif"> <A style=" text-decoration:none" href="?app=article&act=view&article_id={$i.article_id}" title="{$i.title}" target=_blank><FONT color=#666>{$i.title}</FONT></A> 
+                  </TD></TR>
+              <!--{/foreach}-->             
+
+
+            
+            
+            </TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+    <TD width=338>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width=330 align=right>
+        <TBODY>
+        <TR>
+          <TD style="PADDING-LEFT: 10px" height=30 
+          background=images/fd985.jpg>
+            <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%">
+              <TBODY>
+              <TR>
+                <TD vAlign=bottom>
+                  <TABLE border=0 cellSpacing=0 cellPadding=0 width=114 
+                  height=26>
+                    <TBODY>
+                    <TR>
+                      <TD background=images/fd2.gif 
+                        width=133>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN style="FONT-SIZE: 13px; FONT-WEIGHT: bold">新手上路</SPAN></TD></TR></TBODY></TABLE></TD>
+                <TD align=right><A 
+                  href="?app=article&cate_id=18"><IMG border=0  src="/images/btnDefault03.gif" width=37  height=13></A>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD 
+          style="BORDER-BOTTOM: #dcdddd 1px solid; BORDER-LEFT: #dcdddd 1px solid; BORDER-RIGHT: #dcdddd 1px solid" 
+          class=be height=180><TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" 
+              height=44>
+            <TBODY>
+              <!-- {foreach from=$news2 item=i} -->              
+              <TR>
+                <TD style="PADDING-LEFT: 8px" height=22 vAlign=center 
+                width="100%"><IMG src="/images/point.gif"> <A style=" text-decoration:none" href="?app=article&act=view&article_id={$i.article_id}" title="{$i.title}" target=_blank><FONT color=#666>{$i.title}</FONT></A> 
+                  </TD></TR>
+              <!--{/foreach}--> 
+              
+            </TBODY>
+          </TABLE></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD height=6 colSpan=3></TD></TR>
+  <TR>
+    <TD colSpan=3>{if $adv_list11}<IMG src="{$adv_list11}" 
+      width=1000 height=120>{else}<a href="#" target="_blank"><img src="/data/files/mall/template/hengfu_moren.gif" width="1000" height="120" /></a>{/if}</TR>
+  <TR>
+    <TD height=6 colSpan=3></TD></TR>
+  <TR>
+    <TD>
+      <TABLE 
+      style="BORDER-BOTTOM: #dddddd 1px solid; BORDER-LEFT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; BORDER-RIGHT: #dddddd 1px solid" 
+      border=0 cellSpacing=0 cellPadding=0 width=300>
+        <TBODY>
+        <TR>
+          <TD style="COLOR: #000; FONT-SIZE: 13px" height=24 
+          background=images/fds-6.jpg width=252>&nbsp;<IMG 
+            src="/images/ring01.jpg" width=9 
+            height=9>&nbsp;<STRONG>店主充电</STRONG></TD>
+          <TD background=images/fds-6.jpg width=46><A 
+            href="?app=article&cate_id=19"><IMG border=0 
+            src="/images/btnDefault03.gif" width=37 
+          height=13></A></TD></TR>
+        <TR>
+          <TD height=180 colSpan=2><TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" 
+              height=44>
+            <TBODY>
+              <!-- {foreach from=$news3 item=i} -->              
+              <TR>
+                <TD style="PADDING-LEFT: 8px" height=22 vAlign=center 
+                width="100%"><IMG src="/images/point.gif"> <A style=" text-decoration:none" href="?app=article&act=view&article_id={$i.article_id}" title="{$i.title}" target=_blank><FONT color=#666>{$i.title}</FONT></A> 
+                  </TD></TR>
+              <!--{/foreach}--> 
+            </TBODY>
+          </TABLE></TD></TR></TBODY></TABLE></TD>
+    <TD>
+      <TABLE 
+      style="BORDER-BOTTOM: #dddddd 1px solid; BORDER-LEFT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; BORDER-RIGHT: #dddddd 1px solid" 
+      border=0 cellSpacing=0 cellPadding=0 width=330>
+        <TBODY>
+        <TR>
+          <TD style="COLOR: #000; FONT-SIZE: 13px" height=24 
+          background=images/fds-6.jpg width=252>&nbsp;<IMG 
+            src="/images/ring01.jpg" width=9 
+            height=9>&nbsp;<STRONG>开店秘籍</STRONG></TD>
+          <TD background=images/fds-6.jpg width=46><A 
+            href="?app=article&cate_id=20"><IMG border=0 
+            src="/images/btnDefault03.gif" width=37 
+          height=13></A></TD></TR>
+        <TR>
+          <TD height=180 colSpan=2><TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" 
+              height=44>
+            <TBODY>
+              <!-- {foreach from=$news4 item=i} -->              
+              <TR>
+                <TD style="PADDING-LEFT: 8px" height=22 vAlign=center 
+                width="100%"><IMG src="/images/point.gif"> <A style=" text-decoration:none" href="?app=article&act=view&article_id={$i.article_id}" title="{$i.title}" target=_blank><FONT color=#666>{$i.title}</FONT></A> 
+                  </TD></TR>
+              <!--{/foreach}--> 
+            </TBODY>
+          </TABLE></TD></TR></TBODY></TABLE></TD>
+    <TD>
+      <TABLE 
+      style="BORDER-BOTTOM: #dddddd 1px solid; BORDER-LEFT: #dddddd 1px solid; BORDER-TOP: #dddddd 1px solid; BORDER-RIGHT: #dddddd 1px solid" 
+      border=0 cellSpacing=0 cellPadding=0 width=330 align=right>
+        <TBODY>
+        <TR>
+          <TD style="COLOR: #000; FONT-SIZE: 13px" height=24 
+          background=images/fds-6.jpg width=252>&nbsp;<IMG  src="/images/ring01.jpg" width=9   height=9>&nbsp;<STRONG>购物宝典</STRONG></TD>
+          <TD background=images/fds-6.jpg width=46><A 
+            href="?app=article&cate_id=21"><IMG border=0  src="/images/btnDefault03.gif" width=37  height=13></A></TD></TR>
+        <TR>
+          <TD height=180 colSpan=2><TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" 
+              height=44>
+            <TBODY>
+              <!-- {foreach from=$news5 item=i} -->              
+              <TR>
+                <TD style="PADDING-LEFT: 8px" height=22 vAlign=center 
+                width="100%"><IMG src="/images/point.gif"> <A style=" text-decoration:none" href="?app=article&act=view&article_id={$i.article_id}" title="{$i.title}" target=_blank><FONT color=#666>{$i.title}</FONT></A> 
+                  </TD></TR>
+              <!--{/foreach}--> 
+              
+            </TBODY>
+          </TABLE></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD height=8 colSpan=3></TD></TR>
+  <TR>
+    <TD colspan="3">{if $adv_list12}<IMG src="{$adv_list12}" 
+      width=1000 height=120>{else}<a href="#" target="_blank"><img src="/data/files/mall/template/hengfu_moren.gif" width="1000" height="120" /></a>{/if}</TD>
+    </TR></TBODY></TABLE>
+</div>
+{include file=footer.html}

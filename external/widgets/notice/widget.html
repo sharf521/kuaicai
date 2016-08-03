@@ -1,0 +1,13 @@
+<div class="module_common">
+    <h2><span style="float:right"><a href="index.php?app=article&cate_id=2" style="text-decoration:none; color:#999999">更多>></a></span><b class="news" title="NEWS公告栏"></b></h2>
+    <div class="wrap">
+        <div class="wrap_child">
+            <ul class="news_list">
+                <!--{foreach from=$widget_data.notices item=article}-->
+                <li><img src="/images/right_dot.jpg" /><a href="{url app=article&act=view&article_id=$article.article_id}" title="{$article.title|escape}">{$article.title|escape}</a>{if $article.diyi==1}<img src="/images/new.gif"/>{/if}</li>
+                <!--{/foreach}-->
+            </ul>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,785 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>快递表格</title>
+<link href="wuliu.css" rel="stylesheet" />
+<script type="text/javascript" src="/includes/libraries/javascript/jquery.js" charset="utf-8"></script>
+<script language="javascript" src="wuliu.js" charset="UTF-8"></script>
+</head>
+
+<body>
+<form method="post">
+<input type="hidden" name="act" value="add"/><p class="pxcss">
+物流公司：<input type="text" name="shipping_name" class="wuliucss" value=""><br />
+</p>
+<p class="pxcss">
+计价方式：
+<label><input type="radio" name="typeid" checked="checked" value="1" />按件数</label>
+<label><input type="radio" name="typeid" value="2" />按重量</label>
+<label><input type="radio" name="typeid" value="3" />按体积</label><br />
+ </p>
+ <p class="pxcss"> 
+运送方式：除指定地区外，其余地区的运费采用"默认运费"<br /></p>
+<div class="tablebox">
+  <div class="entity">
+			<div class="default">
+				 默认运费：
+				<input class="inputtext " type="text" maxlength="6" value="1" name="one[]" onKeyUp="value=value.replace(/[^0-9]/g,'')"><span name='unit'>件</span>内，
+				<input class="inputtext " type="text" maxlength="6" value="10"  name="price[]" onKeyUp="value=value.replace(/[^0-9.]/g,'')">元，每增加
+				<input class="inputtext " type="text" maxlength="6"  value="1"  name="next[]" onKeyUp="value=value.replace(/[^0-9]/g,'')"><span name='unit'>件</span>，增加运费
+				<input class="inputtext " type="text" maxlength="6"  value="5" name="nprice[]" onKeyUp="value=value.replace(/[^0-9.]/g,'')">元
+			</div>
+			
+			<div class="yfbox">
+				<table width="720" id="yltable" style="display:none">
+                			
+						<tr style="background:#f5f5f5">
+							<td width="300">运送到</td><td>首<span name='unitname'>件</span>(<span name='unit'>件</span>)</td><td>首费(元)</td><td>续<span name='unitname'>件</span>(<span name='unit'>件</span>)</td><td>续费(元)</td><td>操作</td>
+						</tr>
+                        			
+						<tr id="tr1">
+							<td width="300">					
+                           <a href="javascript:showArea(1)">编辑</a>
+                            <p>未添加地区</p>	
+                            <input type="hidden" name="v_txt_tr1" id="v_txt_tr1" value="未添加地区"/>
+                            <input type="hidden" name="v_val_tr1" id="v_val_tr1" value=""/>
+                            </td>
+							<td><input class="textcss " type="text" maxlength="6" value="1" onKeyUp="value=value.replace(/[^0-9]/g,'')"  name="one[]"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="10" onKeyUp="value=value.replace(/[^0-9.]/g,'')"  name="price[]"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="1" onKeyUp="value=value.replace(/[^0-9]/g,'')" name="next[]"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="5" onKeyUp="value=value.replace(/[^0-9.]/g,'')" name="nprice[]"></td>
+							<td><input type="button" value="删除" onClick="deleteRow(this)"></td>
+						</tr>					
+									
+				</table>
+			</div>
+			<div class="zdbox"><a href="javascript:addRow()">为指定地区城市设置运费</a></div>
+		</div>
+        <div class="clear"></div>        
+	</div>
+    <div class="bbtncss"><input type="submit" value="保存" />&nbsp; <input type="button" value="取消" onClick="window.parent.c_close();"/></div>
+	</form>
+    
+    
+    
+
+	<div class="aqbox" id="divArea">
+		<div class="aqalbox">
+			<div class="topdq"><div class="title">选择地区</div><a href="javascript:hideArea()">x</a></div>
+		
+				<ul  class="plabox">
+						<input type="hidden" value="1" id="tr_num" />
+						                        <li class="choosbox ">
+							<div class="ffbox"><label><input type="checkbox" title="华东" value="华东" name='area' onClick="chxclick(this)"/><b>华东</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="上海市" name='province' onClick="chxclick(this)" value="41"/>上海市</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="浦东新区" value="42"  onclick="chxclick(this)"/>浦东新区</label>
+                                                                        <label><input type="checkbox" title="徐汇区" value="43"  onclick="chxclick(this)"/>徐汇区</label>
+                                                                        <label><input type="checkbox" title="长宁区" value="44"  onclick="chxclick(this)"/>长宁区</label>
+                                                                        <label><input type="checkbox" title="普陀区" value="45"  onclick="chxclick(this)"/>普陀区</label>
+                                                                        <label><input type="checkbox" title="闸北区" value="46"  onclick="chxclick(this)"/>闸北区</label>
+                                                                        <label><input type="checkbox" title="虹口区" value="47"  onclick="chxclick(this)"/>虹口区</label>
+                                                                        <label><input type="checkbox" title="杨浦区" value="48"  onclick="chxclick(this)"/>杨浦区</label>
+                                                                        <label><input type="checkbox" title="黄浦区" value="49"  onclick="chxclick(this)"/>黄浦区</label>
+                                                                        <label><input type="checkbox" title="卢湾区" value="50"  onclick="chxclick(this)"/>卢湾区</label>
+                                                                        <label><input type="checkbox" title="静安区" value="51"  onclick="chxclick(this)"/>静安区</label>
+                                                                        <label><input type="checkbox" title="宝山区" value="52"  onclick="chxclick(this)"/>宝山区</label>
+                                                                        <label><input type="checkbox" title="闵行区" value="53"  onclick="chxclick(this)"/>闵行区</label>
+                                                                        <label><input type="checkbox" title="嘉定区" value="54"  onclick="chxclick(this)"/>嘉定区</label>
+                                                                        <label><input type="checkbox" title="金山区" value="55"  onclick="chxclick(this)"/>金山区</label>
+                                                                        <label><input type="checkbox" title="松江区" value="56"  onclick="chxclick(this)"/>松江区</label>
+                                                                        <label><input type="checkbox" title="青浦区" value="57"  onclick="chxclick(this)"/>青浦区</label>
+                                                                        <label><input type="checkbox" title="崇明县" value="58"  onclick="chxclick(this)"/>崇明县</label>
+                                                                        <label><input type="checkbox" title="奉贤区" value="59"  onclick="chxclick(this)"/>奉贤区</label>
+                                                                        <label><input type="checkbox" title="南汇区" value="60"  onclick="chxclick(this)"/>南汇区</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="江苏省" name='province' onClick="chxclick(this)" value="180"/>江苏省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="南京" value="181"  onclick="chxclick(this)"/>南京</label>
+                                                                        <label><input type="checkbox" title="苏州" value="182"  onclick="chxclick(this)"/>苏州</label>
+                                                                        <label><input type="checkbox" title="无锡" value="183"  onclick="chxclick(this)"/>无锡</label>
+                                                                        <label><input type="checkbox" title="常州" value="184"  onclick="chxclick(this)"/>常州</label>
+                                                                        <label><input type="checkbox" title="扬州" value="185"  onclick="chxclick(this)"/>扬州</label>
+                                                                        <label><input type="checkbox" title="南通" value="186"  onclick="chxclick(this)"/>南通</label>
+                                                                        <label><input type="checkbox" title="镇江" value="187"  onclick="chxclick(this)"/>镇江</label>
+                                                                        <label><input type="checkbox" title="泰州" value="188"  onclick="chxclick(this)"/>泰州</label>
+                                                                        <label><input type="checkbox" title="淮安" value="189"  onclick="chxclick(this)"/>淮安</label>
+                                                                        <label><input type="checkbox" title="徐州" value="190"  onclick="chxclick(this)"/>徐州</label>
+                                                                        <label><input type="checkbox" title="盐城" value="191"  onclick="chxclick(this)"/>盐城</label>
+                                                                        <label><input type="checkbox" title="宿迁" value="192"  onclick="chxclick(this)"/>宿迁</label>
+                                                                        <label><input type="checkbox" title="连云港" value="193"  onclick="chxclick(this)"/>连云港</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="浙江省" name='province' onClick="chxclick(this)" value="194"/>浙江省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="杭州" value="195"  onclick="chxclick(this)"/>杭州</label>
+                                                                        <label><input type="checkbox" title="宁波" value="196"  onclick="chxclick(this)"/>宁波</label>
+                                                                        <label><input type="checkbox" title="温州" value="197"  onclick="chxclick(this)"/>温州</label>
+                                                                        <label><input type="checkbox" title="嘉兴" value="198"  onclick="chxclick(this)"/>嘉兴</label>
+                                                                        <label><input type="checkbox" title="湖州" value="199"  onclick="chxclick(this)"/>湖州</label>
+                                                                        <label><input type="checkbox" title="绍兴" value="200"  onclick="chxclick(this)"/>绍兴</label>
+                                                                        <label><input type="checkbox" title="金华" value="201"  onclick="chxclick(this)"/>金华</label>
+                                                                        <label><input type="checkbox" title="衢州" value="202"  onclick="chxclick(this)"/>衢州</label>
+                                                                        <label><input type="checkbox" title="舟山" value="203"  onclick="chxclick(this)"/>舟山</label>
+                                                                        <label><input type="checkbox" title="台州" value="204"  onclick="chxclick(this)"/>台州</label>
+                                                                        <label><input type="checkbox" title="丽水" value="205"  onclick="chxclick(this)"/>丽水</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="安徽省" name='province' onClick="chxclick(this)" value="206"/>安徽省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="淮北市" value="207"  onclick="chxclick(this)"/>淮北市</label>
+                                                                        <label><input type="checkbox" title="合肥市" value="208"  onclick="chxclick(this)"/>合肥市</label>
+                                                                        <label><input type="checkbox" title="六安市" value="209"  onclick="chxclick(this)"/>六安市</label>
+                                                                        <label><input type="checkbox" title="亳州市" value="210"  onclick="chxclick(this)"/>亳州市</label>
+                                                                        <label><input type="checkbox" title="宿州市" value="211"  onclick="chxclick(this)"/>宿州市</label>
+                                                                        <label><input type="checkbox" title="阜阳市" value="212"  onclick="chxclick(this)"/>阜阳市</label>
+                                                                        <label><input type="checkbox" title="蚌埠市" value="213"  onclick="chxclick(this)"/>蚌埠市</label>
+                                                                        <label><input type="checkbox" title="淮南市" value="214"  onclick="chxclick(this)"/>淮南市</label>
+                                                                        <label><input type="checkbox" title="滁州市" value="215"  onclick="chxclick(this)"/>滁州市</label>
+                                                                        <label><input type="checkbox" title="巢湖市" value="216"  onclick="chxclick(this)"/>巢湖市</label>
+                                                                        <label><input type="checkbox" title="芜湖市" value="217"  onclick="chxclick(this)"/>芜湖市</label>
+                                                                        <label><input type="checkbox" title="马鞍山" value="218"  onclick="chxclick(this)"/>马鞍山</label>
+                                                                        <label><input type="checkbox" title="安庆市" value="219"  onclick="chxclick(this)"/>安庆市</label>
+                                                                        <label><input type="checkbox" title="池州市" value="220"  onclick="chxclick(this)"/>池州市</label>
+                                                                        <label><input type="checkbox" title="铜陵市" value="221"  onclick="chxclick(this)"/>铜陵市</label>
+                                                                        <label><input type="checkbox" title="宣城市" value="222"  onclick="chxclick(this)"/>宣城市</label>
+                                                                        <label><input type="checkbox" title="黄山市" value="223"  onclick="chxclick(this)"/>黄山市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="江西省" name='province' onClick="chxclick(this)" value="234"/>江西省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="南昌市" value="235"  onclick="chxclick(this)"/>南昌市</label>
+                                                                        <label><input type="checkbox" title="景德镇市" value="236"  onclick="chxclick(this)"/>景德镇市</label>
+                                                                        <label><input type="checkbox" title="萍乡市" value="237"  onclick="chxclick(this)"/>萍乡市</label>
+                                                                        <label><input type="checkbox" title="九江市" value="238"  onclick="chxclick(this)"/>九江市</label>
+                                                                        <label><input type="checkbox" title="新余市" value="239"  onclick="chxclick(this)"/>新余市</label>
+                                                                        <label><input type="checkbox" title="鹰潭市" value="240"  onclick="chxclick(this)"/>鹰潭市</label>
+                                                                        <label><input type="checkbox" title="赣州市" value="241"  onclick="chxclick(this)"/>赣州市</label>
+                                                                        <label><input type="checkbox" title="吉安市" value="242"  onclick="chxclick(this)"/>吉安市</label>
+                                                                        <label><input type="checkbox" title="宜春市" value="243"  onclick="chxclick(this)"/>宜春市</label>
+                                                                        <label><input type="checkbox" title="抚州市" value="244"  onclick="chxclick(this)"/>抚州市</label>
+                                                                        <label><input type="checkbox" title="上饶市" value="245"  onclick="chxclick(this)"/>上饶市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox bgcss">
+							<div class="ffbox"><label><input type="checkbox" title="华北" value="华北" name='area' onClick="chxclick(this)"/><b>华北</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="北京市" name='province' onClick="chxclick(this)" value="3"/>北京市</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="东城" value="4"  onclick="chxclick(this)"/>东城</label>
+                                                                        <label><input type="checkbox" title="西城" value="5"  onclick="chxclick(this)"/>西城</label>
+                                                                        <label><input type="checkbox" title="崇文" value="6"  onclick="chxclick(this)"/>崇文</label>
+                                                                        <label><input type="checkbox" title="宣武" value="7"  onclick="chxclick(this)"/>宣武</label>
+                                                                        <label><input type="checkbox" title="朝阳" value="8"  onclick="chxclick(this)"/>朝阳</label>
+                                                                        <label><input type="checkbox" title="海淀" value="9"  onclick="chxclick(this)"/>海淀</label>
+                                                                        <label><input type="checkbox" title="丰台" value="10"  onclick="chxclick(this)"/>丰台</label>
+                                                                        <label><input type="checkbox" title="石景山" value="11"  onclick="chxclick(this)"/>石景山</label>
+                                                                        <label><input type="checkbox" title="门头沟" value="12"  onclick="chxclick(this)"/>门头沟</label>
+                                                                        <label><input type="checkbox" title="房山" value="13"  onclick="chxclick(this)"/>房山</label>
+                                                                        <label><input type="checkbox" title="通州" value="14"  onclick="chxclick(this)"/>通州</label>
+                                                                        <label><input type="checkbox" title="顺义" value="15"  onclick="chxclick(this)"/>顺义</label>
+                                                                        <label><input type="checkbox" title="大兴" value="16"  onclick="chxclick(this)"/>大兴</label>
+                                                                        <label><input type="checkbox" title="昌平" value="17"  onclick="chxclick(this)"/>昌平</label>
+                                                                        <label><input type="checkbox" title="平谷" value="18"  onclick="chxclick(this)"/>平谷</label>
+                                                                        <label><input type="checkbox" title="怀柔" value="19"  onclick="chxclick(this)"/>怀柔</label>
+                                                                        <label><input type="checkbox" title="延庆" value="20"  onclick="chxclick(this)"/>延庆</label>
+                                                                        <label><input type="checkbox" title="密云" value="21"  onclick="chxclick(this)"/>密云</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="天津市" name='province' onClick="chxclick(this)" value="22"/>天津市</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="和平区" value="23"  onclick="chxclick(this)"/>和平区</label>
+                                                                        <label><input type="checkbox" title="河东区" value="24"  onclick="chxclick(this)"/>河东区</label>
+                                                                        <label><input type="checkbox" title="河西区" value="25"  onclick="chxclick(this)"/>河西区</label>
+                                                                        <label><input type="checkbox" title="南开区" value="26"  onclick="chxclick(this)"/>南开区</label>
+                                                                        <label><input type="checkbox" title="河北区" value="27"  onclick="chxclick(this)"/>河北区</label>
+                                                                        <label><input type="checkbox" title="红桥区" value="28"  onclick="chxclick(this)"/>红桥区</label>
+                                                                        <label><input type="checkbox" title="塘沽区" value="29"  onclick="chxclick(this)"/>塘沽区</label>
+                                                                        <label><input type="checkbox" title="汉沽区" value="30"  onclick="chxclick(this)"/>汉沽区</label>
+                                                                        <label><input type="checkbox" title="大港区" value="31"  onclick="chxclick(this)"/>大港区</label>
+                                                                        <label><input type="checkbox" title="西青区" value="32"  onclick="chxclick(this)"/>西青区</label>
+                                                                        <label><input type="checkbox" title="东丽区" value="33"  onclick="chxclick(this)"/>东丽区</label>
+                                                                        <label><input type="checkbox" title="津南区" value="34"  onclick="chxclick(this)"/>津南区</label>
+                                                                        <label><input type="checkbox" title="北辰区" value="35"  onclick="chxclick(this)"/>北辰区</label>
+                                                                        <label><input type="checkbox" title="武清区" value="36"  onclick="chxclick(this)"/>武清区</label>
+                                                                        <label><input type="checkbox" title="宝坻区" value="37"  onclick="chxclick(this)"/>宝坻区</label>
+                                                                        <label><input type="checkbox" title="静海县" value="38"  onclick="chxclick(this)"/>静海县</label>
+                                                                        <label><input type="checkbox" title="宁河县" value="39"  onclick="chxclick(this)"/>宁河县</label>
+                                                                        <label><input type="checkbox" title="蓟县" value="40"  onclick="chxclick(this)"/>蓟县</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="河北省" name='province' onClick="chxclick(this)" value="104"/>河北省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="石家庄" value="105"  onclick="chxclick(this)"/>石家庄</label>
+                                                                        <label><input type="checkbox" title="衡水" value="106"  onclick="chxclick(this)"/>衡水</label>
+                                                                        <label><input type="checkbox" title="唐山" value="107"  onclick="chxclick(this)"/>唐山</label>
+                                                                        <label><input type="checkbox" title="秦皇岛" value="108"  onclick="chxclick(this)"/>秦皇岛</label>
+                                                                        <label><input type="checkbox" title="张家口" value="109"  onclick="chxclick(this)"/>张家口</label>
+                                                                        <label><input type="checkbox" title="承德" value="110"  onclick="chxclick(this)"/>承德</label>
+                                                                        <label><input type="checkbox" title="邯郸" value="111"  onclick="chxclick(this)"/>邯郸</label>
+                                                                        <label><input type="checkbox" title="沧州" value="112"  onclick="chxclick(this)"/>沧州</label>
+                                                                        <label><input type="checkbox" title="邢台" value="113"  onclick="chxclick(this)"/>邢台</label>
+                                                                        <label><input type="checkbox" title="保定" value="114"  onclick="chxclick(this)"/>保定</label>
+                                                                        <label><input type="checkbox" title="廊坊" value="115"  onclick="chxclick(this)"/>廊坊</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="山西省" name='province' onClick="chxclick(this)" value="116"/>山西省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="太原市" value="117"  onclick="chxclick(this)"/>太原市</label>
+                                                                        <label><input type="checkbox" title="大同市" value="118"  onclick="chxclick(this)"/>大同市</label>
+                                                                        <label><input type="checkbox" title="朔州市" value="119"  onclick="chxclick(this)"/>朔州市</label>
+                                                                        <label><input type="checkbox" title="忻州市" value="120"  onclick="chxclick(this)"/>忻州市</label>
+                                                                        <label><input type="checkbox" title="长治市" value="121"  onclick="chxclick(this)"/>长治市</label>
+                                                                        <label><input type="checkbox" title="阳泉市" value="122"  onclick="chxclick(this)"/>阳泉市</label>
+                                                                        <label><input type="checkbox" title="晋中市" value="123"  onclick="chxclick(this)"/>晋中市</label>
+                                                                        <label><input type="checkbox" title="吕梁市" value="124"  onclick="chxclick(this)"/>吕梁市</label>
+                                                                        <label><input type="checkbox" title="晋城市" value="125"  onclick="chxclick(this)"/>晋城市</label>
+                                                                        <label><input type="checkbox" title="临汾市" value="126"  onclick="chxclick(this)"/>临汾市</label>
+                                                                        <label><input type="checkbox" title="运城市" value="127"  onclick="chxclick(this)"/>运城市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="内蒙古自治区" name='province' onClick="chxclick(this)" value="167"/>内蒙古自治区</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="呼和浩特市" value="168"  onclick="chxclick(this)"/>呼和浩特市</label>
+                                                                        <label><input type="checkbox" title="包头市" value="169"  onclick="chxclick(this)"/>包头市</label>
+                                                                        <label><input type="checkbox" title="乌海市" value="170"  onclick="chxclick(this)"/>乌海市</label>
+                                                                        <label><input type="checkbox" title="赤峰市" value="171"  onclick="chxclick(this)"/>赤峰市</label>
+                                                                        <label><input type="checkbox" title="通辽市" value="172"  onclick="chxclick(this)"/>通辽市</label>
+                                                                        <label><input type="checkbox" title="鄂尔多斯市" value="173"  onclick="chxclick(this)"/>鄂尔多斯市</label>
+                                                                        <label><input type="checkbox" title="呼伦贝尔市" value="174"  onclick="chxclick(this)"/>呼伦贝尔市</label>
+                                                                        <label><input type="checkbox" title="巴彦淖尔市" value="175"  onclick="chxclick(this)"/>巴彦淖尔市</label>
+                                                                        <label><input type="checkbox" title="乌兰察布市" value="176"  onclick="chxclick(this)"/>乌兰察布市</label>
+                                                                        <label><input type="checkbox" title="锡林郭勒盟" value="177"  onclick="chxclick(this)"/>锡林郭勒盟</label>
+                                                                        <label><input type="checkbox" title="兴安盟" value="178"  onclick="chxclick(this)"/>兴安盟</label>
+                                                                        <label><input type="checkbox" title="阿拉善盟" value="179"  onclick="chxclick(this)"/>阿拉善盟</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="山东省" name='province' onClick="chxclick(this)" value="246"/>山东省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="济南" value="247"  onclick="chxclick(this)"/>济南</label>
+                                                                        <label><input type="checkbox" title="青岛" value="248"  onclick="chxclick(this)"/>青岛</label>
+                                                                        <label><input type="checkbox" title="淄博" value="249"  onclick="chxclick(this)"/>淄博</label>
+                                                                        <label><input type="checkbox" title="泰安" value="250"  onclick="chxclick(this)"/>泰安</label>
+                                                                        <label><input type="checkbox" title="济宁" value="251"  onclick="chxclick(this)"/>济宁</label>
+                                                                        <label><input type="checkbox" title="德州" value="252"  onclick="chxclick(this)"/>德州</label>
+                                                                        <label><input type="checkbox" title="日照" value="253"  onclick="chxclick(this)"/>日照</label>
+                                                                        <label><input type="checkbox" title="潍坊" value="254"  onclick="chxclick(this)"/>潍坊</label>
+                                                                        <label><input type="checkbox" title="枣庄" value="255"  onclick="chxclick(this)"/>枣庄</label>
+                                                                        <label><input type="checkbox" title="临沂" value="256"  onclick="chxclick(this)"/>临沂</label>
+                                                                        <label><input type="checkbox" title="莱芜" value="257"  onclick="chxclick(this)"/>莱芜</label>
+                                                                        <label><input type="checkbox" title="滨州" value="258"  onclick="chxclick(this)"/>滨州</label>
+                                                                        <label><input type="checkbox" title="聊城" value="259"  onclick="chxclick(this)"/>聊城</label>
+                                                                        <label><input type="checkbox" title="菏泽" value="260"  onclick="chxclick(this)"/>菏泽</label>
+                                                                        <label><input type="checkbox" title="烟台" value="261"  onclick="chxclick(this)"/>烟台</label>
+                                                                        <label><input type="checkbox" title="威海" value="262"  onclick="chxclick(this)"/>威海</label>
+                                                                        <label><input type="checkbox" title="东营" value="263"  onclick="chxclick(this)"/>东营</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox ">
+							<div class="ffbox"><label><input type="checkbox" title="华中" value="华中" name='area' onClick="chxclick(this)"/><b>华中</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="河南省" name='province' onClick="chxclick(this)" value="264"/>河南省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="郑州市" value="265"  onclick="chxclick(this)"/>郑州市</label>
+                                                                        <label><input type="checkbox" title="洛阳市" value="266"  onclick="chxclick(this)"/>洛阳市</label>
+                                                                        <label><input type="checkbox" title="开封市" value="267"  onclick="chxclick(this)"/>开封市</label>
+                                                                        <label><input type="checkbox" title="平顶山市" value="268"  onclick="chxclick(this)"/>平顶山市</label>
+                                                                        <label><input type="checkbox" title="南阳市" value="269"  onclick="chxclick(this)"/>南阳市</label>
+                                                                        <label><input type="checkbox" title="焦作市" value="270"  onclick="chxclick(this)"/>焦作市</label>
+                                                                        <label><input type="checkbox" title="信阳市" value="271"  onclick="chxclick(this)"/>信阳市</label>
+                                                                        <label><input type="checkbox" title="济源市" value="272"  onclick="chxclick(this)"/>济源市</label>
+                                                                        <label><input type="checkbox" title="周口市" value="273"  onclick="chxclick(this)"/>周口市</label>
+                                                                        <label><input type="checkbox" title="安阳市" value="274"  onclick="chxclick(this)"/>安阳市</label>
+                                                                        <label><input type="checkbox" title="驻马店市" value="275"  onclick="chxclick(this)"/>驻马店市</label>
+                                                                        <label><input type="checkbox" title="新乡市" value="276"  onclick="chxclick(this)"/>新乡市</label>
+                                                                        <label><input type="checkbox" title="鹤壁市" value="277"  onclick="chxclick(this)"/>鹤壁市</label>
+                                                                        <label><input type="checkbox" title="商丘市" value="278"  onclick="chxclick(this)"/>商丘市</label>
+                                                                        <label><input type="checkbox" title="漯河市" value="279"  onclick="chxclick(this)"/>漯河市</label>
+                                                                        <label><input type="checkbox" title="许昌市" value="280"  onclick="chxclick(this)"/>许昌市</label>
+                                                                        <label><input type="checkbox" title="三门峡市" value="281"  onclick="chxclick(this)"/>三门峡市</label>
+                                                                        <label><input type="checkbox" title="濮阳市" value="282"  onclick="chxclick(this)"/>濮阳市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="湖北省" name='province' onClick="chxclick(this)" value="283"/>湖北省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="武汉" value="284"  onclick="chxclick(this)"/>武汉</label>
+                                                                        <label><input type="checkbox" title="宜昌" value="285"  onclick="chxclick(this)"/>宜昌</label>
+                                                                        <label><input type="checkbox" title="荆州" value="286"  onclick="chxclick(this)"/>荆州</label>
+                                                                        <label><input type="checkbox" title="十堰" value="287"  onclick="chxclick(this)"/>十堰</label>
+                                                                        <label><input type="checkbox" title="襄樊" value="288"  onclick="chxclick(this)"/>襄樊</label>
+                                                                        <label><input type="checkbox" title="黄石" value="289"  onclick="chxclick(this)"/>黄石</label>
+                                                                        <label><input type="checkbox" title="黄冈" value="290"  onclick="chxclick(this)"/>黄冈</label>
+                                                                        <label><input type="checkbox" title="恩施" value="291"  onclick="chxclick(this)"/>恩施</label>
+                                                                        <label><input type="checkbox" title="荆门" value="292"  onclick="chxclick(this)"/>荆门</label>
+                                                                        <label><input type="checkbox" title="咸宁" value="293"  onclick="chxclick(this)"/>咸宁</label>
+                                                                        <label><input type="checkbox" title="孝感" value="294"  onclick="chxclick(this)"/>孝感</label>
+                                                                        <label><input type="checkbox" title="鄂州" value="295"  onclick="chxclick(this)"/>鄂州</label>
+                                                                        <label><input type="checkbox" title="天门" value="296"  onclick="chxclick(this)"/>天门</label>
+                                                                        <label><input type="checkbox" title="仙桃" value="297"  onclick="chxclick(this)"/>仙桃</label>
+                                                                        <label><input type="checkbox" title="随州" value="298"  onclick="chxclick(this)"/>随州</label>
+                                                                        <label><input type="checkbox" title="潜江" value="299"  onclick="chxclick(this)"/>潜江</label>
+                                                                        <label><input type="checkbox" title="神农架" value="300"  onclick="chxclick(this)"/>神农架</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="湖南省" name='province' onClick="chxclick(this)" value="301"/>湖南省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="长沙市" value="302"  onclick="chxclick(this)"/>长沙市</label>
+                                                                        <label><input type="checkbox" title="株洲市" value="303"  onclick="chxclick(this)"/>株洲市</label>
+                                                                        <label><input type="checkbox" title="湘潭市" value="304"  onclick="chxclick(this)"/>湘潭市</label>
+                                                                        <label><input type="checkbox" title="邵阳市" value="305"  onclick="chxclick(this)"/>邵阳市</label>
+                                                                        <label><input type="checkbox" title="吉首市" value="306"  onclick="chxclick(this)"/>吉首市</label>
+                                                                        <label><input type="checkbox" title="岳阳市" value="307"  onclick="chxclick(this)"/>岳阳市</label>
+                                                                        <label><input type="checkbox" title="娄底市" value="308"  onclick="chxclick(this)"/>娄底市</label>
+                                                                        <label><input type="checkbox" title="怀化市" value="309"  onclick="chxclick(this)"/>怀化市</label>
+                                                                        <label><input type="checkbox" title="永州市" value="310"  onclick="chxclick(this)"/>永州市</label>
+                                                                        <label><input type="checkbox" title="郴州市" value="311"  onclick="chxclick(this)"/>郴州市</label>
+                                                                        <label><input type="checkbox" title="常德市" value="312"  onclick="chxclick(this)"/>常德市</label>
+                                                                        <label><input type="checkbox" title="衡阳市" value="313"  onclick="chxclick(this)"/>衡阳市</label>
+                                                                        <label><input type="checkbox" title="益阳市" value="314"  onclick="chxclick(this)"/>益阳市</label>
+                                                                        <label><input type="checkbox" title="张家界" value="315"  onclick="chxclick(this)"/>张家界</label>
+                                                                        <label><input type="checkbox" title="湘西州" value="316"  onclick="chxclick(this)"/>湘西州</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox bgcss">
+							<div class="ffbox"><label><input type="checkbox" title="华南" value="华南" name='area' onClick="chxclick(this)"/><b>华南</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="福建省" name='province' onClick="chxclick(this)" value="224"/>福建省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="福州市" value="225"  onclick="chxclick(this)"/>福州市</label>
+                                                                        <label><input type="checkbox" title="厦门市" value="226"  onclick="chxclick(this)"/>厦门市</label>
+                                                                        <label><input type="checkbox" title="莆田市" value="227"  onclick="chxclick(this)"/>莆田市</label>
+                                                                        <label><input type="checkbox" title="三明市" value="228"  onclick="chxclick(this)"/>三明市</label>
+                                                                        <label><input type="checkbox" title="泉州市" value="229"  onclick="chxclick(this)"/>泉州市</label>
+                                                                        <label><input type="checkbox" title="漳州市" value="230"  onclick="chxclick(this)"/>漳州市</label>
+                                                                        <label><input type="checkbox" title="南平市" value="231"  onclick="chxclick(this)"/>南平市</label>
+                                                                        <label><input type="checkbox" title="龙岩市" value="232"  onclick="chxclick(this)"/>龙岩市</label>
+                                                                        <label><input type="checkbox" title="宁德市" value="233"  onclick="chxclick(this)"/>宁德市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="广东省" name='province' onClick="chxclick(this)" value="317"/>广东省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="广州" value="318"  onclick="chxclick(this)"/>广州</label>
+                                                                        <label><input type="checkbox" title="深圳" value="319"  onclick="chxclick(this)"/>深圳</label>
+                                                                        <label><input type="checkbox" title="珠海" value="320"  onclick="chxclick(this)"/>珠海</label>
+                                                                        <label><input type="checkbox" title="汕头" value="321"  onclick="chxclick(this)"/>汕头</label>
+                                                                        <label><input type="checkbox" title="佛山" value="322"  onclick="chxclick(this)"/>佛山</label>
+                                                                        <label><input type="checkbox" title="东莞" value="323"  onclick="chxclick(this)"/>东莞</label>
+                                                                        <label><input type="checkbox" title="中山" value="324"  onclick="chxclick(this)"/>中山</label>
+                                                                        <label><input type="checkbox" title="江门" value="325"  onclick="chxclick(this)"/>江门</label>
+                                                                        <label><input type="checkbox" title="惠州" value="326"  onclick="chxclick(this)"/>惠州</label>
+                                                                        <label><input type="checkbox" title="肇庆" value="327"  onclick="chxclick(this)"/>肇庆</label>
+                                                                        <label><input type="checkbox" title="阳江" value="328"  onclick="chxclick(this)"/>阳江</label>
+                                                                        <label><input type="checkbox" title="韶关" value="329"  onclick="chxclick(this)"/>韶关</label>
+                                                                        <label><input type="checkbox" title="河源" value="330"  onclick="chxclick(this)"/>河源</label>
+                                                                        <label><input type="checkbox" title="梅州" value="331"  onclick="chxclick(this)"/>梅州</label>
+                                                                        <label><input type="checkbox" title="清远" value="332"  onclick="chxclick(this)"/>清远</label>
+                                                                        <label><input type="checkbox" title="云浮" value="333"  onclick="chxclick(this)"/>云浮</label>
+                                                                        <label><input type="checkbox" title="茂名" value="334"  onclick="chxclick(this)"/>茂名</label>
+                                                                        <label><input type="checkbox" title="汕尾" value="335"  onclick="chxclick(this)"/>汕尾</label>
+                                                                        <label><input type="checkbox" title="揭阳" value="336"  onclick="chxclick(this)"/>揭阳</label>
+                                                                        <label><input type="checkbox" title="潮州" value="337"  onclick="chxclick(this)"/>潮州</label>
+                                                                        <label><input type="checkbox" title="湛江" value="338"  onclick="chxclick(this)"/>湛江</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="海南省" name='province' onClick="chxclick(this)" value="339"/>海南省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="海口市" value="340"  onclick="chxclick(this)"/>海口市</label>
+                                                                        <label><input type="checkbox" title="三亚市" value="341"  onclick="chxclick(this)"/>三亚市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="广西壮族自治区" name='province' onClick="chxclick(this)" value="342"/>广西壮族自治区</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="南宁" value="343"  onclick="chxclick(this)"/>南宁</label>
+                                                                        <label><input type="checkbox" title="柳州" value="344"  onclick="chxclick(this)"/>柳州</label>
+                                                                        <label><input type="checkbox" title="桂林" value="345"  onclick="chxclick(this)"/>桂林</label>
+                                                                        <label><input type="checkbox" title="梧州" value="346"  onclick="chxclick(this)"/>梧州</label>
+                                                                        <label><input type="checkbox" title="北海" value="347"  onclick="chxclick(this)"/>北海</label>
+                                                                        <label><input type="checkbox" title="防城港" value="348"  onclick="chxclick(this)"/>防城港</label>
+                                                                        <label><input type="checkbox" title="钦州" value="349"  onclick="chxclick(this)"/>钦州</label>
+                                                                        <label><input type="checkbox" title="贵港" value="350"  onclick="chxclick(this)"/>贵港</label>
+                                                                        <label><input type="checkbox" title="玉林" value="351"  onclick="chxclick(this)"/>玉林</label>
+                                                                        <label><input type="checkbox" title="百色" value="352"  onclick="chxclick(this)"/>百色</label>
+                                                                        <label><input type="checkbox" title="贺州" value="353"  onclick="chxclick(this)"/>贺州</label>
+                                                                        <label><input type="checkbox" title="河池" value="354"  onclick="chxclick(this)"/>河池</label>
+                                                                        <label><input type="checkbox" title="来宾" value="355"  onclick="chxclick(this)"/>来宾</label>
+                                                                        <label><input type="checkbox" title="崇左" value="356"  onclick="chxclick(this)"/>崇左</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox ">
+							<div class="ffbox"><label><input type="checkbox" title="东北" value="东北" name='area' onClick="chxclick(this)"/><b>东北</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="辽宁省" name='province' onClick="chxclick(this)" value="128"/>辽宁省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="沈阳" value="129"  onclick="chxclick(this)"/>沈阳</label>
+                                                                        <label><input type="checkbox" title="大连" value="130"  onclick="chxclick(this)"/>大连</label>
+                                                                        <label><input type="checkbox" title="鞍山" value="131"  onclick="chxclick(this)"/>鞍山</label>
+                                                                        <label><input type="checkbox" title="抚顺" value="132"  onclick="chxclick(this)"/>抚顺</label>
+                                                                        <label><input type="checkbox" title="本溪" value="133"  onclick="chxclick(this)"/>本溪</label>
+                                                                        <label><input type="checkbox" title="丹东" value="134"  onclick="chxclick(this)"/>丹东</label>
+                                                                        <label><input type="checkbox" title="锦州" value="135"  onclick="chxclick(this)"/>锦州</label>
+                                                                        <label><input type="checkbox" title="营口" value="136"  onclick="chxclick(this)"/>营口</label>
+                                                                        <label><input type="checkbox" title="阜新" value="137"  onclick="chxclick(this)"/>阜新</label>
+                                                                        <label><input type="checkbox" title="辽阳" value="138"  onclick="chxclick(this)"/>辽阳</label>
+                                                                        <label><input type="checkbox" title="铁岭" value="139"  onclick="chxclick(this)"/>铁岭</label>
+                                                                        <label><input type="checkbox" title="朝阳" value="140"  onclick="chxclick(this)"/>朝阳</label>
+                                                                        <label><input type="checkbox" title="盘锦" value="141"  onclick="chxclick(this)"/>盘锦</label>
+                                                                        <label><input type="checkbox" title="葫芦岛" value="142"  onclick="chxclick(this)"/>葫芦岛</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="吉林省" name='province' onClick="chxclick(this)" value="143"/>吉林省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="长春市" value="144"  onclick="chxclick(this)"/>长春市</label>
+                                                                        <label><input type="checkbox" title="吉林市" value="145"  onclick="chxclick(this)"/>吉林市</label>
+                                                                        <label><input type="checkbox" title="四平市" value="146"  onclick="chxclick(this)"/>四平市</label>
+                                                                        <label><input type="checkbox" title="辽源市" value="147"  onclick="chxclick(this)"/>辽源市</label>
+                                                                        <label><input type="checkbox" title="通化市" value="148"  onclick="chxclick(this)"/>通化市</label>
+                                                                        <label><input type="checkbox" title="白山市" value="149"  onclick="chxclick(this)"/>白山市</label>
+                                                                        <label><input type="checkbox" title="松原市" value="150"  onclick="chxclick(this)"/>松原市</label>
+                                                                        <label><input type="checkbox" title="白城市" value="151"  onclick="chxclick(this)"/>白城市</label>
+                                                                        <label><input type="checkbox" title="延边州" value="152"  onclick="chxclick(this)"/>延边州</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="黑龙江省" name='province' onClick="chxclick(this)" value="153"/>黑龙江省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="哈尔滨" value="154"  onclick="chxclick(this)"/>哈尔滨</label>
+                                                                        <label><input type="checkbox" title="齐齐哈尔" value="155"  onclick="chxclick(this)"/>齐齐哈尔</label>
+                                                                        <label><input type="checkbox" title="牡丹江" value="156"  onclick="chxclick(this)"/>牡丹江</label>
+                                                                        <label><input type="checkbox" title="佳木斯" value="157"  onclick="chxclick(this)"/>佳木斯</label>
+                                                                        <label><input type="checkbox" title="大庆" value="158"  onclick="chxclick(this)"/>大庆</label>
+                                                                        <label><input type="checkbox" title="鸡西" value="159"  onclick="chxclick(this)"/>鸡西</label>
+                                                                        <label><input type="checkbox" title="伊春" value="160"  onclick="chxclick(this)"/>伊春</label>
+                                                                        <label><input type="checkbox" title="双鸭山" value="161"  onclick="chxclick(this)"/>双鸭山</label>
+                                                                        <label><input type="checkbox" title="七台河" value="162"  onclick="chxclick(this)"/>七台河</label>
+                                                                        <label><input type="checkbox" title="鹤岗" value="163"  onclick="chxclick(this)"/>鹤岗</label>
+                                                                        <label><input type="checkbox" title="黑河" value="164"  onclick="chxclick(this)"/>黑河</label>
+                                                                        <label><input type="checkbox" title="绥化" value="165"  onclick="chxclick(this)"/>绥化</label>
+                                                                        <label><input type="checkbox" title="大兴安岭" value="166"  onclick="chxclick(this)"/>大兴安岭</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox bgcss">
+							<div class="ffbox"><label><input type="checkbox" title="西北" value="西北" name='area' onClick="chxclick(this)"/><b>西北</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="陕西省" name='province' onClick="chxclick(this)" value="414"/>陕西省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="西安市" value="415"  onclick="chxclick(this)"/>西安市</label>
+                                                                        <label><input type="checkbox" title="铜川市" value="416"  onclick="chxclick(this)"/>铜川市</label>
+                                                                        <label><input type="checkbox" title="宝鸡市" value="417"  onclick="chxclick(this)"/>宝鸡市</label>
+                                                                        <label><input type="checkbox" title="咸阳市" value="418"  onclick="chxclick(this)"/>咸阳市</label>
+                                                                        <label><input type="checkbox" title="渭南市" value="419"  onclick="chxclick(this)"/>渭南市</label>
+                                                                        <label><input type="checkbox" title="延安市" value="420"  onclick="chxclick(this)"/>延安市</label>
+                                                                        <label><input type="checkbox" title="汉中市" value="421"  onclick="chxclick(this)"/>汉中市</label>
+                                                                        <label><input type="checkbox" title="榆林市" value="422"  onclick="chxclick(this)"/>榆林市</label>
+                                                                        <label><input type="checkbox" title="安康市" value="423"  onclick="chxclick(this)"/>安康市</label>
+                                                                        <label><input type="checkbox" title="商洛市" value="424"  onclick="chxclick(this)"/>商洛市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="甘肃省" name='province' onClick="chxclick(this)" value="425"/>甘肃省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="兰州市" value="426"  onclick="chxclick(this)"/>兰州市</label>
+                                                                        <label><input type="checkbox" title="嘉峪关" value="427"  onclick="chxclick(this)"/>嘉峪关</label>
+                                                                        <label><input type="checkbox" title="金昌市" value="428"  onclick="chxclick(this)"/>金昌市</label>
+                                                                        <label><input type="checkbox" title="白银市" value="429"  onclick="chxclick(this)"/>白银市</label>
+                                                                        <label><input type="checkbox" title="天水市" value="430"  onclick="chxclick(this)"/>天水市</label>
+                                                                        <label><input type="checkbox" title="酒泉市" value="431"  onclick="chxclick(this)"/>酒泉市</label>
+                                                                        <label><input type="checkbox" title="张掖市" value="432"  onclick="chxclick(this)"/>张掖市</label>
+                                                                        <label><input type="checkbox" title="武威市" value="433"  onclick="chxclick(this)"/>武威市</label>
+                                                                        <label><input type="checkbox" title="定西市" value="434"  onclick="chxclick(this)"/>定西市</label>
+                                                                        <label><input type="checkbox" title="陇南市" value="435"  onclick="chxclick(this)"/>陇南市</label>
+                                                                        <label><input type="checkbox" title="平凉市" value="436"  onclick="chxclick(this)"/>平凉市</label>
+                                                                        <label><input type="checkbox" title="庆阳市" value="437"  onclick="chxclick(this)"/>庆阳市</label>
+                                                                        <label><input type="checkbox" title="临夏州" value="438"  onclick="chxclick(this)"/>临夏州</label>
+                                                                        <label><input type="checkbox" title="甘南州" value="439"  onclick="chxclick(this)"/>甘南州</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="青海省" name='province' onClick="chxclick(this)" value="440"/>青海省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="西宁市" value="441"  onclick="chxclick(this)"/>西宁市</label>
+                                                                        <label><input type="checkbox" title="海东行署" value="442"  onclick="chxclick(this)"/>海东行署</label>
+                                                                        <label><input type="checkbox" title="海北藏族自治州" value="443"  onclick="chxclick(this)"/>海北藏族自治州</label>
+                                                                        <label><input type="checkbox" title="海南藏族自治州" value="444"  onclick="chxclick(this)"/>海南藏族自治州</label>
+                                                                        <label><input type="checkbox" title="海西州" value="445"  onclick="chxclick(this)"/>海西州</label>
+                                                                        <label><input type="checkbox" title="黄南藏族自治州" value="446"  onclick="chxclick(this)"/>黄南藏族自治州</label>
+                                                                        <label><input type="checkbox" title="玉树藏族自治州" value="447"  onclick="chxclick(this)"/>玉树藏族自治州</label>
+                                                                        <label><input type="checkbox" title="果洛藏族自治州" value="448"  onclick="chxclick(this)"/>果洛藏族自治州</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="宁夏回族自治区" name='province' onClick="chxclick(this)" value="449"/>宁夏回族自治区</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="银川市" value="450"  onclick="chxclick(this)"/>银川市</label>
+                                                                        <label><input type="checkbox" title="石嘴山市" value="451"  onclick="chxclick(this)"/>石嘴山市</label>
+                                                                        <label><input type="checkbox" title="吴忠市" value="452"  onclick="chxclick(this)"/>吴忠市</label>
+                                                                        <label><input type="checkbox" title="固原市" value="453"  onclick="chxclick(this)"/>固原市</label>
+                                                                        <label><input type="checkbox" title="中卫市" value="454"  onclick="chxclick(this)"/>中卫市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                                                    <li class="choosbox ">
+							<div class="ffbox"><label><input type="checkbox" title="西南" value="西南" name='area' onClick="chxclick(this)"/><b>西南</b></label></div>
+							<div class="elsbox"> 
+                            	                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="重庆市" name='province' onClick="chxclick(this)" value="61"/>重庆市</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="渝中" value="62"  onclick="chxclick(this)"/>渝中</label>
+                                                                        <label><input type="checkbox" title="大渡口" value="63"  onclick="chxclick(this)"/>大渡口</label>
+                                                                        <label><input type="checkbox" title="江北" value="64"  onclick="chxclick(this)"/>江北</label>
+                                                                        <label><input type="checkbox" title="沙坪坝" value="65"  onclick="chxclick(this)"/>沙坪坝</label>
+                                                                        <label><input type="checkbox" title="九龙坡" value="66"  onclick="chxclick(this)"/>九龙坡</label>
+                                                                        <label><input type="checkbox" title="南岸" value="67"  onclick="chxclick(this)"/>南岸</label>
+                                                                        <label><input type="checkbox" title="北碚" value="68"  onclick="chxclick(this)"/>北碚</label>
+                                                                        <label><input type="checkbox" title="渝北" value="69"  onclick="chxclick(this)"/>渝北</label>
+                                                                        <label><input type="checkbox" title="巴南" value="70"  onclick="chxclick(this)"/>巴南</label>
+                                                                        <label><input type="checkbox" title="北部新区" value="71"  onclick="chxclick(this)"/>北部新区</label>
+                                                                        <label><input type="checkbox" title="经开区" value="72"  onclick="chxclick(this)"/>经开区</label>
+                                                                        <label><input type="checkbox" title="万盛" value="73"  onclick="chxclick(this)"/>万盛</label>
+                                                                        <label><input type="checkbox" title="双桥" value="74"  onclick="chxclick(this)"/>双桥</label>
+                                                                        <label><input type="checkbox" title="綦江" value="75"  onclick="chxclick(this)"/>綦江</label>
+                                                                        <label><input type="checkbox" title="潼南" value="76"  onclick="chxclick(this)"/>潼南</label>
+                                                                        <label><input type="checkbox" title="铜梁" value="77"  onclick="chxclick(this)"/>铜梁</label>
+                                                                        <label><input type="checkbox" title="大足" value="78"  onclick="chxclick(this)"/>大足</label>
+                                                                        <label><input type="checkbox" title="荣昌" value="79"  onclick="chxclick(this)"/>荣昌</label>
+                                                                        <label><input type="checkbox" title="璧山" value="80"  onclick="chxclick(this)"/>璧山</label>
+                                                                        <label><input type="checkbox" title="江津" value="81"  onclick="chxclick(this)"/>江津</label>
+                                                                        <label><input type="checkbox" title="合川" value="82"  onclick="chxclick(this)"/>合川</label>
+                                                                        <label><input type="checkbox" title="永川" value="83"  onclick="chxclick(this)"/>永川</label>
+                                                                        <label><input type="checkbox" title="南川" value="84"  onclick="chxclick(this)"/>南川</label>
+                                                                        <label><input type="checkbox" title="万州" value="85"  onclick="chxclick(this)"/>万州</label>
+                                                                        <label><input type="checkbox" title="涪陵" value="86"  onclick="chxclick(this)"/>涪陵</label>
+                                                                        <label><input type="checkbox" title="黔江" value="87"  onclick="chxclick(this)"/>黔江</label>
+                                                                        <label><input type="checkbox" title="长寿" value="88"  onclick="chxclick(this)"/>长寿</label>
+                                                                        <label><input type="checkbox" title="梁平" value="89"  onclick="chxclick(this)"/>梁平</label>
+                                                                        <label><input type="checkbox" title="城口" value="90"  onclick="chxclick(this)"/>城口</label>
+                                                                        <label><input type="checkbox" title="丰都" value="91"  onclick="chxclick(this)"/>丰都</label>
+                                                                        <label><input type="checkbox" title="垫江" value="92"  onclick="chxclick(this)"/>垫江</label>
+                                                                        <label><input type="checkbox" title="武隆" value="93"  onclick="chxclick(this)"/>武隆</label>
+                                                                        <label><input type="checkbox" title="忠县" value="94"  onclick="chxclick(this)"/>忠县</label>
+                                                                        <label><input type="checkbox" title="开县" value="95"  onclick="chxclick(this)"/>开县</label>
+                                                                        <label><input type="checkbox" title="云阳" value="96"  onclick="chxclick(this)"/>云阳</label>
+                                                                        <label><input type="checkbox" title="奉节" value="97"  onclick="chxclick(this)"/>奉节</label>
+                                                                        <label><input type="checkbox" title="巫山" value="98"  onclick="chxclick(this)"/>巫山</label>
+                                                                        <label><input type="checkbox" title="巫溪" value="99"  onclick="chxclick(this)"/>巫溪</label>
+                                                                        <label><input type="checkbox" title="石柱" value="100"  onclick="chxclick(this)"/>石柱</label>
+                                                                        <label><input type="checkbox" title="秀山" value="101"  onclick="chxclick(this)"/>秀山</label>
+                                                                        <label><input type="checkbox" title="酉阳" value="102"  onclick="chxclick(this)"/>酉阳</label>
+                                                                        <label><input type="checkbox" title="彭水" value="103"  onclick="chxclick(this)"/>彭水</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="四川省" name='province' onClick="chxclick(this)" value="357"/>四川省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="成都" value="358"  onclick="chxclick(this)"/>成都</label>
+                                                                        <label><input type="checkbox" title="自贡" value="359"  onclick="chxclick(this)"/>自贡</label>
+                                                                        <label><input type="checkbox" title="攀枝花" value="360"  onclick="chxclick(this)"/>攀枝花</label>
+                                                                        <label><input type="checkbox" title="泸州" value="361"  onclick="chxclick(this)"/>泸州</label>
+                                                                        <label><input type="checkbox" title="德阳" value="362"  onclick="chxclick(this)"/>德阳</label>
+                                                                        <label><input type="checkbox" title="绵阳" value="363"  onclick="chxclick(this)"/>绵阳</label>
+                                                                        <label><input type="checkbox" title="广元" value="364"  onclick="chxclick(this)"/>广元</label>
+                                                                        <label><input type="checkbox" title="遂宁" value="365"  onclick="chxclick(this)"/>遂宁</label>
+                                                                        <label><input type="checkbox" title="内江" value="366"  onclick="chxclick(this)"/>内江</label>
+                                                                        <label><input type="checkbox" title="资阳" value="367"  onclick="chxclick(this)"/>资阳</label>
+                                                                        <label><input type="checkbox" title="乐山" value="368"  onclick="chxclick(this)"/>乐山</label>
+                                                                        <label><input type="checkbox" title="眉山" value="369"  onclick="chxclick(this)"/>眉山</label>
+                                                                        <label><input type="checkbox" title="南充" value="370"  onclick="chxclick(this)"/>南充</label>
+                                                                        <label><input type="checkbox" title="宜宾" value="371"  onclick="chxclick(this)"/>宜宾</label>
+                                                                        <label><input type="checkbox" title="广安" value="372"  onclick="chxclick(this)"/>广安</label>
+                                                                        <label><input type="checkbox" title="达州" value="373"  onclick="chxclick(this)"/>达州</label>
+                                                                        <label><input type="checkbox" title="巴中" value="374"  onclick="chxclick(this)"/>巴中</label>
+                                                                        <label><input type="checkbox" title="雅安" value="375"  onclick="chxclick(this)"/>雅安</label>
+                                                                        <label><input type="checkbox" title="阿坝" value="376"  onclick="chxclick(this)"/>阿坝</label>
+                                                                        <label><input type="checkbox" title="甘孜" value="377"  onclick="chxclick(this)"/>甘孜</label>
+                                                                        <label><input type="checkbox" title="凉山" value="378"  onclick="chxclick(this)"/>凉山</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="贵州省" name='province' onClick="chxclick(this)" value="379"/>贵州省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="贵阳市" value="380"  onclick="chxclick(this)"/>贵阳市</label>
+                                                                        <label><input type="checkbox" title="遵义市" value="381"  onclick="chxclick(this)"/>遵义市</label>
+                                                                        <label><input type="checkbox" title="安顺市" value="382"  onclick="chxclick(this)"/>安顺市</label>
+                                                                        <label><input type="checkbox" title="六盘水市" value="383"  onclick="chxclick(this)"/>六盘水市</label>
+                                                                        <label><input type="checkbox" title="毕节地区" value="384"  onclick="chxclick(this)"/>毕节地区</label>
+                                                                        <label><input type="checkbox" title="铜仁地区" value="385"  onclick="chxclick(this)"/>铜仁地区</label>
+                                                                        <label><input type="checkbox" title="黔东南州" value="386"  onclick="chxclick(this)"/>黔东南州</label>
+                                                                        <label><input type="checkbox" title="黔南州" value="387"  onclick="chxclick(this)"/>黔南州</label>
+                                                                        <label><input type="checkbox" title="黔西南州" value="388"  onclick="chxclick(this)"/>黔西南州</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="云南省" name='province' onClick="chxclick(this)" value="389"/>云南省</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="昆明市" value="390"  onclick="chxclick(this)"/>昆明市</label>
+                                                                        <label><input type="checkbox" title="曲靖市" value="391"  onclick="chxclick(this)"/>曲靖市</label>
+                                                                        <label><input type="checkbox" title="红河哈尼族彝族自治州" value="392"  onclick="chxclick(this)"/>红河哈尼族彝族自治州</label>
+                                                                        <label><input type="checkbox" title="昭通市" value="393"  onclick="chxclick(this)"/>昭通市</label>
+                                                                        <label><input type="checkbox" title="玉溪市" value="394"  onclick="chxclick(this)"/>玉溪市</label>
+                                                                        <label><input type="checkbox" title="德宏傣族景颇族自治州" value="395"  onclick="chxclick(this)"/>德宏傣族景颇族自治州</label>
+                                                                        <label><input type="checkbox" title="丽江市" value="396"  onclick="chxclick(this)"/>丽江市</label>
+                                                                        <label><input type="checkbox" title="迪庆藏族自治州" value="397"  onclick="chxclick(this)"/>迪庆藏族自治州</label>
+                                                                        <label><input type="checkbox" title="文山壮族苗族自治州" value="398"  onclick="chxclick(this)"/>文山壮族苗族自治州</label>
+                                                                        <label><input type="checkbox" title="思茅市" value="399"  onclick="chxclick(this)"/>思茅市</label>
+                                                                        <label><input type="checkbox" title="大理白族自治州" value="400"  onclick="chxclick(this)"/>大理白族自治州</label>
+                                                                        <label><input type="checkbox" title="怒江傈僳族自治州" value="401"  onclick="chxclick(this)"/>怒江傈僳族自治州</label>
+                                                                        <label><input type="checkbox" title="保山市" value="402"  onclick="chxclick(this)"/>保山市</label>
+                                                                        <label><input type="checkbox" title="楚雄彝族自治州" value="403"  onclick="chxclick(this)"/>楚雄彝族自治州</label>
+                                                                        <label><input type="checkbox" title="西双版纳傣族自治州" value="404"  onclick="chxclick(this)"/>西双版纳傣族自治州</label>
+                                                                        <label><input type="checkbox" title="临沧市" value="405"  onclick="chxclick(this)"/>临沧市</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                                            <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="西藏自治区" name='province' onClick="chxclick(this)" value="406"/>西藏自治区</label><span></span><img src="jt.jpg" onClick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	                                    <label><input type="checkbox" title="拉萨" value="407"  onclick="chxclick(this)"/>拉萨</label>
+                                                                        <label><input type="checkbox" title="日喀则" value="408"  onclick="chxclick(this)"/>日喀则</label>
+                                                                        <label><input type="checkbox" title="林芝" value="409"  onclick="chxclick(this)"/>林芝</label>
+                                                                        <label><input type="checkbox" title="山南" value="410"  onclick="chxclick(this)"/>山南</label>
+                                                                        <label><input type="checkbox" title="那曲" value="411"  onclick="chxclick(this)"/>那曲</label>
+                                                                        <label><input type="checkbox" title="昌都" value="412"  onclick="chxclick(this)"/>昌都</label>
+                                                                        <label><input type="checkbox" title="阿里" value="413"  onclick="chxclick(this)"/>阿里</label>
+                                                                   
+                                <p align="right"><input type="button" value="关闭" onClick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                     
+							</div>							
+						</li>
+                            				</ul>
+				<p><input type="button" value="确定" onClick="saveArea()"/> <input type="button" value="取消" onClick="hideArea()"/></p>
+	
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

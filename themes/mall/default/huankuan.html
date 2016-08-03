@@ -1,0 +1,114 @@
+{include file=member.header.html}
+<script type="text/javascript">
+
+function huankuan()
+{
+	
+	
+if (document.gh.money_h.value =="")
+  {
+    alert("还款金额不能为空!");
+	document.gh.money_h.focus();
+	return false;
+	}
+if (document.gh.money_h.value <=0)
+  {
+    alert("还款金额必须大于0");
+	document.gh.money_h.focus();
+	return false;
+	}
+}
+
+
+</script>
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=member&act=my_jiekuan">我要借款</a></li>
+                <li class="normal"><a href="index.php?app=member&act=jiekuanjilu">借款记录</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+ <form action="index.php?app=member&act=huankuan" method="post" onSubmit="return huankuan();" name="gh" enctype="multipart/form-data">
+
+ <table width="425">
+ 
+ <tr>
+ <td>借款人：</td>
+ <td width="663">{$jie.user_name}
+ <input name="id" id="id" value="{$jie.id}" type="hidden"/>
+ </td>
+ </tr>
+ <tr>
+ <td>真实姓名：</td>
+ <td width="663">{$jie.name}
+ </td>
+ </tr>
+ <tr>
+ <td>借款期限:</td>
+ <td>
+ {if $jie.isday==0}
+ {$jie.time}{$lang.yue}
+ {else}
+ {$jie.time}{$lang.tian}
+ {/if}
+ {if $jie.start_time}
+ 即 {$jie.start_time1}至{$jie.daoqi_time}
+ {/if}
+ </td>
+ </tr>
+  <tr>
+ <td>应还金额：</td>
+ <td>{$jie.yh_money}{$lang.yuan}</td>
+ </tr>
+ {if $jie.faxi>0}
+ <tr>
+ <td>应还罚息：</td>
+ <td>{$jie.faxi}{$lang.yuan}</td>
+ </tr>
+ {/if}
+  <tr>
+ <td>已还金额：</td>
+ <td>{$jie.money_h|default:0.00}{$lang.yuan}</td>
+ </tr>
+ <!--<tr>
+ <td>待还金额(本金)：</td>
+ <td>{$jie.dai_money}{$lang.yuan}</td>
+ </tr>-->
+ 
+ <tr>
+ <td>还款金额：</td>
+ <td><input name="money_h" id="money_h" value="" /><font color="#990000"> * {$lang.huankuan}</font></td>
+ </tr>
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr>
+ <td></td>
+ <td><center><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></center></td>
+</table>
+</form>
+          
+ 
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

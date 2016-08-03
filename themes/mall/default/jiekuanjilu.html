@@ -1,0 +1,104 @@
+{include file=member.header.html}
+
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=member&act=my_jiekuan">我要借款</a></li>
+                <li class="active">借款记录</li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+        <table class="table_head_line">
+               <!-- {if $jie}-->
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="11">
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                      
+                        <th class="align1">借款人</th>
+                        <th>借款金额</th>
+                        <th>冻结保证金</th>
+						<th>已还金额</th>
+                        <th align="center">申请时间</th>
+                        <th align="center">借款期限</th>
+                        <th class="width4">借款利息</th>
+                        <th align="center">借款状态</th>
+                       <!-- <th align="center">应还金额</th>-->
+                        <th class="width4">操作</th>
+                    </tr>
+              {foreach from=$jie item=var}
+                 
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        
+                        <td class="link1">{$var.user_name}</td>
+						
+						<td align="center">{$var.money_j}{$lang.yuan}</td>
+                        <td align="center">{$var.baozheng}{$lang.yuan}</td>
+						<td align="center">{$var.money_h|default:0.00}{$lang.yuan}</td>
+						<td align="center">{$var.createdate}</td>
+						<td align="center">
+                        {if $var.isday==0}
+                        {$var.time}{$lang.yue}
+                        {else}
+                        {$var.time}{$lang.tian}
+                        {/if}
+                        {if $var.start_time}即 {$var.start_time1}至{$var.daoqi_time}{/if}
+                        </td>
+                        <td align="center">{$var.lixi}{$lang.yuan}</td>
+						<td align="center"> 
+                        {if $var.status==1}{$lang.dengdaishenhe}{/if}
+                          {if $var.status==2}{if $var.status1==1}
+                          待还款
+                          {/if}
+                          {if $var.status1==2}
+                          已还款
+                          {/if}{/if}
+                          {if $var.status==3}{$lang.shenhebutongguo}{/if}
+                          </td>
+						<!--<td align="center">{$var.z_money}{$lang.yuan}</td>-->
+                        <td>
+                        <nobr>
+                    <a href="index.php?app=member&act=jk_xiangqing&id={$var.id}">查看</a>
+                    {if $var.status==1}
+               ||<a href="index.php?app=member&act=jk_drop&id={$var.id}&userid={$var.user_id}" presubmit="confirm('{$lang.drop_confirm}')" >删除</a>     
+               {/if}
+  {if $var.status==2 && $var.status1==1 }||<a href="index.php?app=member&act=huankuan&id={$var.id}">还款</a>{/if}
+                  </nobr>      </td>
+                    </tr>
+                      {/foreach}
+                     {else}
+  {$lang.nodata}
+  {/if}
+                </table>
+                <br /><br />
+                {if $jie}
+                <a href="/data/jiekuanhetong/hetong{$cityrow.city_id}.zip" style="color:#00F" target="_blank"><h5><b>合同下载</b></h5></a>
+                {/if}
+            </div>
+       
+            <div class="wrap_bottom">
+           </div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

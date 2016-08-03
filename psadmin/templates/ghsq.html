@@ -1,0 +1,72 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>供货管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+	    <li><span>供货商申请</span></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+		
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       
+    </div>
+    <div class="fontr">
+
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+<!--{if $memb}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+            <td align="left">用户id</td>
+			<td>用户名</td>
+            <td>状态</td>
+			<td>所属站</td>
+            <td class="handler">操作</td>
+        </tr>
+
+        <!--{foreach from=$memb item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$key}" />
+            </td>
+            <td align="left"><b>&nbsp;{$val.user_id}</b></td>
+          	<td>&nbsp;{$val.user_name}</td>
+		  	<td>&nbsp;
+            {if $val.status==2}审核通过{/if}
+            {if $val.status==3}审核不通过{/if}
+            </td>
+			<td>&nbsp;{$val.city_name}
+			</td>
+            <td class="handler">
+            <a href="index.php?app=gonghuo&act=ghsq_edit&id={$val.gh_id}">编辑</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.nodata}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $memb}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="#" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

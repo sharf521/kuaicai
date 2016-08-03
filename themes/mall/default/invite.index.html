@@ -1,0 +1,65 @@
+{include file=member.header.html}
+
+
+<script type="text/javascript"> 
+    function jsCopy(){ 
+        var e=document.getElementById("content");//对象是content 
+        e.select(); //选择对象 
+        document.execCommand("Copy"); //执行浏览器复制命令
+       alert("已复制好，可贴粘。"); 
+    } 
+</script> 
+
+<style>
+.buttoncss{
+font-family:"tahoma","宋体";/*www.52css.com*/
+font-size:9pt;color:#003399;
+border:1px#003399solid;
+color:#006699;
+border-bottom:#93bee21pxsolid;
+border-left:#93bee21pxsolid;
+border-right:#93bee21pxsolid;
+border-top:#93bee21pxsolid;
+background-image:url(../images/bluebuttonbg.gif);
+background-color:#e8f4ff;
+cursor:hand;
+font-style:normal;
+width:60px;
+height:22px;
+}
+.my_friend_2code{margin:0px 0px 0px 40px;}
+.my_friend_2code p{ line-height:30px; font-size:14px; font-weight:bold}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+
+          <ul class="tab">
+		  <li class="active">{$lang.yaoqinglianjie}</li>
+			<li class="normal"><a href="?app=friend&act=invite_list">{$lang.yaoqing_list}</a></li>
+          </ul>
+        <div class="wrap">
+            <!--<div class="eject_btn" title="{$lang.add_friend}"><b class="ico3" ectype="dialog" dialog_id="friend_add" dialog_title="{$lang.add_friend}" uri="index.php?app=friend&act=add" dialog_width="400">{$lang.add_friend}</b></div>-->
+            <div class="public table">                
+                <div class="my_friend_2code">
+                <p>邀请链接：</p>				 
+                 <textarea cols="40" name="content" rows="3" id="content">http://{$cityurl}/index.php?app=member&id={$visitor.user_id}&act=register
+				 </textarea> &nbsp;&nbsp;<input type=button value="复制" onclick="jsCopy()" class="buttoncss">
+ 					<div><br /></div>
+                	<p>二维码邀请：手机扫描二维码注册</p>
+                <img src='{$regurl_codeimg}' width='160'></div>
+                
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=footer.html}

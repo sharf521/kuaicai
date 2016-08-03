@@ -1,0 +1,95 @@
+{include file="header.html"}
+{include file="curlocal.html"}
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+<div class="flow_chart">
+    <div class="pos_x1 bg_a1" title="{$lang.shopping_step_one}"></div>
+    <div class="pos_x2 bg_b2" title="{$lang.shopping_step_two}"></div>
+    <div class="pos_x3 bg_c2" title="{$lang.shopping_step_three}"></div>
+</div>
+
+<div class="content">
+
+    <div class="module_common">
+
+        <div class="buy">
+            <h3><b class="ico">{$lang.your_cart_goods}</b></h3><font color="#990000">(购物车中的商品请尽快购买，一周之后将从购物车中删除)</font>
+        <!--{foreach from=$carts item=cart key=store_id}-->
+            <div class="con">
+                <h4>{$lang.store}: <a href="{url app=store&id=$cart.store_id}">{$cart.store_name|escape}</a></h4>
+                <div class="buytable">
+                    <table>
+                        <tr>
+                            <th>{$lang.store_goods}</th>
+                        {if $kaiguan.xjzf=="yes"}  {if $cart.goods.daishou!=2}<th>{$lang.price}</th>{/if}{/if}
+						{if $kaiguan.jfzf=="yes"}{if $cart.goods.daishou==2}<th>{$lang.jifen_price}</th>{/if}
+							<!--<th>{$lang.vip_price}</th>-->
+                            {/if}
+                            <th>{$lang.quantity}</th>
+                            <th>{$lang.subtotal}</th>
+                            <th>{$lang.handle}</th>
+                        </tr>
+                        <!--{foreach from=$cart.goods item=goods}-->
+                        <tr id="cart_item_{$goods.rec_id}">
+                            <td class="padding1">
+                                <p class="ware_pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" alt="{$goods.goods_name|escape}" width="65" height="65" /></a></p>
+                                <h3 style="width:200px">
+                                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                                    <span class="attr">{$goods.specification|escape}</span>
+                                </h3>
+                            </td>
+                          {if $kaiguan.xjzf=="yes"} 
+                          {if $goods.daishou!=2}
+                           <td class="align1"><span class="price1">{$goods.price_m|price}</span></td>
+                           {/if}
+                           {/if}
+			{if $kaiguan.jfzf=="yes"}
+            {if $goods.daishou==2}
+            <td class="align1"><span class="price1">{$goods.vip_price}{$lang.jifen}</span></td>
+            {/if}
+						<!--	<td class="align1"><span class="price1">{$goods.vip_price}{$lang.jifen}</span></td>-->
+                        {/if}
+                        
+                            <td class="align2">
+                                <img src="{res file="images/subtract.gif"}" onclick="decrease_quantity({$goods.rec_id});" alt="{$lang.decrease}" width="12" height="12" />
+                                <input id="input_item_{$goods.rec_id}" value="{$goods.quantity}" orig="{$goods.quantity}" changed="{$goods.quantity}" onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);" class="text1 width3" type="text" />
+                                <img src="{res file="images/adding.gif"}"onclick="add_quantity({$goods.rec_id});" alt="{$lang.increase}" width="12" height="12" />
+                            </td>
+                            <td class="align1">
+                            {if $kaiguan.xjzf=="yes"} 
+                              {if $goods.daishou!=2}
+                            <div class="price2" id="item{$goods.rec_id}_subtotal">{$goods.subtotal_m|price}
+                            {/if}{/if}<br /></div>
+                  {if $kaiguan.jfzf=="yes"} 
+                    {if $goods.daishou==2}
+                  <span class="price2" id="item{$goods.rec_id}_subjifen">{$goods.subjifen}{$lang.jifen}
+                  {/if}{/if}</div></td>
+                            <td class="align2">
+                                <a class="move" href="javascript:;" onclick="move_favorite({$store_id}, {$goods.rec_id}, {$goods.goods_id});">{$lang.move_favorite}</a>
+                                <a class="del" href="javascript:;" onclick="drop_cart_item({$store_id}, {$goods.rec_id});">{$lang.drop}</a>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                    </table>
+                    <div class="buy_foot">
+			<!--{if $kaiguan.jfzf=="yes"}{if $memb.vip==1}恭喜您，您用的是vip积分价进行购买{/if}
+					{if $memb.vip==0}您现在还不是vip，只需完成一次交易，即可享受vip积分价{/if}{/if}-->
+                        <p >{if $goods.daishou!=2}
+                        {$lang.goods_amount}:&nbsp;&nbsp;<strong class="fontsize1" id="cart{$store_id}_amount" >{$cart.amount_m|price}&nbsp;&nbsp;</strong>
+                        {else}
+                       
+                        {$lang.goods_jifen}：<strong class="fontsize1" id="cart{$store_id}_am_jifen">{$cart.am_jifen}{$lang.jifen}</strong>
+                     
+                        {/if}
+                        </p>
+                        <p>
+                            <a href="{url app=order&goods=cart&store_id=$cart.store_id&ger_id=$cart.ger_id}" class="btn">{$lang.next_order_form}</a>
+                            <a href="{url app=store&id=$cart.store_id}" class="back">{$lang.goon_shopping}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <!--{/foreach}-->
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

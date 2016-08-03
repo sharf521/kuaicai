@@ -1,0 +1,116 @@
+{include file="header.html"}
+<script type="text/javascript">
+
+function fuzhi(jiage)
+{
+		$jifen=jiage*{$canshu.jifenxianjin};
+	document.getElementById('youhui_jifen').value=$jifen;
+	//document.getElementById('goumai_jifen').value=$jifen;
+}
+function fu(jiage)
+{
+	$jifen=jiage*{$canshu.jifenxianjin};
+	document.getElementById('goumai_jifen').value=$jifen;
+}
+
+</script>
+<script language="javascript">
+$(function(){
+    $('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+
+<div id="rightTop">
+
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=coupon">{$lang.manage}</a></li>
+	<li><a class="btn1" href="index.php?app=coupon&amp;act=fufei">付费管理</a></li>
+    <li>
+      <!-- {if $user.user_id} -->
+      <a class="btn1" href="index.php?app=coupon&amp;act=add">付费增加</a>
+      <!-- {else} -->
+      <span>付费增加</span>
+      <!-- {/if} -->
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="youhui_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15">优惠券名称:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="youhui_name" type="text" name="youhui_name" value="" />
+         
+       </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">优惠券图片:</th>
+        <td class="paddingT15 wordSpacing5"><input name="youhui_image" type="file" id="youhui_image" size="17"/>
+             </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">优惠金额:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="youhui_jine" id="youhui_jine" value="" onblur="fuzhi(this.value)"/>
+             </td>
+      </tr>
+	  <tr>
+        <th class="paddingT15">优惠积分:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="youhui_jifen" id="youhui_jifen" value="" />
+             </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 开始时间:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="start_time" type="text" id="start_time" value="" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 结束时间:</th>
+       <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="end_time" type="text" id="end_time" value="" />    </td>
+      </tr>
+	   <tr>
+        <th class="paddingT15"> 购买金额:</th>
+       <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="goumai" type="text" id="goumai" value="" onblur="fu(this.value)"/>    </td>
+      </tr>
+	   <tr>
+        <th class="paddingT15"> 购买积分:</th>
+       <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="goumai_jifen" type="text" id="goumai_jifen" value="" />    </td>
+      </tr>
+ <!--<tr>
+        <th class="paddingT15"> 所属站:</th> 
+       <td class="paddingT15 wordSpacing5">
+	   
+	   <select id="yhcity" name="yhcity">
+	   <!--{foreach from=$city item=val key=key}-->
+	 <!--  <option id="yhcity" value="{$val.city_id}">{$val.city_name} </option>
+	   <!--{/foreach}-->
+	  <!-- </select>
+	
+	   </td>     
+      </tr>-->
+	  <tr>
+		  <th class="paddingT15">推荐到的分站:</th>
+		 <td class="paddingT15 wordSpacing5">
+		{foreach from=$city item=val}
+		<input type="checkbox" name="fu[]" value="{$val.city_id}" />{$val.city_name}<br />
+		{/foreach}
+		</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">备注:</th>
+        <td class="paddingT15 wordSpacing5">
+		<textarea name="beizhu" id="beizhu" rows="6" cols="10">
+		</textarea>
+		</td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

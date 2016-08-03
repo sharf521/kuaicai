@@ -1,0 +1,215 @@
+{include file=member.header.html}
+<script language="javascript">
+
+function card()
+{
+if (document.xianjin_form.duihuanjifen.value =="")
+  {
+    alert("请您填写需要兑换的积分");
+	document.xianjin_form.duihuanjifen.focus();
+	return false;
+	}	
+if (document.xianjin_form.duihuanjifen.value < 10)
+  {
+    alert("兑换的积分不能小于10积分");
+document.xianjin_form.duihuanjifen.focus();
+	return false;
+	}
+
+ document.getElementById("duihuan").setAttribute('disabled','ture');
+}
+
+function card1()
+{
+if (document.card_form1.duihuanjine.value =="")
+  {
+    alert("请您填写需要兑换的金额");
+	document.card_form1.duihuanjine.focus();
+	return false;
+	}	
+
+
+ document.getElementById("jine").setAttribute('disabled','ture');
+}
+</script>
+
+
+<script language="javascript">
+function tixian(flg){
+var $jifenduihuan = $('#jifenduihuan');
+var $xianjinduihuan = $('#xianjinduihuan');
+
+
+  switch(flg){
+    case 1:
+       
+			$jifenduihuan.show();
+			$xianjinduihuan.hide();
+			
+        break;
+	
+    case 2:
+       $xianjinduihuan.show();
+	   $jifenduihuan.hide();
+	   
+        break;
+
+  }
+}
+
+</script>
+
+
+
+<?php
+$shuzi1 = round(rand(1,8));
+$shuzi2 = round(rand(1,8));
+$shuzi3 = round(rand(1,8));
+
+$quzimu1= round(rand(65,72));
+$quzimu2= round(rand(65,72));
+$quzimu3= round(rand(65,72));
+
+$zimu1 = chr($quzimu1);
+$zimu2 = chr($quzimu2);
+$zimu3 = chr($quzimu3);
+
+?>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.xianjinjifen}</li>
+				<li class="normal"><a href="?app=my_money&act=xianjinduihuan">{$lang.duihuanxianjin}</a></li>
+			<li class="normal"><a href="?app=my_money&act=jifenduihuan">{$lang.duihuanjifenjilu}</a></li>
+          </ul>
+
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                        <table class="width6" style="text-align:left">
+                          <tr>
+                            <td style="border:0"><span style="font-size:14px">
+                              <!--{foreach from=$my_money item=val key=key}-->
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$val.jifen}</span></span>
+                              </td>
+                          </tr>
+                          <tr>
+                            <td height="25" style="border:0"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$val.dongjiejifen}</span>&nbsp;{$lang.jifen}</span><!--{/foreach}--></td>
+                          </tr>
+                          <tr>
+                            <td style="border:0">{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>
+                  </div>
+                </div>			
+            </div>
+        </div>
+			  
+
+
+         <div class="wrap">
+            <div class="public table">
+				 
+				  <input type="radio" value="兑换积分" checked="checked" name="a" onclick="tixian(1)"/> <font style="font-size:14px;"> 兑换积分</font>&nbsp;&nbsp;&nbsp;<input type="radio" value="兑换现金" name="a" onclick="tixian(2)"/><font style="font-size:14px;">兑换现金</font>
+				  
+				  
+				  
+				  
+				  <div id="jifenduihuan" >
+                  
+				 <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="card_form1"  onSubmit="return card1();" action="index.php?app=my_money&act=duihuan_jifen" method="post">
+				  兑换帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" /> <input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
+			  <br>
+				  兑换金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="duihuanjine" type="text" id="duihuanjine" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8"/>元<font color="#FF0000">（填写您要兑换的金额）</font>&nbsp;
+				  <br>
+				
+				   <!--{foreach from=$canshu item=val key=key}-->
+				 <input name="bili" type="hidden" id="bili" size="15"  value="{$val.duihuanjifenfeilv}"/>
+				 	  <!--{/foreach}-->
+                <br> 
+				 <!--{foreach from=$kaiguan item=val key=key}-->
+				
+				 <input name="dhjf" id="dhjf" size="30" type="hidden" value="{$val.dhjf}"/>
+            <!--{/foreach}-->
+				  <!--兑换日期：&nbsp;&nbsp;&nbsp;&nbsp;<input name="riqi" type="text" id="riqi" size="15"> -->
+				  <!--{foreach from=$kaiguan item=val key=key}-->
+				  <!--{if $val.dhjf=='no'}-->
+				  <input name="status" id="status" size="30" type="hidden" value="1"/>
+				  <!--  {else}-->
+				<input name="status" id="status" size="30" type="hidden" value="0"/>
+				<!--{/if}-->
+				<!--{/foreach}-->
+				   <input name="type" id="type" size="30" type="hidden" value="4"/>
+				<input name="log_text" id="log_text" size="30" type="hidden" value="{$visitor.user_name}兑换积分"/>
+				
+				  备注：<textarea cols="23" rows="5" name="beizhu" id="beizhu" ></textarea>
+				  <br />
+				   <font color="#990000">说明：现金换积分的比例是100/252,即100块钱可换252积分</font>
+                  <BR><BR><input type="submit" class="money_btn" value="立即兑换" id="jine" />
+				 
+                  </form>
+             </div>
+			</div>
+			
+			<div id="xianjinduihuan" style= "display:   none ">
+          <!--  <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">{$lang.zaixianchongzhi}</h3>-->
+                  
+				  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="xianjin_form" onSubmit="return card();" action="index.php?app=my_money&act=duihuan_xianjin" method="post">
+				  兑换帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" />
+			  <br>
+				  兑换积分：&nbsp;&nbsp;&nbsp;&nbsp;<input name="duihuanjifen" type="text" id="duihuanjifen" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/>积分<font color="#FF0000">（填写您要兑换的积分,单笔兑换积分不低于10积分）</font>&nbsp;
+				  
+                  <br>
+				 <input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
+				 <!--{foreach from=$canshu item=val key=key}-->
+				
+				 <input name="bili" type="hidden" id="bili" size="15"  value="{$val.duihuanxianjinfeilv}"/>
+				
+				   <!--{/foreach}-->
+                <br> 
+				 
+           
+				 <!-- 兑换日期：&nbsp;&nbsp;&nbsp;&nbsp;<input name="riqi" type="text" id="riqi" size="15"> -->
+				  <input name="status" id="status" size="30" type="hidden" value="0"/>
+				  <input name="type" id="type" size="30" type="hidden" value="5"/>
+				<input name="log_text" id="log_text" size="30" type="hidden" value="{$visitor.user_name}兑换现金"/>
+				  备注：<textarea cols="23" rows="5" name="beizhu" id="beizhu" ></textarea><br />
+				    <font color="#990000">说明：现金换积分的比例是100/252,即100块钱可换252积分</font>
+                  <BR><BR><input type="submit" class="money_btn" value="立即兑换" id="duihuan" />
+                  </form>
+             </div>
+			</div>
+			
+			
+			
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

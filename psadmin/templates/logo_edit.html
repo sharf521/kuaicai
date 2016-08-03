@@ -1,0 +1,60 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.admin}</p>
+  <ul class="subnav">
+	<li><a class="btn1" href="index.php?app=admin">{$lang.manage}</a></li>
+    <li><a class="btn1" href="index.php?app=admin&amp;act=add">{$lang.add}</a></li>
+	<li><span>分站管理</span></li>
+	<li><a class="btn1" href="index.php?app=admin&amp;act=addfz">增加分站</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	  
+
+		
+			<tr>
+                <th class="paddingT15">{$lang.city_logo}</th>
+                <td class="paddingT15 wordSpacing5">
+				<input class="infoTableFile" id="zhuzhan_logo" type="file" name="zhuzhan_logo" />
+				<!--{if $setting.zhuzhan_logo}-->
+          <img class="show_image" src="{res file=style/images/right.gif}" />
+          <div style="position:absolute; display:none"><img src="{$site_url}/{$setting.zhuzhan_logo}?{$random_number}" /></div>
+          <!--{/if}-->
+				</td>
+            </tr>
+			
+			
+       
+
+          
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

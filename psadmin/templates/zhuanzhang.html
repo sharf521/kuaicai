@@ -1,0 +1,119 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>转账管理</p>
+    <ul class="subnav">
+		<li><span>转账列表</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">返回导航</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       <form method="get">
+            <div class="left">
+              <input name="app" type="hidden" id="app" value="user" />
+              <input name="act" type="hidden" id="act" value="zhuanzhang" />
+              用户名
+              <input name="soname" type="text" id="soname" value="{$soname}" size="10"/>
+			  申请时间
+              <input name="sotime" type="text" id="sotime" value="{$sotime}" size="10" maxlength="10" />
+              &nbsp;至&nbsp;<input name="endtime" type="text" id="endtime" value="{$endtime}" size="10" maxlength="10" />
+			  转账类型：<select name="leixing">
+			  <option value="">{$lang.select_pls}</option>
+			  <option value="1" {if $leixing==1} selected="selected"{/if}>向借贷平台转账</option>
+			  <option value="3" {if $leixing==3} selected="selected"{/if}>向积分商城转账</option>
+			  <option value="4" {if $leixing==4} selected="selected"{/if}>向易货商城转账</option>
+			  </select>
+              状态:
+          <select class="querySelect" name="status">
+          <option value="">{$lang.select_pls}</option>
+          <option value="1" {if $status==1} selected="selected"{/if}>等待审核</option>
+          <option value="2" {if $status==2} selected="selected"{/if}>审核通过</option>
+		  <option value="3" {if $status==3} selected="selected"{/if}>审核不通过</option>
+          </select>
+             
+          	所属站：
+             <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          
+                <input type="submit" class="formbtn" value="搜索" />
+            </div>
+             <!--{if $soname || $sotime || $endtime || $status || $suoshuzhan || $leixing} -->
+      <a class="left formbtn1" href="index.php?app=user&act=zhuanzhang">{$lang.cancel_query}</a>
+      <!--{/if}-->
+            
+            
+      </form>
+    </div>
+    <div class="fontr">
+{include file=page.top.html}
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell"></td>
+            <td align="left">用户名</td>
+            <td>转账金额</td>
+			<td>转账类型</td>
+            <td>转账状态</td>
+			<td>日期</td>
+			<td>所属站</td>
+            <td class="handler">操作</td>
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            </td>
+            <td align="left"><b>&nbsp;{$val.user_name}({$val.user_id})</b></td>
+			 <td><font color="#FF0000">&nbsp;{$val.money}</font></td>
+            <td><font color="#FF0000">&nbsp;{if $val.leixing==1}向借贷平台转账{/if}
+			{if $val.leixing==3}向积分商城转账{/if}
+			{if $val.leixing==4}向易货商城转账{/if}
+			</font></td>
+            <td>{if $val.status==1}等待审核{/if}
+			{if $val.status==2}审核通过{if $val.status1==1}(转账成功){/if}{if $val.status1==2}(转账失败){/if}{/if}
+			{if $val.status==3}审核不通过{/if}
+			</td>
+            <td>&nbsp;{$val.riqi}</td
+			><td class="table_center">
+		&nbsp;
+		     {$val.city_name}
+			</td>
+            <td class="handler">
+             {if $val.status==1}
+			  <a href="index.php?app=user&act=shenhe_user&log_id={$val.id}">审核</a>
+              {else}
+			  已审核
+			  {/if}
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="#" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

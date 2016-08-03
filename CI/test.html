@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript" src="includes/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.post("ajax.php?func=gettag",{q:"女鞋"},function(data,status){
+      data=data.split('[#]');
+	  $('#pre1').html(data[0]);
+	  $('#pre2').html(data[1]);
+	  
+	 
+	  str1='';
+	  $("div#pre1 ul:eq(0) li").each(function(){
+		  if($(this).text().trim()!='多选')
+		  {
+		  	str1+=','+$(this).text().trim();
+		  }
+	  });
+	  $("#text1").val(str1.substr(1));
+	  
+	  str1='';
+	  $("div#pre1 ul:eq(1) li").each(function(){
+		  if($(this).text().trim()!='多选')
+		  {
+		  	str1+=','+$(this).text().trim();
+		  }
+	  });
+	  $("#text11").val(str1.substr(1));
+	  
+	  str1='';
+	  $("div#pre1 ul:eq(2) li").each(function(){
+		  if($(this).text().trim()!='多选')
+		  {
+		  	str1+=','+$(this).text().trim();
+		  }
+		  
+	  });
+	  $("#text111").val(str1.substr(1));
+	  
+	  
+	  str2='';
+	  $("div#pre2 a:last").remove();
+	  $("div#pre2 a").each(function(){
+		  str2+=','+$(this).text();
+	  });
+	  $("#text2").val(str2.substr(1));
+  });
+});
+</script>
+
+</head>
+
+<body>
+<div id='pre1'></div>
+<div id='pre2'></div>
+<input type="text" size="100" id="text1"/>
+<input type="text" size="100" id="text11"/>
+<input type="text" size="100" id="text111"/>
+<input type="text" size="100" id="text2"/>
+</body>
+</html>

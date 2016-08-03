@@ -1,0 +1,206 @@
+{include file="header.html"}
+
+<script language="javascript">
+$(function(){
+    $('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="rightTop">
+    <p>广告管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=adv">{$lang.manage}</a></li>
+        {if $adv.adv_id}
+        <li><a class="btn1" href="index.php?app=adv&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+		{if $priv_row.privs=="all"}
+		<li><a class="btn1" href="index.php?app=adv&amp;act=type_add">增加类型</a></li>
+		<li><a class="btn1" href="index.php?app=adv&amp;act=adv_type">类型管理</a></li>
+		{/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form" name="form1">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$adv.title|escape}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    {$lang.type}:</th>
+					 <td class="paddingT15 wordSpacing5">
+				
+					 <select id="type" name="type">
+					 <!--{foreach from=$adv_row item=val}-->
+				<option id="type" value="{$val.id}">{$val.type}&nbsp;&nbsp;&nbsp;&nbsp;<font color="#990033">{if $val.danjia}{$val.danjia}元{else}0元{/if}</font></option>
+             
+              <!-- {/foreach}-->
+				
+				</select>
+				
+                 
+                </td>
+            </tr>
+			<tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+			
+			<tr>
+                <th class="paddingT15">
+                    {$lang.image}1:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="image" type="file" name="image" value="{$adv.image|escape}" />
+                    <br /> <br />
+                    <input name="ima" value="{$adv.image}" size="40"/><font color="#990000">(若选择上面的上传方式，请将此处清空)</font>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    {$lang.lianjie}1:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="lianjie" type="text" name="lianjie" value="{$adv.lianjie|escape}" /><font color="#999999">(格式如：http://www.imm023.com)</font>
+                </td>
+            </tr>
+			<tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+                 {$lang.image}2:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="image_1" type="file" name="image_1" value="{$adv.image_1|escape}" />
+                     <br /> <br />
+                     <input name="ima_1" value="{$adv.image_1}" size="40"/><font color="#990000">(若选择上面的上传方式，请将此处清空)</font>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    {$lang.lianjie}2:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="lianjie_1" type="text" name="lianjie_1" value="{$adv.lianjie_1|escape}" /><font color="#999999">(格式如：http://www.imm023.com)</font>
+                </td>
+            </tr>
+			<tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+                  购买人:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="username_g" type="text" name="username_g" value="{$adv.username_g}" />&nbsp;&nbsp;<font color="#990000">(一旦填写不能修改)</font>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  介绍人:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="username_tj" type="text" name="username_tj" value="{$adv.username_tj}" />&nbsp;&nbsp;<font color="#990000">(一旦填写不能修改)</font>
+                </td>
+            </tr>
+			<!--<tr>
+                <th class="paddingT15">
+                  {$lang.danjia}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="price" type="text" name="price" value="{$adv.price|escape}" />
+                </td>
+            </tr>-->
+			<tr>
+                <th class="paddingT15">
+                  实际支付:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="real_zf" type="text" name="real_zf" value="{$adv.real_zf}" />&nbsp;&nbsp;<font color="#990000">(一旦填写不能修改)</font>
+                </td>
+            </tr>
+			<tr>
+			<th></th><td>&nbsp;</td>
+			</tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.start_time}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="start_time" type="text" name="start_time" value="{$adv.start_time}" />(格式：2012-09-30)
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.end_time}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="end_time" type="text" name="end_time" value="{$adv.end_time}" />(格式：2012-09-30)
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+                  {$lang.suoshuzhan}:</th>
+                <td class="paddingT15 wordSpacing5">
+				 <select id="adv_city" name="adv_city" style="width:20">
+		            <!--{foreach from=$city_row item=city}-->
+		            <option id="adv_city" value="{$city.city_id}">{$city.city_name}</option>
+		            <!--{/foreach}-->
+					 </select>
+					
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    备注:</th>
+                <td class="paddingT15 wordSpacing5">
+				<textarea cols="6" rows="5" name="content">{$adv.content}</textarea>
+                </td>
+            </tr>
+			
+			
+	<!--<tr>
+                <th class="paddingT15">
+                    广告位编号:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="bianhao" type="text" name="bianhao" value="{$adv.bianhao|escape}" />
+                </td>
+            </tr>-->
+           
+<!--            <tr>
+                <th class="paddingT15">
+                    <label for="adv">{$lang.content}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="adv" name="content" style="width:650px;height:400px;">{$adv.content|escape}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <th>{$lang.upload_types}:</th>
+            <td height="100" valign="top">
+            <div id="divUploadTypeContainer">
+            <input name="upload_types" id="bat_upload" type="radio" value="bat_upload" checked="checked" /> <label for="bat_upload">{$lang.bat_upload}</label>
+                <input name="upload_types" id="com_upload" type="radio" value="com_upload" /> <label for="com_upload">{$lang.com_upload}</label>
+            </div>
+            <div id="divSwfuploadContainer">
+                <div id="divButtonContainer">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                <div id="divFileProgressContainer"></div>
+            </div>
+            <iframe id="divComUploadContainer" src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}" width="500" height="46" scrolling="no" frameborder="0">
+            </iframe>
+            </td>
+            </tr>-->
+           
+
+
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,110 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+                <li class="normal"><a href="index.php?app=my_money&act=paylist">{$lang.zaixianchongzhi}</a></li>
+				<li class="active">{$lang.chongzhijilu}</li>
+				<!--<li class="normal"><a href="index.php?app=my_money&act=shouru">{$lang.shourujilu}</a></li>-->
+				<!--<li class="normal"><a href="index.php?app=my_money&act=jifenduihuan">{$lang.jifen_duihuan}</a></li>-->
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                <form method="get">
+                  <input name="app" type="hidden" value="my_money" />
+				  <input name="act" type="hidden" value="paylog" />
+                  <select name="select">
+                    <option value="1">{$lang.so_dingdan}</option>
+                    <option value="2">{$lang.so_jine}</option>
+                    <option value="3">{$lang.so_rizhi}</option>
+                  </select>
+
+                    <input name="so" type="text" class="text1 width8" id="so" value="">
+                    <!--<span>订单状态</span>
+                    <select name="type">
+                    <option value="all">所有订单</option>
+					<option value="pending">待付款的</option>
+					<option value="submitted">已提交的</option>
+					<option value="accepted">待发货的</option>
+					<option value="shipped">已发货的</option>
+					<option value="finished">已完成的</option>
+					<option value="canceled">已取消的</option>
+					</select>-->
+
+                    <input type="submit" class="btn" value="搜索" />
+                </form>
+                </div>		
+			
+                <table class="table_head_line">
+               <!-- {if $jie}-->
+                    <tr class="line_bold">
+                        <th class="width1"><input type="checkbox" id="all" class="checkall"/></th>
+                        <th class="align1" colspan="7">
+                            <label for="all"><span class="all">{$lang.checkall}</span></label>
+                            <a href="javascript:;" class="delete" uri="index.php?app=my_money&act=user_log_del" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th class="align1">借款人</th>
+                        <th>真实姓名</th>
+                        <th>借款金额</th>
+						<th>已还金额</th>
+                        <th align="center">申请时间</th>
+                        <th align="center">借款期限</th>
+                        <th class="width4">借款利息</th>
+                        <th align="center">借款状态</th>
+                        <th align="center">应还金额</th>
+                        <th class="width4">操作</th>
+                    </tr>
+              {foreach from=$jie item=var}
+                 
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"><input type="checkbox" class="checkitem" value="{$val.id}"/></td>
+                        <td class="link1">{$var.user_name}</td>
+						<td align="center">{$var.name}</td>
+						<td align="center">{$var.money_j}</td>
+						<td align="center">{$var.money_h|default:0.00}{$lang.yuan}</td>
+						<td align="center">{$var.createdate}</td>
+						<td align="center">{$var.time}{$lang.tian}</td>
+                        <td align="center">{$var.lixi}</td>
+						<td align="center"> 
+                        {if $var.status==1}{$lang.dengdaishenhe}{/if}
+                          {if $var.status==2}{if $var.status1==1}
+                          待还款
+                          {/if}
+                          {if $var.status1==2}
+                          已还款
+                          {/if}{/if}
+                          {if $var.status==3}{$lang.shenhebutongguo}{/if}
+                          </td>
+						<td align="center">{$var.z_money}{$lang.yuan}</td>
+                        <td>
+                    <a href="index.php?app=member&act=jk_xiangqing&id={$var.id}">查看</a>
+  {if $var.status==2 && $var.status1==1 }||<a href="index.php?app=member&act=huankuan&id={$var.id}">还款</a>{/if}
+                        </td>
+                    </tr>
+                      {/foreach}
+                     {else}
+  {$lang.nodata}
+  {/if}
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

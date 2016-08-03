@@ -1,0 +1,332 @@
+<!--{include file=header.html}--> 
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    {$lang.hot_search}:
+    <!--{foreach from=$hot_keywords item=keyword}-->
+    <a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+    <!--{/foreach}-->
+</div>
+
+<div class="content">
+    <div class="left" area="top_left" widget_type="area">
+        <!--{widgets page=index area=top_left}-->
+    </div>
+
+    <div class="right">
+        <div class="main">
+            <div id="module_middle" area="cycle_image" widget_type="area">
+                
+<div id="_widget_698" name="cycle_image" widget_type="widget" class="widget">
+<script type="text/javascript">
+var tId;
+startScroll();
+$(function(){
+    $('.ad_cycle li').each(function(){
+        $(this).click(function(){
+            slideHere($(this));
+        });
+    });
+});
+function startScroll(){
+    tId = setInterval(function(){
+        var nextImg = $('.nonce').next('.initial');
+        if(nextImg.length==0){
+            nextImg = $($('.ad_cycle li')[0]);
+        }
+        slideHere($(nextImg));
+    }, 3000);
+}
+function stopScroll(){
+    clearInterval(tId);
+}
+function slideHere(imgObj){
+    $('.ad_cycle li').removeClass('nonce');
+    $('.ad_cycle li').addClass('initial');
+    imgObj.removeClass('initial');
+    imgObj.addClass('nonce');
+    if($('.ad_cycle img').length)
+    {
+        $('.ad_cycle img')
+            .attr('src', imgObj.attr('target_src'))
+            .css('display', 'none')
+            .fadeIn('normal')
+            .parent().attr('href', imgObj.attr('target_link'))
+            .attr('target', '_blank');
+   }
+}
+</script>
+<div class="ad_cycle"><!--轮播广告-->
+    <div class="line"></div>
+        <div class="number">
+        <ul>
+		 
+		<!-- {foreach from=$data item=image name=fe_image} -->
+            <!-- {if $smarty.foreach.fe_image.first} -->
+            <li class="nonce" target_src="{$image.image}" target_link="{$image.lianjie}">1</li>
+            <!-- {else} -->
+            <li class="initial" target_src="{$image.image}" target_link="{$image.lianjie}">{$smarty.foreach.fe_image.iteration}</li>
+            <!-- {/if} -->
+            <!-- {/foreach} -->
+                                </ul>
+    </div>
+    <div class="number_bg"></div>
+		{if $data1.img}
+        <a href="{$data1.link}" target="_blank"><img src="{$data1.img}" style=""></a>
+		{else}
+		<a href="#"><img src="/data/files/mall/template/200908070157264923.jpg" style=""></a>
+		{/if}
+    </div>
+</div>
+            </div>
+		 
+		  
+		  
+		  
+
+            <div class="sidebar" area="sales" widget_type="area">
+                <!--{widgets page=index area=sales}-->
+            </div>
+        </div>
+
+       <!-- <div area="top_right" widget_type="area"> -->
+        
+        
+        <!----------------------------------------------------------------------------------------->
+        
+        
+        
+<!--<div style="position:absolute; top:30px;left:1220px; top:10px; width:102px; height:40px;z-index:1;"><img src="{$qrcode}" width="43" /></div>-->     
+<div class="module_recommend" style="background: #800000;;">
+    <h2>
+        <b><!--秋季新款-->{$recom23.recom_name}</b>
+        <p><a href="index.php?app=search&recom_id=23">更多>></a></p>
+    </h2>
+    <div class="wrap">
+        <div class="pic">
+			<!--<img width="210" height="280" src="data/files/mall/template/201209120702309033.jpg">-->
+		{if $adv_list2.image}
+		<a href="{$adv_list2.lianjie}" target="_blank"><img src="{$adv_list2.image}" width="210" height="280" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="data/files/mall/template/goods_list.gif" width="210" height="280" /></a>
+		{/if}
+		</div>
+        <div class="diatropism">
+            <ul class="list_pic">
+                <!-- {foreach from=$img_goods_list1 item=goods} -->
+                <li style="width:105px; overflow:hidden;">
+                    <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="100" height="100" /></a></p>
+                    <h3  style="height:19px; overflow:hidden"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></h3>
+{if $goods.daishou==2}
+<span style="font-size:12px; color:#F89430"><nobr>积分价:{$goods.vip_price}</nobr></span>
+{else}
+<span style="font-size:12px;color:#F00"><nobr>市场价:{$goods.price_m|price}</nobr></span><br>
+{/if}
+               </li>
+                <!-- {/foreach} -->
+            </ul>
+
+            <ul class="list_text" style="height:90px; overflow:hidden;">
+                <!-- {foreach from=$txt_goods_list1 item=goods} -->
+                <li><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>
+        
+<div class="module_recommend" style="background: #800000;;">
+    <h2>
+        <b><!--新品上市-->{$recom20.recom_name}</b>
+        <p><a href="index.php?app=search&recom_id=20">更多>></a></p>
+    </h2>
+    <div class="wrap">
+        <div class="pic"><!--<img width="210" height="280" src="data/files/mall/template/201209120702309033.jpg">-->
+		{if $adv_list3.image}
+		<a href="{$adv_list3.lianjie}" target="_blank"><img src="{$adv_list3.image}" width="210" height="280" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="data/files/mall/template/goods_list.gif" width="210" height="280" /></a>
+		{/if}
+		</div>
+        <div class="diatropism">
+            <ul class="list_pic">
+                <!-- {foreach from=$img_goods_list2 item=goods} -->
+                <li style="width:105px; overflow:hidden;">
+                    <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="100" height="100" /></a></p>
+                    <h3  style="height:19px; overflow:hidden"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></h3>
+{if $goods.daishou==2}
+<span style="font-size:12px; color:#F89430"><nobr>积分价:{$goods.vip_price}</nobr></span>
+{else}
+<span style="font-size:12px; color:#F00;"><nobr>市场价:{$goods.price_m|price}</nobr></span><br>
+{/if}
+
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+
+            <ul class="list_text" style="height:90px; overflow:hidden;">
+                <!-- {foreach from=$txt_goods_list2 item=goods} -->
+                <li><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>    
+        
+        
+        <!------------------------------------------------------------------------------------->
+        
+        
+        
+        
+            <!--{widgets page=index area=top_right}-->
+       <!-- </div>-->
+
+    </div>
+</div>
+<div class="clear"></div>
+<div class="ad_banner" area="banner" widget_type="area">
+<!--横幅广告-->
+	    {if $adv_list7.image}
+		<a href="{$adv_list7.lianjie}" target="_blank"><img src="{$adv_list7.image}" width="1000" height="120" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="/data/files/mall/template/hengfu_moren.gif" width="1000" height="120" /></a>
+		{/if}
+		<!--横幅广告-->
+</div>
+
+<div class="content">
+    <div class="left" area="bottom_left" widget_type="area">
+	     {if $adv_list8.image}
+		<a href="{$adv_list8.lianjie}" target="_blank"><img src="{$adv_list8.image}" width="206" height="58" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="/data/files/mall/template/xiaotu.gif" width="206" height="58" /></a>
+		{/if}
+        <!--{widgets page=index area=bottom_left}-->
+    </div>
+
+    <div class="right" widget_type="area" area="bottom_right">
+    <!------------------------------------------------------------------------------------------------------------------------>
+    <div class="module_recommend" style="background: #800000;;">
+    <h2>
+        <b><!--靓点饰品-->{$recom24.recom_name}</b>
+		<!--<a href="index.php?app=search&act=more&recom_id=24">-->
+        <p><a href="index.php?app=search&recom_id=24">更多>></a>
+		<!--<a href="index.php?app=search&keyword=胸针">胸针</a> | <a href="index.php?app=search&keyword=耳饰">耳饰</a>--></p>
+    </h2>
+    <div class="wrap">
+        <div class="pic"><!--<img width="210" height="280" src="data/files/mall/template/201209251813.jpg">-->
+		{if $adv_list4.image}
+		<a href="{$adv_list4.lianjie}" target="_blank"><img src="{$adv_list4.image}" width="210" height="280" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="data/files/mall/template/goods_list.gif" width="210" height="280" /></a>
+		{/if}
+		</div>
+        <div class="diatropism">
+            <ul class="list_pic">
+                <!-- {foreach from=$img_goods_list3 item=goods} -->
+                <li style="width:105px; overflow:hidden;">
+                    <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="100" height="100" /></a></p>
+                    <h3 style="height:19px; overflow:hidden"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></h3>
+{if $goods.daishou==2}
+<span style="font-size:12px; color:#F89430"><nobr>积分价:{$goods.vip_price}</nobr></span>
+{else}
+<span style="font-size:12px; color:#F00;"><nobr>市场价:{$goods.price_m|price}</nobr></span><br>
+{/if}
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+
+            <ul class="list_text" style="height:90px; overflow:hidden;">
+                <!-- {foreach from=$txt_goods_list3 item=goods} -->
+                <li><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>  
+
+    <div class="module_recommend" style="background: #800000;;">
+    <h2>
+        <b><!--精品推荐-->{$recom21.recom_name}</b>
+        <p><a href="index.php?app=search&recom_id=21">更多>></a></p>
+    </h2>
+    <div class="wrap">
+        <div class="pic"><!--<img width="210" height="280" src="data/files/mall/template/201209120702309033.jpg">-->
+		{if $adv_list5.image}
+		<a href="{$adv_list5.lianjie}" target="_blank"><img src="{$adv_list5.image}" width="210" height="280" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="data/files/mall/template/goods_list.gif" width="210" height="280" /></a>
+		{/if}
+		</div>
+        <div class="diatropism">
+            <ul class="list_pic">
+                <!-- {foreach from=$img_goods_list4 item=goods} -->
+                <li style="width:105px; overflow:hidden;">
+                    <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="100" height="100" /></a></p>
+                    <h3  style="height:19px; overflow:hidden"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></h3>
+{if $goods.daishou==2}
+<span style="font-size:12px; color:#F89430"><nobr>积分价:{$goods.vip_price}</nobr></span>
+{else}
+<span style="font-size:12px; color:#F00;"><nobr>市场价:{$goods.price_m|price}</nobr></span><br>
+{/if}
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+
+            <ul class="list_text" style="height:90px; overflow:hidden;">
+                <!-- {foreach from=$txt_goods_list4 item=goods} -->
+                <li><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>  
+
+    <div class="module_recommend" style="background: #800000;;">
+    <h2>
+        <b><!--二手商品-->{$recom22.recom_name}</b>
+        <p><a href="index.php?app=search&recom_id=22">更多>></a></p>
+    </h2>
+    <div class="wrap">
+        <div class="pic"><!--<img width="210" height="280" src="data/files/mall/template/201209120702309033.jpg">-->
+		{if $adv_list6.image}
+		<a href="{$adv_list6.lianjie}" target="_blank"><img src="{$adv_list6.image}" width="210" height="280" /></a>
+		{else}
+		<a href="#" target="_blank"><img src="data/files/mall/template/goods_list.gif" width="210" height="280" /></a>
+		{/if}
+		</div>
+        <div class="diatropism">
+            <ul class="list_pic">
+                <!-- {foreach from=$img_goods_list5 item=goods} -->
+                <li style="width:105px; overflow:hidden;">
+                    <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="100" height="100" /></a></p>
+                    <h3 style="height:19px; overflow:hidden"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></h3>
+{if $goods.daishou==2}
+<span style="font-size:12px; color:#F89430"><nobr>积分价:{$goods.vip_price}</nobr></span>
+{else}
+<span style="font-size:12px; color:#F00;"><nobr>市场价:{$goods.price_m|price}</nobr></span><br>
+{/if}
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+
+            <ul class="list_text" style="height:90px; overflow:hidden;">
+                <!-- {foreach from=$txt_goods_list5 item=goods} -->
+                <li><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{if $goods.daishou==2}<font color="#FF0000">[供]</font>{/if}{$goods.goods_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>  
+<!------------------------------------------------------------------------------------------------------------------------>    
+        <!--{widgets page=index area=bottom_right}-->
+    </div>
+</div>
+
+<div class="clear"></div>
+<div class="content" area="bottom_down" widget_type="area">
+    <!--{widgets page=index area=bottom_down}-->
+</div>
+
+{include file=footer.html}

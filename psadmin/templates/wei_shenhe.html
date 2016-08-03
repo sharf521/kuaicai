@@ -1,0 +1,76 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#sotime,#endtime').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>团购管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=groupbuy">管理</a></li>
+		<li><span>团购未审核</span></li>
+	    <li><a class="btn3" href="index.php?app=groupbuy&act=wancheng">团购已完成</a></li>
+		
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       
+    </div>
+    <div class="fontr">
+
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+<!--{if $groups}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+            <td align="left">团购名称</td>
+            <td>店铺名称</td>
+			<td>起始时间</td>
+			<td>所属站</td>
+            <td>状态</td>
+            <td class="handler">操作</td>
+        </tr>
+
+        <!--{foreach from=$groups item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$key}" />
+            </td>
+            <td align="left"><b>{$val.group_name}</b></td>
+          <td><font color="#FF0000">{$val.store_name}</font></td>
+		    <td><font color="#FF0000">{$val.start_time|date} {$lang.to} {$val.end_time|date}</font></td>
+			<td><font color="#FF0000">
+			  {$val.city_name}
+			</font></td>
+			<td>
+            {if $val.status==0}{$lang.dengdaishenhe}{/if}
+            </td>
+			
+		   
+			
+            <td class="handler">
+            <a href="index.php?app=groupbuy&act=shenhe&id={$val.group_id}&store_id={$val.store_id}&store_name={$val.store_name}">审核</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $groups}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"><input type="checkbox" class="checkall" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="#" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

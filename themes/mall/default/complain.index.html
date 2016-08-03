@@ -1,0 +1,152 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    var t = new EditableTable($('#my_goods'));
+});
+</script>
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=buyer_order&act=my_tousu">我的投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=bei_tousu">被投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=my_shensu">我的申诉</a></li>
+				<li class="active"><span>投诉处理</span></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+                
+ <form action="index.php?app=buyer_order&act=tousu" method="post" enctype="multipart/form-data">
+ <table>
+  
+  <tr>
+ <td>投诉人：</td>
+ <td><input name="complainant" id="complainant" value="{$ts.buyer_name}" type="hidden"/>{$ts.buyer_name}
+ <input name="status1" id="status1" value="0" type="hidden"/>
+ <input name="complainant_id" id="complainant_id" value="{$ts.buyer_id}" type="hidden"/>
+ <input name="respondent_id" id="respondent_id" value="{$ts.seller_id}" type="hidden"/>
+ <input name="respondent" id="respondent" value="{$ts.seller_name}" type="hidden"/>
+ <input name="city" id="city" value="{$ts.city}" type="hidden"/>
+ <input name="order_id" id="order_id" value="{$ts.order_id}" type="hidden"/>
+ <input name="id" id="id" value="{$comp.id}" type="hidden"/>
+ </td>
+ </tr>
+ <tr>
+ <td>订单号：</td>
+ <td><input name="order_sn" id="order_sn" value="{$ts.order_sn}" type="hidden"/>{$ts.order_sn}
+ </td>
+ </tr>
+ <tr>
+ <td>投诉商品：</td>
+ <td>
+ <table>
+ <tr>
+ <th></th>
+<th></th>
+<th align="left">商品信息</th>
+<th align="left">数量</th>
+<th align="left">积分价</th>
+</tr>
+<!--{foreach from=$tsu item=val}-->
+<tr>
+<td align="right"><input type="checkbox" name="fu[]" value="{$val.rec_id}" {$val.check}/></td>
+<td align="center"><img src="{$val.goods_image}" width="100" height="50" /></td>
+<td>{$val.goods_name}<br />{$val.specification}</td>
+<td>{$val.quantity}</td>
+<td>{$val.jifen}</td>
+</tr>
+<!--{/foreach}-->
+</table>
+ 
+ </td>
+ </tr>
+  <tr>
+ <td>投诉主题：</td>
+ <td>
+<!-- {if $comp.title}-->
+ <!--{if $comp.title=="售后保障服务"}-->
+<input type="radio" name="title" value="售后保障服务" checked="checked"/> 售后保障服务&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易完成后30天内，在使用商品过程中，发现商品有质量问题或无法正常使用，可进行维权。)</font><br />
+<input type="radio" name="title" value="未收到货" /> 未收到货&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易成功，未收到货，钱已经付给卖家，可进行维权。)</font>
+<!--{/if}-->
+<!--{if $comp.title=="未收到货"}-->
+<input type="radio" name="title" value="售后保障服务"/> 售后保障服务&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易完成后30天内，在使用商品过程中，发现商品有质量问题或无法正常使用，可进行维权。)</font><br />
+<input type="radio" name="title" value="未收到货" checked="checked"/> 未收到货&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易成功，未收到货，钱已经付给卖家，可进行维权。)</font><!--{/if}-->
+<!--{else}-->
+<input type="radio" name="title" value="售后保障服务" checked="checked"/> 售后保障服务&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易完成后30天内，在使用商品过程中，发现商品有质量问题或无法正常使用，可进行维权。)</font><br />
+<input type="radio" name="title" value="未收到货" /> 未收到货&nbsp;&nbsp;&nbsp;<font color="#999999" style="font-size:10px">(交易成功，未收到货，钱已经付给卖家，可进行维权。)</font>
+<!--{/if}-->
+ </td>
+ </tr>
+  <tr>
+ <td>投诉内容：</td>
+ <td><textarea id="content" name="content" cols="30" rows="8">{$comp.content}</textarea></td>
+ </tr>
+  <tr>
+ <td>上传投诉证据：</td>
+ <td><input name="imag_1" id="imag_1" value=""  type="file"/><br />
+ {if $comp.imag_1}
+  <a href="/{$comp.imag_1}" target="_blank"><img src="{$comp.imag_1}" class="makesmall" width="120px" height="90px" /></a>
+  {/if}
+ <br /> <br />
+ <input name="imag_2" id="imag_2" value=""  type="file"/><br />
+ {if $comp.imag_2}
+   <a href="/{$comp.imag_2}" target="_blank"><img src="{$comp.imag_2}" class="makesmall" width="120px" height="90px" /></a>
+  {/if}
+ <br /> 
+ <br />
+ <input name="imag_3" id="imag_3" value=""  type="file"/><br />
+ {if $comp.imag_3}
+<a href="/{$comp.imag_3}" target="_blank"><img src="{$comp.imag_3}" class="makesmall" max_width="120px" max_height="90px" /></a>
+  {/if}
+ <br /> 
+ </td>
+ </tr>
+
+<tr>
+ <td>买家备注：</td>
+ <td><textarea name="beizhu" id="beizhu" cols="25" rows="5">{$comp.beizhu}
+	 </textarea>
+    </td>
+ </tr>
+ 
+ {if $comp.yijian}
+			<tr>
+                <td>
+                  平台处理意见：</td> 
+                <td>
+				
+				{$comp.yijian}
+				
+                </td>
+            </tr>
+         {/if}
+ {if !$comp.yijian}	
+ <tr>
+ <td></td>
+ <td><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></td>
+{/if}	
+			</table>
+			  </form>
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

@@ -1,0 +1,129 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    $('.checkall_s').click(function(){
+        var if_check = $(this).attr('checked');
+        $('.checkitem').each(function(){
+            if(!this.disabled)
+            {
+                $(this).attr('checked', if_check);
+            }
+        });
+        $('.checkall_s').attr('checked', if_check);
+    });
+    $('a[ectype="batchcancel"]').click(function(){
+        if($('.checkitem:checked').length == 0){
+            return false;
+        }
+        if($(this).attr('presubmit')){
+            if(!eval($(this).attr('presubmit'))){
+                return false;
+            }
+        }
+        var items = '';
+        $('.checkitem:checked').each(function(){
+            items += this.value + ',';
+        });
+        items = items.substr(0, (items.length - 1));
+
+        var uri = $(this).attr('uri');
+        uri = uri + '&' + $(this).attr('name') + '=' + items;
+        var id = 'seller_order_cancel_order';
+        var title = $(this).attr('dialog_title') ? $(this).attr('dialog_title') : '';
+        //var url = $(this).attr('uri');
+        var width = '500';
+        ajax_form(id, title, uri, width);
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+              <ul class="tab">
+              <li class="active"><span>供货订单</span></li>
+          </ul>
+        <div class="wrap">
+
+         <div class="public_index table">
+                <table>
+
+                    <!--{if $gh_order}-->
+                    <tr class="line tr_bgcolor">
+                        <th></th>
+                        <th>{$lang.dingdanhao}</th>
+                        <th>{$lang.shangpin}</th>
+                        <th>{$lang.seller}</th>
+                        <th>{$lang.buy}</th>
+                        <th>{$lang.dianhua}</th>
+                        <th>{$lang.zongjia}</th>
+						
+                        <th width="90">{$lang.zhuangtai}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- 循环开始 -->
+                    <!--{foreach from=$gh_order item=order}-->
+                    <tr class="color2">
+                        <td class="align2"><input type="checkbox" value="{$order.order_id}" class="checkitem" <!--{if $order.status eq ORDER_FINISHED || $order.status eq ORDER_CANCELED}--> disabled="disabled" <!--{/if}-->/></td>
+                        <td><span class="color3">{$order.order_sn}{if $order.extension eq 'groupbuy'}<span class="color8">[{$lang.groupbuy}]</span>{/if}</span></td>
+						<td class="align2">{$order.goods_name|escape}</td>
+						<td class="align2">{$order.seller_name|escape}</td>
+                        <td class="align2">{$order.buyer_name|escape}</td
+                        ><td class="align2"><!--{ if $order.phone_mob neq ''}-->{$order.phone_mob}<!--{else}-->{$order.phone_tel}<!--{/if}--><br />
+</td>
+                      
+                        <td class="align2 padding1"><strong>
+                        {if $order.zhifufangshi=="jifenzhifu"}
+                        {$order.order_jifen}&nbsp;{$lang.jifen}
+                        {else}
+                        {$order.order_amount_m|price}
+                        {/if}
+                        </strong></td>
+						<!--{if $order.s==0}-->
+						<td class="align2"><span class="color4">已取消订单</span></td>
+						<!--{elseif $order.gh_status==0}-->
+                        <td class="align2"><span class="color4">等待确认发货</span></td>
+						<!--{else}-->
+						<td class="align2"><span class="color4">已发货</span><br /><span class="color4">{$order.gh_riqi}</span></td>
+					
+						<!--{/if}-->
+                    </tr>
+                    <tr class="line_bottom">
+                        <td colspan="8" align="right" class="order_form1">
+						<div class="button_wrap">
+                     
+                        <!--{if $order.gh_status==0 && $order.s!=0}-->
+						<!--<a class="btn1" href="{url app=seller_order&act=gh_querenfahuo&order_id=$order.order_id}" onclick="return confirm('确认已发货？')" >发货1</a>-->
+                        <input type="button" value="{$lang.shipped_order}" class="btn1" ectype="dialog" dialog_title="{$lang.shipped_order}" dialog_id="seller_order_shipped" uri="index.php?app=seller_order&amp;act=shipped&amp;order_id={$order.order_id}&ajax"  dialog_width="400" id="order{$order.order_id}_action_shipped" />
+						<!--{/if}-->
+                        <input type="button" value="{$lang.edit_invoice_no}" class="btn1" ectype="dialog" dialog_title="{$lang.edit_invoice_no}" uri="index.php?app=seller_order&amp;act=shipped&amp;order_id={$order.order_id}&ajax" dialog_id="seller_order_shipped" dialog_width="400" id="order{$order.order_id}_action_edit_invoice_no"{if $order.s neq ORDER_SHIPPED} style="display:none"{/if} />
+						<a class="btn1" href="{url app=seller_order&act=view&order_id=$order.order_id}" target="_blank">{$lang.view_order}</a>
+                       </div> </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr><td class="member_no_records" colspan="8">{$lang.no_records}</td></tr>
+                    <!--{/foreach}-->
+                    <!--{if $gh_order}-->
+                    <tr><th class="width1"><input id="all2" type="checkbox" class="checkall_s" /></th>
+                    <th class="align1" colspan="7">
+                            <p class="position1">
+                                <label for="all2"><span class="all">{$lang.checkall}</span></label>
+                               <!-- <a href="javascript:;" class="delete" ectype="batchcancel" uri="index.php?app=seller_order&act=cancel_order" name="order_id">{$lang.cancel_order}</a>-->
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                    </table>
+                    <iframe name="seller_order" style="display:none;"></iframe>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

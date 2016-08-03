@@ -1,0 +1,157 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>借款管理</p>
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+   <li><a class="btn3" href="index.php?app=invite&act=jk_weishenhe">{$lang.daishenhe}</a></li>
+   <li><a class="btn3" href="index.php?app=invite&act=excel">{$lang.daochu}</a></li>
+  
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="invite" />
+          <input type="hidden" name="act" value="jiekuan" />
+          {$lang.yonghuming}:
+          <input type="type" name="username" value="<?php echo $_GET["username"];?>" />
+          {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+          <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+          <!-- {$lang.paixu}:
+          <select class="querySelect" name="paixu">
+            <option value="">{$lang.select_pls}</option>
+            <option value="times desc">{$lang.times}</option>
+            <option value="riqi desc">{$lang.riqi}</option>
+          </select>-->
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $username || $suoshuzhan || $paixu}-->
+      <a class="left formbtn1" href="index.php?app=invite&act=jiekuan">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+   
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+
+  <table width="100%" cellspacing="0" class="dataTable">
+ 
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.yonghuming}</td>
+      <td><span ectype="order_by" fieldname="email">借款金额</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">已还金额</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">借款期限</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">申请时间</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">审核时间</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">应还金额</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">利息</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">借款状态</span></td>
+	  <td><span ectype="order_by" fieldname="reg_time">所属站</span></td>
+      <td><span ectype="order_by" fieldname="reg_time">操作</span></td>
+     <!-- <td class="handler">{$lang.handler}</td>-->
+    </tr>
+
+	
+     <!--{foreach from=$index item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.user_id}" /></td>
+      <td>&nbsp;{$user.user_name}({$user.user_id})</td>
+      <td>&nbsp;{$user.money_j}</td>
+      <td>&nbsp;{$user.money_h|default:0.00}</td>
+      <td>&nbsp;
+      {if $user.isday==0}
+      {$user.time}{$lang.yue}
+      {else}
+      {$user.time}{$lang.tian}
+      {/if}
+      
+      即{$user.start_time1}至{$user.daoqi_time}</td>
+      <td>&nbsp;{$user.createdate}</td>
+      <td>&nbsp;{$user.start_time}</td>
+      <td>&nbsp;{$user.yh}{$lang.yuan}</td>
+      <td>&nbsp;{$user.lixi}{if $user.faxi>0}({$user.faxi}){/if}{$lang.yuan}</td>
+      <td>&nbsp;{if $user.status==1}等待审核{/if}
+      {if $user.status==2}
+      {if $user.status1==1}待还款{/if}
+      {if $user.status1==2}已还款{/if}
+      {/if}
+      {if $user.status==3}审核不通过{/if}
+      </td>
+	  <td>&nbsp;
+	  {$user.city_name}
+	  </td>
+    <td>&nbsp;<a href="index.php?app=invite&act=jk_xiangqing&id={$user.id}">查看</a>
+{if $riqi>$user.jieshu_time && $user.status1==1}||
+<a href="index.php?app=invite&act=qiangzhi_huankuan&id={$user.id}&userid={$user.user_id}" onclick="return confirm('{$lang.quedingqiangzhi}')">强制还款</a>{/if}
+{if $user.status==2}
+||<a href="/data/jiekuanhetong/psht/{$user.htid}.wps" target="_blank">合同下载</a>{/if}
+      <!--<td class="handler"></td>     
+
+      <span style="width: 100px">
+      <a href="index.php?app=user&amp;act=edit&amp;id={$user.user_id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=user&amp;act=drop&amp;id={$user.user_id}');">{$lang.drop}</a>
+        <!-- {if $user.store_id} -->
+       <!-- | <a href="index.php?app=store&amp;act=edit&amp;id={$user.store_id}" onclick="parent.openItem('store_manage', 'store');">{$lang.store}</a>-->
+        <!-- {/if} -->
+    <!--  </span>
+      </td>-->
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+      <!--{/foreach}-->
+  </table>
+
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+      
+        <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="invite" />
+          <input type="hidden" name="act" value="excel" />
+          {$lang.yonghuming}:
+          <input type="type" name="username" value="<?php echo $_GET["username"];?>" />
+          {if $priv_row.privs=="all"}
+          {$lang.suoshuzhan}:
+          <select class="querySelect" name="suoshuzhan">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$result item=val}
+            <option value="{$val.city_id}">{$val.city_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+           {$lang.jkstatus}:
+          <select class="querySelect" name="paixu">
+            <option value="">{$lang.select_pls}</option>
+            <option value="2">{$lang.yihuankuan}</option>
+            <option value="1">{$lang.daihuankuan}</option>
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.daochu}" />
+      </div>
+    </form>
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+ 
+</div>
+{include file="footer.html"}

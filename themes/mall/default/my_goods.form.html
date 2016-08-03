@@ -1,0 +1,635 @@
+{include file=member.header.html}
+{$images_upload}
+{$editor_upload}
+{$build_editor}
+
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>
+<style>
+.box_arr .table_btn { width: 222px; }
+.box_arr .table_btn a { float: left; }
+.box_arr .table_btn a.disable_spec { background: url({res file=images/member/btn.gif}) repeat 0 -1018px; float: right; }
+.dialog_body{ border:0px; }
+.add_spec .add_link { color:#919191; }
+.add_spec .add_link:hover { color:red; }
+add_spec h2 { padding-left: 10px; }
+.width7{ width: 250px;}
+.f_l{ float:left; }
+.mls_id { width: 0; filter: alpha(opacity=0);opacity: 0; }
+</style>
+<script type="text/javascript">
+//<!CDATA[
+var SPEC = {$goods.spec_json};
+
+   var bili = {$canshu.jifenxianjin};
+   var lv31 = {$canshu.lv31};
+   var lv21 = {$canshu.lv21};
+function add_uploadedfile(file_data)
+{
+    if(file_data.instance == 'goods_image'){
+        $('#goods_images').append('<li ectype="handle_pic" file_id="'+ file_data.file_id +'" thumbnail="'+ file_data.thumbnail +'"><input type="hidden" value="'+ file_data.file_id +'" name="goods_file_id[]"/><div class="pic"><img src="'+ file_data.thumbnail +'" width="55" height="55" alt="" /><div ectype="handler" class="bg"><p class="operation"><span class="cut_in" ectype="set_cover" ecm_title="{$lang.set_cover}"></span><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p></div></div></li>');
+                trigger_uploader();
+        if($('#big_goods_image').attr('src') == '{$goods.default_goods_image}'){
+            set_cover(file_data.file_id);
+        }
+        if(GOODS_SWFU.getStats().files_queued == 0){
+            window.setTimeout(function(){
+                $('#uploader').hide();
+                $('#open_uploader').find('.show').attr('class','hide');
+            },4000);
+        }
+    }else if(file_data.instance == 'desc_image'){
+        $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="desc_file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="###" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+                trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+            window.setTimeout(function(){
+                $('#editor_uploader').hide();
+            },5000);
+        }
+    }
+}
+
+
+function set_cover(file_id){
+    if(typeof(file_id) == 'undefined'){
+        $('#big_goods_image').attr('src','{$goods.default_goods_image}');
+        return;
+    }
+    var obj = $('*[file_id="'+ file_id +'"]');
+    $('*[file_id="'+ file_id +'"]').clone(true).prependTo('#goods_images');
+    $('*[ectype="handler"]').hide();
+    $('#big_goods_image').attr('src',obj.attr('thumbnail'));
+    obj.remove();
+}
+
+$(function(){
+     $('#goods_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+            goods_name : {
+                required   : true
+            },
+            price      : {
+                required   : true
+            },
+            stock      : {
+                required    : true
+            },
+			 cate_id : {
+                required   : true
+            }
+           /* cate_id    : {
+                remote   : {
+                    url  : 'index.php?app=my_goods&act=check_mgcate',
+                    type : 'get',
+                    data : {
+                        cate_id : function(){
+                            return $('#cate_id').val();
+                        }
+				
+                    }
+                }
+            }*/
+        },
+        messages : {
+            goods_name  : {
+                required   : '{$lang.goods_name_empty}'
+            },
+            price       : {
+                required     : '{$lang.pricebuneng}'
+            },
+            stock       : {
+                required  : '{$lang.kucunbuneng}'
+            },
+			 cate_id  : {
+                required   : '{$lang.select_leaf_category}'
+            }
+           // cate_id     : {
+//                remote  : '{$lang.select_leaf_category}'
+//            }
+        }
+    });
+    // init cover
+    set_cover($("#goods_images li:first-child").attr('file_id'));
+
+    // init spec
+    spec_update();
+});
+function fuzhi(jiage)
+{
+	$jifen=jiage*({$canshu.jifenxianjin}*1000)/1000;
+	document.getElementById('jifen_price').value=$jifen*((1+{$canshu.lv31})*100000)/100000;
+    document.getElementById('vip_price').value=$jifen*((1+{$canshu.lv21})*100000)/100000;
+	
+}
+function by(flg)
+{
+	
+	var jian=$('#isbaoyoujian');
+	var qian=$('#isbaoyouqian');
+	switch(flg)
+	{
+		case '1':
+		jian.show();
+		qian.hide();
+		break;
+		case '2':
+		qian.show();
+		jian.hide();
+		break;
+		default:
+		jian.hide();
+		qian.hide();
+		break;
+	}
+}
+
+
+//]]>
+</script>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+  {if $gh==2}
+   <ul class="tab">
+    <li class="normal" style="display:none"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+    <li class="active">快速供货</li>
+    <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+    <li class="normal"><a href="index.php?app=my_goods&gh=2">供货列表</a></li>
+    <!--<li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>-->
+    </ul>
+   {else}
+    {include file=member.submenu.html}
+  {/if}
+        <div class="wrap">
+
+            <div class="public">
+                <form method="post" id="goods_form">
+                    <div class="information_index">
+
+                        <div class="add_spec" ectype="dialog_contents" style="display: none">
+                            <!--<form>-->
+                            <h2>{$lang.edit}{$lang.specification}</h2>
+                            <p>{$lang.note_for_add_spec_popup}</p>
+                            <div class="table" ectype="spec_editor">
+                                <ul class="th">
+                                    <li><input col="spec_name_1" type="text" class="text width4" {if $goods.daishou==3} readonly {/if}/></li>
+                                    <li><input col="spec_name_2" type="text" class="text width4" {if $goods.daishou==3} readonly {/if}/></li>
+                                    <li class="distance1">{$lang.price}</li>
+									<!--<li class="distance1" >积分价</li>
+									<li class="distance1">VIP价</li>-->
+                                    <li class="distance1">{$lang.stock}</li>
+                                    <li class="distance2">{$lang.sku}</li>
+                                    <li class="distance3">{$lang.handle}</li>
+                                </ul>
+                                <ul class="td" ectype="spec_item">
+                                    <li><input item="spec_1" type="text" class="text width4" {if $goods.daishou==3} readonly {/if}/></li>
+                                    <li><input item="spec_2" type="text" class="text width4" {if $goods.daishou==3} readonly {/if}/></li>
+                                    <li><input item="price" type="text" class="text width4"/></li>
+									<li style="display:none"><input item="jifen_price" type="text" class="text width4" /></li>
+									<li style="display:none"><input item="vip_price" type="text"  class="text width4" /></li>
+                                    <li><input item="stock" type="text" class="text width4" {if $goods.daishou==3} readonly {/if}/></li>
+                                    <li><input item="sku" type="text" class="text width8" {if $goods.daishou==3} readonly {/if}/><input item="spec_id" type="hidden" /></li>
+                                    <li class="padding3">
+                                        <span ectype="up_spec_item" class="up_btn"></span>
+                                        <span ectype="down_spec_item" class="down_btn"></span>
+                                        <span ectype="drop_spec_item" class="delete_btn"></span>
+                                    </li>
+                                </ul>
+                                {if $goods.daishou!=3}
+                                <ul>
+                                    <li class="add"><a href="javascript:;" ectype="add_spec_item" class="add_link">{$lang.add_spec_item}</a></li>
+                                </ul>
+                                {/if}
+                            </div>
+                            <div class="btn_wrap"><input ectype="save_spec" type="submit" class="btn" value="{$lang.save_spec}" /></div>
+                            <!--</form>-->
+                            <div style="position:relative">
+                              <div class="add_spec_bottom"></div>
+                            </div>
+                        </div>
+
+                        <h4>{$lang.mgcategory}</h4>
+                        <div class="add_wrap">
+                            <div class="assort">
+                                <p class="txt">{$lang.mgcategory}: </p>
+                                <p class="select" id="gcategory">
+                                    <!-- {if $goods.cate_id} -->
+                                    <span class="f_l">{$goods.cate_name|escape}</span>
+                                    {if $goods.daishou!=3}
+                                    <a class="edit_gcategory btn" href="javascript:;">{$lang.edit}</a>{/if}
+                                    <select style="display:none">
+                                        <option>{$lang.select_pls}</option>
+                                        {html_options options=$mgcategories}
+                                    </select>
+                                    <!-- {else} -->
+                                    <select>
+                                        <option>{$lang.select_pls}</option>
+                                        {html_options options=$mgcategories}
+                                    </select>
+                                    <!-- {/if} -->
+                                    
+                                    <input type="text" id="cate_id" name="cate_id" value="<!-- {if $goods.cate_id} -->{$goods.cate_id}<!-- {/if} -->" class="mls_id width_normal" style="display:none"/>
+                                    <input type="hidden" name="cate_name" value="{$goods.cate_name|escape}" class="mls_names" />
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt">{$lang.sgcategory}: </p>
+                                <p class="select">
+                                    <!--{if $goods._scates}-->
+                                    <!--{foreach from=$goods._scates item=sgcate}-->
+                                    <select name="sgcate_id[]" class="sgcategory">
+                                        <option value="0">{$lang.select_pls}</option>
+                                        {html_options options=$sgcategories selected=$sgcate.cate_id}
+                                    </select>
+                                    <!-- {/foreach} -->
+                                    <!--{else}-->
+                                    <select name="sgcate_id[]" class="sgcategory">
+                                        <option value="0">{$lang.select_pls}</option>
+                                        {html_options options=$sgcategories}
+                                    </select>
+                                    <!--{/if}-->
+
+                                </p>
+                                <p class="new_add">
+                                    <a href="javascript:;" id="add_sgcategory" class="btn">{$lang.add_scategory}</a>
+									<a href="index.php?app=my_category" class="btn">添加分类</a>
+                                    <span>{$lang.note_for_sgcategory}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h4>{$lang.goods_base_info}</h4>
+                        <div class="add_wrap">
+
+                            <div class="pic_list">
+                                <div class="big_pic"><img id="big_goods_image" src="{$goods.default_goods_image}" width="300" height="300" alt="" /></div>
+                                <div class="small_pic">
+                                    <ul id="goods_images">
+                                        <!--{foreach from=$goods_images item=goods_iamge}-->
+                                        <li ectype="handle_pic" file_id="{$goods_iamge.file_id}" thumbnail="{$goods_iamge.thumbnail}">
+                                        <input type="hidden" name="goods_file_id[]" value="{$goods_iamge.file_id}">
+                                        <div class="pic">
+                                            <img src="{$goods_iamge.thumbnail}" width="55" height="55" />
+                                            <div ectype="handler" class="bg">
+                                                    <p class="operation">
+                                                        <span class="cut_in" ectype="set_cover" ecm_title="{$lang.set_cover}"></span>
+                                                        <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
+                                                    </p>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <!--{/foreach}-->
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="upload_btn">
+                                    <div class="upload" id="open_uploader"><b class="hide">{$lang.upload_goods_image}</b></div>
+                                    <div class="upload_con" id="uploader" style="display:none">
+                                        <div class="upload_con_top"></div>
+                                        <div class="upload_wrap">
+
+                                            <ul>
+                                                <li class="btn1">
+                                                <div id="divSwfuploadContainer">
+                                                    <div id="divButtonContainer">
+                                                        <span id="spanButtonPlaceholder"></span>
+                                                    </div>
+                                                </div>
+                                                </li>
+                                                <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=goods_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+                                            <li id="open_remote" class="btn2">{$lang.rem_upload}</li>
+                                            </ul>
+                                            <div id="remote" class="upload_file" style="display:none">
+                                            <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=goods_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                                            </div>
+                                            <div id="goods_upload_progress"></div>
+                                            <div class="upload_txt">
+                                                <span>{$lang.note_for_upload}</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="upload_con_bottom"></div>
+                                    </div>
+                                </div>
+                                <p style="font-size:12px; color:#F00; width:300px; overflow:hidden; padding-top:20px;">&nbsp;*&nbsp;每个商品至少上传一张展示图片，如果商品无展示图片，则此商品不能发布；</p>
+                            </div>
+
+                            <div class="products">
+                                <ul>
+                                    <li>
+                                        <h2>{$lang.goods_name}: </h2> 
+										
+								
+                                        <div class="arrange">
+                                        
+                                <input title="{$goods.goods_name|escape}" type="text" name="goods_name" value="{$goods.goods_name|escape}" class="text width_normal" {if $goods.daishou==3} readonly {/if}/><span class="red">*</span></div>
+                                    </li>
+                                     {if $goods.daishou==3}
+                                    <li>
+                                    <h2>{$lang.fubiaoti}</h2>
+                                    <div class="arrange">
+								<input  type="text" name="fubiaoti" value="{$goods.subhead}" class="text width_normal" />
+										</div>
+                                    </li>
+                                    {/if}
+                                    
+                                    {if $gh!=2 && $goods.daishou!=3}
+                                     <li>
+                                        <h2>{$lang.is_ershou}: </h2>
+                                        <div class="arrange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {if $goods.is_ershou==0}
+                                        <input type="radio" name="is_ershou" value="0" checked="checked"/>否&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="is_ershou" value="1"/>是
+                                        {else}
+                                         <input type="radio" name="is_ershou" value="0" />否&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="is_ershou" value="1" checked="checked"/>是
+                                        {/if}
+                                        </div>
+                                    </li> 
+                                    {/if}
+                                    <li>
+                                        <h2>{$lang.brand}: </h2>
+                                        <div class="arrange">
+                           <input type="text" name="brand" value="{$goods.brand|escape}" class="text width_normal" {if $goods.daishou==3} readonly {/if}/>
+                             {if $gh==2}
+                             <input type="hidden" name="daishou" value="2" class="text width_normal" />
+                             {else}
+                             <input type="hidden" name="daishou" value="{$goods.daishou}" class="text width_normal" />
+                            {/if}
+                         
+                           </div>
+                                    </li>
+                                    <li>
+                                        <h2>{$lang.tags}: </h2>
+                                        <div class="arrange"><input type="text" name="tags" value="{$goods.tags|escape}" class="text width_normal" />
+                                            <span class="gray">{$lang.goods_tags_note}</span></div>
+                                    </li>
+                                     <li>
+                                        <h2>{$lang.zhongliang}: </h2>
+                                        <div class="arrange"><input name="weight" value="{$goods.weight}" type="text" class="text width_normal" {if $goods.daishou==1} readonly="readonly"{/if}/>kg</div>
+                                    </li>
+                                    <li>
+                                        <h2>{$lang.tiji}: </h2>
+                                        <div class="arrange"><input name="volume" value="{$goods.volume}" type="text" class="text width_normal" {if $goods.daishou==1} readonly="readonly"{/if}/>m3</div>
+                                    </li>
+                                    <li>
+                                        <h2>{$lang.baoyou}: </h2>
+                                        <div class="arrange">
+                                        
+                                        
+                       					<select name="baoyou_type" onchange="by(this.value)">
+                                        <option value="0">不包邮</option>
+                                        
+                                        <option value="1" {if $goods.baoyou_type==1} selected="selected"{/if}>按件</option>
+                                        <option value="2" {if $goods.baoyou_type==2} selected="selected"{/if}>按钱</option>
+                                      
+                                        </select>
+                                        <div id="isbaoyoujian" style="display:none">
+                                        <br />
+                                        <input name="baoyou_quantityjian" value="{$goods.baoyou_jian}" type="text" />(几件包邮)
+                                        </div>
+                                        <div id="isbaoyouqian" style="display:none">
+                                        <br />
+                                        <input name="baoyou_quantityqian" value="{$goods.baoyou_money}" type="text" />(购满多少元包邮)
+                                        </div>
+                <script language="javascript">
+				if('{$goods.baoyou_type}'=='1')
+				by('1');
+				if('{$goods.baoyou_type}'=='2')
+				by('2');
+				</script>
+                                        </div>
+                                    </li>
+                                    
+                                   <li>
+                                        <h2>{$lang.yunfei}: </h2>
+                                        <div class="arrange">
+                                        
+                                         <select name="shipping_id">
+                                        <option value="">请选择</option>
+                                        {foreach from=$shipping item=var}
+                                        <option value="{$var.shipping_id}" {if $goods.shipping_id==$var.shipping_id} selected="selected"{/if}>{$var.shipping_name}(
+                                        {if $var.typeid==1}按件计算{/if}
+                                        {if $var.typeid==2}按重量计算{/if}
+                                        {if $var.typeid==3}按体积计算{/if})
+                                        </option>
+                                        {/foreach}
+                                        </select>
+                                        
+                                       
+                                        </div>
+                                    </li> 
+                                    
+                                    
+                                    <li>
+                                        <h2  ectype="no_spec">{$lang.price}: </h2>
+										<!--  {if $goods.daishou==1}-->
+                                        <div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="price" value="{$goods._specs.0.price}" onblur="fuzhi(this.value)" type="text" class="text width_short" readonly="true"></div>
+<!--{else} -->
+<div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="price" value="{$goods._specs.0.price}" onblur="fuzhi(this.value)" type="text" class="text width_short" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if
+(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))
+this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))
+this.value=0+this.value;this.o_value=this.value}"/></div>
+<!--{/if} -->
+                             
+ </li>
+									<li style="display:none">
+                                        <h2  ectype="no_spec">积分价: </h2>
+                                        <div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="jifen_price" id='jifen_price' value="{$goods._specs.0.jifen_price}" type="text" class="text width_short" readonly="true"/></div>
+                                    </li>
+									<li style="display:none">
+                                        <h2  ectype="no_spec">VIP价: </h2>
+                                        <div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="vip_price" id="vip_price" value="{$goods._specs.0.vip_price}" type="text" class="text width_short" readonly="true"/></div>
+                                    </li>
+                                    <li ectype="no_spec">
+                                        <h2>{$lang.stock}: </h2>
+                                        <div class="arrange"><input name="stock" value="{$goods._specs.0.stock}" type="text" class="text width_short" {if $goods.daishou==3 || $goods.daishou==1} readonly {/if}/></div>
+                                    </li>
+                                    <li ectype="no_spec">
+                                        <h2>{$lang.sku}: </h2>
+                                        <div class="arrange"><input name="sku" value="{$goods._specs.0.sku}" type="text" class="text width_normal" {if $goods.daishou==3} readonly {/if}/></div>
+                                    </li>
+                                    <li>
+                                    <!--  {if $goods.daishou!=1}-->
+                                        {if $goods.daishou!=3}<h2>{$lang.spec}: </h2>{/if}
+                                        <div class="arrange">
+                                            <div class="box_arr" ectype="no_spec"  style="display: none;">
+                                                {if $goods.daishou!=3}<p class="pos_btn"><a ectype="add_spec" href="javascript:;" class="add_btn">{$lang.enable_spec}</a></p>
+                                                <p class="pos_txt">{$lang.note_for_add_spec}</p>{/if}
+                                            </div>
+                                            <div class="box_arr" ectype="has_spec"  style="display: none; float:left">
+                                            <table ectype="spec_result" >
+                                                <tr>
+                                                    <th col="spec_name_1">loading..</th>
+                                                    <th col="spec_name_2">loading..</th>
+                                                    <th col="price">{$lang.price}</th>
+													<th col="jifen_price" style="display:none">积分价</th>
+													<th col="vip_price" style="display:none">VIP价</th>
+                                                    <th col="stock">{$lang.stock}</th>
+                                                    <th col="sku">{$lang.sku}</th>
+                                                </tr>
+                                                <tr ectype="spec_item" style="display:none">
+                                                    <td item="spec_1"></td>
+                                                    <td item="spec_2"></td>
+                                                    <td item="price"></td>
+													<td item="jifen_price" style="display:none"></td>
+													<td item="vip_price" style="display:none"></td>
+                                                    <td item="stock"></td>
+                                                    <td item="sku"></td>
+                                                </tr>
+                                            </table>
+                                            <p class="table_btn">
+                                                <a ectype="edit_spec" href="javascript:;" class="add_btn edit_spec">{$lang.edit_spec}</a>
+                                                {if $goods.daishou!=3} 
+                                                <a ectype="disable_spec" href="javascript:;" class="add_btn disable_spec">{$lang.disable_spec}</a>{/if}
+                                            </p>
+                                        </div>
+                                        </div>
+                                        {/if}
+                                    </li>
+                                    <li style="height:20px; overflow:hidden; margin-bottom:0px;">
+									
+										<table style="float:left; height:20px; width:300px; color:#666; overflow:hidden  ">
+										<tr><td>{$lang.if_show}: </td><td><input name="if_show" value="1" type="radio" {if $goods.if_show}checked="checked" {/if}/> {$lang.yes}</td><td><input name="if_show" value="0" type="radio" {if !$goods.if_show}checked="checked" {/if}/> {$lang.no}</td><td style="color:#fff">{$lang.note_for_recommended}</td></tr>
+										
+										</table>
+                                        <!--<h2>{$lang.if_show}: </h2>
+                                        <div class="arrange" >
+                                            <span class="distance">
+                                                <label><input name="if_show" value="1" type="radio" {if $goods.if_show}checked="checked" {/if}/> {$lang.yes}</label>
+                                                <label><input name="if_show" value="0" type="radio" {if !$goods.if_show}checked="checked" {/if}/> {$lang.no}</label>
+                                            </span>
+                                        </div>-->
+                                    </li>
+                                    <li style="height:20px; overflow:hidden; margin-bottom:0px">
+										<table style="float:left; width:300px; height:20px; color:#666; overflow:hidden  " >
+										<tr><td>{$lang.recommended}: </td><td><input name="recommended" value="1" {if $goods.recommended}checked="checked" {/if} type="radio" name="c2" /> {$lang.yes}</td><td><input name="recommended" value="0" {if !$goods.recommended}checked="checked" {/if} type="radio" name="c2" /> {$lang.no}</td><td>({$lang.note_for_recommended})</td></tr>
+										
+										</table>
+										
+                                        <!--<h2>{$lang.recommended}: </h2>
+                                        <div class="arrange">
+                                            <span class="distance">
+                                                <label>
+												<input name="recommended" value="1" {if $goods.recommended}checked="checked" {/if}type="radio" name="c2" /> {$lang.yes}</label>
+                                                <label><input name="recommended" value="0" {if !$goods.recommended}checked="checked" {/if}type="radio" name="c2" /> {$lang.no}</label>
+                                            </span>
+                                            <span class="gray">{$lang.note_for_recommended}</span>
+                                        </div>-->
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="add_bewrite">
+                            <h5>{$lang.description}</h5>
+                            <div class="add_wrap">
+                                <div class="editor">
+                                    <div>
+									{if $goods.daishou==3}
+                                    {$goods.description}
+                                    {else}
+                                 
+                                    <script type="text/plain" id="myEditor" name="description">
+        							<p>{$goods.description}</p>
+    								</script>
+									<script type="text/javascript">
+										UE.getEditor('myEditor',{
+											initialFrameHeight:420,  //初始化编辑器高度,
+											autoHeightEnabled:false, //是否自动长高,默认true
+											scaleEnabled:false, //是否可以拉伸长高,默认true
+											minFrameHeight:420, //编辑器拖动时最小高度
+											autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+											toolbarTopOffset:400 //编辑器底部距离工具栏高度
+										})
+									</script>
+                         
+									
+									{/if}
+                                    </div>
+                                    <div style=" position: relative; top: 10px; z-index: 5;">
+									{if $goods.daishou!=3}
+									
+									{/if}
+                                        <div class="upload_con" id="editor_uploader" style="display:none">
+                                            <div class="upload_con_top"></div>
+                                            <div class="upload_wrap">
+
+                                                <ul>
+                                                    <li>
+                                                        <div id="divSwfuploadContainer">
+                                                            <div id="divButtonContainer">
+                                                                <span id="editor_upload_button"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>									{if $goods.daishou!=3}
+                                                    <li id="open_editor_remote" class="btn2"></li>{/if}
+                                                </ul>
+                                                <div id="editor_remote" class="upload_file" style="display:none">
+                                                <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                                                </div>
+                                                <div id="editor_upload_progress"></div>
+                                                <div class="upload_txt">
+                                                  {if $goods.daishou!=3}  <span></span>{/if}
+                                                </div>
+
+                                            </div>
+                                            <div class="upload_con_bottom"></div>
+                                        </div>
+                                    </div>
+                                    <ul id="desc_images" class="preview">
+                                        <!--{foreach from=$desc_images item=desc_image}-->
+                                        <li ectype="handle_pic" file_name="{$desc_image.file_name|escape}" file_path="{$desc_image.file_path}" file_id="{$desc_image.file_id}">
+                                        <input type="hidden" name="desc_file_id[]" value="{$desc_image.file_id}">
+                                            <div class="pic">
+                                            <img src="{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" /></div>
+                                            <div ectype="handler" class="bg">
+                                            <img src="{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" />
+                                                <p class="operation">{if $goods.daishou!=3}
+                                                    <a class="cut_in" ectype="insert_editor" href="###" ecm_title="{$lang.insert_editor}"></a>{/if}
+                                                    <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
+                                                </p>
+                                                <p title="{$desc_image.file_name|escape}" class="name"></p>
+                                            </div>
+                                        </li>
+                                        <!--{/foreach}-->
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                                 {if $goods.daishou==3}
+                                    <div>
+                                    <h5>{$lang.beizhu}</h5>
+                                    <textarea name="beizhu" rows="8" cols="70">{$goods.beizhu}</textarea>
+                                    </div>
+                                {/if}
+                                
+                                <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

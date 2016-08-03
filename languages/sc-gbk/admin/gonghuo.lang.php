@@ -1,0 +1,38 @@
+<?php
+
+return array(
+    'dengdaishenhe' => '等待审核',
+	'shenhechenggong' => '审核成功',
+	'edit_successed'=>'编辑成功',
+    'fanhui' => '返回列表',
+	'start_time' => '开始时间',
+	'end_time' => '结束时间',
+    'content' => '广告内容',
+    'type' => '广告类型',
+    'image' => '广告图片',
+	'zuijingdeyonghu' => '尊敬的用户{1},您的供货申请没有通过',
+	'nodata' => '没有符合条件的记录',
+    'collect' => '收藏',
+    'link' => '接口地址',
+    'add_successed' => '增加成功',
+    'title_required' => '分享名称不能为空',
+    'link_required' => '接口地址不能为空',
+    'logo_accept_error' => 'logo格式错误，只支持gif,jpeg,jpg,png格式',
+    'add_share_successed' => '添加分享成功。',
+    'no_such_share' => '没有该分享',
+    'edit_share_successed' => '编辑分享成功。',
+    'drop_share_successed' => '删除分享成功。',
+    'logo_notice' => '非必须，但建议上传16x16像素大小的logo图片',
+    'number_only' => '只允许填写数字',
+    'edit_again' => '重新编辑',
+	'delete' => '删除成功',
+	'daishenhe' => '等待审核',
+	'shenhetongguo' => '审核通过',
+	'shenhebutongguo' => '审核不通过',
+	'gonghuoshenhe' => '<a href="index.php?app=my_theme&act=shangjiaxinxi">亲爱的用户{1}，您好，我们很高兴的通知您，您提交的供货申请已通过审核</a>',
+	'gonghuoweishenhe' => '<a href="index.php?app=my_theme&act=shangjiaxinxi">亲爱的用户{1}，您好，非常抱歉，您提交的供货申请没有通过审核，请完善后再次提交</a>',
+	'gonghuoshang' => '<a href="index.php?app=my_theme&act=jibenxinxi">亲爱的用户{1}，您好，我们很高兴的通知您，您提交的供货商品已通过审核。</a>',
+	'gonghuobu' => '<a href="index.php?app=my_theme&act=jibenxinxi">亲爱的用户{1}，您好，非常抱歉，您提交的供货商品信息不符合要求，请尽快填写正确的信息</a>',
+    'link_notice' => '接口地址中{$title}表示分享标题，{$link}表示分享地址。<br/>&nbsp;例如：http://www.kaixin001.com/repaste/share.php?rtitle={$title}&rurl={$link}'
+);
+?>

@@ -1,0 +1,129 @@
+{include file="header.html"}
+
+<style> 
+.ovrit 
+{ 
+background: #FFCC33; 
+} 
+.cross 
+{ 
+background: #FF0000; 
+} 
+
+.titl 
+{ 
+background: #f0f0f0; 
+} 
+</style>
+<div id="rightTop">
+    <p>{$lang.index_yonghuzijinguanli}</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_list">{$lang.index_zijinliebiao}</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_add">{$lang.index_zengjiayonghuzijin}</a></li>
+		<!--<li><a class="btn3" href="index.php?module=my_money&act=cz_wei_shenhe">充值未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=cz_yi_shenhe">充值已审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=user_money_log">资金流水</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_wei_shenhe">兑换积分未审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuan_yi_shenhe">兑换积分已审核</a></li>-->
+		<li><span>兑换现金未审核</span></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=duihuanxianjin_yi_shenhe">兑换现金已审核</a></li>
+		<li><a class="btn3" href="index.php?module=my_money&act=index">{$lang.index_fanhuidaohang}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+            <table class="infoTable">
+    <form method="post">
+	<!--{foreach from=$log item=val key=key}--> 
+	<tr>
+                <th class="paddingT15">{$lang.money_edit_bianhao}</th>
+                <td class="paddingT15 wordSpacing5">{$val.id}
+				<input name="id" value="{$val.id}" size="20" type="hidden">
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.money_edit_yonghuming}</th>
+                <td class="paddingT15 wordSpacing5">{$val.user_name}
+				<input name="user_name"  value="{$val.user_name}" size="20" type="hidden">
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">兑换积分</th>
+              <td class="paddingT15 wordSpacing5">
+				{$val.duihuanjifen}
+				
+				</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">兑换金额</th>
+              <td class="paddingT15 wordSpacing5">
+				{$val.money}
+				
+				</td>
+            </tr>
+			
+		<!--{/foreach}-->
+			<!--<tr>
+                <th class="paddingT15">{$lang.money_edit_huikuanyinhang}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="post_money" type="text" id="post_money" value="{$val.bank_name}" size="10">
+				
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">{$lang.money_edit_huikuanrenxingming}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="post_money" type="text" id="post_money" value="{$val.bank_username}" size="10">
+				
+				</td>
+            </tr>-->
+			<!--<tr>
+                <th class="paddingT15">{$lang.money_edit_riqi}</th>
+              <td class="paddingT15 wordSpacing5">
+				<input name="post_money" type="text" id="post_money" value="{$val.riqi}" size="10">
+				
+				</td>
+            </tr>-->
+          
+          <tr>
+                
+                <th class="paddingT15">{$lang.tx_xq_shifoushenhe}</th>
+              <td class="paddingT15 wordSpacing5"><input name="status" type="radio" value="1" checked="CHECKED" />
+		   审核通过<input type="radio" name="status" value="2" />审核不通过
+		
+			  </td>
+            </tr>  
+	 <tr>
+                
+                <th class="paddingT15">操作日志：</th>
+              <td class="paddingT15 wordSpacing5"><input name="log_text" type="text" value="{$val.log_text}"  />
+			  </td>
+            </tr>  
+			<tr>
+                <th class="paddingT15"></th>		
+                <td class="paddingT15 wordSpacing5">
+				
+
+
+
+
+<div id="time_from2">
+
+</div>
+</td>
+            </tr>
+	
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" onclick="this.disabled=true;this.form.submit()" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+            </tr>
+    </form>
+
+
+      </table>	
+</div>
+{include file="footer.html"}

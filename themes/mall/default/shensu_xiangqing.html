@@ -1,0 +1,115 @@
+
+
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+                <li class="normal"><a href="index.php?app=buyer_order&act=my_tousu">我的投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=bei_tousu">被投诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=my_shensu">我的申诉</a></li>
+				<li class="normal"><a href="index.php?app=buyer_order&act=beishensu">被申诉</a></li>
+				
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                
+                   
+                </div>		
+			
+              <table class="infoTable">
+		
+            <tr>
+                <th class="paddingT15">
+                    申诉人:</th>  
+                <td class="paddingT15 wordSpacing5">{$com.complainant}
+          <!-- <input class="infoTableInput2" id="complainant" type="text" name="complainant" value="" readonly="true"/>-->
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    被申诉人:</th> 
+                <td class="paddingT15 wordSpacing5">{$com.respondent}
+			<!--<input class="infoTableInput2" id="respondent" type="text" name="respondent" value="" readonly="true"/>-->
+                  
+                </td>
+            </tr> 
+			 <tr>
+                <th class="paddingT15">
+                  申诉商品:</th> 
+                <td class="paddingT15 wordSpacing5">
+                <table>
+				<tr><th></th><th align="center">商品信息</th><th align="left">数量</th><th align="left">积分价</th>
+				</tr>
+				<!--{foreach from=$or item=val}-->
+				<tr>
+				<td><img src="/{$val.goods_image}" width="100"/></td><td align="center">{$val.goods_name}<br />  {$val.specification}</td><td align="left">{$val.quantity}</td><td align="left">{$val.jifen}</td>
+				 </tr> 
+				 <!--{/foreach}-->
+				 </table>
+				</td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  申诉内容:</th> 
+                <td class="paddingT15 wordSpacing5">{$com.content}
+				<!--<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
+				</textarea>-->
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  申诉证据:</th> 
+                <td class="paddingT15 wordSpacing5">
+				
+                   <!--{if $com.imag_1}--><a href="/{$com.imag_1}" target="_blank"><img src="/{$com.imag_1}" width="100"/> </a><!--{/if}--><br />
+				   <!--{if $com.imag_2}--><a href="/{$com.imag_2}" target="_blank"><img src="/{$com.imag_2}" width="100"/><!--{/if}--><br />
+				   <!--{if $com.imag_3}--><a href="/{$com.imag_3}" target="_blank"><img src="/{$com.imag_3}" width="100"/><!--{/if}-->
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  申诉时间:</th> 
+                <td class="paddingT15 wordSpacing5">{$com.time}
+	<!-- <input class="infoTableInput2" id="time" type="text" name="time" value=""  readonly="true"/>  --> 			
+				
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  卖家备注:</th> 
+                <td class="paddingT15 wordSpacing5">{$com.beizhu}
+				<!--<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
+				</textarea>-->
+                </td>
+            </tr>
+			
+			{if $com.yijian}
+			<tr>
+                <th class="paddingT15">
+                  处理意见:</th> 
+                <td class="paddingT15 wordSpacing5">{$com.yijian}
+				<!--<textarea id="yijian" readonly="readonly" cols="30" rows="8" name="yijian">
+				</textarea>-->
+                </td>
+            </tr>
+         {/if}
+        </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}
