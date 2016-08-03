@@ -1,9 +1,3 @@
 /data/config.inc.php
-/data/pay_cache
-/data/files
-/uploadfiles
-/temp/query_caches
-/temp/logs
-/temp/caches
-/temp/compiled
 /.idea
+/chinapnr

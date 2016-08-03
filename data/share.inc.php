@@ -34,16 +34,16 @@ return array (
   ),
   5 => 
   array (
-    'title' => 'QQ¿Õ¼ä',
-    'link' => 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$link}&title={$title}',
+    'title' => 'ÐÂÀËÎ¢²©',
+    'link' => 'http://service.weibo.com/share/share.php?url={$link}&title={$title}',
     'type' => 'share',
     'sort_order' => 255,
     'logo' => 'data/files/mall/share/5.png',
   ),
   6 => 
   array (
-    'title' => 'ÐÂÀËÎ¢²©',
-    'link' => 'http://service.weibo.com/share/share.php?url={$link}&title={$title}',
+    'title' => 'QQ¿Õ¼ä',
+    'link' => 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$link}&title={$title}',
     'type' => 'share',
     'sort_order' => 255,
     'logo' => 'data/files/mall/share/6.png',

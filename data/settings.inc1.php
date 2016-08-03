@@ -34,6 +34,6 @@ return array (
     'backend' => '1',
   ),
   'subdomain_reserved' => 'www',
-  'subdomain_length' => '5-12',
+  'subdomain_length' => '3-12',
 );
 ?>
