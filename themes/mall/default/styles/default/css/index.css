@@ -10,7 +10,7 @@ img{ border:0}
 .bigbox{ width:1000px; height:610px; float:left}
 /*·ÖÀà*/
 .flbox{ width:190px; height:610px; float:left; border:1px solid #71320d}
-.flbox span{ float:left; background:#a94b13; height:36px; width:181px; padding-left:10px; font-size:14px; font-weight:bold; color:#fff; line-height:36px;}
+.flbox span{ float:left; background:#ff4200; height:36px; width:181px; padding-left:10px; font-size:14px; font-weight:bold; color:#fff; line-height:36px;}
 .flbox .flpic{ width:177px; float:left; margin-left:5px; display:inline}
 .flbox .morety{ color:#990000; float:right; margin-right:15px; display:inline}
 .flbox .morety a{ color:#cc0000}
