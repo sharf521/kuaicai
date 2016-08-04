@@ -174,7 +174,7 @@ img{ border:0}
 
 .libox{ width:340px; float:left; font-size:12px; color:#333;}
 .libox li{ width:40px; height:20px; line-height:20px; text-align:center; display:block; float:left}
-.libox .hot{ width:40px; height:20px; background:#a94b13; color:#fff; font-weight:bold}
+.libox .hot{ width:40px; height:20px; background:#ff4200; color:#fff; font-weight:bold}
 .libox .hot a{ color:#fff}
 .libox li a{ color:#333}
 
