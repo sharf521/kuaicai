@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>sample</title>
+<link href="css/TabPanel.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/Plugins/TabPanel.js"></script>
+<script type="text/javascript" >
+var tabpanel;
+$(document).ready(function(){  
+    tabpanel = new TabPanel({  
+        renderTo:'tab',
+        width:500,
+        height:300,  
+        //border:'none',  
+        active : 0,
+        //maxLength : 10,  
+        items : [
+            {id:'toolbarPlugin1',title:'Google',html:'1123434343asdfa',closable: false},  
+            {id:'toolbarPlugin2',title:'Tab2',html:'asdasdfdf',closable: true}
+        ]
+    });
+});
+
+function addtab(id,self)
+{	 
+	var icon=self?'':'image/read-n.gif';
+	var pos=tabpanel.getTabPosision('tab_'+id);
+	if(typeof pos == 'string')
+	{
+		 tabpanel.addTab({id:"tab_"+id,
+			title:"new" ,
+			html:"",
+			closable: true,
+			disabled:false,
+			lazyload:true,//只创建不切换
+			icon:icon
+		 });
+	}
+	else
+	{
+		tabpanel.setIcon('tab_'+id,"image/read-n.gif");
+	}
+	if(self) tabpanel.show('tab_'+id);
+
+// $('#div_tab_'+id).html(id+'_111111111111111111');
+}
+
+function title1()
+{
+	var pos=tabpanel.getTabPosision('tab_1');
+	if(typeof pos == 'string')
+	{
+			
+	}
+	tabpanel.setTitle('tab_1',22);
+	$('#tab_1_content').html($('#tab_1_content').html()+'<br><b>1234<br><b>1234<br><b>12343423434');
+	tabpanel.show('tab_1');
+}
+</script>
+</head>
+<body>
+
+ <div id="tab"></div>
+ <div >
+ 
+ </div>
+ 
+ <input type="button" value="add1" onclick="addtab(1)"/>
+  <input type="button" value="add2" onclick="addtab(2,true)"/>
+  
+    <input type="button" value="title1" onclick="title1()"/>
+  
+</body>
+</html>

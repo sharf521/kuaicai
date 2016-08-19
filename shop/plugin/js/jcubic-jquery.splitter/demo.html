@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery Splitter Demo</title>
+    <meta name="Description" content="jQuery Splitter Demo"/>
+    <link rel="shortcut icon" href=""/>
+    <script src="../jquery.js"></script>
+    <script src="js/jquery.splitter-0.8.0.js"></script>
+	<style type="text/css">
+        html,body{height:100%;margin:0;}
+    </style>
+    <link href="css/jquery.splitter.css" rel="stylesheet"/>
+<script>
+jQuery(function($) {   
+   $('#spliter').css({width: '100%', height: '100%'}).split({orientation: 'horizontal', limit: 20,position:'50px'});
+   $('#main-panel').split({orientation:'vertical', limit:10,position:'250px'});
+});
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<div id="spliter">
+  <div style="background-color:#3C9">Pra</div>
+  <div id='main-panel' style="background-color:#3CC">
+  	<div style="background-color:#efefef">asdfjasd</div>
+    <div style="background-color:#3CC">asdfjasd</div>
+  </div>
+</div>
+</body>
+</html>

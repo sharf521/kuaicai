@@ -1,0 +1,17 @@
+RewriteEngine On
+
+#<FilesMatch ".(gif|jpg|jpeg|png|ico|swf|js|css)$">
+#Header set Cache-Control "max-age=259200"
+#</FilesMatch>
+
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+
+
+
+#ErrorDocument 404 /
