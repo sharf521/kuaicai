@@ -10,11 +10,11 @@ return array(
                 'text'  => Lang::get('welcome_page'),
                 'url'   => 'index.php?act=welcome',
             ),
-            'aboutus'   => array(
+            /*'aboutus'   => array(
                 'text'  => Lang::get('aboutus_page'),
                 'url'   => 'index.php?act=aboutus',
             ),
-            /*'base_setting'  => array(
+            'base_setting'  => array(
                 'parent'=> 'setting',
                 'text'  => Lang::get('base_setting'),
                 'url'   => 'index.php?app=setting&act=base_setting',
