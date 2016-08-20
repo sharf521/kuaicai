@@ -1,8 +1,8 @@
 <?php 
 return array (
-  'site_name' => '创客优品汇积分商城',
-  'site_title' => '创客优品汇积分商城',
-  'site_description' => '创客优品汇积分商城',
+  'site_name' => '创客优品汇供销商城',
+  'site_title' => '创客优品汇供销商城',
+  'site_description' => '创客优品汇供销商城',
   'site_keywords' => '创客优品汇 小淘宝',
   'icp_number' => '-2',
   'site_status' => '0',
