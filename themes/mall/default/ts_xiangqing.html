@@ -25,14 +25,14 @@
             <tr>
                 <th class="paddingT15">
                     投诉人</th>  
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
                     <input class="infoTableInput2" id="complainant" type="text" name="complainant" value="{$com.complainant}" readonly="true"/>
                 </td>
             </tr>
             <tr>
                 <th class="paddingT15">
                     被投诉人</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 				 <input class="infoTableInput2" id="respondent" type="text" name="respondent" value="{$com.respondent}" readonly="true"/>
                   
                 </td>
@@ -40,20 +40,20 @@
             <tr>
                 <th class="paddingT15">
                    投诉主题</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
                    <input class="infoTableInput2" id="title" type="text" name="title" value="{$com.title|escape}"  readonly="true"/>   
                 </td>
             </tr>
 			 <tr>
                 <th class="paddingT15">
                   投诉商品</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
                 <table>
 				<tr><th></th><th align="center">商品信息</th><th align="left">数量</th><th align="left">价格</th>
 				</tr>
 				<!--{foreach from=$or item=val}-->
 				<tr>
-				<td><img src="/{$val.goods_image}" width="100"/></td><td align="center">{$val.goods_name}<br />  {$val.specification}</td><td align="left">{$val.quantity}</td><td align="left">{$val.jifen}</td>
+				<td><img src="{$val.goods_image}" width="100"/></td><td align="center">{$val.goods_name}<br />  {$val.specification}</td><td align="left">{$val.quantity}</td><td align="left">{$val.jifen}</td>
 				 </tr> 
 				 <!--{/foreach}-->
 				 </table>
@@ -62,7 +62,7 @@
 			<tr>
                 <th class="paddingT15">
                   投诉内容</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 				<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
 				{$com.content}
 				</textarea>
@@ -71,17 +71,17 @@
 			<tr>
                 <th class="paddingT15">
                   投诉证据</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 				
-                   <!--{if $com.imag_1}--><a href="/{$com.imag_1}" target="_blank"><img src="/{$com.imag_1}" width="100"/></a> <!--{/if}--><br />
-				   <!--{if $com.imag_2}--><a href="/{$com.imag_2}" target="_blank"><img src="/{$com.imag_2}" width="100"/></a><!--{/if}--><br />
-				   <!--{if $com.imag_3}--><a href="/{$com.imag_3}" target="_blank"><img src="/{$com.imag_3}" width="100"/></a><!--{/if}-->
+                   <!--{if $com.imag_1}--><a href="{$com.imag_1}" target="_blank"><img src="{$com.imag_1}" width="100"/></a> <!--{/if}--><br />
+				   <!--{if $com.imag_2}--><a href="{$com.imag_2}" target="_blank"><img src="{$com.imag_2}" width="100"/></a><!--{/if}--><br />
+				   <!--{if $com.imag_3}--><a href="{$com.imag_3}" target="_blank"><img src="{$com.imag_3}" width="100"/></a><!--{/if}-->
                 </td>
             </tr>
 			<tr>
                 <th class="paddingT15">
                   投诉时间</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 	 <input class="infoTableInput2" id="time" type="text" name="time" value="{$com.time|escape}"  readonly="true"/>   			
 				
                 </td>
@@ -89,7 +89,7 @@
 			<tr>
                 <th class="paddingT15">
                   买家备注</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 				<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
 				{$com.beizhu}
 				</textarea>
@@ -100,7 +100,7 @@
 			<tr>
                 <th class="paddingT15">
                   平台处理意见</th> 
-                <td class="paddingT15 wordSpacing5">
+                <td class="paddingT15 wordSpacing5" align="left">
 				<textarea id="yijian" readonly="readonly" cols="30" rows="8" name="yijian">
 				{$com.yijian}
 				</textarea>
