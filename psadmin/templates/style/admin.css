@@ -17,14 +17,14 @@ html,body {padding: 0;margin: 0; overflow-x:hidden; overflow-y:auto;}
 .bold {font-weight: bold; color: #545454}
 
 .back_nav { width: 400px; height: 350px; position: absolute; top: 40px; right: 20px; z-index: 100; display: none;}
-.back_nav_list { width: 366px; height: 336px; padding: 30px 0 0 30px; position: absolute; top: 0px; left: 0px; z-index: 2; background: #f5fbef; border: 1px solid #a9d671;}
+.back_nav_list { width: 366px; padding: 30px 0 0 30px; position: absolute; top: 0px; left: 0px; z-index: 2; background: #f5fbef; border: 1px solid #a9d671;}
 .shadow { width: 398px; height: 318px; position: absolute; bottom: 0px; right: 0px; z-index: 1; background: #afb1b3; -moz-opacity: 0.5; opacity:.5; filter: alpha(opacity=50);}
-.back_nav_list dl { float: left; width: 85px; height: 160px;}
+.back_nav_list dl { float: left; width: 85px;}
 .back_nav_list dt {font-size: 14px; font-weight: bold; color: #0c4887; margin-bottom: 10px;}
 .back_nav_list dd {line-height: 20px;}
 .back_nav_list a {font-weight: bold; color: #454543; text-decoration: none;}
 .back_nav_list a:hover {color: red; text-decoration: underline;}
-.close_float { position: absolute; bottom: 7px; right: 7px; z-index: 3;}
+.close_float { position: absolute; top: 7px; right: 7px; z-index: 3;}
 
 #head {height: 100px; background: url(images/head.gif); position: relative;}
 #logo { height: 68px; position: absolute; top: 30px; left: 30px; z-index: 2;}
