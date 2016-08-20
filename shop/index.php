@@ -57,6 +57,8 @@ else
 if(!$_G['shop'])
 {
     echo '信息错误，无此店铺！';exit;
+}else{
+    echo $_G['domain_city'].'/store/'.$_G['storeid_shop'];
 }
 $_G['shop']['store_owner']=m('city/getowner',array('user_name'=>$_G['shop']['owner_name']));
 $_G['shop']['goods_count']=m('city/getcount',array('store_id'=>$_G['shop']['store_id']));
