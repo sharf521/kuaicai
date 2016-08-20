@@ -38,46 +38,35 @@ class UserApp extends MallbaseApp
 
 		//echo getHTML('http://zhuzhan.cn/index.php?app=user&act=account',$data); 
     }
-	
-	
-	
-    function account()
-    {
-		$user_id=(int)$_REQUEST['user_id'];
+
+
+	function account()
+	{
+		$user_id = (int)$_REQUEST['user_id'];
 		$member_mod = &m('my_money');
-		$result=$member_mod->getRow("select * from ".DB_PREFIX."my_money where user_id='$user_id' limit 1");		
-		$row=array();
-		$row['user_id']=$user_id;
-		if(empty($result))
-		{
-		$row['money']=0;
-		$row['money_dj']=0;
-		$row['jifen']=0;
-		$row['jifen_dj']=0;
+		$result = $member_mod->getRow("select * from " . DB_PREFIX . "my_money where user_id='$user_id' limit 1");
+		$row = array();
+		$row['user_id'] = $user_id;
+		if (empty($result)) {
+			$row['money'] = 0;
+			$row['money_dj'] = 0;
+			$row['jifen'] = 0;
+			$row['jifen_dj'] = 0;
+		} else {
+			$row['money'] = (float)$result['money'];
+			$row['money_dj'] = (float)$result['money_dj'];
+			$row['jifen'] = (float)$result['duihuanjifen'];
+			$row['jifen_dj'] = (float)$result['dongjiejifen'];
 		}
-		else
-		{
-		$row['money']=$result['money'];
-		$row['money_dj']=$result['money_dj'];
-		$row['jifen']=$result['duihuanjifen'];
-		$row['jifen_dj']=$result['dongjiejifen'];
+		$row = json_encode($row);
+		$callback = $_REQUEST['jsoncallback'];
+		if (empty($callback)) {
+			echo urldecode($row);
+		} else {
+			echo $callback . '(' . urldecode($row) . ')';
 		}
-			
-		
-		$row=json_encode($row);
-		$callback=$_REQUEST['jsoncallback'];
-		if(empty($callback))
-		{
-			echo 	urldecode($row);
-			
-		}
-		else
-		{
-			echo $callback.'('.urldecode($row).')';	
-			
-		}	
 		exit();
-    }
+	}
 	/*
 查询用户在借贷平台的帐户情况：
 请求链接：http://hndai.p2p.com/index.php?user&q=code/account/i_user_info
@@ -115,12 +104,10 @@ award：充值奖励已赚利息（可单向转入商城）
 		if(empty($callback))
 		{
 			echo 	$res;
-			
 		}
 		else
 		{
-			echo $callback.'('.$res.')';	
-			
+			echo $callback.'('.$res.')';
 		}	
 		exit();
 	}
@@ -134,12 +121,10 @@ award：充值奖励已赚利息（可单向转入商城）
 		if(empty($callback))
 		{
 			echo 	$res;
-			
 		}
 		else
 		{
-			echo $callback.'('.$res.')';	
-			
+			echo $callback.'('.$res.')';
 		}	
 		exit();
 	}
