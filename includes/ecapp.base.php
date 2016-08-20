@@ -518,7 +518,8 @@ EOT;
         $this->assign('query_time', $query_time);
         $db =& db();
         $this->assign('query_count', $db->_query_count);
-        $this->assign('query_user_count', $this->_session->get_users_count());
+        //$this->assign('query_user_count', $this->_session->get_users_count());
+        $this->assign('query_user_count', 1000);
 
         /* 内存占用情况 */
         if (function_exists('memory_get_usage'))
