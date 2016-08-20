@@ -50,9 +50,9 @@
                     <tr class="line<!--{if $smarty.foreach._group_f.last}--> last_line<!--{/if}-->">
                         <td width="50" class="align2">
 						{if $group.status==1}
-                        <a href="{url app=groupbuy&id=$group.group_id}" target="_blank"><img src="{$site_url}/{$group.default_image}" width="50" height="50"  /></a>
+                        <a href="{url app=groupbuy&id=$group.group_id}" target="_blank"><img src="{$group.default_image}" width="50" height="50"  /></a>
 						{else}
-						<img src="{$site_url}/{$group.default_image}" width="50" height="50"  />
+						<img src="{$group.default_image}" width="50" height="50"  />
 						{/if}
 						</td>
                         <td width="160" align="align2">

@@ -1129,13 +1129,13 @@ class MemberbaseApp extends MallbaseApp
                     'name'  => 'my_store',
                     'icon'  => 'ico11',
             );
-            $menu['im_seller']['submenu']['my_theme']  = array(
+			/*$menu['im_seller']['submenu']['my_theme']  = array(
                     'text'  => Lang::get('my_theme'),
                     'url'   => 'index.php?app=my_theme',
                     'name'  => 'my_theme',
                     'icon'  => 'ico12',
             );
-           /* $menu['im_seller']['submenu']['my_payment'] =  array(
+            $menu['im_seller']['submenu']['my_payment'] =  array(
                     'text'  => Lang::get('my_payment'),
                     'url'   => 'index.php?app=my_payment',
                     'name'  => 'my_payment',
