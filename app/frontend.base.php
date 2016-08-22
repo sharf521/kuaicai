@@ -1002,13 +1002,13 @@ class MemberbaseApp extends MallbaseApp
                     'url'   => 'index.php?app=my_money&act=goumaidaxiaozhuo',
                     'name'  => 'daxiaozhuo',
                     'icon'  => 'ico20',
-                ),*/
+                ),
 				'taocan'  => array(
                     'text'  => Lang::get('taocan'),
                     'url'   => 'index.php?app=member&act=goumaitaocan',
                     'name'  => 'taocan',
                     'icon'  => 'ico6',
-                ),
+                ),*/
 				'shourulog'  => array(
                     'text'  => Lang::get('shourulog'),
                     'url'   => 'index.php?app=member&act=chengzhangjifen',
