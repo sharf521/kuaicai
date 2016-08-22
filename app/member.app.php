@@ -324,6 +324,7 @@ $qiandao=$this->my_money_mod->getRow("select riqi,times,status from ".DB_PREFIX.
 				}
 			}			
 
+            /*
 			if (empty($owner_card))
             {
                 $this->show_warning('shenfenzhengbunengweikong');
@@ -336,7 +337,7 @@ $qiandao=$this->my_money_mod->getRow("select riqi,times,status from ".DB_PREFIX.
 			{
 				$this->show_warning('shurushenfenzheng');
 				return;
-			}
+			}*/
 			
             $ms =& ms(); //连接用户中心
             $user_id = $ms->user->register($user_name, $password, $email,$owner_card,$city,$yaoqing_id,array(),$web_id,$weiboid,$openid);

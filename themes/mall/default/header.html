@@ -72,7 +72,7 @@ $().ready(function(){
 							<div class="ssbox"><a href="index.php?app=article&cate_id=23">视频</a>&nbsp;&nbsp;&nbsp;{$lang.hello},{$visitor.user_name|escape}</div>
 							
 							 <!--{if !$visitor.user_id}-->
-							<DIV id="site-nav">
+							<DIV id="site-nav" style="display: none;">
 								<DIV id=site-nav-bd>
   								<UL class=quick-menu>
    									 <LI class=menu-item>
@@ -85,7 +85,7 @@ $().ready(function(){
 		 						  </DIV></DIV></DIV></DIV></LI>
   
  								 </UL></DIV></DIV>
-
+							<div class="ressbox"><a href="{url app=member&act=login&ret_url=$ret_url}">登录</a></div>
 							<div class="ressbox"><a href="{url app=member&act=register&ret_url=$ret_url}">注册</a></div>
 							 <!--{else}-->
 							 <div class="ressbox"><a href="index.php?app=member">用户中心</a></div>
