@@ -65,6 +65,10 @@ $(function(){
                     }
 					}
             },
+            yaoqing_id:{
+                required : true,
+                byteRange: [3,15,'{$charset}']
+            },
             captcha : {
                 required : true,
                 remote   : {
@@ -99,6 +103,10 @@ $(function(){
                 required : '{$lang.email_required}',
 				//byteRange: '{$lang.user_name_limit}',
 				remote   : '{$lang.email_requir}'
+            },
+            yaoqing_id : {
+                required : '{$lang.tuijianrendeidhao}',
+                byteRange: '{$lang.tuijianrendeidhao}'
             },
             captcha : {
                 required : '{$lang.captcha_required}',

@@ -41,7 +41,8 @@ return array(
     'register_now'   => '立即注册',
     'password_confirm'   => '确认密码',
 	'tuijianren'   => '邀请人',
-	'tuijianrendeidhao'   => '填写邀请人的用户名，如果没有邀请人，可不填',
+	'tuijianrendeidhao'   => '填写邀请人的用户名',
+	
     'user_name_desc'   => '用于登录的名字',
     'password_desc'   => '您的密码',
     'i_have_read'   => '我已阅读并同意',
@@ -161,6 +162,8 @@ return array(
     'jiangligei' => '奖励给',
 	'ninbushibenzhanhuiyuan' => '您不是本站会员',
 	'gaiyonghubucunzai'  => '您填写的邀请人不存在',
+	'yaoqingrenbunengweikong'  => '邀请人不能为空',
+
 	'zhifuchenggong'   => '支付成功',
 	'goumai'   => '购买',
 	'youhuiquan'   => '的优惠券',
@@ -195,6 +198,8 @@ return array(
 	'tuijianrongyujifen'=>'亲爱的用户{1}：由于您推荐了用户{2}，系统奖励您荣誉积分{3}积分，请注意查收',
 	'xuanzetaocan'=>'请选择套餐',
 	'tuijianrenbunengweikong'=>'推荐人不能为空',
+
+
 	'lishurenbunengweikong'=>'隶属人不能为空',
 	'zhinengyouliangge'=>'用户：{1}，只能有两个隶属',
 	'denglu'=>'亲爱的用户{1}：您好,您的登录密码已经修改成功，请牢记您的密码。',
