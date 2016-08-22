@@ -286,6 +286,11 @@ class MemberApp extends MemberbaseApp
                 return;
             }
 
+
+            if(empty($yaoqing_id)){
+                $this->show_warning('yaoqingrenbunengweikong');
+                return;
+            }
             if ($yaoqing_id != '') {
                 $member_row = $this->member_mod->getRow("select user_name from " . DB_PREFIX . "member where user_name = '$yaoqing_id' limit 1");
                 $yaoqingid = $member_row['user_name'];
