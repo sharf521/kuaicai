@@ -58,10 +58,10 @@ background: #f0f0f0;
             <tr>
                 <th class="paddingT15">汇款银行</th>
                 <td class="paddingT15 wordSpacing5">
-                    {if $val.bank_name==1}工商银行{/if}
                     {if $val.bank_name==2}招商银行{/if}
                     {if $val.bank_name==3}建设银行{/if}
                     {if $val.bank_name==4}中国银行{/if}
+                    {$val.bank_name}
 				<input name="bank_name"  value="{$val.bank_name}" size="20" type="hidden">
 				</td>
          </tr>

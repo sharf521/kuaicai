@@ -25,7 +25,7 @@ function card()
 	return false;
 	}
  
-	if(document.card_form.card_sn.value < 1000)
+	if(document.card_form.card_sn.value < 500)
 	{
 	alert("充值金额不能小于{$canshu.cz_min}元");
 	document.card_form.card_sn.focus();
@@ -171,40 +171,26 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
 				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onkeyup="value=value.replace(/[^0-9.]/g,'')"  maxlength="10"/>&nbsp;<font  color="red">*</font>
 				  <div style="color:#F00; line-height:20px; padding:5px"> 
                  线下充值如遇到问题，请立即与客服联系</br>
-                  (1)&nbsp;单笔线下充值金额不低于1000元；</br>
+                  (1)&nbsp;单笔线下充值金额不低于500元；</br>
                   (2)&nbsp;<font color="#0000FF">有效充值登记时间为:周一至周五的9:30到16:00</font>，充值成功请跟我们的客服联系。
                   </div>
                   <br>
-				 
-				 选择银行：&nbsp;&nbsp;&nbsp;&nbsp;
-    <select id="bank_name" name="bank_name" onchange="selBank(this.value)">
-        <option value="2">招商银行</option>
-        <option value="3">建设银行</option>
-        <option value="4">中国银行</option>
-    </select><font color="red">*</font>
-    <div id="bank2" style="display:block"><font style="padding-left:73px; color:#F00;">开户行:招商银行郑州分行二十一世纪支行&nbsp;&nbsp;
-        姓名:姜浩 &nbsp;&nbsp;账号:6214 8337 1437 6137</font></div>
-    <div id="bank3" style="display:none"><font style="padding-left:73px; color:#F00;">开户行:建设银行郑州居易国际广场支行&nbsp;&nbsp; 姓名:姜浩
-        &nbsp;&nbsp;账号:6236 6824 3000 2979 241</font></div>
-    <div id="bank4" style="display:none"><font style="padding-left:73px; color:#F00;">开户行:中国银行郑州国基路支行&nbsp;&nbsp; 姓名:姜浩
-        &nbsp;&nbsp;账号:6217 8580 0006 2010 951</font></div>
-                <script>
-                function selBank(v)
-				{
-					for(i=2;i<=4;i++)
-					{
-						if(v==i)
-						{
-							document.getElementById('bank'+i).style.display='';	
-						}
-						else
-						{
-							document.getElementById('bank'+i).style.display='none';
-							
-						}
-					}	
-				}
-                </script>
+    <table>
+        <tr>
+            <td>选择银行：</td>
+            <td align="left">
+                <label><input type="radio" name="bank_name" value="" checked>招商银行：开户行:招商银行郑州分行二十一世纪支行&nbsp;
+                    姓名:姜浩 &nbsp;&nbsp;账号:6214 8337 1437 6137</label><br>
+                <label><input type="radio" name="bank_name" value="建设银行">建设银行：开户行:建设银行郑州居易国际广场支行&nbsp;
+                    姓名:姜浩 &nbsp;&nbsp;账号:6236 6824 3000 2979 241</label><br>
+                <label><input type="radio" name="bank_name" value="中国银行">中国银行：开户行:中国银行郑州国基路支行&nbsp;
+                    姓名:姜浩 &nbsp;&nbsp;账号:6217 8580 0006 2010 951</label><br>
+                <label><input type="radio" name="bank_name" value="微信账户">微信账户：ck13073709129</label><br>
+                <label><input type="radio" name="bank_name" value="支付宝账户">支付宝账户：13073709129</label>
+            </td>
+        </tr>
+    </table>
+
 				 <!-- 汇款人姓名：<input name="bank_username" type="text" id="bank_username" size="15" /><font  color="red">*</font>
 				  <br>
 				 流水单号：&nbsp;&nbsp;&nbsp;&nbsp;<input name="danhao" type="text" id="danhao" size="15" /><font  color="red">*</font> <font style="padding-left:10px; color:#F00;">(即您的汇款单号)</font>
