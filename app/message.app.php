@@ -516,7 +516,7 @@ class MessageApp extends MemberbaseApp
                 $user_info['user_id'] = 0;
                 $user_info['portrait'] = '';
             }
-            //$user_info['portrait'] = portrait($user_info['user_id'], $user_info['portrait']);
+            $user_info['portrait'] = portrait($user_info['user_id'], $user_info['portrait']);
             $messages[$key]['user_info'] = $user_info;
             //$messages[$key]['content'] = htmlspecialchars_decode($messages[$key]['content']);
             //$messages[$key]['i_send'] = $i_send;

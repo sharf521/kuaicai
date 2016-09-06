@@ -256,7 +256,7 @@ class UcPassportUser extends BasePassportUser
         list($user_id, $user_name, $email) = $user_info;
 
         /* 同步至本地 */
-        $this->_local_sync($user_id, $user_name, $email);
+        //$this->_local_sync($user_id, $user_name, $email);
 
         return array(
                 'user_id'   =>  $user_id,
@@ -497,7 +497,7 @@ class UcPassportUser extends BasePassportUser
             $topic['system'] = 1;
         }
         $topic['new'] = (($topic['from_id'] == $user_id && $topic['new'] == 2)||($topic['to_id'] == $user_id && $topic['new'] == 1 )) ? 1 : 0;
-        //$topic['portrait'] = portrait($topic['from_id'], $topic['portrait']);
+        $topic['portrait'] = portrait($topic['from_id'], $topic['portrait']);
         if ($full)
         {
             $replies = $model_message->find(array(
