@@ -246,7 +246,7 @@ class UcPassportUser extends BasePassportUser
     function get($flag, $is_name = false)
     {
         /* 至UCenter取用户 */
-        $user_info = outer_call('uc_get_user', array($flag, !$is_name));
+        //$user_info = outer_call('uc_get_user', array($flag, !$is_name));
         if (empty($user_info))
         {
             $this->_error('no_such_user');
