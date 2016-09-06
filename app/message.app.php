@@ -503,25 +503,25 @@ class MessageApp extends MemberbaseApp
         //$i_send = 0;
         $messages = $pms['data'];
 
-//        foreach ($messages as $key => $message) {
-//            //$i_send = $message['to_id'] == $my_id ? 0 : 1;
-//            $user_info = $ms->user->get($message['to_id'] == $my_id ? $message['from_id'] : $message['to_id']);
-//            //$messages[$key]['i_send'] = $i_send;
-//            if ($message['from_id'] == 0 && $message['to_id'] == 0) {
-//                $user_info['user_name'] = Lang::get('announce_msg');
-//                $user_info['user_id'] = 0;
-//                $user_info['portrait'] = '';
-//            } elseif ($message['from_id'] == MSG_SYSTEM) {
-//                $user_info['user_name'] = Lang::get('system_msg');
-//                $user_info['user_id'] = 0;
-//                $user_info['portrait'] = '';
-//            }
-//            $user_info['portrait'] = portrait($user_info['user_id'], $user_info['portrait']);
-//            $messages[$key]['user_info'] = $user_info;
-//            //$messages[$key]['content'] = htmlspecialchars_decode($messages[$key]['content']);
-//            //$messages[$key]['i_send'] = $i_send;
-//            $messages[$key]['riqi'] = date('Y-m-d H:i:s', $message['last_update']);
-//        }
+        foreach ($messages as $key => $message) {
+            //$i_send = $message['to_id'] == $my_id ? 0 : 1;
+            $user_info = $ms->user->get($message['to_id'] == $my_id ? $message['from_id'] : $message['to_id']);
+            //$messages[$key]['i_send'] = $i_send;
+            if ($message['from_id'] == 0 && $message['to_id'] == 0) {
+                $user_info['user_name'] = Lang::get('announce_msg');
+                $user_info['user_id'] = 0;
+                $user_info['portrait'] = '';
+            } elseif ($message['from_id'] == MSG_SYSTEM) {
+                $user_info['user_name'] = Lang::get('system_msg');
+                $user_info['user_id'] = 0;
+                $user_info['portrait'] = '';
+            }
+            //$user_info['portrait'] = portrait($user_info['user_id'], $user_info['portrait']);
+            $messages[$key]['user_info'] = $user_info;
+            //$messages[$key]['content'] = htmlspecialchars_decode($messages[$key]['content']);
+            //$messages[$key]['i_send'] = $i_send;
+            $messages[$key]['riqi'] = date('Y-m-d H:i:s', $message['last_update']);
+        }
         return $messages;
     }
 
