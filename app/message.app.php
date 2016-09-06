@@ -5,18 +5,18 @@ class MessageApp extends MemberbaseApp
     /**
      *    新短信
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function newpm()
     {
         $this->_clear_newpm_cache();
 
         /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                         LANG::get('newpm')
-                         );
+        $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+            LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+            LANG::get('newpm')
+        );
 
         /* 当前所处子菜单 */
         $this->_curmenu('newpm');
@@ -37,7 +37,7 @@ class MessageApp extends MemberbaseApp
                     'attr' => '',
                 ),
             ),
-            'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
+            'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
         $this->assign('messages', $this->_list_message('newpm', $this->visitor->get('user_id')));
         $this->assign('page_title', Lang::get('member_center') . ' - ' . Lang::get('newpm'));
@@ -47,18 +47,18 @@ class MessageApp extends MemberbaseApp
     /**
      *    发件箱
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function privatepm()
     {
         $this->_clear_newpm_cache();
 
         /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                         LANG::get('privatepm')
-                         );
+        $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+            LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+            LANG::get('privatepm')
+        );
         /* 当前所处子菜单 */
         $this->_curmenu('privatepm');
         $this->import_resource(array(
@@ -76,26 +76,26 @@ class MessageApp extends MemberbaseApp
                     'attr' => '',
                 ),
             ),
-            'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
+            'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
         /* 当前用户中心菜单 */
         $this->_curitem('message');
         $messages = $this->_list_message('privatepm', $this->visitor->get('user_id'));
-        
+
         $this->assign('messages', $messages);
         $this->assign('page_title', Lang::get('user_center') . ' - ' . Lang::get('privatepm'));
         $this->display('message.box.html');
     }
-    
+
     function systempm()
     {
         $this->_clear_newpm_cache();
 
         /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                         LANG::get('systempm')
-                         );
+        $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+            LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+            LANG::get('systempm')
+        );
         /* 当前所处子菜单 */
         $this->_curmenu('systempm');
         $this->import_resource(array(
@@ -113,7 +113,7 @@ class MessageApp extends MemberbaseApp
                     'attr' => '',
                 ),
             ),
-            'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
+            'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
         /* 当前用户中心菜单 */
         $this->_curitem('message');
@@ -121,16 +121,16 @@ class MessageApp extends MemberbaseApp
         $this->assign('page_title', Lang::get('user_center') . ' - ' . Lang::get('systempm'));
         $this->display('message.box.html');
     }
-    
+
     function announcepm()
     {
         $this->_clear_newpm_cache();
 
         /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                         LANG::get('announcepm')
-                         );
+        $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+            LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+            LANG::get('announcepm')
+        );
         /* 当前所处子菜单 */
         $this->_curmenu('announcepm');
         $this->import_resource(array(
@@ -148,7 +148,7 @@ class MessageApp extends MemberbaseApp
                     'attr' => '',
                 ),
             ),
-            'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
+            'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
         /* 当前用户中心菜单 */
         $this->_curitem('message');
@@ -156,31 +156,31 @@ class MessageApp extends MemberbaseApp
         $this->assign('page_title', Lang::get('user_center') . ' - ' . Lang::get('announcepm'));
         $this->display('message.box.html');
     }
+
     /**
      *    发送短消息
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function send()
     {
 
-        if (!IS_POST){
+        if (!IS_POST) {
             /* 当前位置 */
-            $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                             LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                             LANG::get('send_message')
-                             );
+            $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+                LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+                LANG::get('send_message')
+            );
             /* 当前所处子菜单 */
             $this->_curmenu('send_message');
             /* 当前用户中心菜单 */
             $this->_curitem('message');
             $to_ids = array(); //防止foreach报错
             $to_id = trim($_GET['to_id']); //获取url中的to_id
-            $to_id && $to_ids = explode(',',$to_id); //转换成数组
+            $to_id && $to_ids = explode(',', $to_id); //转换成数组
             $mod_member = &m('member');
-            foreach ($to_ids as $key => $to_id)
-            {
+            foreach ($to_ids as $key => $to_id) {
                 /* 如果用户存在 存入$to_user_name数组中 */
                 $user_name = $mod_member->get_info(intval($to_id));
                 $user_name && $to_user_name[] = $user_name['user_name'];
@@ -191,8 +191,8 @@ class MessageApp extends MemberbaseApp
             header('Content-Type:text/html;charset=' . CHARSET);
             /* 好友 */
             $friends = $this->_list_friend();
-            $this->assign('friends',        $friends);
-            $this->assign('friend_num',    count($friends));
+            $this->assign('friends', $friends);
+            $this->assign('friend_num', count($friends));
 
             //引入jquery表单插件
             $this->import_resource(array(
@@ -200,12 +200,9 @@ class MessageApp extends MemberbaseApp
             ));
             $this->assign('page_title', Lang::get('user_center') . ' - ' . Lang::get('send_message'));
             $this->display('message.send.html');
-        }
-        else
-        {
+        } else {
             $to_user_name = str_replace(Lang::get('comma'), ',', trim($_POST['to_user_name'])); //替换中文格式的逗号
-            if (!$to_user_name)
-            {
+            if (!$to_user_name) {
                 $this->show_warning('no_to_user_name'); //没有填写用户名
                 return;
             }
@@ -213,25 +210,21 @@ class MessageApp extends MemberbaseApp
             $mod_member = &m('member');
             $members = $mod_member->find('user_name ' . db_create_in($to_user_names));
             $to_ids = array();
-            foreach ($members as $_user)
-            {
-                if (isset($_user['user_id']) && $_user['user_id']!= $this->visitor->get('user_id'))
-                {
+            foreach ($members as $_user) {
+                if (isset($_user['user_id']) && $_user['user_id'] != $this->visitor->get('user_id')) {
                     $to_ids[] = $_user['user_id'];
                 }
             }
-            if (!$to_ids)
-            {
+            if (!$to_ids) {
                 $this->show_warning('no_user_self'); //没有该用户名
                 return;
             }
 
             /* 连接用户系统 */
-			//$MEMBER_TYPE='default';
+            //$MEMBER_TYPE='default';
             $ms =& ms();
             $msg_id = $ms->pm->send($this->visitor->get('user_id'), $to_ids, '', $_POST['msg_content']);
-            if (!$msg_id)
-            {
+            if (!$msg_id) {
                 //$this->show_warning($ms->pm->get_error());
                 $rs = $ms->pm->get_error();
                 $msg = current($rs);
@@ -245,127 +238,106 @@ class MessageApp extends MemberbaseApp
     /**
      *    查看短消息
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function view()
     {
         $this->_clear_newpm_cache();
-		$this->message_mod=& m('message');
+        $this->message_mod =& m('message');
         $msg_id = isset($_GET['msg_id']) ? intval($_GET['msg_id']) : 0;
-	
-        if (!$msg_id)
-        {
-            $this->show_warning('no_such_message','','index.php?app=message&act=newpm');
+
+        if (!$msg_id) {
+            $this->show_warning('no_such_message', '', 'index.php?app=message&act=newpm');
             return;
         }
         $my_id = $this->visitor->get('user_id');
-		
+
         $ms =& ms();
-        if (!IS_POST)
-        {
-				
+        if (!IS_POST) {
+
             $message = $ms->pm->get($this->visitor->get('user_id'), $msg_id, true);
-			//$message = $this->message_mod->get($this->visitor->get('user_id'), $msg_id, true);
-			//$message=$this->message_mod->getAll("select * from ".DB_PREFIX."message where to_id=$my_id and msg_id=$msg_id");
-		
-            if (empty($message))
-            {
+            //$message = $this->message_mod->get($this->visitor->get('user_id'), $msg_id, true);
+            //$message=$this->message_mod->getAll("select * from ".DB_PREFIX."message where to_id=$my_id and msg_id=$msg_id");
+
+            if (empty($message)) {
                 $this->show_warning('no_such_message');
                 return;
             };
             $new = $message['topic']['new'];
             !empty($new) && $ms->pm->mark($this->visitor->get('user_id'), array($msg_id), 0); //标示已读
-            
+
             $box = '';
-            
-            if ($message['topic']['from_id'] == 0 && $message['topic']['to_id'] == 0 )
-            {
+
+            if ($message['topic']['from_id'] == 0 && $message['topic']['to_id'] == 0) {
                 $box = 'announcepm';
-            }
-            elseif ($message['topic']['from_id'] == MSG_SYSTEM)
-            {
+            } elseif ($message['topic']['from_id'] == MSG_SYSTEM) {
                 $box = 'systempm';
-            }
-            elseif ($my_id == $message['topic']['from_id'] || $my_id == $message['topic']['to_id'])
-            {
+            } elseif ($my_id == $message['topic']['from_id'] || $my_id == $message['topic']['to_id']) {
                 $box = 'privatepm';
             }
-			
-			
+
+
             $ms = &ms();
-            if ($message['topic']['from_id'] == 0 && $message['topic']['to_id'] == 0)
-            {
+            if ($message['topic']['from_id'] == 0 && $message['topic']['to_id'] == 0) {
                 $message['topic']['user_name'] = Lang::get('announce_msg');
                 $message['topic']['portrait'] = portrait(0, '');
-            }
-            elseif ($message['topic']['from_id'] == MSG_SYSTEM)
-            {
+            } elseif ($message['topic']['from_id'] == MSG_SYSTEM) {
                 $message['topic']['user_name'] = Lang::get('system_msg');
                 $message['topic']['portrait'] = portrait(0, '');
-            }
-            else
-            {
+            } else {
                 $uid = $message['topic']['from_id'];
                 $user_info = $ms->user->get($uid);
                 $message['topic']['user_name'] = $user_info['user_name'];
                 $portrait = portrait($user_info['user_id'], $user_info['portrait']);
                 $message['topic']['portrait'] = $portrait;
             }
-            
+
             $uid = 0;
             $user_info = array();
-            
-            foreach ($message['replies'] as $key => $value)
-            {
+
+            foreach ($message['replies'] as $key => $value) {
                 $uid = $value['from_id'];
                 $user_info = $ms->user->get($uid);
                 $message['replies'][$key]['user_name'] = $user_info['user_name'];
                 $portrait = portrait($user_info['user_id'], $user_info['portrait']);
                 $message['replies'][$key]['portrait'] = $portrait;
             }
-		
+
             $this->assign('message', $message['topic']);
             $this->assign('replies', $message['replies']);
             $this->assign('page_title', Lang::get('member_center') . ' - ' . Lang::get('view_message'));
             $this->assign('box', $box);
             /* 当前位置 */
-            $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                             LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                             LANG::get('view_message')
-                             );
+            $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+                LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+                LANG::get('view_message')
+            );
             /* 当前所处子菜单（必须放在这里，否则新消息数量不正确） */
             $this->_curmenu('view_message');
             /* 当前用户中心菜单 */
             $this->_curitem('message');
             $this->display('message.view.html');
-        }
-        else
-        {
+        } else {
             $message = $ms->pm->get($this->visitor->get('user_id'), $msg_id);
             $reply_to_id = 0;
-            if ($my_id == $message['topic']['to_id'])
-            {
+            if ($my_id == $message['topic']['to_id']) {
                 $reply_to_id = $message['topic']['from_id'];
-            }
-            elseif ($my_id == $message['topic']['from_id'])
-            {
+            } elseif ($my_id == $message['topic']['from_id']) {
                 $reply_to_id = $message['topic']['to_id'];
             }
 
-            if (empty($reply_to_id) || $reply_to_id == MSG_SYSTEM)
-            {
+            if (empty($reply_to_id) || $reply_to_id == MSG_SYSTEM) {
                 $this->show_warning('cannot_replay_system_message');
                 return;
             }
 
             $mod_member = &m('member');
-            if (!$mod_member->get_info($reply_to_id))
-            {
+            if (!$mod_member->get_info($reply_to_id)) {
                 $this->show_warning('no_such_user');
                 return;
             }
-            if (!$msg_id = $ms->pm->send($this->visitor->get('user_id'), $reply_to_id, '', $_POST['msg_content'] , $msg_id))  //获取msg_id
+            if (!$msg_id = $ms->pm->send($this->visitor->get('user_id'), $reply_to_id, '', $_POST['msg_content'], $msg_id))  //获取msg_id
             {
                 $this->show_warning($ms->pm->get_error());
 
@@ -378,25 +350,22 @@ class MessageApp extends MemberbaseApp
     /**
      *    删除短消息
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function drop()
     {
         $msg_ids = isset($_GET['msg_id']) ? trim($_GET['msg_id']) : '';
-        if(in_array($_GET['back'],array('newpm','privatepm')))
-        {
+        if (in_array($_GET['back'], array('newpm', 'privatepm'))) {
             $folder = trim($_GET['back']);
         }
-        if (!$msg_ids)
-        {
-            $this->show_warning('no_such_message','','index.php?app=message&act=newpm');
+        if (!$msg_ids) {
+            $this->show_warning('no_such_message', '', 'index.php?app=message&act=newpm');
             return;
         }
-        $msg_ids = explode(',',$msg_ids);
-        if (!$msg_ids)
-        {
-            $this->show_warning('no_such_message','','index.php?app=message&act=newpm');
+        $msg_ids = explode(',', $msg_ids);
+        if (!$msg_ids) {
+            $this->show_warning('no_such_message', '', 'index.php?app=message&act=newpm');
             return;
         }
         $ms =& ms();
@@ -408,38 +377,32 @@ class MessageApp extends MemberbaseApp
         }
 
         /* 删除成功返回 */
-        if (in_array($_GET['back'],array('newpm', 'privatepm')))
-        {
+        if (in_array($_GET['back'], array('newpm', 'privatepm'))) {
             $this->show_message('drop_message_successed',
-                'back_' . $_GET['back'] ,'index.php?app=message&amp;act=' . $_GET['back']);
-        }
-        else
-        {
-            $this->show_message('drop_message_successed','','index.php?app=message&act=newpm');
+                'back_' . $_GET['back'], 'index.php?app=message&amp;act=' . $_GET['back']);
+        } else {
+            $this->show_message('drop_message_successed', '', 'index.php?app=message&act=newpm');
         }
     }
-    
+
     /**
      * 删除与该会员的所有会话（UC的短消息是人与人的关系，不分主题和回复）
-     * 
+     *
      * @return void
      *
      */
     function drop_relate()
     {
         $msg_ids = isset($_GET['msg_id']) ? trim($_GET['msg_id']) : '';
-        if(in_array($_GET['back'],array('newpm', 'privatepm')))
-        {
+        if (in_array($_GET['back'], array('newpm', 'privatepm'))) {
             $folder = trim($_GET['back']);
         }
-        if (!$msg_ids)
-        {
+        if (!$msg_ids) {
             $this->show_warning('no_such_message');
             return;
         }
         $msg_id = intval($msg_ids);
-        if (!$msg_id)
-        {
+        if (!$msg_id) {
             $this->show_warning('no_such_message');
             return;
         }
@@ -452,65 +415,61 @@ class MessageApp extends MemberbaseApp
         }
 
         /* 删除成功返回 */
-        if (in_array($_GET['back'],array('newpm', 'privatepm')))
-        {
+        if (in_array($_GET['back'], array('newpm', 'privatepm'))) {
             $this->show_message('drop_message_successed',
-                'back_' . $_GET['back'] ,'index.php?app=message&amp;act=' . $_GET['back']);
-        }
-        else
-        {
+                'back_' . $_GET['back'], 'index.php?app=message&amp;act=' . $_GET['back']);
+        } else {
             $this->show_message('drop_message_successed');
         }
     }
 
-     /**
+    /**
      *    三级菜单
      *
-     *    @author    Hyber
-     *    @return    void
+     * @author    Hyber
+     * @return    void
      */
     function _get_member_submenu()
     {
         $ms =& ms();
         $new = $ms->pm->check_new($this->visitor->get('user_id'));
-        $new && $newpm = "(". $new . ")";
+        $new && $newpm = "(" . $new . ")";
         $menus = array(
-                array(
-                    'name'  => 'newpm',
-                    'url'   => 'index.php?app=message&amp;act=newpm',
-                    'text'  => Lang::get('newpm') . $newpm,
-                ),
-                array(
-                    'name'  => 'privatepm',
-                    'url'   => 'index.php?app=message&amp;act=privatepm',
-                    'text'  => Lang::get('privatepm'),
-                ),
-                array(
-                    'name'  => 'systempm',
-                    'url'   => 'index.php?app=message&amp;act=systempm',
-                    'text'  => Lang::get('systempm'),
-                ),
-				/* array(
-                    'name'  => 'dingdanpm',
-                    'url'   => 'index.php?app=message&amp;act=dingdanpm',
-                    'text'  => Lang::get('dingdanpm'),
-                ),*/
+            array(
+                'name' => 'newpm',
+                'url' => 'index.php?app=message&amp;act=newpm',
+                'text' => Lang::get('newpm') . $newpm,
+            ),
+            array(
+                'name' => 'privatepm',
+                'url' => 'index.php?app=message&amp;act=privatepm',
+                'text' => Lang::get('privatepm'),
+            ),
+            array(
+                'name' => 'systempm',
+                'url' => 'index.php?app=message&amp;act=systempm',
+                'text' => Lang::get('systempm'),
+            ),
+            /* array(
+                'name'  => 'dingdanpm',
+                'url'   => 'index.php?app=message&amp;act=dingdanpm',
+                'text'  => Lang::get('dingdanpm'),
+            ),*/
         );
-        if ($ms->pm->show_announce)
-        {
+        if ($ms->pm->show_announce) {
             $menus[] = array(
-                    'name'  => 'announcepm',
-                    'url'   => 'index.php?app=message&amp;act=announcepm',
-                    'text'  => Lang::get('announcepm'),
-                );
+                'name' => 'announcepm',
+                'url' => 'index.php?app=message&amp;act=announcepm',
+                'text' => Lang::get('announcepm'),
+            );
         }
 
         ACT == 'send' && $menus[] = array(
-                'name' => 'send_message',
+            'name' => 'send_message',
         );
 
         ACT == 'view' && $menus[] = array(
-                'name' => 'view_message',
+            'name' => 'view_message',
         );
         return $menus;
     }
@@ -519,60 +478,56 @@ class MessageApp extends MemberbaseApp
     {
         /* 连接用户系统 */
         $user_id = intval($user_id);
-        if (!$user_id){
+        if (!$user_id) {
             $this->show_warning('no_such_user');
 
             return;
         }
-        if (!in_array($pattern, array('newpm', 'privatepm', 'announcepm', 'systempm','dingdanpm')))
-        {
+        if (!in_array($pattern, array('newpm', 'privatepm', 'announcepm', 'systempm', 'dingdanpm'))) {
             $this->show_warning('request_error');
             exit;
         }
         $page = $this->_get_page(10);
         $ms =& ms();
         $pms = $ms->pm->get_list($user_id, $page, $pattern);
-		
-		//print_r($pms);
+
+        //print_r($pms);
         $page['item_count'] = $pms['count'];
         $this->_format_page($page);
         $this->assign('page_info', $page);          //将分页信息传递给视图，用于形成分页条
-        
+
         //处理取出的数据
         $my_id = $this->visitor->get('user_id');
         $ms = &ms();
         //$i_send = 0;
         $messages = $pms['data'];
-		
-        foreach ($messages as $key=>$message)
-        {
+
+        foreach ($messages as $key => $message) {
             //$i_send = $message['to_id'] == $my_id ? 0 : 1;
             $user_info = $ms->user->get($message['to_id'] == $my_id ? $message['from_id'] : $message['to_id']);
             //$messages[$key]['i_send'] = $i_send;
-            if ($message['from_id'] == 0 && $message['to_id'] == 0)
-            {
+            if ($message['from_id'] == 0 && $message['to_id'] == 0) {
                 $user_info['user_name'] = Lang::get('announce_msg');
                 $user_info['user_id'] = 0;
                 $user_info['portrait'] = '';
-            }
-            elseif ($message['from_id'] == MSG_SYSTEM) 
-            {
+            } elseif ($message['from_id'] == MSG_SYSTEM) {
                 $user_info['user_name'] = Lang::get('system_msg');
                 $user_info['user_id'] = 0;
                 $user_info['portrait'] = '';
             }
             $user_info['portrait'] = portrait($user_info['user_id'], $user_info['portrait']);
             $messages[$key]['user_info'] = $user_info;
-			//$messages[$key]['content'] = htmlspecialchars_decode($messages[$key]['content']);
-			
-			
+            //$messages[$key]['content'] = htmlspecialchars_decode($messages[$key]['content']);
+
+
             //$messages[$key]['i_send'] = $i_send;
-			$messages[$key]['riqi']=date('Y-m-d H:i:s',$message['last_update']);
-			
-	
+            $messages[$key]['riqi'] = date('Y-m-d H:i:s', $message['last_update']);
+
+
         }
         return $messages;
     }
+
     function _list_friend()
     {
         $friends = array();
@@ -588,17 +543,18 @@ class MessageApp extends MemberbaseApp
         $cache_server =& cache_server();
         $cache_server->delete('new_pm_of_user_' . $this->visitor->get('user_id'));
     }
-	 function dingdanpm()
+
+    function dingdanpm()
     {
-	$this->notice_mod=& m('notice');
-	$user_id=$this->visitor->get('user_id');
+        $this->notice_mod =& m('notice');
+        $user_id = $this->visitor->get('user_id');
         // $this->_clear_newpm_cache();
-		//$page = $this->_get_page(2);
+        //$page = $this->_get_page(2);
         /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('message'),         'index.php?app=message&amp;act=newpm',
-                         LANG::get('dingdanpm')
-                         );
+        $this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+            LANG::get('message'), 'index.php?app=message&amp;act=newpm',
+            LANG::get('dingdanpm')
+        );
         /* 当前所处子菜单 */
         $this->_curmenu('dingdanpm');
         $this->import_resource(array(
@@ -616,31 +572,31 @@ class MessageApp extends MemberbaseApp
                     'attr' => '',
                 ),
             ),
-            'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
+            'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
         /* 当前用户中心菜单 */
         $this->_curitem('message');
         $this->assign('messages', $this->_list_message('dingdanpm', $this->visitor->get('user_id')));
         $this->assign('page_title', Lang::get('user_center') . ' - ' . Lang::get('dingdanpm'));
-		 $order_row=$this->notice_mod->getAll("select * from ".DB_PREFIX."notice where user_id='$user_id'");	
-		 /* $page['item_count'] = $this->order_mod->getCount();
-        $this->_format_page($page);
-	    $this->assign('page_info', $page);*/
-		 $this->assign('order_row',$order_row);
-		
+        $order_row = $this->notice_mod->getAll("select * from " . DB_PREFIX . "notice where user_id='$user_id'");
+        /* $page['item_count'] = $this->order_mod->getCount();
+       $this->_format_page($page);
+       $this->assign('page_info', $page);*/
+        $this->assign('order_row', $order_row);
+
         $this->display('message.dingdan.html');
     }
-    
-	function drop_dingdan()
-	{
-	    $this->notice_mod=& m('notice');
-		$id = intval($_GET['id']);
-		$sql="delete from ".DB_PREFIX."notice where id = '$id'";
-		$this->notice_mod->db->query($sql);
-		$this->show_message('drop_message_successed','back_list','index.php?app=message&act=dingdanpm');
-	}
-	
-	
-	
+
+    function drop_dingdan()
+    {
+        $this->notice_mod =& m('notice');
+        $id = intval($_GET['id']);
+        $sql = "delete from " . DB_PREFIX . "notice where id = '$id'";
+        $this->notice_mod->db->query($sql);
+        $this->show_message('drop_message_successed', 'back_list', 'index.php?app=message&act=dingdanpm');
+    }
+
+
 }
+
 ?>

@@ -112,7 +112,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 #float_layer #adorn1 { width: 85px; height: 3px; overflow: hidden; background: url(../images/float_layer.gif) no-repeat 0 -2px; position: absolute; bottom: -3px; left: 0; }
 #float_layer #adorn2 { width: 81px; height: 2px; overflow: hidden; background: #fff7e1; border-left: 1px solid #fff; border-right: 1px solid #fff; position: absolute; top: -2px; left: 1px; }
 
-#path { position: absolute; bottom: 10px; left: 0; color: #000; }
+#path { position: absolute; bottom: 5px; left: 0; color: #000; }
 #path a { color: #285bcc; text-decoration: none; }
 #path a:hover { text-decoration: underline; }
 #path span { position: relative; top: 1px; padding-right: 3px; color: #285bcc; font-size: 18px; }
@@ -219,7 +219,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 .detail .ware_box { width: 346px; height: 100px; padding: 10px 15px 0; overflow: auto; }
 .detail .ware { width: 330px; overflow: hidden; margin-bottom: 10px; }
 .detail .ware_pic { float: left; width: 50px; height: 50px; margin-right: 10px; overflow: hidden; background: #eee; }
-.detail .ware_con { float: left; width: 270px; overflow: }
+.detail .ware_con { float: left; width: 270px; }
 .detail .ware_text { color: #3e3e3e; }
 .detail .ware_text a { color: #3e3e3e; text-decoration: none; }
 .detail .ware_text a:hover { text-decoration: underline; }
