@@ -39,7 +39,7 @@ class MessageApp extends MemberbaseApp
             ),
             'style' => 'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
-        $this->assign('messages', $this->_list_message('newpm', $this->visitor->get('user_id')));
+        //$this->assign('messages', $this->_list_message('newpm', $this->visitor->get('user_id')));
         $this->assign('page_title', Lang::get('member_center') . ' - ' . Lang::get('newpm'));
         $this->display('message.box.html');
     }
