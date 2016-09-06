@@ -172,6 +172,17 @@ class TousuApp extends BackendApp
                     $or[$i]['goods_image']='/'.$v;
                 }
             }
+
+            if($shs['imag_1']!='' && strtolower(substr($shs['imag_1'],0,4))!='http'){
+                $shs['imag_1']='/'.$shs['imag_1'];
+            }
+            if($shs['imag_2']!='' && strtolower(substr($shs['imag_2'],0,4))!='http'){
+                $shs['imag_2']='/'.$shs['imag_2'];
+            }
+            if($shs['imag_3']!='' && strtolower(substr($shs['imag_3'],0,4))!='http'){
+                $shs['imag_3']='/'.$shs['imag_3'];
+            }
+
             if($com['imag_1']!='' && strtolower(substr($com['imag_1'],0,4))!='http'){
                 $com['imag_1']='/'.$com['imag_1'];
             }
