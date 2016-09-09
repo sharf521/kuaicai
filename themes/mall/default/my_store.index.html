@@ -187,11 +187,11 @@ function drop_image(file_id)
                                 <th>{$lang.tel}:</th>
                                 <td><input name="tel" type="text" class="text width_normal" id="tel" value="{$store.tel|escape}" /></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none">
                                 <th><font color="#FF0000">{$lang.gettype}:</font></th>
                                 <td>
-                <input type="radio" name="gettype" id="gettype" {if $store.gettype==1} checked="checked" {/if} value="1"/><font color="#FF0000">{$lang.getjifen}</font>
-                <input type="radio" name="gettype" id="gettype" {if $store.gettype==2} checked="checked" {/if} value="2"/><font color="#FF0000">{$lang.getxianjin}</font>
+                <input type="radio" name="gettype"  {if $store.gettype==1} checked="checked" {/if} value="1"/><font color="#FF0000">{$lang.getjifen}</font>
+                <input type="radio" name="gettype"  {if $store.gettype==2} checked="checked" {/if} value="2"/><font color="#FF0000">{$lang.getxianjin}</font>
                                </td>
                             </tr>
                             <tr>

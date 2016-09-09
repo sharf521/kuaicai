@@ -104,7 +104,6 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 #topbtn .link { color: #000; text-decoration: none; }
 #topbtn .link:hover { color: red; }
 #topbtn span { color: #c0c0c0; }
-#topbtn .user { padding-right: 14px; background: url(../images/member/ico.gif) no-repeat 50px -108px; }
 
 #float_layer { position: absolute; top: 20px; right: 125px; width: 85px; line-height: 20px; background: url(../images/float_layer.gif) repeat-y -85px 0; z-index: 1; display: none; }
 #float_layer a { text-decoration: none; color: #333; }
