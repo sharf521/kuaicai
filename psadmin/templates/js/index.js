@@ -150,7 +150,7 @@ function setWorkspace(){
     var wWidth = $(window).width();
     var wHeight = $(window).height();
 	
-    $('#workspace').width(wWidth- $('#left').width() - parseInt($('#left').css('margin-right')));
+    $('#workspace').width(wWidth - 10 - $('#left').width() - parseInt($('#left').css('margin-right')));
     $('#workspace').height(wHeight - $('#head').height());
 }
 
