@@ -268,6 +268,33 @@ class TousuApp extends BackendApp
         $this->import_resource(array(
             'script' => 'jquery.plugins/jquery.validate.js'
         ));
+
+        foreach ($or as $i=>$v){
+            if(strtolower(substr($v['goods_image'],0,4))!='http'){
+                $or[$i]['goods_image']='/'.$v;
+            }
+        }
+
+        if($shs['imag_1']!='' && strtolower(substr($shs['imag_1'],0,4))!='http'){
+            $shs['imag_1']='/'.$shs['imag_1'];
+        }
+        if($shs['imag_2']!='' && strtolower(substr($shs['imag_2'],0,4))!='http'){
+            $shs['imag_2']='/'.$shs['imag_2'];
+        }
+        if($shs['imag_3']!='' && strtolower(substr($shs['imag_3'],0,4))!='http'){
+            $shs['imag_3']='/'.$shs['imag_3'];
+        }
+
+        if($com['imag_1']!='' && strtolower(substr($com['imag_1'],0,4))!='http'){
+            $com['imag_1']='/'.$com['imag_1'];
+        }
+        if($com['imag_2']!='' && strtolower(substr($com['imag_2'],0,4))!='http'){
+            $com['imag_2']='/'.$com['imag_2'];
+        }
+        if($com['imag_3']!='' && strtolower(substr($com['imag_3'],0,4))!='http'){
+            $com['imag_3']='/'.$com['imag_3'];
+        }
+
         $this->assign('yes_or_no', $yes_or_no);
         $this->assign('com', $com);
         $this->assign('shs', $shs);
