@@ -848,7 +848,7 @@ function qrcode($data,$dir,$filename,$level='L',$size=4,$marg=0,$col='#000000')
 	if(empty($data))	return '';
 	if(!in_array($level,array('L','M','Q','H'))) $level='L';
 	$size= min(max((int)$size, 1), 10);
-	
+	echo $dir;
 	if (!file_exists($dir))      mkdir($dir);
  	$filename = $dir.$filename;
 	if (!file_exists($filename))
