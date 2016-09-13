@@ -39,7 +39,7 @@ return array(
     'amount_range' => '导出数量必须为1到1000的整数',
     'extend_to_users' => '给以下用户发放优惠券号码',
     'extend_to_users_desc' => '1、每行填写一个用户名，最多填30行。',
-    'extend_to_users_desc1' => '2、优惠券号码将通过站内信和邮件发送。',
+    'extend_to_users_desc1' => '2、优惠券号码将通过站内信发送。',
     'amount_gt' => '您发送数量大于30个',
     'send_method' => '发送方式',
     'add' => '添加',
