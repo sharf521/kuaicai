@@ -316,7 +316,7 @@ class CouponApp extends StoreadminbaseApp
                 $coupon['store_name'] = $store['store_name'];
                 $coupon['store_id'] = $this->_store_id;
                 $this->_message_to_user($users, $coupon);
-                $this->_mail_to_user($users, $coupon);
+                //$this->_mail_to_user($users, $coupon);
                 $this->pop_warning("ok","coupon_extend");
 				
             }
