@@ -269,11 +269,11 @@ class TousuApp extends BackendApp
             'script' => 'jquery.plugins/jquery.validate.js'
         ));
 
-//        foreach ($or as $i=>$v){
-//            if(strtolower(substr($v['goods_image'],0,4))!='http'){
-//                $or[$i]['goods_image']='/'.$v;
-//            }
-//        }
+        foreach ($or as $i=>$v){
+            if(strtolower(substr($v['goods_image'],0,4))!='http'){
+                $or[$i]['goods_image']='/'.$v;
+            }
+        }
 
         if($shs['imag_1']!='' && strtolower(substr($shs['imag_1'],0,4))!='http'){
             $shs['imag_1']='/'.$shs['imag_1'];
