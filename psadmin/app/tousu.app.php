@@ -258,6 +258,8 @@ class TousuApp extends BackendApp
         $recid = $com['rec_id'];
         $or = $this->complain_mod->getAll("select * from " . DB_PREFIX . "order_goods where order_id = '$order_id' and rec_id in ($recid)");
 
+        print_r($or);
+
         $shs = $this->complain_mod->getRow("select * from " . DB_PREFIX . "complain where ts_id = '$id' limit 1");
 
         /* 显示新增表单 */
@@ -274,6 +276,7 @@ class TousuApp extends BackendApp
                 $or[$i]['goods_image']='/'.$v;
             }
         }
+        print_r($or);
 
         if($shs['imag_1']!='' && strtolower(substr($shs['imag_1'],0,4))!='http'){
             $shs['imag_1']='/'.$shs['imag_1'];
