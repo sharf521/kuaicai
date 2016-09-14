@@ -33,7 +33,7 @@ class Mail {
         # 必填，开通SMTP服务的邮箱；任意一个163邮箱均可
         $mail->Username   = '353889718@qq.com';
         # 必填， 以上邮箱对应的密码
-        $mail->Password   = "qqww1122";
+        $mail->Password   = "qqww112233";
         # 必填，发件人Email
         $mail->From       = '353889718@qq.com';
         # 必填，发件人昵称或姓名
