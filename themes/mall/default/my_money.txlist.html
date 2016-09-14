@@ -1,60 +1,47 @@
 {include file=member.header.html}
 <script language="javascript">
-function tixian(flg){
-var $tixian = $('#tixian');
-var $xianjinduihuan = $('#xianjinduihuan');
+    function tixian(flg) {
+        var $tixian = $('#tixian');
+        var $xianjinduihuan = $('#xianjinduihuan');
+        switch (flg) {
+            case 1:
+                $tixian.show();
+                $xianjinduihuan.hide();
+                break;
+            case 2:
+                $xianjinduihuan.show();
+                $tixian.hide();
+                break;
+        }
+    }
+    function tousers() {
+        if (document.to_users.tx_money.value == "") {
+            alert("请您填写提现的金额!");
+            document.to_users.tx_money.focus();
+            return false;
+        }
+        if (document.to_users.tx_money.value < 50) {
+            alert("提现金额最低{$canshu.tx_min}元");
+            document.to_users.tx_money.focus();
+            return false;
+        }
 
-
-  switch(flg){
-    case 1:
-       
-			$tixian.show();
-			$xianjinduihuan.hide();
-        break;
-	
-    case 2:
-       $xianjinduihuan.show();
-	   $tixian.hide();
-        break;
-  }
-}
-function tousers()
-{
-if (document.to_users.tx_money.value =="")
-  {
-    alert("请您填写提现的金额!");
-	document.to_users.tx_money.focus();
-	return false;
-	}
-if (document.to_users.tx_money.value < 50)
-  {
-    alert("提现金额最低{$canshu.tx_min}元");
-	document.to_users.tx_money.focus();
-	return false;
-	}
-
-if (document.to_users.tx_money.value > 50000)
-  {
-    alert("提现金额最高{$canshu.tx_max}元");
-	document.to_users.tx_money.focus();
-	return false;
-	}
-  document.getElementById("FormSubmit").setAttribute('disabled','ture');
-
-}
-
-function tx(o){
-var $xianxia = $('#txian');
-	if(o.checked==true)
-	{	
-	alert('您已选择使用快速提现，需另外加收千分之三的提现手续费及{$canshu.ks_fei}元的加急费用，如您不需使用快速提现，请取消此处的选择。');
-		$xianxia.show();
-	}
-	else
-	{
-		$xianxia.hide();
-	}
-}
+        if (document.to_users.tx_money.value > 50000) {
+            alert("提现金额最高{$canshu.tx_max}元");
+            document.to_users.tx_money.focus();
+            return false;
+        }
+        document.getElementById("FormSubmit").setAttribute('disabled', 'ture');
+    }
+    function tx(o) {
+        var $xianxia = $('#txian');
+        if (o.checked == true) {
+            //alert('您已选择使用快速提现，需另外加收{$canshu.ks_txfeilv}的提现手续费及{$canshu.ks_fei}元的加急费用，如您不需使用快速提现，请取消此处的选择。');
+            $xianxia.show();
+        } else {
+            $xianxia.hide();
+        }
+    }
 </script>
 
 <?php
@@ -138,13 +125,13 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
                   <div style="color:#990000; line-height:20px; padding:5px"> 
 				  普通提现<br />
 					(1)	单笔提现金额最低{$canshu.tx_min}元，最高{$canshu.tx_max}元。<br />
-					(2) 单笔提现费率为千分之五，单笔提现手续费最低5元，最高50元。<br />
+					(2) 单笔提现费率为{$canshu.tixianfeilv}，单笔提现手续费最低{$canshu.tixianfeimin}元。<br />
 					(3)每个工作日的下午5点之前提交的提现申请，T+1个工作日到账，每个工作日的下午5点之后提交的提现申请，T+2个工作日到账。
                   </div><br>
 				   <input name="tx_edit" type="checkbox" id="tx_edit" value="1" onclick="tx(this);"/>&nbsp;&nbsp;<b><font color="#000000">快速提现</font></b>&nbsp;(如需使用快速提现，此处请打勾)<br />
 				   <div id="txian" style="display:none; color:#990000">
 				(1)	单笔提现金额最低{$canshu.tx_min}元，最高{$canshu.tx_max}元。<br />
-				(2)	提现费用：在普通提现的费用基础上，每笔另外加收千分之三的提现手续费及{$canshu.ks_fei}元的加急费用。<br />
+				(2)	提现费用：在普通提现的费用基础上，每笔另外加收{$canshu.ks_txfeilv}的提现手续费及{$canshu.ks_fei}元的加急费用。<br />
 				(3)	每天11:00之前的提现申请，当日15:00开始处理；11:00到15:00之间的提现申请,17:00开始处理。<br /> 
 				(4)	每天15:00以后的提现申请，统一到第二日15:00开始处理。<br />
 				<table border="1" style="border-collapse:collapse; border:1px solid #000000; width:500px">

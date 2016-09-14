@@ -503,23 +503,25 @@ $my_money=$this->my_moneylog_mod->find(array(
 		
 //提现查询	
 	function txlist()
-    {        
-	    $user_id = $this->visitor->get('user_id');   
-        /* 当前位置 */
-        $this->_curlocal(LANG::get('member_center'),   'index.php?app=member',
-                         LANG::get('shangfutong'),         'index.php?app=my_money&act=index',
-                         LANG::get('tixianshenqing')
-                         );
-        /* 当前用户中心菜单 */
-	$this->assign('page_title',Lang::get('member_center'). ' - ' .Lang::get('tixianshenqing'));
-        $this->_curitem('tixianshenqing');	
-	
-        $my_money=$this->my_money_mod->getAll("select * from ".DB_PREFIX."my_money where user_id=$user_id");
-		$canshu=$this->canshu_mod->getRow("select * from ".DB_PREFIX."canshu limit 1");
-		$this->assign('canshu', $canshu); 
-        $this->assign('my_money', $my_money); 
-        $this->display('my_money.txlist.html');
-    }
+	{
+		$user_id = $this->visitor->get('user_id');
+		/* 当前位置 */
+		$this->_curlocal(LANG::get('member_center'), 'index.php?app=member',
+			LANG::get('shangfutong'), 'index.php?app=my_money&act=index',
+			LANG::get('tixianshenqing')
+		);
+		/* 当前用户中心菜单 */
+		$this->assign('page_title', Lang::get('member_center') . ' - ' . Lang::get('tixianshenqing'));
+		$this->_curitem('tixianshenqing');
+
+		$my_money = $this->my_money_mod->getAll("select * from " . DB_PREFIX . "my_money where user_id=$user_id");
+		$canshu = $this->canshu_mod->getRow("select * from " . DB_PREFIX . "canshu limit 1");
+		$canshu['tixianfeilv'] = ($canshu['tixianfeilv'] * 100) . '%';
+		$canshu['ks_txfeilv'] = ($canshu['ks_txfeilv'] * 100) . '%';
+		$this->assign('canshu', $canshu);
+		$this->assign('my_money', $my_money);
+		$this->display('my_money.txlist.html');
+	}
 	
 //提现记录
    	function txlog()
