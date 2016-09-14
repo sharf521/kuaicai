@@ -10,10 +10,11 @@ class AdApp extends MallbaseApp
 	$row=$this->adv_mod->get_cityrow();
 	$city_id=$row['city_id'];
 	$time=date('Y-m-d H:i:s');
-	$result=$this->adv_mod->getrow(
-	   "select * from ".DB_PREFIX."adv where 
-	   adv_city='$city_id' and type=$type and start_time<='$time' and end_time>='$time' order by riqi desc limit 1
-	   ");
+//		$result = $this->adv_mod->getrow(
+//			"select * from " . DB_PREFIX . "adv where
+//	   adv_city='$city_id' and type=$type and start_time<='$time' and end_time>='$time' order by riqi desc limit 1
+//	   ");
+		$result = $this->adv_mod->getrow("select * from " . DB_PREFIX . "adv where  adv_city='$city_id' and type=$type order by riqi desc limit 1");
 	   $im=$result['image'];
 	   $lianjie=$result['lianjie'];
 	   if(empty($result['image']))
