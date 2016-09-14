@@ -187,10 +187,10 @@ function drop_image(file_id)
                                 <th>{$lang.tel}:</th>
                                 <td><input name="tel" type="text" class="text width_normal" id="tel" value="{$store.tel|escape}" /></td>
                             </tr>
-                            <tr style="display: none">
+                            <tr>
                                 <th><font color="#FF0000">{$lang.gettype}:</font></th>
                                 <td>
-                <input type="radio" name="gettype"  {if $store.gettype==1} checked="checked" {/if} value="1"/><font color="#FF0000">{$lang.getjifen}</font>
+                <input type="radio" name="gettype" checked="checked" value="1"/><font color="#FF0000">{$lang.getjifen}</font>
                 <input type="radio" name="gettype"  {if $store.gettype==2} checked="checked" {/if} value="2"/><font color="#FF0000">{$lang.getxianjin}</font>
                                </td>
                             </tr>
@@ -203,7 +203,7 @@ function drop_image(file_id)
                                   <td><input name="im_ww" type="text" class="text width_normal" id="im_ww" value="{$store.im_ww|escape}" /></td>
                             </tr>
 							<tr>
-                                  <th>Î¢ÐÅ¹«ÖÚÕËºÅ:</th>
+                                  <th>Î¢ï¿½Å¹ï¿½ï¿½ï¿½ï¿½Ëºï¿½:</th>
                                   <td><input name="public_account" type="text" class="text width_normal" id="public_account" value="{$store.public_account|escape}" /></td>
                             </tr>
                             <tr>
@@ -220,12 +220,12 @@ function drop_image(file_id)
     								</script>
 									<script type="text/javascript">
 										UE.getEditor('myEditor',{
-											initialFrameHeight:350,  //³õÊ¼»¯±à¼­Æ÷¸ß¶È,
-											autoHeightEnabled:false, //ÊÇ·ñ×Ô¶¯³¤¸ß,Ä¬ÈÏtrue
-											scaleEnabled:false, //ÊÇ·ñ¿ÉÒÔÀ­Éì³¤¸ß,Ä¬ÈÏtrue
-											minFrameHeight:420, //±à¼­Æ÷ÍÏ¶¯Ê±×îÐ¡¸ß¶È
-											autoFloatEnabled:false,//ÊÇ·ñ±£³ÖtoolbarµÄÎ»ÖÃ²»¶¯,Ä¬ÈÏtrue
-											toolbarTopOffset:400, //±à¼­Æ÷µ×²¿¾àÀë¹¤¾ßÀ¸¸ß¶È
+											initialFrameHeight:350,  //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½à¼­ï¿½ï¿½ï¿½ß¶ï¿½,
+											autoHeightEnabled:false, //ï¿½Ç·ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½,Ä¬ï¿½ï¿½true
+											scaleEnabled:false, //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³¤ï¿½ï¿½,Ä¬ï¿½ï¿½true
+											minFrameHeight:420, //ï¿½à¼­ï¿½ï¿½ï¿½Ï¶ï¿½Ê±ï¿½ï¿½Ð¡ï¿½ß¶ï¿½
+											autoFloatEnabled:false,//ï¿½Ç·ñ±£³ï¿½toolbarï¿½ï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½,Ä¬ï¿½ï¿½true
+											toolbarTopOffset:400, //ï¿½à¼­ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ë¹¤ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½
 											initialFrameWidth:650
 										})
 									</script>
