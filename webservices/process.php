@@ -278,7 +278,7 @@ if(empty($_GET['ui']))
 		{
 			$.post("ajax.php?func=GetListInfo",{type:type},function(result){
 				alert(result);
-				window.location.reload();
+				//window.location.reload();
 			});
 		}
 		function C_Cal(t,o)
