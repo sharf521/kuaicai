@@ -1091,7 +1091,7 @@ form label.validate_right { padding-left:12px; background:transparent url(../ima
 /*借贷平台*/
 .ad_pay{ width:255px; height:160px; float:left; background:#ffebdf;}
 .ad_paytop{ width:255px; margin-top:7px; float:left}
-.ad_payleft{ width:82px; height:85px;  margin-left:5px; margin-top:10px; display:inline; float:left}
+.ad_payleft{ width:20px; height:85px;  margin-left:5px; margin-top:10px; display:inline; float:left}
 .ad_payright{ width:158px; float:left;line-height:26px; color:#888; font-size:12px;margin-left:7px; display:inline}
 .ad_payright a{ text-decoration:none; color:#ff731e; font-size:14px; font-weight:bold}
 
