@@ -447,7 +447,7 @@ return array(
 	'jiebaozheng'   =>'系统自动扣除借款金额{1}元,锁定用户积分100000积分',
 	'zidong'   =>'系统自动执行',
 	'mibaoguoqihuozantingshiyongjiangshiqubaohuzuoyong'   => '提示：密保过期或暂停将失去保护作用',
-	'p2p'=>'P2P借贷平台',
+	'p2p'=>'会员金服系统',
 	'jifenshangcheng'=>'积分商城',
 	'chengnuo' => '承诺管理',
 	'im_qiye' => '企业管理',
