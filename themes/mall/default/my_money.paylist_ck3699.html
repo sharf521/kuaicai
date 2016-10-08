@@ -25,13 +25,13 @@ function card()
 	return false;
 	}
  
-	if(document.card_form.card_sn.value < 500)
+	if(document.card_form.card_sn.value < {$canshu.cz_min})
 	{
 	alert("充值金额不能小于{$canshu.cz_min}元");
 	document.card_form.card_sn.focus();
 	return false;
 	}
-	if(document.card_form.card_sn.value >1000000)
+	if(document.card_form.card_sn.value >{$canshu.cz_max})
 	{
 	alert("充值金额不能大于{$canshu.cz_max}元");
 	document.card_form.card_sn.focus();
@@ -171,7 +171,7 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
 				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onkeyup="value=value.replace(/[^0-9.]/g,'')"  maxlength="10"/>&nbsp;<font  color="red">*</font>
 				  <div style="color:#F00; line-height:20px; padding:5px"> 
                  线下充值如遇到问题，请立即与客服联系</br>
-                  (1)&nbsp;单笔线下充值金额不低于500元；</br>
+                  (1)&nbsp;单笔线下充值金额不低于{$canshu.cz_min}元；</br>
                   (2)&nbsp;<font color="#0000FF">有效充值登记时间为:周一至周五的9:30到16:00</font>，充值成功请跟我们的客服联系。
                   </div>
                   <br>
