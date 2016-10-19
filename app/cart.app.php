@@ -82,19 +82,19 @@ class CartApp extends MallbaseApp
             /* 商品不存在 */
             return;
 		}
-	$this->_store_id  = intval($this->visitor->get('manage_store'));
-	if($spec_info['daishou']==2 && empty($this->_store_id))
-		{
-			$this->json_error('kaidianhoucai');
-            /* 商品不存在 */
-            return;
-		}
-		$stor=$spec_model->getRow("select is_cai from ".DB_PREFIX."store where store_id='$userid' limit 1");
-		if($stor['is_cai']!=1 && $spec_info['daishou']==2)
-		{
-			$this->json_error('ninmeiyoucaigou');
-            return;
-		}
+        $this->_store_id  = intval($this->visitor->get('manage_store'));
+
+          /*  if($spec_info['daishou']==2 && empty($this->_store_id))
+           {
+               $this->json_error('kaidianhoucai');//开店才能采购
+               return;
+           }
+           $stor=$spec_model->getRow("select is_cai from ".DB_PREFIX."store where store_id='$userid' limit 1");
+           if($stor['is_cai']!=1 && $spec_info['daishou']==2)
+           {
+               $this->json_error('ninmeiyoucaigou');
+               return;
+           }*/
 		
         if (!$spec_info)
         {
