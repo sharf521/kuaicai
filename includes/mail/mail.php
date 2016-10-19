@@ -22,7 +22,7 @@ class Mail {
         global $mysql, $_G;
 
         $mail = new PHPMailer();
-        $body = eregi_replace("[\]",'',$body);
+        $body = preg_replace("[\\]",'',$body);
         
         $mail->CharSet = 'gb2312';
         $mail->IsSMTP();
@@ -37,7 +37,7 @@ class Mail {
         # 必填，发件人Email
         $mail->From       = '353889718@qq.com';
         # 必填，发件人昵称或姓名
-        $mail->FromName   = iconv('utf-8','gb2312','绿券积分商城');
+        $mail->FromName   = iconv('utf-8','gb2312','创客优品汇供销商城');
         # 必填，邮件标题（主题）
         $mail->Subject    = $subject;
         # 可选，纯文本形势下用户看到的内容
