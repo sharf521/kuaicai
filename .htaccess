@@ -32,6 +32,12 @@ RewriteRule ^store/([0-9]+)/groupbuy/?$ index.php?app=store&id=$1&act=groupbuy [
 RewriteRule ^store/([0-9]+)/groupbuy/page_([^/]+)/?$ index.php?app=store&id=$1&act=groupbuy&page=$2 [L]
 
 
+#pic
+RewriteRule ^(.*)/data/files/store_([0-9]+)/(.*)$   /data/files/store_$2/$3
+
+RewriteCond %{HTTP_HOST} ^(ck3699.com.cn)$ [NC]
+RewriteRule ^(.*)$  http://www.ck3699.com.cn/$1 [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} \.(jpg|gif|png)$
 RewriteRule ./s70.jpg [L]

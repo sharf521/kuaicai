@@ -1533,6 +1533,13 @@ else
             $canshu_row = $this->canshu_mod->can();
             //从定单中 读取卖家信息
             $order_row = $this->order_mod->getRow("select * from " . DB_PREFIX . "order where order_id='$order_id' limit 1");
+
+            if($order_row['status']!=11){
+                //待支付状态才能支付
+                $this->show_warning('order status error');
+                return;
+            }
+
             $order_order_sn = $order_row['order_sn'];//定单号
             $order_seller_id = $order_row['seller_id'];//定单里的 卖家ID
             $order_money = $order_row['order_amount_m'];//定单里的 最后定单总价格
